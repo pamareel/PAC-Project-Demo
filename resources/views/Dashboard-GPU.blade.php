@@ -113,78 +113,116 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-    <!-- *************************************************************** -->
-    <!-- Start First Cards -->
-    <!-- *************************************************************** -->
-    <div class="card-group">
-        <div class="card border-right">
-            <div class="card-body">
-                <div class="d-flex d-lg-flex d-md-block align-items-center">
-                    <div>
-                        <div class="d-inline-flex align-items-center">
-                            <h2 class="text-dark mb-1 font-weight-medium">236</h2>
-                            <span
-                                class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%</span>
+
+    <!-- ============================================================== -->
+    <!-- Top10 drug price dispersion  -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Top 10 Unit Price</h4>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="dataTables_length" id="default_order_length">
+                                <label>Show
+                                    <select name="default_order_length" aria-controls="default_order" class="form-control form-control-sm">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> entries
+                                </label>
+                            </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">New Clients</h6>
-                    </div>
-                    <div class="ml-auto mt-md-3 mt-lg-0">
-                        <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card border-right">
-            <div class="card-body">
-                <div class="d-flex d-lg-flex d-md-block align-items-center">
-                    <div>
-                        <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
-                                class="set-doller">$</sup>18,306</h2>
-                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Expense of Month
-                        </h6>
-                    </div>
-                    <div class="ml-auto mt-md-3 mt-lg-0">
-                        <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card border-right">
-            <div class="card-body">
-                <div class="d-flex d-lg-flex d-md-block align-items-center">
-                    <div>
-                        <div class="d-inline-flex align-items-center">
-                            <h2 class="text-dark mb-1 font-weight-medium">1538</h2>
-                            <span
-                                class="badge bg-danger font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">-18.33%</span>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="default_order_filter" class="dataTables_filter">
+                                <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="default_order"></label>
+                            </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">New Projects</h6>
                     </div>
-                    <div class="ml-auto mt-md-3 mt-lg-0">
-                        <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="default_order" class="table table-striped table-bordered display no-wrap dataTable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>Name</th>
+                                        <th>GPU</th>
+                                        <th>Avg Unit Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                <?php
+                                    $query = DB::select('select TOP 10 GPU_NAME, GPU_ID, Wavg_Unit_Price from GPU
+                                                            where BUDGET_YEAR = 2561
+                                                            order by Wavg_Unit_Price DESC;');
+                                    for ($i = 0; $i < 10; $i+=1) {
+                                        // echo "The number is: $i <br>";
+                                ?>
+                                        <tr>      
+                                <?php
+                                        foreach($query[$i] as $x => $val) {
+                                ?>
+                                            <td width="40%">{{ $val }}</td>
+                                            <!-- echo "$x = $val<br>"; -->
+                                <?php
+                                        };
+                                ?>
+                                        </tr>
+                                <?php
+                                    };
+                                ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th rowspan="1" colspan="1">Name</th>
+                                        <th rowspan="1" colspan="1">GPU</th>
+                                        <th rowspan="1" colspan="1">Avg Unit Price</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex d-lg-flex d-md-block align-items-center">
-                    <div>
-                        <h2 class="text-dark mb-1 font-weight-medium">864</h2>
-                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Drugs</h6>
-                    </div>
-                    <div class="ml-auto mt-md-3 mt-lg-0">
-                        <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-5">
+                            <div class="dataTables_info" id="default_order_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                        </div>
+                        <div class="col-sm-12 col-md-7">
+                            <div class="dataTables_paginate paging_simple_numbers" id="default_order_paginate">
+                                <ul class="pagination">
+                                    <li class="paginate_button page-item previous disabled" id="default_order_previous">
+                                        <a href="#" aria-controls="default_order" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                                    </li>
+                                    <li class="paginate_button page-item active">
+                                        <a href="#" aria-controls="default_order" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                                    </li>
+                                    <li class="paginate_button page-item ">
+                                        <a href="#" aria-controls="default_order" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+                                </li><li class="paginate_button page-item ">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="3" tabindex="0" class="page-link">3</a>
+                                </li>
+                                <li class="paginate_button page-item ">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="4" tabindex="0" class="page-link">4</a>
+                                </li><li class="paginate_button page-item ">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="5" tabindex="0" class="page-link">5</a>
+                                </li>
+                                <li class="paginate_button page-item ">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="6" tabindex="0" class="page-link">6</a>
+                                </li>
+                                <li class="paginate_button page-item next" id="default_order_next">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- End Top10 drug price dispersion -->
+    <!-- ============================================================== -->
+
     <!-- *************************************************************** -->
-    <!-- End First Cards -->
-    <!-- *************************************************************** -->
-    <!-- *************************************************************** -->
-    <!-- Start Sales Charts Section -->
+    <!-- Start Drug Purchasing Amount -->
     <!-- *************************************************************** -->
     <div class="row">
         <!-- Drug Purchasing Amount -->
