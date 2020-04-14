@@ -14,7 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
-Route::get('/dashboard', 'DashboardController@test');
+Route::get('/DashboardPage', function () {
+    return view('dashboardpage');
+})->name('dashboardpage');
+
+Route::get('/DrugPage', function () {
+    return view('drugpage');
+})->name('drugpage');
+
+Route::get('/HospitalPage', function () {
+    return view('hospitalpage');
+})->name('hospitalpage');
