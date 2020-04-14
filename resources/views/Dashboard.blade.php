@@ -1,5 +1,44 @@
 @extends('layouts/admin')
 @section('content')
+
+<?php
+    // use DB;
+    $top5GPU = DB::select('EXEC findTop5GPU61');
+    $totalAmount = DB::select('select sum(Total_Real_Amount) as total FROM GPU WHERE BUDGET_YEAR=2561;');
+    //or $top5GPU = DB::select('SELECT TOP 5 GPU_NAME, Total_Real_Amount FROM GPU61_Top5');
+    
+    // set parameter
+    $n1 = $top5GPU[0]->GPU_NAME;
+    $a1 = $top5GPU[0]->Total_Real_Amount;
+    $n2 = $top5GPU[1]->GPU_NAME;
+    $a2 = $top5GPU[1]->Total_Real_Amount;
+    $n3 = $top5GPU[2]->GPU_NAME;
+    $a3 = $top5GPU[2]->Total_Real_Amount;
+    $n4 = $top5GPU[3]->GPU_NAME;
+    $a4 = $top5GPU[3]->Total_Real_Amount;
+    $n5 = $top5GPU[4]->GPU_NAME;
+    $a5 = $top5GPU[4]->Total_Real_Amount;
+
+    $TA = $totalAmount[0]->total;
+
+    //dump($n1);
+    //dump($top5GPU[0]->GPU_NAME);
+    //dump($top5GPU[0]->Total_Real_Amount);
+    //dump(DB::select('SELECT TOP 5 GPU_NAME, Total_Real_Amount FROM GPU61_Top5')[0]->GPU_NAME);
+?>
+<!-- to send parameter to js file -->
+<div id="n1" value = {{ $n1 }} style="display:none;">hello</div>
+<div id="a1" value = {{ $a1 }} style="display:none;">hello</div>
+<div id="n2" value = {{ $n2 }} style="display:none;">hello</div>
+<div id="a2" value = {{ $a2 }} style="display:none;">hello</div>
+<div id="n3" value = {{ $n3 }} style="display:none;">hello</div>
+<div id="a3" value = {{ $a3 }} style="display:none;">hello</div>
+<div id="n4" value = {{ $n4 }} style="display:none;">hello</div>
+<div id="a4" value = {{ $a4 }} style="display:none;">hello</div>
+<div id="n5" value = {{ $n5 }} style="display:none;">hello</div>
+<div id="a5" value = {{ $a5 }} style="display:none;">hello</div>
+<div id="TA" value = {{ $TA }} style="display:none;">hello</div>
+
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
@@ -111,23 +150,36 @@
         <div class="col-lg-4 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Total Sales</h4>
-                    <div id="campaign-v2" class="mt-2" style="height:283px; width:100%;"></div>
+                    <h4 class="card-title">Drug Purchasing Amount</h4>
+                    
+                    <div id="campaign-v2" class="mt-2" style="height:283px; width:100%;">
+                        
+                    </div>
                     <ul class="list-style-none mb-0">
                         <li>
                             <i class="fas fa-circle text-primary font-10 mr-2"></i>
-                            <span class="text-muted">Paracetamol</span>
-                            <span class="text-dark float-right font-weight-medium">$2346</span>
+                            <span class="text-muted" >{{ $n1 }}</span>
+                            <span class="text-dark float-right font-weight-medium">{{ $a1 }}</span>
                         </li>
                         <li class="mt-3">
                             <i class="fas fa-circle text-danger font-10 mr-2"></i>
-                            <span class="text-muted">Ritonavir</span>
-                            <span class="text-dark float-right font-weight-medium">$2108</span>
+                            <span class="text-muted">{{ $n2 }}</span>
+                            <span class="text-dark float-right font-weight-medium">{{ $a2 }}</span>
                         </li>
                         <li class="mt-3">
                             <i class="fas fa-circle text-cyan font-10 mr-2"></i>
-                            <span class="text-muted">Phenytoin</span>
-                            <span class="text-dark float-right font-weight-medium">$1204</span>
+                            <span class="text-muted">{{ $n3 }}</span>
+                            <span class="text-dark float-right font-weight-medium">{{ $a3 }}</span>
+                        </li>
+                        <li class="mt-3">
+                            <i class="fas fa-circle text-danger font-10 mr-2"></i>
+                            <span class="text-muted">{{ $n4 }}</span>
+                            <span class="text-dark float-right font-weight-medium">{{ $a4 }}</span>
+                        </li>
+                        <li class="mt-3">
+                            <i class="fas fa-circle text-cyan font-10 mr-2"></i>
+                            <span class="text-muted">{{ $n5 }}</span>
+                            <span class="text-dark float-right font-weight-medium">{{ $a5 }}</span>
                         </li>
                     </ul>
                 </div>

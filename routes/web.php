@@ -17,4 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/policy', 'DashboardController@policy');
+Route::get('/testDB', 'EbiddingController@testDB');
+Route::get('/testDB2', 'DashboardController@getTOP5GPU');
+
+Route::get('/policy', 'DashboardController@policy')->name('policy_dashboard');
+Route::get('/ebidding', 'EbiddingController@getEbiddingInfo');
+Route::get('/ebidding15', 'EbiddingController@getEbiddingInfo15');
+Route::get('/ebiddingAny/{id}', 'EbiddingController@getEbiddingInfoAny');
+Route::post('/ebiddingAny', 'EbiddingController@getEbiddingInfoInput');
