@@ -4,11 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+
+if (isset($_POST['submit'])) {
+if(isset($_POST['radio']))
+{
+echo "<span>You have selected :<b> ".$_POST['radio']."</b></span>";
+}
+else{ echo "<span>Please choose any radio button.</span>";}
+}
+
 class DashboardController extends Controller
 {
     function policy(){
-        return view('Dashboard');
+        return view('Dashboard-GPU');
     }
+    public function getTPUDashboard(){
+        return view('Dashboard-TPU');
+    }
+
+    public function getGPUDashboard(){
+        return view('Dashboard-GPU');
+    }
+
     public function getTOP5GPU()
     {
         #import code in SQL server
