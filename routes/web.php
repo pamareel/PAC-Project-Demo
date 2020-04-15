@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Charts\SampleChart;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('Dashboard-GPU');
 });
 
+// Route::get('/testChart', 'UserChartController@index');
 
 Route::get('/DashboardPage', function () {
     return view('dashboardpage');
@@ -33,8 +35,7 @@ Route::get('/testDB', 'EbiddingController@testDB');
 Route::get('/testDB2', 'DashboardController@getTOP5GPU');
 
 // Dashboard
-Route::get('/policy/TPU', 'DashboardController@getTPUDashboard');
-Route::get('/policy/GPU', 'DashboardController@getGPUDashboard');
+Route::get('/policy/{TGX}', 'DashboardController@index');
 
 Route::get('/policy', 'DashboardController@policy')->name('policy_dashboard');
 Route::get('/ebidding', 'EbiddingController@getEbiddingInfo');

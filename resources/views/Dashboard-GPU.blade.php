@@ -35,6 +35,7 @@
 ?>
 
 <!-- to send parameter to js file -->
+<div id="GPU" value = "GPU" style="display:none;">hello</div>
 <!-- Drug Purchasing Amount variable-->
     <div id="n1" value = {{ $n1 }} style="display:none;">hello</div>
     <div id="id1" value = {{ $id1 }} style="display:none;">hello</div>
@@ -219,6 +220,26 @@
         </div>
     </div>
     <!-- End Top10 drug price dispersion -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- Total Annual Spending -->
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Total Annual Spending</h4>
+                <ul class="list-inline text-right">
+                    <li class="list-inline-item">
+                        <h5><i class="fa fa-circle mr-1 text-info"></i>Annaul Spending</h5>
+                    </li>
+                </ul>
+                <div class="card-body py-3 px-3">
+                    {!! $usersChart->container() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Total Annual Spending -->
     <!-- ============================================================== -->
 
     <!-- *************************************************************** -->
