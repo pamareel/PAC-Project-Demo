@@ -1,43 +1,69 @@
 @extends('layouts/admin')
 @section('content')
 
+<!-- set parameter -->
 <?php
-    // use DB;
-    $top5GPU = DB::select('EXEC findTop5GPU61');
+    //GPU
+    //2561
+    $top5Amount = DB::select('EXEC findTop5GPU61');
     $totalAmount = DB::select('select sum(Total_Real_Amount) as total FROM GPU WHERE BUDGET_YEAR=2561;');
-    //or $top5GPU = DB::select('SELECT TOP 5 GPU_NAME, Total_Real_Amount FROM GPU61_Top5');
-    
     // set parameter
-    $n1 = $top5GPU[0]->GPU_NAME;
-    $a1 = $top5GPU[0]->Total_Real_Amount;
-    $n2 = $top5GPU[1]->GPU_NAME;
-    $a2 = $top5GPU[1]->Total_Real_Amount;
-    $n3 = $top5GPU[2]->GPU_NAME;
-    $a3 = $top5GPU[2]->Total_Real_Amount;
-    $n4 = $top5GPU[3]->GPU_NAME;
-    $a4 = $top5GPU[3]->Total_Real_Amount;
-    $n5 = $top5GPU[4]->GPU_NAME;
-    $a5 = $top5GPU[4]->Total_Real_Amount;
-
+    $n1 = $top5Amount[0]->GPU_NAME;
+    $n2 = $top5Amount[1]->GPU_NAME;
+    $n3 = $top5Amount[2]->GPU_NAME;
+    $n4 = $top5Amount[3]->GPU_NAME;
+    $n5 = $top5Amount[4]->GPU_NAME;
+    // set parameter
+    $id1 = $top5Amount[0]->GPU_ID;
+    $id2 = $top5Amount[1]->GPU_ID;
+    $id3 = $top5Amount[2]->GPU_ID;
+    $id4 = $top5Amount[3]->GPU_ID;
+    $id5 = $top5Amount[4]->GPU_ID;
+    // set parameter
+    $w1 = $top5Amount[0]->Wavg_Unit_Price;
+    $w2 = $top5Amount[1]->Wavg_Unit_Price;
+    $w3 = $top5Amount[2]->Wavg_Unit_Price;
+    $w4 = $top5Amount[3]->Wavg_Unit_Price;
+    $w5 = $top5Amount[4]->Wavg_Unit_Price;
+    // set parameter   
+    $a1 = $top5Amount[0]->Total_Real_Amount;
+    $a2 = $top5Amount[1]->Total_Real_Amount;
+    $a3 = $top5Amount[2]->Total_Real_Amount;
+    $a4 = $top5Amount[3]->Total_Real_Amount;
+    $a5 = $top5Amount[4]->Total_Real_Amount;
     $TA = $totalAmount[0]->total;
-
-    //dump($n1);
-    //dump($top5GPU[0]->GPU_NAME);
-    //dump($top5GPU[0]->Total_Real_Amount);
-    //dump(DB::select('SELECT TOP 5 GPU_NAME, Total_Real_Amount FROM GPU61_Top5')[0]->GPU_NAME);
 ?>
+
 <!-- to send parameter to js file -->
-<div id="n1" value = {{ $n1 }} style="display:none;">hello</div>
-<div id="a1" value = {{ $a1 }} style="display:none;">hello</div>
-<div id="n2" value = {{ $n2 }} style="display:none;">hello</div>
-<div id="a2" value = {{ $a2 }} style="display:none;">hello</div>
-<div id="n3" value = {{ $n3 }} style="display:none;">hello</div>
-<div id="a3" value = {{ $a3 }} style="display:none;">hello</div>
-<div id="n4" value = {{ $n4 }} style="display:none;">hello</div>
-<div id="a4" value = {{ $a4 }} style="display:none;">hello</div>
-<div id="n5" value = {{ $n5 }} style="display:none;">hello</div>
-<div id="a5" value = {{ $a5 }} style="display:none;">hello</div>
-<div id="TA" value = {{ $TA }} style="display:none;">hello</div>
+<!-- Drug Purchasing Amount variable-->
+    <div id="n1" value = {{ $n1 }} style="display:none;">hello</div>
+    <div id="id1" value = {{ $id1 }} style="display:none;">hello</div>
+    <div id="w1" value = {{ $w1 }} style="display:none;">hello</div>
+    <div id="a1" value = {{ $a1 }} style="display:none;">hello</div>
+
+    <div id="n2" value = {{ $n2 }} style="display:none;">hello</div>
+    <div id="id2" value = {{ $id2 }} style="display:none;">hello</div>
+    <div id="w2" value = {{ $w2 }} style="display:none;">hello</div>
+    <div id="a2" value = {{ $a2 }} style="display:none;">hello</div>
+
+    <div id="n3" value = {{ $n3 }} style="display:none;">hello</div>
+    <div id="id3" value = {{ $id3 }} style="display:none;">hello</div>
+    <div id="w3" value = {{ $w3 }} style="display:none;">hello</div>
+    <div id="a3" value = {{ $a3 }} style="display:none;">hello</div>
+
+    <div id="n4" value = {{ $n4 }} style="display:none;">hello</div>
+    <div id="id4" value = {{ $id4 }} style="display:none;">hello</div>
+    <div id="w4" value = {{ $w4 }} style="display:none;">hello</div>
+    <div id="a4" value = {{ $a4 }} style="display:none;">hello</div>
+
+    <div id="n5" value = {{ $n5 }} style="display:none;">hello</div>
+    <div id="id5" value = {{ $id5 }} style="display:none;">hello</div>
+    <div id="w5" value = {{ $w5 }} style="display:none;">hello</div>
+    <div id="a5" value = {{ $a5 }} style="display:none;">hello</div>
+
+    <div id="TA" value = {{ $TA }} style="display:none;">hello</div>
+<!-- end send parameter -->
+                 
 
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
@@ -45,7 +71,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-7 align-self-center">
-            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning TY!</h3>
+            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning cutie TY!</h3>
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb m-0 p-0">
@@ -62,6 +88,20 @@
                     <option value="1">Feb 20</option>
                     <option value="2">Jan 20</option>
                 </select>
+                <br>
+                <!-- switch -->
+                <a class="customize-input float-right" href="/policy/TPU">
+                    GPU -> TPU
+                    <!-- ข้างล่างยังหาทางทำไม่ได้ ใช้อันบนไปก่อน-->
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                        <label class="onoffswitch-label" for="myonoffswitch">                   
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </a>
+                <!-- end switch -->
             </div>
         </div>
     </div>
@@ -73,118 +113,173 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-    <!-- *************************************************************** -->
-    <!-- Start First Cards -->
-    <!-- *************************************************************** -->
-    <div class="card-group">
-        <div class="card border-right">
-            <div class="card-body">
-                <div class="d-flex d-lg-flex d-md-block align-items-center">
-                    <div>
-                        <div class="d-inline-flex align-items-center">
-                            <h2 class="text-dark mb-1 font-weight-medium">236</h2>
-                            <span
-                                class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%</span>
+
+    <!-- ============================================================== -->
+    <!-- Top10 drug price dispersion  -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Top 10 Unit Price</h4>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="dataTables_length" id="default_order_length">
+                                <label>Show
+                                    <select name="default_order_length" aria-controls="default_order" class="form-control form-control-sm">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> entries
+                                </label>
+                            </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">New Clients</h6>
-                    </div>
-                    <div class="ml-auto mt-md-3 mt-lg-0">
-                        <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card border-right">
-            <div class="card-body">
-                <div class="d-flex d-lg-flex d-md-block align-items-center">
-                    <div>
-                        <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
-                                class="set-doller">$</sup>18,306</h2>
-                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Expense of Month
-                        </h6>
-                    </div>
-                    <div class="ml-auto mt-md-3 mt-lg-0">
-                        <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card border-right">
-            <div class="card-body">
-                <div class="d-flex d-lg-flex d-md-block align-items-center">
-                    <div>
-                        <div class="d-inline-flex align-items-center">
-                            <h2 class="text-dark mb-1 font-weight-medium">1538</h2>
-                            <span
-                                class="badge bg-danger font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">-18.33%</span>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="default_order_filter" class="dataTables_filter">
+                                <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="default_order"></label>
+                            </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">New Projects</h6>
                     </div>
-                    <div class="ml-auto mt-md-3 mt-lg-0">
-                        <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="default_order" class="table table-striped table-bordered display no-wrap dataTable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>Name</th>
+                                        <th>GPU</th>
+                                        <th>Avg Unit Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                <?php
+                                    $query = DB::select('select TOP 10 GPU_NAME, GPU_ID, Wavg_Unit_Price from GPU
+                                                            where BUDGET_YEAR = 2561
+                                                            order by Wavg_Unit_Price DESC;');
+                                    for ($i = 0; $i < 10; $i+=1) {
+                                        // echo "The number is: $i <br>";
+                                ?>
+                                        <tr>      
+                                <?php
+                                        foreach($query[$i] as $x => $val) {
+                                ?>
+                                            <td width="40%">{{ $val }}</td>
+                                            <!-- echo "$x = $val<br>"; -->
+                                <?php
+                                        };
+                                ?>
+                                        </tr>
+                                <?php
+                                    };
+                                ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th rowspan="1" colspan="1">Name</th>
+                                        <th rowspan="1" colspan="1">GPU</th>
+                                        <th rowspan="1" colspan="1">Avg Unit Price</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex d-lg-flex d-md-block align-items-center">
-                    <div>
-                        <h2 class="text-dark mb-1 font-weight-medium">864</h2>
-                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Drugs</h6>
-                    </div>
-                    <div class="ml-auto mt-md-3 mt-lg-0">
-                        <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-5">
+                            <div class="dataTables_info" id="default_order_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                        </div>
+                        <div class="col-sm-12 col-md-7">
+                            <div class="dataTables_paginate paging_simple_numbers" id="default_order_paginate">
+                                <ul class="pagination">
+                                    <li class="paginate_button page-item previous disabled" id="default_order_previous">
+                                        <a href="#" aria-controls="default_order" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                                    </li>
+                                    <li class="paginate_button page-item active">
+                                        <a href="#" aria-controls="default_order" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                                    </li>
+                                    <li class="paginate_button page-item ">
+                                        <a href="#" aria-controls="default_order" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+                                </li><li class="paginate_button page-item ">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="3" tabindex="0" class="page-link">3</a>
+                                </li>
+                                <li class="paginate_button page-item ">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="4" tabindex="0" class="page-link">4</a>
+                                </li><li class="paginate_button page-item ">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="5" tabindex="0" class="page-link">5</a>
+                                </li>
+                                <li class="paginate_button page-item ">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="6" tabindex="0" class="page-link">6</a>
+                                </li>
+                                <li class="paginate_button page-item next" id="default_order_next">
+                                    <a href="#" aria-controls="default_order" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- End Top10 drug price dispersion -->
+    <!-- ============================================================== -->
+
     <!-- *************************************************************** -->
-    <!-- End First Cards -->
-    <!-- *************************************************************** -->
-    <!-- *************************************************************** -->
-    <!-- Start Sales Charts Section -->
+    <!-- Start Drug Purchasing Amount -->
     <!-- *************************************************************** -->
     <div class="row">
-        <div class="col-lg-4 col-md-12">
+        <!-- Drug Purchasing Amount -->
+        <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Drug Purchasing Amount</h4>
-                    
+
                     <div id="campaign-v2" class="mt-2" style="height:283px; width:100%;">
-                        
                     </div>
                     <ul class="list-style-none mb-0">
                         <li>
+                            <span class="text-dark font-weight-medium col-lg-4" >Name</span>
+                            <span class="text-dark font-weight-medium col-lg-4" >GPU</span>
+                            <span class="text-dark font-weight-medium col-lg-4" >Avg Unit Price</span>
+                            <span class="text-dark font-weight-medium col-lg-4">Amount</span>
+                        </li>
+                        <li>
                             <i class="fas fa-circle text-primary font-10 mr-2"></i>
                             <span class="text-muted" >{{ $n1 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $id1 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $w1 }}</span>
                             <span class="text-dark float-right font-weight-medium">{{ $a1 }}</span>
                         </li>
                         <li class="mt-3">
                             <i class="fas fa-circle text-danger font-10 mr-2"></i>
                             <span class="text-muted">{{ $n2 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $id2 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $w2 }}</span>
                             <span class="text-dark float-right font-weight-medium">{{ $a2 }}</span>
                         </li>
                         <li class="mt-3">
                             <i class="fas fa-circle text-cyan font-10 mr-2"></i>
                             <span class="text-muted">{{ $n3 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $id3 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $w3 }}</span>
                             <span class="text-dark float-right font-weight-medium">{{ $a3 }}</span>
                         </li>
                         <li class="mt-3">
                             <i class="fas fa-circle text-danger font-10 mr-2"></i>
                             <span class="text-muted">{{ $n4 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $id4 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $w4 }}</span>
                             <span class="text-dark float-right font-weight-medium">{{ $a4 }}</span>
                         </li>
                         <li class="mt-3">
                             <i class="fas fa-circle text-cyan font-10 mr-2"></i>
                             <span class="text-muted">{{ $n5 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $id5 }}</span>
+                            <span class="text-dark font-weight-medium">{{ $w5 }}</span>
                             <span class="text-dark float-right font-weight-medium">{{ $a5 }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+        <!-- End Drug Purchasing Amount -->
         <div class="col-lg-4 col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -547,4 +642,5 @@
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
+
 @stop

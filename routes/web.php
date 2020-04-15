@@ -32,6 +32,10 @@ Route::get('/HospitalPage', function () {
 Route::get('/testDB', 'EbiddingController@testDB');
 Route::get('/testDB2', 'DashboardController@getTOP5GPU');
 
+// Dashboard
+Route::get('/policy/TPU', 'DashboardController@getTPUDashboard');
+Route::get('/policy/GPU', 'DashboardController@getGPUDashboard');
+
 Route::get('/policy', 'DashboardController@policy')->name('policy_dashboard');
 Route::get('/ebidding', 'EbiddingController@getEbiddingInfo');
 Route::get('/ebidding15', 'EbiddingController@getEbiddingInfo15');
