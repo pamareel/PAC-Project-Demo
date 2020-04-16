@@ -382,8 +382,8 @@
     
     <!-- to get TotalSpendingChart -->
     {{-- ChartScript --}}
-    @if($usersChart)
-    {!! $usersChart->script() !!}
+    @if(isset($annualSpendingChart))
+    {!! $annualSpendingChart->script() !!}
     @endif
     
 </body>
