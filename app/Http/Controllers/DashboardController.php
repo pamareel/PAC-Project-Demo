@@ -33,9 +33,9 @@ class DashboardController extends Controller
         $s4 = $totalSpend[1]->total;
         $s5 = $totalSpend[0]->total;
 
-        // $usersChart = new UserChart;
-        // $usersChart->labels([$y1, $y2, $y3, $y4, $y5]);
-        // $usersChart->dataset('Annaul Spending', 'line', [$s1, $s2, $s3, $s4, $s5]);
+        // $annualSpendingChart = new UserChart;
+        // $annualSpendingChart->labels([$y1, $y2, $y3, $y4, $y5]);
+        // $annualSpendingChart->dataset('Annaul Spending', 'line', [$s1, $s2, $s3, $s4, $s5]);
         // End total spending line graph
         $borderColors = [
             "rgba(255, 99, 132, 1.0)",
@@ -52,16 +52,16 @@ class DashboardController extends Controller
             "rgba(244,67,54, 0.2)"
 
         ];
-        $usersChart = new UserChart;
-        // $usersChart->minimalist(true);
-        $usersChart->labels([$y1, $y2, $y3, $y4, $y5]);
-        $usersChart->dataset('Annual Spending', 'line', [$s1, $s2, $s3, $s4, $s5])
+        $annualSpendingChart = new UserChart;
+        // $annualSpendingChart->minimalist(true);
+        $annualSpendingChart->labels([$y1, $y2, $y3, $y4, $y5]);
+        $annualSpendingChart->dataset('Annual Spending', 'line', [$s1, $s2, $s3, $s4, $s5])
             ->color($borderColors);
             // ->backgroundcolor($fillColors);
         if($TGX == "TPU"){
-            return view('Dashboard-TPU', [ 'usersChart' => $usersChart ] );
+            return view('Dashboard-TPU', [ 'annualSpendingChart' => $annualSpendingChart ] );
         }else{
-            return view('Dashboard-GPU', [ 'usersChart' => $usersChart ] );
+            return view('Dashboard-GPU', [ 'annualSpendingChart' => $annualSpendingChart ] );
         }
         
     }

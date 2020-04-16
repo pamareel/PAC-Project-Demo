@@ -185,7 +185,18 @@
                     </li>
                 </ul>
                 <div class="card-body py-3 px-3">
-                    {!! $usersChart->container() !!}
+                    
+                    <?php
+                    if(isset($annualSpendingChart)){
+                    ?>
+                        {!! $annualSpendingChart->container() !!}
+                    <?php
+                    }else{
+                    ?>
+                        <h1>No Data<h1>
+                    <?php  
+                    }
+                    ?>
                 </div>
             </div>
         </div>

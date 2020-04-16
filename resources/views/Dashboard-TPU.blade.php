@@ -205,7 +205,13 @@
                     </li>
                 </ul>
                 <div class="card-body py-3 px-3">
-                    {!! $usersChart->container() !!}
+                    <?php
+                    if(isset($annualSpendingChart)){
+                    ?>
+                        {!! $annualSpendingChart->container() !!}
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
