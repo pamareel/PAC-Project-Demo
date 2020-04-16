@@ -290,5 +290,3 @@
     </script>
 @endsection
 
-<script src="{{ asset('dist/js/pages/morris/morris-data.js') }}"></script>
-@stop
