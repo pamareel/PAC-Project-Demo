@@ -12,6 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('plugins/images/favicon.png') }}">
     <title>Adminmart Template - The Ultimate Multipurpose admin template</title>
     <!-- This page plugin CSS -->
+    <link href="{{ asset('plugins/libs/morris.js/morris.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('plugins/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
@@ -22,13 +23,19 @@
     <link href="{{ asset('dist/css/switch.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
     @yield('styles')
+
+<![endif]-->
+    {{-- ChartStyle --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -334,6 +341,15 @@
     <script src="{{ asset('plugins/extra-libs/taskboard/js/task-init.js') }}"></script>
     <script src="{{ asset('plugins/extra-libs/taskboard/js/lobilist.js') }}"></script>
     <script src="{{ asset('plugins/extra-libs/taskboard/js/demo.js') }}"></script>
+    <script src="{{ asset('dist/js/line.js') }}"></script>
+    <!-- chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fusioncharts@3.12.2/fusioncharts.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/frappe-charts@1.1.0/dist/frappe-charts.min.iife.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.7/c3.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('plugins/libs/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('plugins/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -357,6 +373,19 @@
     <script src="{{ asset('plugins/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboards/dashboard1.min.js') }}"></script>
     @yield('javascripts')
+
+    <!-- Include FusionCharts core file -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+
+    <!-- Include FusionCharts Theme file -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    
+    <!-- to get TotalSpendingChart -->
+    {{-- ChartScript --}}
+    @if($usersChart)
+    {!! $usersChart->script() !!}
+    @endif
+    
 </body>
 
 </html>
