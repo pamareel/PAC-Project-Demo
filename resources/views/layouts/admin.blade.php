@@ -21,6 +21,7 @@
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
     <link href="{{ asset('dist/css/switch.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,6 +29,10 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+    @yield('styles')
+
 <![endif]-->
     {{-- ChartStyle --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
@@ -326,6 +331,8 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/extra-libs/datatables.net/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('plugins/libs/popper.js/dist/umd/popper.min.js') }}"></script>
@@ -365,6 +372,8 @@
     <script src="{{ asset('plugins/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
     <script src="{{ asset('plugins/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboards/dashboard1.min.js') }}"></script>
+    @yield('javascripts')
+
     <!-- Include FusionCharts core file -->
     <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
 
@@ -376,6 +385,7 @@
     @if($usersChart)
     {!! $usersChart->script() !!}
     @endif
+    
 </body>
 
 </html>
