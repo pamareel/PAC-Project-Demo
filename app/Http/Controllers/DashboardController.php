@@ -21,7 +21,8 @@ class DashboardController extends Controller
     }
     public function index($TGX){
         // total spending line graph
-        $totalSpend = DB::select('EXEC findTotalSpend5years');
+        $totalSpend = DB::select('select TOP 5 BUDGET_YEAR, sum(CAST(Real_Amount as float) * CAST(Real_Unit_Price as float)) as total from drugs
+                                    group by BUDGET_YEAR ORDER by BUDGET_YEAR Desc;');
         $y1 = $totalSpend[4]->BUDGET_YEAR;
         $y2 = $totalSpend[3]->BUDGET_YEAR;
         $y3 = $totalSpend[2]->BUDGET_YEAR;
