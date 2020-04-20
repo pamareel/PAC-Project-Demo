@@ -165,8 +165,8 @@
                                         $query = DB::select('select TPU_NAME, TPU_ID, Wavg_Unit_Price from TPU
                                                                 where BUDGET_YEAR = 2561
                                                                 order by Wavg_Unit_Price DESC;');
-                                        $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU;');
-                                        for ($i = 0; $i < 100; $i+=1) {
+                                        $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU where BUDGET_YEAR = 2561;');
+                                        for ($i = 0; $i < 131; $i+=1) {
                                                 // echo "The number is: $i <br>";
                                         ?>
                                                 <tr>      
@@ -292,7 +292,9 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {
-            $('#datatable').DataTable();
+            $('#datatable').DataTable({
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+            });
         });
     </script>
 @endsection

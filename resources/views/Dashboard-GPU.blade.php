@@ -143,7 +143,7 @@
                                             $query = DB::select('select GPU_NAME, GPU_ID, Wavg_Unit_Price from GPU
                                                                     where BUDGET_YEAR = 2561
                                                                     order by Wavg_Unit_Price DESC;');
-                                            $GPU_count = DB::select('select count(distinct GPU_NAME) as Gcount from GPU;');
+                                            $GPU_count = DB::select('select count(distinct GPU_NAME) as Gcount from GPU where BUDGET_YEAR = 2561;');
                                             for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
                                                 // echo "The number is: $i <br>";
                                         ?>
@@ -632,7 +632,9 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {
-            $('#datatable').DataTable();
+            $('#datatable').DataTable({
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+            });
         });
     </script>
 @endsection
