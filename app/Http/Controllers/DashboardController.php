@@ -88,6 +88,7 @@ class DashboardController extends Controller
         //$bool = arry($data->);
     }
 
+    #not used
     public function createChart(){
         $chartline = Charts::new('line', 'Frappe')
             ->setTitle("Line Chart")
