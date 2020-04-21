@@ -126,7 +126,7 @@
     <!-- Top10 drug price dispersion  -->
     
     <div class="row">
-        <div class="col-12">
+        <div class="col-6">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Top 10 Unit Price</h4>
@@ -153,7 +153,7 @@
                                         <?php
                                                 foreach($query[$i] as $x => $val) {
                                         ?>
-                                                    <td width="40%">{{ $val }}</td>
+                                                    <td width="40%" class="ellipsis">{{ $val }}</td>
                                                     <!-- echo "$x = $val<br>"; -->
                                         <?php
                                                 };
