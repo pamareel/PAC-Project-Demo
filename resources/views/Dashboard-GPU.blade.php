@@ -96,17 +96,19 @@
                 </select>
                 <br>
                 <!-- switch -->
-                <a class="customize-input float-right" href="/policy/TPU">
-                    GPU -> TPU
+                <!-- <a class="customize-input float-right" href="/policy/TPU"> -->
+                    <!-- GPU -> TPU -->
                     <!-- ข้างล่างยังหาทางทำไม่ได้ ใช้อันบนไปก่อน-->
+                <div class="float-right" style="padding-top: 10px;">
                     <div class="onoffswitch">
                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                        <label class="onoffswitch-label" for="myonoffswitch">                   
+                        <label class="onoffswitch-label" for="myonoffswitch" onclick="location='/policy/TPU'">                   
                             <span class="onoffswitch-inner"></span>
                             <span class="onoffswitch-switch"></span>
                         </label>
                     </div>
-                </a>
+                </div>
+                <!-- </a> -->
                 <!-- end switch -->
             </div>
         </div>
@@ -130,7 +132,7 @@
                     <h4 class="card-title">Top 10 Unit Price</h4>
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                            <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
                                                 <th>Name</th>
