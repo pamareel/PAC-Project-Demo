@@ -137,16 +137,61 @@
 <!-- ============================================================== -->
 
 <div class="container-fluid">
-    <!-- ============================================================== -->
-    <!-- Top10 drug price dispersion  -->
-
-    <!-- End Top10 drug price dispersion -->
-    <!-- ============================================================== -->
-
-    <!-- ============================================================== -->
-    <!-- Top10 drug price dispersion  -->
     <div class="row">
-        <div class="col-12">
+        <!-- ============================================================== -->
+        <!-- Top10 drug price dispersion  -->
+        <!-- ============================================================== -->
+        <div class="col-lg-4 font-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Top 10 drug price dispersion</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                    <tr role="row">
+                                                <th>Name</th>
+                                                <th>GPU</th>
+                                                <th>Price dis</th>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                    <?php
+                                        $query = DB::select('select TPU_NAME, TPU_ID, Gini from Gini_drugs_TPU
+                                                                where BUDGET_YEAR = 2561
+                                                                order by Gini DESC;');
+                                        $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_TPU where BUDGET_YEAR = 2561;');
+                                        for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
+                                            // echo "The number is: $i <br>";
+                                    ?>
+                                            <tr>      
+                                    <?php
+                                            foreach($query[$i] as $x => $val) {
+                                    ?>
+                                                <td width="40%" class="ellipsis">{{ $val }}</td>
+                                                <!-- echo "$x = $val<br>"; -->
+                                    <?php
+                                            };
+                                    ?>
+                                            </tr>
+                                    <?php
+                                        };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- End Top10 drug price dispersion -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Top10 drug price dispersion  -->
+    
+        <div class="col-lg-4 font-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Top 10 Unit Price</h4>
@@ -173,14 +218,13 @@
                                         <?php
                                                 foreach($query[$i] as $x => $val) {
                                         ?>
-                                                    <td width="40%">{{ $val }}</td>
+                                                    <td width="40%" class="ellipsis">{{ $val }}</td>
                                                     <!-- echo "$x = $val<br>"; -->
                                         <?php
                                                 };
                                         ?>
                                                 </tr>
                                         <?php
-                                           
                                         };    
                                     ?>
                                     </tbody>
@@ -190,35 +234,35 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Top10 drug price dispersion -->
-    <!-- ============================================================== -->
-    
-    <!-- ============================================================== -->
-    <!-- Total Annual Spending -->
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Total Annual Spending</h4>
-                <ul class="list-inline text-right">
-                    <li class="list-inline-item">
-                        <h5><i class="fa fa-circle mr-1 text-info"></i>Annaul Spending</h5>
-                    </li>
-                </ul>
-                <div class="card-body py-3 px-3">
-                    <?php
-                    if(isset($annualSpendingChart)){
-                    ?>
-                        {!! $annualSpendingChart->container() !!}
-                    <?php
-                    }
-                    ?>
+        <!-- End Top10 drug price dispersion -->
+        <!-- ============================================================== -->
+        
+        <!-- ============================================================== -->
+        <!-- Total Annual Spending -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Total Annual Spending</h4>
+                    <ul class="list-inline text-right">
+                        <li class="list-inline-item">
+                            <h5><i class="fa fa-circle mr-1 text-info"></i>Annaul Spending</h5>
+                        </li>
+                    </ul>
+                    <div class="card-body py-3 px-3">
+                        <?php
+                        if(isset($annualSpendingChart)){
+                        ?>
+                            {!! $annualSpendingChart->container() !!}
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- End Total Annual Spending -->
+        <!-- ============================================================== -->
     </div>
-    <!-- End Total Annual Spending -->
-    <!-- ============================================================== -->
 
     <!-- ============================================================== -->
     <!-- Drug Purchasing Amount -->
