@@ -96,17 +96,19 @@
                 </select>
                 <br>
                 <!-- switch -->
-                <a class="customize-input float-right" href="/policy/TPU">
-                    GPU -> TPU
+                <!-- <a class="customize-input float-right" href="/policy/TPU"> -->
+                    <!-- GPU -> TPU -->
                     <!-- ข้างล่างยังหาทางทำไม่ได้ ใช้อันบนไปก่อน-->
+                <div class="float-right" style="padding-top: 10px;">
                     <div class="onoffswitch">
                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                        <label class="onoffswitch-label" for="myonoffswitch">                   
+                        <label class="onoffswitch-label" for="myonoffswitch" onclick="location='/policy/TPU'">                   
                             <span class="onoffswitch-inner"></span>
                             <span class="onoffswitch-switch"></span>
                         </label>
                     </div>
-                </a>
+                </div>
+                <!-- </a> -->
                 <!-- end switch -->
             </div>
         </div>
@@ -119,18 +121,65 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-
-    <!-- ============================================================== -->
-    <!-- Top10 drug price dispersion  -->
-    
     <div class="row">
-        <div class="col-12">
+        <!-- ============================================================== -->
+        <!-- Top10 drug price dispersion -->
+        <div class="col-lg-4 font-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Top 10 drug price dispersion</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                    <tr role="row">
+                                                <th>Name</th>
+                                                <th>GPU</th>
+                                                <th>Price dis</th>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                    <?php
+                                        $query = DB::select('select GPU_NAME, GPU_ID, Gini from Gini_drugs
+                                                                where BUDGET_YEAR = 2561
+                                                                order by Gini DESC;');
+                                        $GPU_count = DB::select('select count(distinct GPU_ID) as Gcount from Gini_drugs where BUDGET_YEAR = 2561;');
+                                        for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
+                                            // echo "The number is: $i <br>";
+                                    ?>
+                                            <tr>      
+                                    <?php
+                                            foreach($query[$i] as $x => $val) {
+                                    ?>
+                                                <td width="40%" class="ellipsis">{{ $val }}</td>
+                                                <!-- echo "$x = $val<br>"; -->
+                                    <?php
+                                            };
+                                    ?>
+                                            </tr>
+                                    <?php
+                                        };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- End Top10 drug price dispersion -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Top10 drug unit price -->
+        <div class="col-lg-4 font-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Top 10 Unit Price</h4>
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                            <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
                                                 <th>Name</th>
@@ -151,7 +200,7 @@
                                         <?php
                                                 foreach($query[$i] as $x => $val) {
                                         ?>
-                                                    <td width="40%">{{ $val }}</td>
+                                                    <td width="40%" class="ellipsis">{{ $val }}</td>
                                                     <!-- echo "$x = $val<br>"; -->
                                         <?php
                                                 };
@@ -168,48 +217,45 @@
                 </div>
             </div>
         </div>
-    </div>
+        <!-- End Top10 drug unit price -->
+        <!-- ============================================================== -->
 
-    
-    <!-- End Top10 drug price dispersion -->
-    <!-- ============================================================== -->
-
-    <!-- ============================================================== -->
-    <!-- Total Annual Spending -->
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Total Annual Spending</h4>
-                <ul class="list-inline text-right">
-                    <li class="list-inline-item">
-                        <h5><i class="fa fa-circle mr-1 text-info"></i>Annaul Spending</h5>
-                    </li>
-                </ul>
-                <div class="card-body py-3 px-3">
-                    
-                    <?php
-                    if(isset($annualSpendingChart)){
-                    ?>
-                        {!! $annualSpendingChart->container() !!}
-                    <?php
-                    }else{
-                    ?>
-                        <h1>No Data<h1>
-                    <?php  
-                    }
-                    ?>
+        <!-- ============================================================== -->
+        <!-- Total Annual Spending -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Total Annual Spending</h4>
+                    <ul class="list-inline text-right">
+                        <li class="list-inline-item">
+                            <h5><i class="fa fa-circle mr-1 text-info"></i>Annaul Spending</h5>
+                        </li>
+                    </ul>
+                    <div class="card-body py-3 px-3">
+                        
+                        <?php
+                        if(isset($annualSpendingChart)){
+                        ?>
+                            {!! $annualSpendingChart->container() !!}
+                        <?php
+                        }else{
+                        ?>
+                            <h1>No Data<h1>
+                        <?php  
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Total Annual Spending -->
-    <!-- ============================================================== -->
+        <!-- End Total Annual Spending -->
+        <!-- ============================================================== -->
+    </div> 
 
-    <!-- *************************************************************** -->
-    <!-- Start Drug Purchasing Amount -->
-    <!-- *************************************************************** -->
     <div class="row">
-        <!-- Drug Purchasing Amount -->
+        <!-- *************************************************************** -->
+        <!-- Start Drug Purchasing Amount -->
+        <!-- *************************************************************** -->
         <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -264,6 +310,10 @@
             </div>
         </div>
         <!-- End Drug Purchasing Amount -->
+    </div>
+
+    <!-- old template -->
+    <div class="row">
         <div class="col-lg-4 col-md-12">
             <div class="card">
                 <div class="card-body">

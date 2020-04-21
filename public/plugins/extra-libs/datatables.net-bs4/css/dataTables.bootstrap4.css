@@ -95,6 +95,7 @@ table.dataTable thead .sorting_asc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:before,
 table.dataTable thead .sorting_desc_disabled:after {
   position: absolute;
+  /* top: 0.6em; */
   bottom: 0.9em;
   display: block;
   opacity: 0.3;
@@ -105,6 +106,7 @@ table.dataTable thead .sorting_desc:before,
 table.dataTable thead .sorting_asc_disabled:before,
 table.dataTable thead .sorting_desc_disabled:before {
   right: 1em;
+  /* รอเอาออก */
   content: "\2191";
 }
 table.dataTable thead .sorting:after,
@@ -113,6 +115,7 @@ table.dataTable thead .sorting_desc:after,
 table.dataTable thead .sorting_asc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:after {
   right: 0.5em;
+  /* รอเอาออก */
   content: "\2193";
 }
 table.dataTable thead .sorting_asc:before,
@@ -203,4 +206,11 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:fir
 }
 div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:last-child {
   padding-right: 0;
+}
+
+.ellipsis {
+  max-width: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
