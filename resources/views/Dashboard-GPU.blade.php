@@ -140,10 +140,10 @@
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select('select GPU_NAME, GPU_ID, Gini from Gini_drugs
+                                        $query = DB::select('select GPU_NAME, GPU_ID, Gini from Gini_drugs_GPU
                                                                 where BUDGET_YEAR = 2561
                                                                 order by Gini DESC;');
-                                        $GPU_count = DB::select('select count(distinct GPU_ID) as Gcount from Gini_drugs where BUDGET_YEAR = 2561;');
+                                        $GPU_count = DB::select('select count(distinct GPU_ID) as Gcount from Gini_drugs_GPU where BUDGET_YEAR = 2561;');
                                         for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
                                             // echo "The number is: $i <br>";
                                     ?>
