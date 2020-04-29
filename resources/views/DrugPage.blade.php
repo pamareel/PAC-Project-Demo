@@ -50,7 +50,6 @@
             <label for="drugname">Name</label>
             <input type="text" name="Dname" values="" id="Dname">
             <br/>
-            <input type="submit" name="submit" value="submit">
             <button type="submit">Submit</button>
         </form>
     </div>
