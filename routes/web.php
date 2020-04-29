@@ -36,6 +36,8 @@ Route::get('/testDB2', 'DashboardController@getTOP5GPU');
 
 // Dashboard
 Route::get('/policy/{TGX}', 'DashboardController@index');
+//Search Filter in DrugPage 
+Route::get('/search', 'SearchController@index');
 
 Route::get('/policy', 'DashboardController@policy')->name('policy_dashboard');
 Route::get('/ebidding', 'EbiddingController@getEbiddingInfo');
