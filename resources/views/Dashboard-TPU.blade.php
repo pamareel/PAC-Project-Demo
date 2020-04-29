@@ -160,9 +160,9 @@
                                         $query = DB::select('select TPU_NAME, TPU_ID, Gini from Gini_drugs_TPU
                                                                 where BUDGET_YEAR = 2561
                                                                 order by Gini DESC;');
-                                        $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_TPU where BUDGET_YEAR = 2561;');
+                                        $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_2561_TPU;');
                                         for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
-                                            // echo "The number is: $i <br>";
+                                            // echo "The number is: $i <br>";s
                                     ?>
                                             <tr>      
                                     <?php
