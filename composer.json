@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
+        "mehdi-fathi/eloquent-filter": "^1.6",
         "yajra/laravel-datatables-oracle": "^9.9"
     },
     "require-dev": {
