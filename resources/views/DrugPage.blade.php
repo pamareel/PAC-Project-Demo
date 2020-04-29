@@ -140,8 +140,12 @@
     if(!empty($resultSearch))
     {
     ?>
+    
     <div class="row">
         <div class="card">
+        <?php
+        if($resultSearch != 'No value'){
+        ?>
             <div class="card-body">
                 <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                 <?php
@@ -163,6 +167,13 @@
                 ?>
                 </table>
             </div>
+        <?php
+        }else{
+        ?>
+            <h1>No data</h1>
+        <?php
+        }
+        ?>
         </div>
     </div>
     <?php

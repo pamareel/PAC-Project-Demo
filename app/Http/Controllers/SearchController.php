@@ -23,6 +23,11 @@ class SearchController extends Controller
         // print($statement);
         // dump($resultSearch);
         // print(count($resultSearch));
+        if(empty($resultSearch))
+        {
+            $resultSearch = 'No value';
+        }
+        // dump($resultSearch);
         return view('DrugPage', [ 'resultSearch' => $resultSearch ] );
     }
 }
