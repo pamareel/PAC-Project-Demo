@@ -82,6 +82,11 @@
         if($resultSearch != 'No value'){
         ?>
             <div class="card-body">
+                <div>
+                    Result : {{ $resultState }}
+                    <br/>
+                    Found result : {{ count($resultSearch) }} values
+                </div>
                 <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                 <?php
                 for($i = 0; $i < count($resultSearch); $i++){
@@ -91,13 +96,14 @@
                     <td style="text-align:center;">{{ $resultSearch[$i]->Method }}</td>  
                     <td style="text-align:center;">{{ $resultSearch[$i]->GPU_ID }}</td>  
                     <td style="text-align:center;">{{ $resultSearch[$i]->GPU_NAME }}</td>
+                    <td style="text-align:center;">{{ $resultSearch[$i]->TPU_ID }}</td>  
+                    <td style="text-align:center;">{{ $resultSearch[$i]->TPU_NAME }}</td>
                     <td style="text-align:center;">{{ $resultSearch[$i]->Total_Amount }}</td>  
                     <td style="text-align:center;">{{ $resultSearch[$i]->wavg_unit_price }}</td>
                     <td style="text-align:center;">{{ $resultSearch[$i]->Total_Spend }}</td>
                     <td style="text-align:center;">{{ $resultSearch[$i]->Gini }}</td>
                     </tr>
                 <?php
-                    $i++;
                 }
                 ?>
                 </table>
@@ -117,16 +123,28 @@
     <!-- *************************************************************** -->
     <!-- End Search Filter -->
     <!-- *************************************************************** -->
+
+    <!-- *************************************************************** -->
+    <!-- 100% stacked bar chart -->
+    <!-- *************************************************************** -->
     <?php
     $i=0;
-    if(!empty($resultSearch))
-    {
+    if(!empty($resultSearch) && $resultSearch != 'No value'){
     ?>
-    <!-- 100% stacked bar chart -->
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <canvas id="myChart"></canvas>
+                <?php
+                if(isset($chartHighPercent)){
+                ?>
+                    <canvas id="myChart"></canvas>
+                <?php
+                }else{
+                ?>
+                    <canvas id="myChart">No Data</canvas>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -211,7 +229,10 @@
     <?php
     }
     ?>
+    <!-- *************************************************************** -->
     <!-- END 100% stacked bar chart -->
+    <!-- *************************************************************** -->
+    
     <!-- *************************************************************** -->
     <!-- Start Location and Earnings Charts Section -->
     <!-- *************************************************************** -->
