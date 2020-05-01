@@ -124,7 +124,7 @@
     <div class="row">
         <!-- ============================================================== -->
         <!-- Top10 drug price dispersion -->
-        <div class="col-lg-4 font-12">
+        <div class="col-lg-8 font-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Top 10 drug price dispersion</h4>
@@ -151,7 +151,7 @@
                                     <?php
                                             foreach($query[$i] as $x => $val) {
                                     ?>
-                                                <td width="40%" class="ellipsis">{{ $val }}</td>
+                                                <td width="40%">{{ $val }}</td>
                                                 <!-- echo "$x = $val<br>"; -->
                                     <?php
                                             };
@@ -683,7 +683,8 @@
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable({
-                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+                "sScrollX": "100%",
+                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
             });
         });
     </script>

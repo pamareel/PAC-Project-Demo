@@ -17,7 +17,6 @@ class SearchController extends Controller
             // dump($_GET);
             // echo "<p>Your drug name is <b>" . $Dname . "</b>.</p>";       
         }
-        print($GT);
         $statement = "select * from Gini_drugs_".$GT." where BUDGET_YEAR = ".$year." and Method = '".$method."';";
         $resultSearch = DB::select($statement);
         // print($statement);
