@@ -22,7 +22,7 @@ class SearchController extends Controller
                 ////// table show ////////////////////////////////////////////////
                 $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME = '".$Dname."';";
                 $resultSearch = DB::select($statement);
-                dump('Hi');
+                // dump('Hi');
                 $countquery_r1 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '1'";
                 $countquery_r2 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '2'";
                 $countquery_r3 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '3'";
@@ -40,7 +40,7 @@ class SearchController extends Controller
                 ////// table show ////////////////////////////////////////////////
                 $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME = '".$Dname."';";
                 $resultSearch = DB::select($statement);
-
+                dump($statement);
                 $countquery_r1 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '1' and Method ='".$method."'";
                 $countquery_r2 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '2' and Method ='".$method."'";
                 $countquery_r3 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '3' and Method ='".$method."'";
@@ -185,9 +185,6 @@ class SearchController extends Controller
                 array_push($chartHighPercent,$High_dataPercent);  
             }
         }
-
-        $statement = "select * from Gini_drugs_".$GT." where BUDGET_YEAR = ".$year." and Method = '".$method."';";
-        $resultSearch = DB::select($statement);
 
         // dump($chartHighPercent);
         // dump($chartMedPercent);

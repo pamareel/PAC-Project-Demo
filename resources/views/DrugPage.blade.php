@@ -100,10 +100,12 @@
             <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                 <thead>
                 <tr role="row">
-                    <th>BUDGET YEAR</th>
-                    <th>Method</th>
+                    <!-- <th>BUDGET YEAR</th> -->
+                    <!-- <th>Method</th> -->
                     <th>GPU ID</th>
                     <th>GPU NAME</th>
+                    <th>TPU ID</th>
+                    <th>TPU NAME</th>
                     <th>Total Amount</th>
                     <th>wavg unit price</th>
                     <th>Total Spend</th>
@@ -118,25 +120,34 @@
                     Found result : {{ count($resultSearch) }} values
                 </div>
                 <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                    <?php
+                    for($i = 0; $i < count($resultSearch); $i++){
+                    ?>
+                        <tr>
+                        <!-- <td style="text-align:center;">{{ $resultSearch[$i]->BUDGET_YEAR }}</td> -->
+                        <!-- <td style="text-align:center;">{{ $resultSearch[$i]->Method }}</td>   -->
+                        <td style="text-align:center;">{{ $resultSearch[$i]->GPU_ID }}</td>  
+                        <td style="text-align:center;">{{ $resultSearch[$i]->GPU_NAME }}</td>
+                        <td style="text-align:center;">{{ $resultSearch[$i]->TPU_ID }}</td>  
+                        <td style="text-align:center;">{{ $resultSearch[$i]->TPU_NAME }}</td>
+                        <td style="text-align:center;">{{ $resultSearch[$i]->Total_Amount }}</td>  
+                        <td style="text-align:center;">{{ $resultSearch[$i]->wavg_unit_price }}</td>
+                        <td style="text-align:center;">{{ $resultSearch[$i]->Total_Spend }}</td>
+                        <?php
+                        if ($resultSearch[$i]->Gini != NULL){
+                        ?>
+                            <td style="text-align:center;">{{ $resultSearch[$i]->Gini }}</td>
 
-                <?php
-                for($i = 0; $i < count($resultSearch); $i++){
-                ?>
-                    <tr>
-                    <td style="text-align:center;">{{ $resultSearch[$i]->BUDGET_YEAR }}</td>
-                    <td style="text-align:center;">{{ $resultSearch[$i]->Method }}</td>  
-                    <td style="text-align:center;">{{ $resultSearch[$i]->GPU_ID }}</td>  
-                    <td style="text-align:center;">{{ $resultSearch[$i]->GPU_NAME }}</td>
-                    <td style="text-align:center;">{{ $resultSearch[$i]->TPU_ID }}</td>  
-                    <td style="text-align:center;">{{ $resultSearch[$i]->TPU_NAME }}</td>
-                    <td style="text-align:center;">{{ $resultSearch[$i]->Total_Amount }}</td>  
-                    <td style="text-align:center;">{{ $resultSearch[$i]->wavg_unit_price }}</td>
-                    <td style="text-align:center;">{{ $resultSearch[$i]->Total_Spend }}</td>
-                    <td style="text-align:center;">{{ $resultSearch[$i]->Gini }}</td>
-                    </tr>
-                <?php
-                }
-                ?>
+                        <?php
+                        }else{
+                            //Gini = NULL because PAC = 0
+                        ?>
+                            <td style="text-align:center;">NULL (PAC=0)</td>
+                        </tr>
+                    <?php
+                        }
+                    }
+                    ?>
                 </table>
                 </tbody>
             </div>
@@ -157,9 +168,6 @@
     <!-- *************************************************************** -->
     <!-- End Search Filter -->
     <!-- *************************************************************** -->
-
-    
-
 
     <!-- *************************************************************** -->
     <!-- 100% stacked bar chart -->
