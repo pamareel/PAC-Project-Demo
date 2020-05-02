@@ -246,7 +246,7 @@
                         }
                         ?>
                     </div>
-                    <td>Correlation</td>&nbsp;<td>{{ $corr }}</td>
+                    <td>Correlation</td>&nbsp;<td>{{ $corr ?? '' }}</td>
                     <!--?php echo $corr; ?--> 
                 </div>
             </div>
