@@ -1,10 +1,15 @@
 @extends('layouts/admin')
 
+
+@section('styles')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
 @section('script')
 <!-- 100%-stack bar chart -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src="{{ asset('dist/js/chartStacked.js') }}"></script>
+
 @endsection
 
 @section('content')
@@ -13,53 +18,53 @@
 <!-- ============================================================== -->
 <div class="page-breadcrumb">
     <div class="row">
-        <div class="col-7 align-self-center">
-            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning TY!</h3>
-            <div class="d-flex align-items-center">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb m-0 p-0">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
-                        </li>
-                    </ol>
-                </nav>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Controller</h3>
+                    <div class="d-flex align-items-center">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb m-0 p-0"></ol>
+                        </nav>
+                    </div>
+                </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="search" method="get">
+                        {{ csrf_field() }}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Year&nbsp;
+                        <select name="year" id="year">
+                            <option value="2562">2562</option>
+                            <option value="2561">2561</option>
+                            <option value="2560">2560</option>
+                        </select>
+                        &nbsp;
+                        Method&nbsp;
+                        <select name="method" id="method">
+                            <option value="All">All</option>
+                            <option value="ebidding">ebidding</option>
+                            <option value="specific">specific</option>
+                        </select>
+                        &nbsp;
+                        Drug&nbsp;
+                        <select name="GT" id="GT">
+                            <option value="GPU">GPU</option>
+                            <option value="TPU">TPU</option>
+                        </select>
+
+                        &nbsp;&nbsp;
+                        <label for="drugname">Name</label>
+                        <input type="text" name="Dname" values="" id="Dname">
+                        <button type="submit">Submit</button>
+                        <br>
+                        <br>
+                    </form>
+                </div>
+            </div>
             </div>
         </div>
-        <div class="col-5 align-self-center">
-            <div class="customize-input float-right">
-                <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                    <option selected>Mar 20</option>
-                    <option value="1">Feb 20</option>
-                    <option value="2">Jan 20</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <form action="search" method="get">
-            Year<select name="year" id="year">
-                <option value="2562">2562</option>
-                <option value="2561">2561</option>
-                <option value="2560">2560</option>
-            </select>
-            <br/>
-            Method&nbsp;
-            <select name="method" id="method">
-                <option value="All">All</option>
-                <option value="ebidding">ebbiding</option>
-                <option value="specific">specific</option>
-            </select>
-            <br/>
-            Drug&nbsp;
-            <select name="GT" id="GT">
-                <option value="GPU">GPU</option>
-                <option value="TPU">TPU</option>
-            </select>
-            <br/>
-            <label for="drugname">Name</label>
-            <input type="text" name="Dname" values="" id="Dname">
-            <br/>
-            <button type="submit">Submit</button>
-        </form>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -68,26 +73,52 @@
 <!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
+
+
+<div class="container">
+
+    <!-- *************************************************************** -->
+    <!-- Start Search Filter-->
+    <!-- *************************************************************** -->
+
 <div class="container-fluid">
     <!-- Start Search Filter -->
+
     <?php
     $i=0;
     if(!empty($resultSearch))
     {
     ?>
-    
     <div class="row">
+        <div class="col-md-12">
         <div class="card">
         <?php
         if($resultSearch != 'No value'){
         ?>
             <div class="card-body">
+
+            <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                <thead>
+                <tr role="row">
+                    <th>BUDGET YEAR</th>
+                    <th>Method</th>
+                    <th>GPU ID</th>
+                    <th>GPU NAME</th>
+                    <th>Total Amount</th>
+                    <th>wavg unit price</th>
+                    <th>Total Spend</th>
+                    <th>Gini</th>
+                </tr>
+                </thead>
+                <tbody>
+
                 <div>
                     Result : {{ $resultState }}
                     <br/>
                     Found result : {{ count($resultSearch) }} values
                 </div>
                 <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+
                 <?php
                 for($i = 0; $i < count($resultSearch); $i++){
                 ?>
@@ -107,14 +138,17 @@
                 }
                 ?>
                 </table>
+                </tbody>
             </div>
         <?php
         }else{
         ?>
-            <h1>No data</h1>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <th>No data</th>
         <?php
         }
         ?>
+        </div>
         </div>
     </div>
     <?php
@@ -123,6 +157,9 @@
     <!-- *************************************************************** -->
     <!-- End Search Filter -->
     <!-- *************************************************************** -->
+
+    
+
 
     <!-- *************************************************************** -->
     <!-- 100% stacked bar chart -->
@@ -510,9 +547,27 @@
     <!-- *************************************************************** -->
     <!-- End Top Leader Table -->
     <!-- *************************************************************** -->
+
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
 
 @stop
+
+@section('javascripts')
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#datatable').DataTable({
+                "sScrollX": "100%",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "rowCallback": function(row, data, index) {
+                    if(data[7]> 0.5){
+                        $(row).find('td:eq(7)').css('color', 'red');
+                    }
+                }
+            });
+        });
+    </script>
+@endsection

@@ -185,9 +185,14 @@ class SearchController extends Controller
                 array_push($chartHighPercent,$High_dataPercent);  
             }
         }
+
+        $statement = "select * from Gini_drugs_".$GT." where BUDGET_YEAR = ".$year." and Method = '".$method."';";
+        $resultSearch = DB::select($statement);
+
         // dump($chartHighPercent);
         // dump($chartMedPercent);
         // dump($chartLowPercent);
+
 
         // print($statement);
         // dump(gettype($resultSearch));

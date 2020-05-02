@@ -141,7 +141,7 @@
         <!-- ============================================================== -->
         <!-- Top10 drug price dispersion  -->
         <!-- ============================================================== -->
-        <div class="col-lg-4 font-12">
+        <div class="col-lg-8 font-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Top 10 drug price dispersion</h4>
@@ -160,15 +160,15 @@
                                         $query = DB::select('select TPU_NAME, TPU_ID, Gini from Gini_drugs_TPU
                                                                 where BUDGET_YEAR = 2561
                                                                 order by Gini DESC;');
-                                        $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_TPU where BUDGET_YEAR = 2561;');
+                                        $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_2561_TPU;');
                                         for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
-                                            // echo "The number is: $i <br>";
+                                            // echo "The number is: $i <br>";s
                                     ?>
                                             <tr>      
                                     <?php
                                             foreach($query[$i] as $x => $val) {
                                     ?>
-                                                <td width="40%" class="ellipsis">{{ $val }}</td>
+                                                <td width="40%">{{ $val }}</td>
                                                 <!-- echo "$x = $val<br>"; -->
                                     <?php
                                             };
@@ -197,7 +197,7 @@
                     <h4 class="card-title">Top 10 Unit Price</h4>
                     <div class="row">
                     <div class="col-md-12">
-                            <table class="table table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                            <table class="table table-striped table-bordered" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
                                             <th>Name</th>
@@ -337,7 +337,8 @@
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable({
-                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+                "sScrollX": "100%",
+                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
             });
         });
     </script>
