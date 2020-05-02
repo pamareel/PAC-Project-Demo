@@ -1,15 +1,13 @@
 @extends('layouts/admin')
-
-
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-
-@section('script')
+<script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
+@endsection
+@section('scripts')
 <!-- 100%-stack bar chart -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script src="{{ asset('dist/js/chartStacked.js') }}"></script>
-
+<!-- <script src="{{ asset('dist/js/chartStacked.js') }}"></script> -->
 @endsection
 
 @section('content')
@@ -74,16 +72,12 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 
-
-<div class="container">
-
-    <!-- *************************************************************** -->
-    <!-- Start Search Filter-->
-    <!-- *************************************************************** -->
+<!-- *************************************************************** -->
+<!-- Start Search Filter-->
+<!-- *************************************************************** -->
 
 <div class="container-fluid">
     <!-- Start Search Filter -->
-
     <?php
     $i=0;
     if(!empty($resultSearch))
@@ -271,12 +265,67 @@
             }
             });    
     </script>
-    <?php
-    }
-    ?>
     <!-- *************************************************************** -->
     <!-- END 100% stacked bar chart -->
     <!-- *************************************************************** -->
+
+    <!-- *************************************************************** -->
+    <!-- Start Thai Map -->
+    <!-- *************************************************************** -->
+    <script>
+        xx='Low';
+        var colors_set = {"TH-30":"purple","TH-20":"yellow"};
+        $(document).ready(function() {
+            $xxx = {
+                map: ['thai_en'],
+                backgroundColor: 'pink',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                scaleColors: ['#C8EEFF', '#006491'],
+                colors: colors_set,
+                onRegionOver: function (event, code, region) {
+                    //sample to interact with map
+                    if (code == 'TH-50') {
+                        document.getElementById("vmapTH").style.background = "purple";
+                        
+                        alert("You hover "+region);
+                        event.preventDefault();
+                    }
+                },
+                onRegionClick: function (element, code, region) {
+                    //sample to interact with map
+                    var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+                    alert(message);
+                }
+            }
+            $('#vmapTH').vectorMap($xxx)
+            if(xx == 'High'){
+                $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'red'});
+            }else if(xx == 'Medium'){
+                $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'yellow'});
+            }else if(xx == 'Low'){
+                $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'green'});
+            }
+        });
+    </script>
+
+    <div class="row">
+        <div class="col-md-6 col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Hello</h1>
+                    <div id="vmapTH" style="width: 600px; height: 400px; background-color:yellow;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- *************************************************************** -->
+    <!-- End Thai Map -->
+    <!-- *************************************************************** -->
+    <?php
+    }
+    ?>
     
     <!-- *************************************************************** -->
     <!-- Start Location and Earnings Charts Section -->
@@ -563,7 +612,7 @@
 
 @stop
 
-@section('javascripts')
+@section('scripts')
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {
