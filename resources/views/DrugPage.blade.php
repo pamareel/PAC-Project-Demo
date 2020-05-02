@@ -113,13 +113,11 @@
                 </tr>
                 </thead>
                 <tbody>
-
                 <div>
                     Result : {{ $resultState }}
                     <br/>
                     Found result : {{ count($resultSearch) }} values
                 </div>
-                <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                     <?php
                     for($i = 0; $i < count($resultSearch); $i++){
                     ?>
@@ -569,7 +567,7 @@
         $(document).ready( function () {
             $('#datatable').DataTable({
                 "sScrollX": "100%",
-                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
                 "rowCallback": function(row, data, index) {
                     if(data[7]> 0.5){
                         $(row).find('td:eq(7)').css('color', 'red');

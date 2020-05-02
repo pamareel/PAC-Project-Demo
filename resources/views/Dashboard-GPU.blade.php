@@ -68,6 +68,7 @@
     <div id="a5" value = {{ $a5 }} style="display:none;">hello</div>
 
     <div id="TA" value = {{ $TA }} style="display:none;">hello</div>
+    
 <!-- end send parameter -->
                  
 
@@ -245,6 +246,8 @@
                         }
                         ?>
                     </div>
+                    <td>Correlation</td>&nbsp;<td>{{ $corr ?? '' }}</td>
+                    <!--?php echo $corr; ?--> 
                 </div>
             </div>
         </div>
