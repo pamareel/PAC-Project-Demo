@@ -27,6 +27,8 @@ Route::get('/DashboardPage', function () {
 Route::get('/DrugPage', function () {
     return view('drugpage');
 })->name('drugpage');
+// Route::get('/DrugPage', 'DrugPageController@index')->name('drugpage');
+
 
 Route::get('/HospitalPage', function () {
     return view('hospitalpage');
