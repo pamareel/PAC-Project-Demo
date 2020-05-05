@@ -309,6 +309,7 @@ class SearchController extends Controller
             $resultState = 'Please select again';
             $pri_array_all = NULL;
             $quan_array_all = NULL;
+            $resultThaiMap = NULL;
         }
         $send_data = array(
             'resultSearch'=>$resultSearch,
@@ -318,7 +319,8 @@ class SearchController extends Controller
             'resultState'=>$resultState,
             // 'mapp'=>$mapp,
             'pri_array_all'=>$pri_array_all,
-            'quan_array_all'=>$quan_array_all
+            'quan_array_all'=>$quan_array_all,
+            'resultThaiMap'=>$resultThaiMap
         );
         return view('DrugPage', $send_data);
     }
