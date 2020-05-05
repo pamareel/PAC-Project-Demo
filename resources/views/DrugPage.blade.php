@@ -4,11 +4,13 @@
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 
+
 @section('script')
 <!-- 100%-stack bar chart -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src="{{ asset('dist/js/chartStacked.js') }}"></script>
+
 
 @endsection
 
@@ -275,6 +277,7 @@
     <!-- *************************************************************** -->
     <!-- END 100% stacked bar chart -->
     <!-- *************************************************************** -->
+    
     
     <!-- *************************************************************** -->
     <!-- Start Location and Earnings Charts Section -->
