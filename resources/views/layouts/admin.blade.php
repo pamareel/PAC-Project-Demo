@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr">
 
-<head>
+<head lang="en">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
+    @yield('styles')
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -17,12 +18,14 @@
     <!-- Custom CSS -->
     <link href="{{ asset('plugins/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('plugins/extra-libs/jvector/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
     <link href="{{ asset('dist/css/switch.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <!-- For Thai Map -->
+    <link href="{{ asset('dist/css/jqvmap.css') }}" media="screen" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('dist/js/jquery.vmap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('dist/js/jquery.vmap.thai.js') }}" type="text/javascript"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,10 +34,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
     <![endif]-->
-    @yield('styles')
-
-<![endif]-->
-    {{-- ChartStyle --}}
+    
+    <!-- {{-- ChartStyle --}} -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 </head>
 
@@ -335,7 +336,6 @@
     <!-- ============================================================== -->
 
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/extra-libs/datatables.net/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('plugins/libs/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('plugins/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -358,7 +358,6 @@
     <script src="{{ asset('plugins/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/extra-libs/sparkline/sparkline.js') }}"></script>
     <!-- apps -->
-    <!-- apps -->
     <script src="{{ asset('dist/js/app-style-switcher.js') }}"></script>
     <script src="{{ asset('dist/js/feather.min.js') }}"></script>
     <script src="{{ asset('plugins/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
@@ -370,11 +369,9 @@
     <script src="{{ asset('plugins/extra-libs/c3/c3.min.js') }}"></script>
     <script src="{{ asset('plugins/libs/chartist/dist/chartist.min.js') }}"></script>
     <script src="{{ asset('plugins/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
-    <script src="{{ asset('plugins/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
-    <script src="{{ asset('plugins/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
+    
     <script src="{{ asset('dist/js/pages/dashboards/dashboard1.min.js') }}"></script>
 
-    @yield('javascripts')
     @yield('scripts')
 
     <!-- Include FusionCharts core file -->
