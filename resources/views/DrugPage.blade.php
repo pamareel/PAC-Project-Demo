@@ -1,25 +1,15 @@
 @extends('layouts/admin')
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-<<<<<<< HEAD
-
+<script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
 
 @section('script')
 <!-- 100%-stack bar chart -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script src="{{ asset('dist/js/chartStacked.js') }}"></script>
+<!--<script src="{{ asset('dist/js/chartStacked.js') }}"></script>-->
 
 
-=======
-<script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
-@endsection
-@section('scripts')
-<!-- 100%-stack bar chart -->
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<!-- <script src="{{ asset('dist/js/chartStacked.js') }}"></script> -->
->>>>>>> 91c5ff2cab0d727d6d25a5621ecebc2d47c39e78
 @endsection
 
 @section('content')
