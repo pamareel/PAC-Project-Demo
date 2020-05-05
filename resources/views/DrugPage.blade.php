@@ -2,12 +2,14 @@
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
-@endsection
-@section('scripts')
+
+@section('script')
 <!-- 100%-stack bar chart -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<!-- <script src="{{ asset('dist/js/chartStacked.js') }}"></script> -->
+<!--<script src="{{ asset('dist/js/chartStacked.js') }}"></script>-->
+
+
 @endsection
 
 @section('content')
@@ -465,6 +467,7 @@
     <?php
     }
     ?>
+    
     
     <!-- *************************************************************** -->
     <!-- Start Location and Earnings Charts Section -->
