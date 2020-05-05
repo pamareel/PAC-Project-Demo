@@ -358,7 +358,7 @@
                     // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
                     // alert(message);
                     if (code == 'TH-50') {
-                        $('#vmapTH_quan2').vectorMap($Thai_map_quan)  
+                        $('#vmapTH_quan2').vectorMap($Thai_map_quan);
                     }
                 }
             }
