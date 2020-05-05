@@ -1,4 +1,7 @@
 @extends('layouts/admin')
+@section('styles')
+<script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
+@endsection
 @section('content')
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->

@@ -1,8 +1,7 @@
 @extends('layouts/admin')
-
-
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<<<<<<< HEAD
 
 
 @section('script')
@@ -12,6 +11,15 @@
 <script src="{{ asset('dist/js/chartStacked.js') }}"></script>
 
 
+=======
+<script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
+@endsection
+@section('scripts')
+<!-- 100%-stack bar chart -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<!-- <script src="{{ asset('dist/js/chartStacked.js') }}"></script> -->
+>>>>>>> 91c5ff2cab0d727d6d25a5621ecebc2d47c39e78
 @endsection
 
 @section('content')
@@ -76,16 +84,12 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 
-
-<div class="container">
-
-    <!-- *************************************************************** -->
-    <!-- Start Search Filter-->
-    <!-- *************************************************************** -->
+<!-- *************************************************************** -->
+<!-- Start Search Filter-->
+<!-- *************************************************************** -->
 
 <div class="container-fluid">
     <!-- Start Search Filter -->
-
     <?php
     $i=0;
     if(!empty($resultSearch))
@@ -148,8 +152,8 @@
                         }
                     }
                     ?>
-                </table>
                 </tbody>
+            </table>
             </div>
         <?php
         }else{
@@ -179,6 +183,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                <a class="customize-input float-right" href="/policy/DrugPage/SizeHospital">
+                    Region -> Size og hospital
+                </a>
                 <?php
                 if(isset($chartHighPercent)){
                 ?>
@@ -202,7 +209,7 @@
                     ,'Region7', 'Region8', 'Region9', 'Region10', 'Region11', 'Region12', 'Region13'],
                 datasets:[
                     {
-                    label:'Low',
+                    label:'Low Purchasing Power',
                     data: [{{ $chartLowPercent[0] }}, {{ $chartLowPercent[1] }}, {{ $chartLowPercent[2] }},
                         {{ $chartLowPercent[3] }}, {{ $chartLowPercent[4] }}, {{ $chartLowPercent[5] }},
                         {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}, {{ $chartLowPercent[8] }},
@@ -215,7 +222,7 @@
                     hoverBorderColor:'#000'
                 },
                 {
-                    label:'Medium',
+                    label:'Medium Purchasing Power',
                     data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
                         {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
                         {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}, {{ $chartMedPercent[8] }},
@@ -227,7 +234,7 @@
                     hoverBorderWidth:3,
                     hoverBorderColor:'#000'
                 },{
-                    label:'High',
+                    label:'High Purchasing Power',
                     data:[{{ $chartHighPercent[0] }}, {{ $chartHighPercent[1] }}, {{ $chartHighPercent[2] }},
                         {{ $chartHighPercent[3] }}, {{ $chartHighPercent[4] }}, {{ $chartHighPercent[5] }},
                         {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}, {{ $chartHighPercent[8] }},
@@ -244,39 +251,232 @@
                 title:{
                     display:true,
                     text:'Purchasing Power in Thailand',
-                    fontSize:25
+                    fontSize:25,
                 },
                 scales: {
                     xAxes: [{ stacked: true }],
-                    yAxes: [{ stacked: true }]
+                    yAxes: [{ stacked: true, 
+                                ticks: {
+                                beginAtZero: true,
+                                max: 100
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Percentage (%)'
+                                }
+                            }]
                 },
                 legend:{
                     display:true,
                     position:'right',
                     labels:{
-                        fontColor:'#000'
+                        fontColor:'#000',
                     }
                 },
                 layout:{
                     padding:{
-                        left:50,
-                        right:0,
+                        left:20,
+                        right:20,
                         bottom:0,
-                        top:0
+                        top:20
                     }
-                    },
-                    tooltips:{
+                },
+                tooltips:{
                     enabled:true
                 }
             }
             });    
     </script>
-    <?php
-    }
-    ?>
     <!-- *************************************************************** -->
     <!-- END 100% stacked bar chart -->
     <!-- *************************************************************** -->
+
+    <!-- *************************************************************** -->
+    <!-- Start Thai Map -->
+    <!-- *************************************************************** -->
+    <script>
+        // xx='Low';
+        
+        // var coll = {"TH-30":"purple","TH-20":"yellow"};
+        var data_sets_pri = {!! json_encode($pri_array_all) !!};
+        var data_sets_quan = {!! json_encode($quan_array_all) !!};
+        
+        $(document).ready(function() {
+            $Thai_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                // hoverOpacity: 0.7,
+                //color when hover on to the map (if use with hoverOpacity, มันจะมองไม่ค่อยออกว่าสีไร จะแค่แบบจางๆ แบบลดopacity ของสีแมป)
+                hoverColor: 'black',
+                //if true, will enable to zoom in map
+                enableZoom: false,
+                showTooltip: true,
+                //color ไรไม่รู้
+                color: '#ffffff',
+                //data set which input to get heatmap
+                values: data_sets_pri,
+                //color for heatmap
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                //if want specific point to change color use "colors:"
+                // colors: color_sets,
+                onRegionOver: function (event, code, region) {
+                    //sample to interact with map
+                    if (code == 'TH-50') {
+                        document.getElementById('vmapTH_pri').tooltip = "def";
+                        // document.getElementById("vmapTH").style.background = "purple";
+                        
+                        // alert("You hover "+region);
+                        // event.preventDefault();
+                        document.getElementById("your_h1_id").innerHTML = "your new text here"    
+                    }
+                },
+                onRegionClick: function (element, code, region) {
+                    //sample to interact with map
+                    // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+                    // alert(message);
+                }
+            }
+            //draw chart
+            $('#vmapTH_pri').vectorMap($Thai_map_pri)
+
+            ////////// for quantity ////////////////////////////////////////////////////////////
+            $Thai_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: data_sets_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                // colors: color_sets,      
+                onLabelShow: function(event, label, code)
+                {
+
+                },
+                onRegionOver: function (event, code, region) {
+                    //sample to interact with map
+                    if (code == 'TH-50') {
+                        // document.getElementById("vmapTH").style.background = "purple";
+                        
+                        // alert("You hover "+region);
+                        // event.preventDefault();
+                    }
+                },
+                onRegionClick: function (element, code, region) {
+                    //sample to interact with map
+                    // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+                    // alert(message);
+                    if (code == 'TH-50') {
+                        $('#vmapTH_quan2').vectorMap($Thai_map_quan);
+                    }
+                }
+            }
+            //draw chart quantity
+            $('#vmapTH_quan').vectorMap($Thai_map_quan)
+            // if(xx == 'High'){
+            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'red'});
+            // }else if(xx == 'Medium'){
+            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'yellow'});
+            // }else if(xx == 'Low'){
+            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'green'});
+            // }
+        });
+    </script>
+    <div class="row">
+        <div class="col-md-7 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Price by region</h1>
+                    <div class='row'>
+                    <div id="vmapTH_pri" style="width: 200px; height: 300px;"></div>
+                    <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                        <thead>
+                        <tr role="row">
+                            <th style="text-align:center;">Region</th>
+                            <th style="text-align:center;">wavg unit price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            for($i = 0; $i < count($resultThaiMap); $i++){
+                            ?>
+                                <tr>
+                                    <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
+                                    <?php
+                                    if ($resultThaiMap[$i]->wavg_unit_price != NULL){
+                                    ?>
+                                        <td style="text-align:right;">{{ $resultThaiMap[$i]->wavg_unit_price }}</td>
+
+                                    <?php
+                                    }else{
+                                        //Gini = NULL because PAC = 0
+                                    ?>
+                                        <td style="text-align:right;">0</td>
+                                </tr>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                    </div>
+                    test if hover at Chaing new text will show up
+                    <div><h1 id="your_h1_id"></h1></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Quantity by region</h1>
+                    <div class='row'>
+                    <div id="vmapTH_quan" style="width: 200px; height: 300px;"></div>
+                    <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                        <thead>
+                        <tr role="row">
+                            <th style="text-align:center;">Region</th>
+                            <th style="text-align:center;">Quantity</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            for($i = 0; $i < count($resultThaiMap); $i++){
+                            ?>
+                                <tr>
+                                    <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
+                                    <?php
+                                    if ($resultThaiMap[$i]->Total_Amount != NULL){
+                                    ?>
+                                        <td style="text-align:right;">{{ $resultThaiMap[$i]->Total_Amount }}</td>
+
+                                    <?php
+                                    }else{
+                                        //Gini = NULL because PAC = 0
+                                    ?>
+                                        <td style="text-align:right;">0</td>
+                                </tr>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                    </div>
+                    test if click at Chaing new chart will show up
+                    <div id="vmapTH_quan2" style="width: 200px; height: 300px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- *************************************************************** -->
+    <!-- End Thai Map -->
+    <!-- *************************************************************** -->
+    <?php
+    }
+    ?>
     
     
     <!-- *************************************************************** -->
@@ -564,7 +764,7 @@
 
 @stop
 
-@section('javascripts')
+@section('scripts')
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {
