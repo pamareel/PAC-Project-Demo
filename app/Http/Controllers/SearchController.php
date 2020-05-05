@@ -17,12 +17,13 @@ class SearchController extends Controller
             $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$Dname."";
             // dump($_GET);
             // echo "<p>Your drug name is <b>" . $Dname . "</b>.</p>";
+            ////////////////////////////////////////////////////////////////////
             ///// count each region ////////////////////////////////////////////
             if($method == 'All'){
-                ////// table show ////////////////////////////////////////////////
+                ////// table show //////////////////////////////////////////////////////////////////////
                 $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME = '".$Dname."';";
                 $resultSearch = DB::select($statement);
-                // dump('Hi');
+                ////////////// stack bar chart ////////////////////////////////////////////////////////////
                 $countquery_r1 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '1'";
                 $countquery_r2 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '2'";
                 $countquery_r3 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '3'";
@@ -36,11 +37,13 @@ class SearchController extends Controller
                 $countquery_r11 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '11'";
                 $countquery_r12 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '12'";
                 $countquery_r13 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '13'";
+                ////// Thai map //////////////////////////////////////////////////////////////////////
+                $thaimap_query = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' group by Region";
             }else{
-                ////// table show ////////////////////////////////////////////////
+                ////// table show //////////////////////////////////////////////////////////////////////
                 $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME = '".$Dname."';";
                 $resultSearch = DB::select($statement);
-                // dump($statement);
+                ////////////stack bar chart///////////////////////////////////////////////////////////
                 $countquery_r1 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '1' and Method ='".$method."'";
                 $countquery_r2 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '2' and Method ='".$method."'";
                 $countquery_r3 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '3' and Method ='".$method."'";
@@ -54,6 +57,8 @@ class SearchController extends Controller
                 $countquery_r11 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '11' and Method ='".$method."'";
                 $countquery_r12 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '12' and Method ='".$method."'";
                 $countquery_r13 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Region = '13' and Method ='".$method."'";    
+                ////// Thai map //////////////////////////////////////////////////////////////////////
+                $thaimap_query = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and GPU_NAME ='".$Dname."' and Method = '".$method."' group by Region";
             }
             $r1 = DB::select($countquery_r1);
             if($r1 != null){
@@ -142,7 +147,7 @@ class SearchController extends Controller
             $chartMedPercent = array();
             $chartHighPercent = array();
 
-            ///// create array for stack bar chart /////////////////////////////
+            ///// create array for stack bar chart ////////////////////////////////////////////////
             for($t=1 ; $t<=13 ; $t++){
                 array_push($chartRegion,$t);
                 if($method == 'All'){
@@ -194,7 +199,112 @@ class SearchController extends Controller
         // print($statement);
         // dump(gettype($resultSearch));
         // print(count($resultSearch));
+        ///////////////////////////////////////////////////////////////////////////////////////
+        //////////////Start Thai Map///////////////////////////////////////////////////////////
+        $resultThaiMap = DB::select($thaimap_query);
+        $Region_1 = ['TH-50','TH-57','TH-51','TH-52','TH-54','TH-55','TH-56','TH-58'];
+        $Region_2 = ['TH-65','TH-67','TH-53','TH-63','TH-64'];
+        $Region_3 = ['TH-60','TH-62','TH-66','TH-61','TH-18'];
+        $Region_4 = ['TH-17','TH-16','TH-19','TH-12','TH-14','TH-15','TH-13','TH-26'];
+        $Region_5 = ['TH-70','TH-72','TH-73','TH-71','TH-75','TH-74','TH-76','TH-77'];
+        $Region_6 = ['TH-20','TH-21','TH-22','TH-23','TH-11','TH-24','TH-25','TH-27'];
+        $Region_7 = ['TH-40','TH-44','TH-45','TH-46'];
+        $Region_8 = ['TH-41','TH-47','TH-48','TH-42','TH-39','TH-43']; //+'บึงกาฬ'
+        $Region_9 = ['TH-30','TH-36','TH-31','TH-32'];
+        $Region_10 = ['TH-34','TH-33','TH-35','TH-37','TH-49'];
+        $Region_11 = ['TH-86','TH-85','TH-84','TH-80','TH-82','TH-81','TH-83'];
+        $Region_12 = ['TH-96','TH-94','TH-95','TH-90','TH-91','TH-93','TH-92'];
+        $Region_13 = ['TH-10'];
         
+        for($i=0 ; $i< count($resultThaiMap) ; $i++){
+            $reg = $resultThaiMap[$i]->Region;
+            $quan = $resultThaiMap[$i]->Total_Amount;
+            $pri = $resultThaiMap[$i]->wavg_unit_price;
+            $xx = 0;
+            // if($xx < 10){
+            //     $color = 'red';
+            // }else if($xx >= 10 && $xx < 100){
+            //     $color = 'yellow';
+            // }else if($xx >= 100){
+            //     $color = 'green';
+            // }
+            if($reg == 1){
+                foreach ($Region_1 as &$ii) {
+                    $quan_array_1[$ii] = $quan;
+                    $pri_array_1[$ii] = $pri;
+                }
+            }else if($reg == 2){
+                foreach ($Region_2 as &$ii) {
+                    $quan_array_2[$ii] = $quan;
+                    $pri_array_2[$ii] = $pri;
+                }
+            }else if($reg == 3){
+                foreach ($Region_3 as &$ii) {
+                    $quan_array_3[$ii] = $quan;
+                    $pri_array_3[$ii] = $pri;
+                }
+            }else if($reg == 4){
+                foreach ($Region_4 as &$ii) {
+                    $quan_array_4[$ii] = $quan;
+                    $pri_array_4[$ii] = $pri;
+                }
+            }else if($reg == 5){
+                foreach ($Region_5 as &$ii) {
+                    $quan_array_5[$ii] = $quan;
+                    $pri_array_5[$ii] = $pri;
+                }
+            }else if($reg == 6){
+                foreach ($Region_6 as &$ii) {
+                    $quan_array_6[$ii] = $quan;
+                    $pri_array_6[$ii] = $pri;
+                }
+            }else if($reg == 7){
+                foreach ($Region_7 as &$ii) {
+                    $quan_array_7[$ii] = $quan;
+                    $pri_array_7[$ii] = $pri;
+                }
+            }else if($reg == 8){
+                foreach ($Region_8 as &$ii) {
+                    $quan_array_8[$ii] = $quan;
+                    $pri_array_8[$ii] = $pri;
+                }
+            }else if($reg == 9){
+                foreach ($Region_9 as &$ii) {
+                    $quan_array_9[$ii] = $quan;
+                    $pri_array_9[$ii] = $pri;
+                }
+            }else if($reg == 10){
+                foreach ($Region_10 as &$ii) {
+                    $quan_array_10[$ii] = $quan;
+                    $pri_array_10[$ii] = $pri;
+                }
+            }else if($reg == 11){
+                foreach ($Region_11 as &$ii) {
+                    $quan_array_11[$ii] = $quan;
+                    $pri_array_11[$ii] = $pri;
+                }
+            }else if($reg == 12){
+                foreach ($Region_12 as &$ii) {
+                    $quan_array_12[$ii] = $quan;
+                    $pri_array_12[$ii] = $pri;
+                }
+            }else if($reg == 13){
+                foreach ($Region_13 as &$ii) {
+                    $quan_array_13[$ii] = $quan;
+                    $pri_array_13[$ii] = $pri;
+                }
+            }
+        }
+        $quan_array_all = array_merge($quan_array_1, $quan_array_2, $quan_array_3, $quan_array_4, $quan_array_5, $quan_array_6, $quan_array_7, $quan_array_8, $quan_array_9, $quan_array_10, $quan_array_11, $quan_array_12, $quan_array_13);
+        $pri_array_all = array_merge($pri_array_1, $pri_array_2, $pri_array_3, $pri_array_4, $pri_array_5, $pri_array_6, $pri_array_7, $pri_array_8, $pri_array_9, $pri_array_10, $pri_array_11, $pri_array_12, $pri_array_13);
+
+        // $mapp = (object) ['TH-30' => 'purple', 'TH-20' => 'yellow'];
+        // $mapp = "{'TH-30':'purple', 'TH-20':'red'}";
+
+
+        //////////////END Thai Map/////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////
+        //////////////Send data back to view///////////////////////////////////////////////////
         if(empty($resultSearch))
         {
             $resultSearch = 'No value';
@@ -202,17 +312,19 @@ class SearchController extends Controller
             $chartMedPercent = NULL;
             $chartHighPercent = NULL;
             $resultState = 'Please select again';
+            $pri_array_all = NULL;
+            $quan_array_all = NULL;
         }
         $send_data = array(
             'resultSearch'=>$resultSearch,
             'chartLowPercent'=>$chartLowPercent,
             'chartMedPercent'=>$chartMedPercent,
             'chartHighPercent'=>$chartHighPercent,
-            'resultState'=>$resultState
+            'resultState'=>$resultState,
+            // 'mapp'=>$mapp,
+            'pri_array_all'=>$pri_array_all,
+            'quan_array_all'=>$quan_array_all
         );
-        // dump($resultState);
-        // dump($resultSearch);
-        
         return view('DrugPage', $send_data);
     }
 }

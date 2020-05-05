@@ -271,49 +271,114 @@
     <!-- Start Thai Map -->
     <!-- *************************************************************** -->
     <script>
-        xx='Low';
-        var colors_set = {"TH-30":"purple","TH-20":"yellow"};
+        // xx='Low';
+        
+        // var coll = {"TH-30":"purple","TH-20":"yellow"};
+        var data_sets_pri = {!! json_encode($pri_array_all) !!};
+        var data_sets_quan = {!! json_encode($quan_array_all) !!};
+        
         $(document).ready(function() {
-            $xxx = {
+            $Thai_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'pink',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: 'beige',
+                // hoverOpacity: 0.7,
+                //color when hover on to the map (if use with hoverOpacity, มันจะมองไม่ค่อยออกว่าสีไร จะแค่แบบจางๆ แบบลดopacity ของสีแมป)
+                hoverColor: 'black',
+                //if true, will enable to zoom in map
+                enableZoom: false,
                 showTooltip: true,
+                //color ไรไม่รู้
+                color: '#ffffff',
+                //data set which input to get heatmap
+                values: data_sets_pri,
+                //color for heatmap
                 scaleColors: ['#C8EEFF', '#006491'],
-                colors: colors_set,
+                normalizeFunction: 'polynomial',
+                //if want specific point to change color use "colors:"
+                // colors: color_sets,
                 onRegionOver: function (event, code, region) {
                     //sample to interact with map
                     if (code == 'TH-50') {
-                        document.getElementById("vmapTH").style.background = "purple";
+                        document.getElementById('vmapTH_pri').tooltip = "def";
+                        // document.getElementById("vmapTH").style.background = "purple";
                         
-                        alert("You hover "+region);
-                        event.preventDefault();
+                        // alert("You hover "+region);
+                        // event.preventDefault();
+                        document.getElementById("your_h1_id").innerHTML = "your new text here"    
                     }
                 },
                 onRegionClick: function (element, code, region) {
                     //sample to interact with map
-                    var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
-                    alert(message);
+                    // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+                    // alert(message);
                 }
             }
-            $('#vmapTH').vectorMap($xxx)
-            if(xx == 'High'){
-                $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'red'});
-            }else if(xx == 'Medium'){
-                $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'yellow'});
-            }else if(xx == 'Low'){
-                $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'green'});
+            //draw chart
+            $('#vmapTH_pri').vectorMap($Thai_map_pri)
+
+            ////////// for quantity ////////////////////////////////////////////////////////////
+            $Thai_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: data_sets_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                // colors: color_sets,      
+                onLabelShow: function(event, label, code)
+                {
+
+                },
+                onRegionOver: function (event, code, region) {
+                    //sample to interact with map
+                    if (code == 'TH-50') {
+                        // document.getElementById("vmapTH").style.background = "purple";
+                        
+                        // alert("You hover "+region);
+                        // event.preventDefault();
+                    }
+                },
+                onRegionClick: function (element, code, region) {
+                    //sample to interact with map
+                    // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+                    // alert(message);
+                    if (code == 'TH-50') {
+                        $('#vmapTH_quan2').vectorMap($Thai_map_quan)  
+                    }
+                }
             }
+            //draw chart quantity
+            $('#vmapTH_quan').vectorMap($Thai_map_quan)
+            // if(xx == 'High'){
+            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'red'});
+            // }else if(xx == 'Medium'){
+            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'yellow'});
+            // }else if(xx == 'Low'){
+            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'green'});
+            // }
         });
     </script>
-
     <div class="row">
-        <div class="col-md-6 col-lg-8">
+        <div class="col-md-7 col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h1>Hello</h1>
-                    <div id="vmapTH" style="width: 600px; height: 400px; background-color:yellow;"></div>
+                    <h1>Price by region</h1>
+                    <div id="vmapTH_pri" style="width: 200px; height: 300px;"></div>
+                    test if hover at Chaing new text will show up
+                    <div><h1 id="your_h1_id"></h1></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Quantity by region</h1>
+                    <div id="vmapTH_quan" style="width: 200px; height: 300px;"></div>
+                    test if click at Chaing new chart will show up
+                    <div id="vmapTH_quan2" style="width: 200px; height: 300px;"></div>
                 </div>
             </div>
         </div>
