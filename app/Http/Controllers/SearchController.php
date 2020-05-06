@@ -8,6 +8,19 @@ use DB;
 class SearchController extends Controller
 {
     public function index(){
+        $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
+        $Region_2_name = ['TH-65'=>'Phitsanulok','TH-67'=>'Phetchabun','TH-53'=>'Uttaradit','TH-63'=>'Tak','TH-64'=>'Sukhothai'];
+        $Region_3_name = ['TH-60'=>'Nakhon Sawan','TH-62'=>'Kamphaeng Phet','TH-66'=>'Phichit','TH-61'=>'Uthai Thani','TH-18'=>'Chai Nat'];
+        $Region_4_name = ['TH-17'=>'Sing Buri','TH-16'=>'Lop Buri','TH-19'=>'Saraburi','TH-12'=>'Nonthaburi','TH-14'=>'Phra Nakhon Si Ayutthaya','TH-15'=>'Ang Thong','TH-13'=>'Pathum Thani','TH-26'=>'Nakhon Nayok'];
+        $Region_5_name = ['TH-70'=>'Ratchaburi','TH-72'=>'Suphan Buri','TH-73'=>'Nakhon Pathom','TH-71'=>'Kanchanaburi','TH-75'=>'Samut Songkhram','TH-74'=>'Samut Sakhon','TH-76'=>'Phetchaburi','TH-77'=>'Prachuap Khiri Khan'];
+        $Region_6_name = ['TH-20'=>'Chon Buri','TH-21'=>'Rayong','TH-22'=>'Chanthaburi','TH-23'=>'Trat','TH-11'=>'Samut Prakan','TH-24'=>'Chachoengsao','TH-25'=>'Prachin Buri','TH-27'=>'Sa Kaeo'];
+        $Region_7_name = ['TH-40'=>'Khon Kaen','TH-44'=>'Maha Sarakham','TH-45'=>'Roi Et','TH-46'=>'Kalasin'];
+        $Region_8_name = ['TH-41'=>'Udon Thani','TH-47'=>'Sakon Nakhon','TH-48'=>'Nakhon Phanom','TH-42'=>'Loei','TH-39'=>'Nong Bua Lam Phu','TH-43'=>'Nong Khai']; //+'บึงกาฬ'
+        $Region_9_name = ['TH-30'=>'Nakhon Ratchasima','TH-36'=>'Chaiyaphum','TH-31'=>'Buri Ram','TH-32'=>'Surin'];
+        $Region_10_name = ['TH-34'=>'Ubon Ratchathani','TH-33'=>'Si Sa Ket','TH-35'=>'Yasothon','TH-37'=>'Amnat Charoen','TH-49'=>'Mukdahan'];
+        $Region_11_name = ['TH-86'=>'Chumphon','TH-85'=>'Ranong','TH-84'=>'Surat Thani','TH-80'=>'Nakhon Si Thammarat','TH-82'=>'Phangnga','TH-81'=>'Krabi','TH-83'=>'Phuket'];
+        $Region_12_name = ['TH-96'=>'Narathiwat','TH-94'=>'Pattani','TH-95'=>'Yala','TH-90'=>'Songkhla','TH-91'=>'Satun','TH-93'=>'Phatthalung','TH-92'=>'Trang'];
+        $Region_13_name = ['TH-10'=>'Bangkok Metropolis'];
 
         if (!empty($_GET)){
             $year = $_GET['year'];
@@ -22,40 +35,12 @@ class SearchController extends Controller
             if($method == 'All'){
                 ////// table show //////////////////////////////////////////////////////////////////////
                 $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME = '".$Dname."';";
-                $resultSearch = DB::select($statement);
-                ////////////// stack bar chart ////////////////////////////////////////////////////////////
-                $countquery_r1 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '1'";
-                $countquery_r2 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '2'";
-                $countquery_r3 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '3'";
-                $countquery_r4 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '4'";
-                $countquery_r5 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '5'";
-                $countquery_r6 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '6'";
-                $countquery_r7 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '7'";
-                $countquery_r8 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '8'";
-                $countquery_r9 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '9'";
-                $countquery_r10 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '10'";
-                $countquery_r11 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '11'";
-                $countquery_r12 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '12'";
-                $countquery_r13 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '13'";
+                $resultSearch = DB::select($statement);   
                 
             }else{
                 ////// table show //////////////////////////////////////////////////////////////////////
                 $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME = '".$Dname."';";
                 $resultSearch = DB::select($statement);
-                ////////////stack bar chart///////////////////////////////////////////////////////////
-                $countquery_r1 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '1' and Method ='".$method."'";
-                $countquery_r2 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '2' and Method ='".$method."'";
-                $countquery_r3 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '3' and Method ='".$method."'";
-                $countquery_r4 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '4' and Method ='".$method."'";
-                $countquery_r5 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '5' and Method ='".$method."'";
-                $countquery_r6 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '6' and Method ='".$method."'";
-                $countquery_r7 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '7' and Method ='".$method."'";
-                $countquery_r8 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '8' and Method ='".$method."'";
-                $countquery_r9 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '9' and Method ='".$method."'";
-                $countquery_r10 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '10' and Method ='".$method."'";
-                $countquery_r11 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '11' and Method ='".$method."'";
-                $countquery_r12 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '12' and Method ='".$method."'";
-                $countquery_r13 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '13' and Method ='".$method."'";    
             }
             $r1 = $this->find_Stack_Data(1,$year,$GT,$Dname,$method);
             $r1_count = $this->r_count($r1);
@@ -63,117 +48,33 @@ class SearchController extends Controller
             $r2_count = $this->r_count($r2);
             $r3 = $this->find_Stack_Data(3,$year,$GT,$Dname,$method);
             $r3_count = $this->r_count($r3);
-            $r4 = DB::select($countquery_r4);
-            if($r4 != null){
-                $r4_count = $r4[0]->n;
-            }else{
-                $r4_count = 0;
-            }
-            $r5 = DB::select($countquery_r5);
-            if($r5 != null){
-                $r5_count = $r5[0]->n;
-            }else{
-                $r5_count = 0;
-            }
-            $r6 = DB::select($countquery_r6);
-            if($r6 != null){
-                $r6_count = $r6[0]->n;
-            }else{
-                $r6_count = 0;
-            }
-            $r7 = DB::select($countquery_r7);
-            if($r7 != null){
-                $r7_count = $r7[0]->n;
-            }else{
-                $r7_count = 0;
-            }
-            $r8 = DB::select($countquery_r8);
-            if($r8 != null){
-                $r8_count = $r8[0]->n;
-            }else{
-                $r8_count = 0;
-            }
-            $r9 = DB::select($countquery_r9);
-            if($r9 != null){
-                $r9_count = $r9[0]->n;
-            }else{
-                $r9_count = 0;
-            }
-            $r10 = DB::select($countquery_r10);
-            if($r10 != null){
-                $r10_count = $r10[0]->n;
-            }else{
-                $r10_count = 0;
-            }
-            $r11 = DB::select($countquery_r11);
-            if($r11 != null){
-                $r11_count = $r11[0]->n;
-            }else{
-                $r11_count = 0;
-            }
-            $r12 = DB::select($countquery_r12);
-            if($r12 != null){
-                $r12_count = $r12[0]->n;
-            }else{
-                $r12_count = 0;
-            }
-            $r13 = DB::select($countquery_r13);
-            if($r13 != null){
-                $r13_count = $r13[0]->n;
-            }else{
-                $r13_count = 0;
-            }
+            $r4 = $this->find_Stack_Data(4,$year,$GT,$Dname,$method);
+            $r4_count = $this->r_count($r4);
+            $r5 = $this->find_Stack_Data(5,$year,$GT,$Dname,$method);
+            $r5_count = $this->r_count($r5);
+            $r6 = $this->find_Stack_Data(6,$year,$GT,$Dname,$method);
+            $r6_count = $this->r_count($r6);
+            $r7 = $this->find_Stack_Data(7,$year,$GT,$Dname,$method);
+            $r7_count = $this->r_count($r7);
+            $r8 = $this->find_Stack_Data(8,$year,$GT,$Dname,$method);
+            $r8_count = $this->r_count($r8);
+            $r9 = $this->find_Stack_Data(9,$year,$GT,$Dname,$method);
+            $r9_count = $this->r_count($r9);
+            $r10 = $this->find_Stack_Data(10,$year,$GT,$Dname,$method);
+            $r10_count = $this->r_count($r10);
+            $r11 = $this->find_Stack_Data(11,$year,$GT,$Dname,$method);
+            $r11_count = $this->r_count($r11);
+            $r12 = $this->find_Stack_Data(12,$year,$GT,$Dname,$method);
+            $r12_count = $this->r_count($r12);
+            $r13 = $this->find_Stack_Data(13,$year,$GT,$Dname,$method);
+            $r13_count = $this->r_count($r13);
             $countHosAll = array();
             array_push($countHosAll,$r1_count,$r2_count,$r3_count,$r4_count,$r5_count,$r6_count,$r7_count,$r8_count,$r9_count,$r10_count,$r11_count,$r12_count,$r13_count);
-            
-            ////// init ////////////////////////////////////////////////////////
-            $chartRegion = array();
-            $chartLowPercent = array();
-            $chartMedPercent = array();
-            $chartHighPercent = array();
+            // TH
+            [$chartHighPercent, $chartMedPercent, $chartLowPercent] = $this->chart_Low_Med_High_All($countHosAll,$year,$GT,$Dname,$method);
+            // Region
 
-            ///// create array for stack bar chart ////////////////////////////////////////////////
-            for($t=1 ; $t<=13 ; $t++){
-                array_push($chartRegion,$t);
-                if($method == 'All'){
-                    $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' group by Region";
-                    $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' group by Region";
-                    $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' group by Region";
-                }else{
-                    $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
-                    $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
-                    $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' and Method ='".$method."' group by Region";
-                }
-                
-                /////// for Low PAC ////////////////////////////////////////////////
-                $lowPac = DB::select($query_low);
-                $ttt = $t-1;
 
-                if($lowPac != null && $countHosAll[$ttt] != 0){
-                    $Low_dataPercent = 100*($lowPac[0]->n)/$countHosAll[$ttt];
-                }else{
-                    $Low_dataPercent = 0;
-                }
-                array_push($chartLowPercent,$Low_dataPercent);
-
-                /////// for Medium PAC ////////////////////////////////////////////////
-                $medPac = DB::select($query_med);
-                if($medPac != null && $countHosAll[$ttt] != 0){
-                    $Med_dataPercent = 100*($medPac[0]->n)/$countHosAll[$ttt];
-                }else{
-                    $Med_dataPercent = 0;
-                }
-                array_push($chartMedPercent,$Med_dataPercent);
-
-                /////// for High PAC ////////////////////////////////////////////////
-                $highPac = DB::select($query_high);
-                if($highPac != null && $countHosAll[$ttt] != 0){
-                    $High_dataPercent = 100*($highPac[0]->n)/$countHosAll[$ttt];
-                }else{
-                    $High_dataPercent = 0;
-                }
-                array_push($chartHighPercent,$High_dataPercent);  
-            }
             //////////////Start Thai Map///////////////////////////////////////////////////////////
             $resultThaiMap = $this->find_Map_Data('All',$year,$GT,$Dname,$method);
             $resultThaiMap_Reg1 = $this->find_Map_Data(1,$year,$GT,$Dname,$method);
@@ -261,7 +162,6 @@ class SearchController extends Controller
             $quan_array_r13 = NULL;
             $pri_array_r13 = NULL;
         }
-        dump($chartLowPercent);
         
         $send_data = array(
             'resultSearch'=>$resultSearch,
@@ -332,6 +232,144 @@ class SearchController extends Controller
         }
         return $r_count;
     }
+    function find_Stack_Data_Reg($r,$year,$GT,$Dname,$method){
+        if($method == 'All'){
+            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '".$r."'";
+        }else{
+            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '".$r."' and Method ='".$method."'";
+        }
+        $find_Stack_Data_result = DB::select($countquery_r);
+        return $find_Stack_Data_result;
+    }
+
+    function chart_Low_Med_High_All($countHosAll,$year,$GT,$Dname,$method){
+        ////// init ////////////////////////////////////////////////////////
+        $chartRegion = array();
+        $chartLowPercent = array();
+        $chartMedPercent = array();
+        $chartHighPercent = array();
+        
+        ///// create array for stack bar chart ////////////////////////////////////////////////
+        for($t=1 ; $t<=13 ; $t++){
+
+            array_push($chartRegion,$t);
+            if($method == 'All'){
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' group by Region";
+            }else{
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' and Method ='".$method."' group by Region";
+            }
+            
+            /////// for Low PAC ////////////////////////////////////////////////
+            $lowPac = DB::select($query_low);
+            $ttt = $t-1;
+
+            if($lowPac != null && $countHosAll[$ttt] != 0){
+                $Low_dataPercent = 100*($lowPac[0]->n)/$countHosAll[$ttt];
+            }else{
+                $Low_dataPercent = 0;
+            }
+            array_push($chartLowPercent,$Low_dataPercent);
+
+            /////// for Medium PAC ////////////////////////////////////////////////
+            $medPac = DB::select($query_med);
+            if($medPac != null && $countHosAll[$ttt] != 0){
+                $Med_dataPercent = 100*($medPac[0]->n)/$countHosAll[$ttt];
+            }else{
+                $Med_dataPercent = 0;
+            }
+            array_push($chartMedPercent,$Med_dataPercent);
+
+            /////// for High PAC ////////////////////////////////////////////////
+            $highPac = DB::select($query_high);
+            if($highPac != null && $countHosAll[$ttt] != 0){
+                $High_dataPercent = 100*($highPac[0]->n)/$countHosAll[$ttt];
+            }else{
+                $High_dataPercent = 0;
+            }
+            array_push($chartHighPercent,$High_dataPercent);  
+        }
+        return [$chartHighPercent, $chartMedPercent, $chartLowPercent];
+    }
+    function chart_Low_Med_High($countHosRegion,$r,$Region_name,$year,$GT,$Dname,$method){
+        $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
+        $Region_2_name = ['TH-65'=>'Phitsanulok','TH-67'=>'Phetchabun','TH-53'=>'Uttaradit','TH-63'=>'Tak','TH-64'=>'Sukhothai'];
+        $Region_3_name = ['TH-60'=>'Nakhon Sawan','TH-62'=>'Kamphaeng Phet','TH-66'=>'Phichit','TH-61'=>'Uthai Thani','TH-18'=>'Chai Nat'];
+        $Region_4_name = ['TH-17'=>'Sing Buri','TH-16'=>'Lop Buri','TH-19'=>'Saraburi','TH-12'=>'Nonthaburi','TH-14'=>'Phra Nakhon Si Ayutthaya','TH-15'=>'Ang Thong','TH-13'=>'Pathum Thani','TH-26'=>'Nakhon Nayok'];
+        $Region_5_name = ['TH-70'=>'Ratchaburi','TH-72'=>'Suphan Buri','TH-73'=>'Nakhon Pathom','TH-71'=>'Kanchanaburi','TH-75'=>'Samut Songkhram','TH-74'=>'Samut Sakhon','TH-76'=>'Phetchaburi','TH-77'=>'Prachuap Khiri Khan'];
+        $Region_6_name = ['TH-20'=>'Chon Buri','TH-21'=>'Rayong','TH-22'=>'Chanthaburi','TH-23'=>'Trat','TH-11'=>'Samut Prakan','TH-24'=>'Chachoengsao','TH-25'=>'Prachin Buri','TH-27'=>'Sa Kaeo'];
+        $Region_7_name = ['TH-40'=>'Khon Kaen','TH-44'=>'Maha Sarakham','TH-45'=>'Roi Et','TH-46'=>'Kalasin'];
+        $Region_8_name = ['TH-41'=>'Udon Thani','TH-47'=>'Sakon Nakhon','TH-48'=>'Nakhon Phanom','TH-42'=>'Loei','TH-39'=>'Nong Bua Lam Phu','TH-43'=>'Nong Khai']; //+'บึงกาฬ'
+        $Region_9_name = ['TH-30'=>'Nakhon Ratchasima','TH-36'=>'Chaiyaphum','TH-31'=>'Buri Ram','TH-32'=>'Surin'];
+        $Region_10_name = ['TH-34'=>'Ubon Ratchathani','TH-33'=>'Si Sa Ket','TH-35'=>'Yasothon','TH-37'=>'Amnat Charoen','TH-49'=>'Mukdahan'];
+        $Region_11_name = ['TH-86'=>'Chumphon','TH-85'=>'Ranong','TH-84'=>'Surat Thani','TH-80'=>'Nakhon Si Thammarat','TH-82'=>'Phangnga','TH-81'=>'Krabi','TH-83'=>'Phuket'];
+        $Region_12_name = ['TH-96'=>'Narathiwat','TH-94'=>'Pattani','TH-95'=>'Yala','TH-90'=>'Songkhla','TH-91'=>'Satun','TH-93'=>'Phatthalung','TH-92'=>'Trang'];
+        $Region_13_name = ['TH-10'=>'Bangkok Metropolis'];
+        ////// init ////////////////////////////////////////////////////////
+        $chartProvince = array();
+        $chartLowPercent = array();
+        $chartMedPercent = array();
+        $chartHighPercent = array();
+        ///// create array for stack bar chart ////////////////////////////////////////////////
+        foreach($Region_name as $Pcode => $Province) {
+            array_push($chartProvince,$Province);
+            if($method == 'All'){
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' group by Region";
+            }else{
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' and Method ='".$method."' group by Region";
+            }
+
+        }
+        for($t=1 ; $t<=count($Region_name) ; $t++){
+            array_push($chartProvince,$t);
+            if($method == 'All'){
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' group by Region";
+            }else{
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' and Method ='".$method."' group by Region";
+            }
+            
+            /////// for Low PAC ////////////////////////////////////////////////
+            $lowPac = DB::select($query_low);
+            $ttt = $t-1;
+
+            if($lowPac != null && $countHosAll[$ttt] != 0){
+                $Low_dataPercent = 100*($lowPac[0]->n)/$countHosAll[$ttt];
+            }else{
+                $Low_dataPercent = 0;
+            }
+            array_push($chartLowPercent,$Low_dataPercent);
+
+            /////// for Medium PAC ////////////////////////////////////////////////
+            $medPac = DB::select($query_med);
+            if($medPac != null && $countHosAll[$ttt] != 0){
+                $Med_dataPercent = 100*($medPac[0]->n)/$countHosAll[$ttt];
+            }else{
+                $Med_dataPercent = 0;
+            }
+            array_push($chartMedPercent,$Med_dataPercent);
+
+            /////// for High PAC ////////////////////////////////////////////////
+            $highPac = DB::select($query_high);
+            if($highPac != null && $countHosAll[$ttt] != 0){
+                $High_dataPercent = 100*($highPac[0]->n)/$countHosAll[$ttt];
+            }else{
+                $High_dataPercent = 0;
+            }
+            array_push($chartHighPercent,$High_dataPercent);  
+        }
+        return [$chartHighPercent, $chartMedPercent, $chartLowPercent];
+    }
     function find_Map_Data($r,$y,$g,$na,$m){
         if($r == 'All'){
             if($m == 'All'){
@@ -339,7 +377,7 @@ class SearchController extends Controller
                 $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' group by Region";
             }else{
                 ////// Thai map //////////////////////////////////////////////////////////////////////
-                $thaimap_query = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' group by Region";
+                $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' group by Region";
             }
         }else{
             if($m == 'All'){
@@ -526,6 +564,33 @@ class SearchController extends Controller
         $Region_11 = ['TH-86','TH-85','TH-84','TH-80','TH-82','TH-81','TH-83'];
         $Region_12 = ['TH-96','TH-94','TH-95','TH-90','TH-91','TH-93','TH-92'];
         $Region_13 = ['TH-10'];
+        $quan_array_1 = [];
+        $quan_array_2 = [];
+        $quan_array_3 = [];
+        $quan_array_4 = [];
+        $quan_array_5 = [];
+        $quan_array_6 = [];
+        $quan_array_7 = [];
+        $quan_array_8 = [];
+        $quan_array_9 = [];
+        $quan_array_10 = [];
+        $quan_array_11 = [];
+        $quan_array_12 = [];
+        $quan_array_13 = [];
+
+        $pri_array_1 = [];
+        $pri_array_2 = [];
+        $pri_array_3 = [];
+        $pri_array_4 = [];
+        $pri_array_5 = [];
+        $pri_array_6 = [];
+        $pri_array_7 = [];
+        $pri_array_8 = [];
+        $pri_array_9 = [];
+        $pri_array_10 = [];
+        $pri_array_11 = [];
+        $pri_array_12 = [];
+        $pri_array_13 = [];
 
         for($i=0 ; $i< count($r) ; $i++){
             $reg = $r[$i]->Region;
