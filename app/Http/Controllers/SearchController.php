@@ -57,24 +57,12 @@ class SearchController extends Controller
                 $countquery_r12 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '12' and Method ='".$method."'";
                 $countquery_r13 = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '13' and Method ='".$method."'";    
             }
-            $r1 = DB::select($countquery_r1);
-            if($r1 != null){
-                $r1_count = $r1[0]->n;
-            }else{
-                $r1_count = 0;
-            }
-            $r2 = DB::select($countquery_r2);
-            if($r2 != null){
-                $r2_count = $r2[0]->n;
-            }else{
-                $r2_count = 0;
-            }
-            $r3 = DB::select($countquery_r3);
-            if($r3 != null){
-                $r3_count = $r3[0]->n;
-            }else{
-                $r3_count = 0;
-            }
+            $r1 = $this->find_Stack_Data(1,$year,$GT,$Dname,$method);
+            $r1_count = $this->r_count($r1);
+            $r2 = $this->find_Stack_Data(2,$year,$GT,$Dname,$method);
+            $r2_count = $this->r_count($r2);
+            $r3 = $this->find_Stack_Data(3,$year,$GT,$Dname,$method);
+            $r3_count = $this->r_count($r3);
             $r4 = DB::select($countquery_r4);
             if($r4 != null){
                 $r4_count = $r4[0]->n;
@@ -186,40 +174,38 @@ class SearchController extends Controller
                 }
                 array_push($chartHighPercent,$High_dataPercent);  
             }
+            //////////////Start Thai Map///////////////////////////////////////////////////////////
+            $resultThaiMap = $this->find_Map_Data('All',$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg1 = $this->find_Map_Data(1,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg2 = $this->find_Map_Data(2,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg3 = $this->find_Map_Data(3,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg4 = $this->find_Map_Data(4,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg5 = $this->find_Map_Data(5,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg6 = $this->find_Map_Data(6,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg7 = $this->find_Map_Data(7,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg8 = $this->find_Map_Data(8,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg9 = $this->find_Map_Data(9,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg10 = $this->find_Map_Data(10,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg11 = $this->find_Map_Data(11,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg12 = $this->find_Map_Data(12,$year,$GT,$Dname,$method);
+            $resultThaiMap_Reg13 = $this->find_Map_Data(13,$year,$GT,$Dname,$method);
+
+            [$quan_array_all, $pri_array_all] = $this->FindQuan_Pri_All($resultThaiMap);
+            [$quan_array_r1, $pri_array_r1] = $this->FindQuan_Pri_Region($resultThaiMap_Reg1);
+            [$quan_array_r2, $pri_array_r2] = $this->FindQuan_Pri_Region($resultThaiMap_Reg2);
+            [$quan_array_r3, $pri_array_r3] = $this->FindQuan_Pri_Region($resultThaiMap_Reg3);
+            [$quan_array_r4, $pri_array_r4] = $this->FindQuan_Pri_Region($resultThaiMap_Reg4);
+            [$quan_array_r5, $pri_array_r5] = $this->FindQuan_Pri_Region($resultThaiMap_Reg5);
+            [$quan_array_r6, $pri_array_r6] = $this->FindQuan_Pri_Region($resultThaiMap_Reg6);
+            [$quan_array_r7, $pri_array_r7] = $this->FindQuan_Pri_Region($resultThaiMap_Reg7);
+            [$quan_array_r8, $pri_array_r8] = $this->FindQuan_Pri_Region($resultThaiMap_Reg8);
+            [$quan_array_r9, $pri_array_r9] = $this->FindQuan_Pri_Region($resultThaiMap_Reg9);
+            [$quan_array_r10, $pri_array_r10] = $this->FindQuan_Pri_Region($resultThaiMap_Reg10);
+            [$quan_array_r11, $pri_array_r11] = $this->FindQuan_Pri_Region($resultThaiMap_Reg11);
+            [$quan_array_r12, $pri_array_r12] = $this->FindQuan_Pri_Region($resultThaiMap_Reg12);
+            [$quan_array_r13, $pri_array_r13] = $this->FindQuan_Pri_Region($resultThaiMap_Reg13);
+
         }
-
-        //////////////Start Thai Map///////////////////////////////////////////////////////////
-        // $resultThaiMap = DB::select($thaimap_query);
-        $resultThaiMap = $this->find_Map_Data('All',$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg1 = $this->find_Map_Data(1,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg2 = $this->find_Map_Data(2,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg3 = $this->find_Map_Data(3,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg4 = $this->find_Map_Data(4,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg5 = $this->find_Map_Data(5,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg6 = $this->find_Map_Data(6,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg7 = $this->find_Map_Data(7,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg8 = $this->find_Map_Data(8,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg9 = $this->find_Map_Data(9,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg10 = $this->find_Map_Data(10,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg11 = $this->find_Map_Data(11,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg12 = $this->find_Map_Data(12,$year,$GT,$Dname,$method);
-        $resultThaiMap_Reg13 = $this->find_Map_Data(13,$year,$GT,$Dname,$method);
-
-        [$quan_array_all, $pri_array_all] = $this->FindQuan_Pri_All($resultThaiMap);
-        [$quan_array_r1, $pri_array_r1] = $this->FindQuan_Pri_Region($resultThaiMap_Reg1);
-        [$quan_array_r2, $pri_array_r2] = $this->FindQuan_Pri_Region($resultThaiMap_Reg2);
-        [$quan_array_r3, $pri_array_r3] = $this->FindQuan_Pri_Region($resultThaiMap_Reg3);
-        [$quan_array_r4, $pri_array_r4] = $this->FindQuan_Pri_Region($resultThaiMap_Reg4);
-        [$quan_array_r5, $pri_array_r5] = $this->FindQuan_Pri_Region($resultThaiMap_Reg5);
-        [$quan_array_r6, $pri_array_r6] = $this->FindQuan_Pri_Region($resultThaiMap_Reg6);
-        [$quan_array_r7, $pri_array_r7] = $this->FindQuan_Pri_Region($resultThaiMap_Reg7);
-        [$quan_array_r8, $pri_array_r8] = $this->FindQuan_Pri_Region($resultThaiMap_Reg8);
-        [$quan_array_r9, $pri_array_r9] = $this->FindQuan_Pri_Region($resultThaiMap_Reg9);
-        [$quan_array_r10, $pri_array_r10] = $this->FindQuan_Pri_Region($resultThaiMap_Reg10);
-        [$quan_array_r11, $pri_array_r11] = $this->FindQuan_Pri_Region($resultThaiMap_Reg11);
-        [$quan_array_r12, $pri_array_r12] = $this->FindQuan_Pri_Region($resultThaiMap_Reg12);
-        [$quan_array_r13, $pri_array_r13] = $this->FindQuan_Pri_Region($resultThaiMap_Reg13);
-
         // $mapp = (object) ['TH-30' => 'purple', 'TH-20' => 'yellow'];
         // $mapp = "{'TH-30':'purple', 'TH-20':'red'}";
         //////////////END Thai Map/////////////////////////////////////////////////////////////
@@ -275,6 +261,7 @@ class SearchController extends Controller
             $quan_array_r13 = NULL;
             $pri_array_r13 = NULL;
         }
+        dump($chartLowPercent);
         
         $send_data = array(
             'resultSearch'=>$resultSearch,
@@ -328,6 +315,23 @@ class SearchController extends Controller
         return view('DrugPage', $send_data);
     }
 
+    function find_Stack_Data($r,$year,$GT,$Dname,$method){
+        if($method == 'All'){
+            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '".$r."'";
+        }else{
+            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '".$r."' and Method ='".$method."'";
+        }
+        $find_Stack_Data_result = DB::select($countquery_r);
+        return $find_Stack_Data_result;
+    }
+    function r_count($r){
+        if($r != null){
+            $r_count = $r[0]->n;
+        }else{
+            $r_count = 0;
+        }
+        return $r_count;
+    }
     function find_Map_Data($r,$y,$g,$na,$m){
         if($r == 'All'){
             if($m == 'All'){
