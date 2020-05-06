@@ -15,6 +15,7 @@ class SearchController extends Controller
             $GT = $_GET['GT'];
             $Dname= $_GET['Dname'];
             $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$Dname."";
+            
             // dump($_GET);
             // echo "<p>Your drug name is <b>" . $Dname . "</b>.</p>";
             ////////////////////////////////////////////////////////////////////
@@ -334,7 +335,7 @@ class SearchController extends Controller
                 $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' group by Region";
             }else{
                 ////// Thai map //////////////////////////////////////////////////////////////////////
-                $thaimap_query = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' group by Region";
+                $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' group by Region";
             }
         }else{
             if($m == 'All'){
