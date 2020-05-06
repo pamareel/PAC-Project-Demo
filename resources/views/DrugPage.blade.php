@@ -174,7 +174,7 @@
         <div class="col-md-8">
             <div class="card">
                 <a class="customize-input float-right" href="/policy/DrugPage/SizeHospital">
-                    Region -> Size og hospital
+                    Region -> Size of hospital
                 </a>
                 <?php
                 if(isset($chartHighPercent)){
