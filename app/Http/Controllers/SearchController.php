@@ -275,6 +275,7 @@ class SearchController extends Controller
             $quan_array_r13 = NULL;
             $pri_array_r13 = NULL;
         }
+        
         $send_data = array(
             'resultSearch'=>$resultSearch,
             'chartLowPercent'=>$chartLowPercent,
@@ -344,7 +345,166 @@ class SearchController extends Controller
             }
         }
         $find_Map_Data_result = DB::select($query_rd);
-
+        $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
+        $Region_2_name = ['TH-65'=>'Phitsanulok','TH-67'=>'Phetchabun','TH-53'=>'Uttaradit','TH-63'=>'Tak','TH-64'=>'Sukhothai'];
+        $Region_3_name = ['TH-60'=>'Nakhon Sawan','TH-62'=>'Kamphaeng Phet','TH-66'=>'Phichit','TH-61'=>'Uthai Thani','TH-18'=>'Chai Nat'];
+        $Region_4_name = ['TH-17'=>'Sing Buri','TH-16'=>'Lop Buri','TH-19'=>'Saraburi','TH-12'=>'Nonthaburi','TH-14'=>'Phra Nakhon Si Ayutthaya','TH-15'=>'Ang Thong','TH-13'=>'Pathum Thani','TH-26'=>'Nakhon Nayok'];
+        $Region_5_name = ['TH-70'=>'Ratchaburi','TH-72'=>'Suphan Buri','TH-73'=>'Nakhon Pathom','TH-71'=>'Kanchanaburi','TH-75'=>'Samut Songkhram','TH-74'=>'Samut Sakhon','TH-76'=>'Phetchaburi','TH-77'=>'Prachuap Khiri Khan'];
+        $Region_6_name = ['TH-20'=>'Chon Buri','TH-21'=>'Rayong','TH-22'=>'Chanthaburi','TH-23'=>'Trat','TH-11'=>'Samut Prakan','TH-24'=>'Chachoengsao','TH-25'=>'Prachin Buri','TH-27'=>'Sa Kaeo'];
+        $Region_7_name = ['TH-40'=>'Khon Kaen','TH-44'=>'Maha Sarakham','TH-45'=>'Roi Et','TH-46'=>'Kalasin'];
+        $Region_8_name = ['TH-41'=>'Udon Thani','TH-47'=>'Sakon Nakhon','TH-48'=>'Nakhon Phanom','TH-42'=>'Loei','TH-39'=>'Nong Bua Lam Phu','TH-43'=>'Nong Khai']; //+'บึงกาฬ'
+        $Region_9_name = ['TH-30'=>'Nakhon Ratchasima','TH-36'=>'Chaiyaphum','TH-31'=>'Buri Ram','TH-32'=>'Surin'];
+        $Region_10_name = ['TH-34'=>'Ubon Ratchathani','TH-33'=>'Si Sa Ket','TH-35'=>'Yasothon','TH-37'=>'Amnat Charoen','TH-49'=>'Mukdahan'];
+        $Region_11_name = ['TH-86'=>'Chumphon','TH-85'=>'Ranong','TH-84'=>'Surat Thani','TH-80'=>'Nakhon Si Thammarat','TH-82'=>'Phangnga','TH-81'=>'Krabi','TH-83'=>'Phuket'];
+        $Region_12_name = ['TH-96'=>'Narathiwat','TH-94'=>'Pattani','TH-95'=>'Yala','TH-90'=>'Songkhla','TH-91'=>'Satun','TH-93'=>'Phatthalung','TH-92'=>'Trang'];
+        $Region_13_name = ['TH-10'=>'Bangkok Metropolis'];
+        $Region_1 = ['TH-50','TH-57','TH-51','TH-52','TH-54','TH-55','TH-56','TH-58'];
+        $Region_2 = ['TH-65','TH-67','TH-53','TH-63','TH-64'];
+        $Region_3 = ['TH-60','TH-62','TH-66','TH-61','TH-18'];
+        $Region_4 = ['TH-17','TH-16','TH-19','TH-12','TH-14','TH-15','TH-13','TH-26'];
+        $Region_5 = ['TH-70','TH-72','TH-73','TH-71','TH-75','TH-74','TH-76','TH-77'];
+        $Region_6 = ['TH-20','TH-21','TH-22','TH-23','TH-11','TH-24','TH-25','TH-27'];
+        $Region_7 = ['TH-40','TH-44','TH-45','TH-46'];
+        $Region_8 = ['TH-41','TH-47','TH-48','TH-42','TH-39','TH-43']; //+'บึงกาฬ'
+        $Region_9 = ['TH-30','TH-36','TH-31','TH-32'];
+        $Region_10 = ['TH-34','TH-33','TH-35','TH-37','TH-49'];
+        $Region_11 = ['TH-86','TH-85','TH-84','TH-80','TH-82','TH-81','TH-83'];
+        $Region_12 = ['TH-96','TH-94','TH-95','TH-90','TH-91','TH-93','TH-92'];
+        $Region_13 = ['TH-10'];
+        if($r != 'All'){
+            $p = [];
+            if($r == 1){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_1) ; $i++){
+                    if(! in_array($Region_1[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_1_name[$Region_1[$i]], 'Pcode'=>$Region_1[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 2){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_2) ; $i++){
+                    if(! in_array($Region_2[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_2_name[$Region_2[$i]], 'Pcode'=>$Region_2[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 3){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_3) ; $i++){
+                    if(! in_array($Region_3[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_3_name[$Region_3[$i]], 'Pcode'=>$Region_3[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 4){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_4) ; $i++){
+                    if(! in_array($Region_4[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_4_name[$Region_4[$i]], 'Pcode'=>$Region_4[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 5){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_5) ; $i++){
+                    if(! in_array($Region_5[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_5_name[$Region_5[$i]], 'Pcode'=>$Region_5[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 6){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_6) ; $i++){
+                    if(! in_array($Region_6[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_6_name[$Region_6[$i]], 'Pcode'=>$Region_6[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 7){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_7) ; $i++){
+                    if(! in_array($Region_7[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_7_name[$Region_7[$i]], 'Pcode'=>$Region_7[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 8){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_8) ; $i++){
+                    if(! in_array($Region_8[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_8_name[$Region_8[$i]], 'Pcode'=>$Region_8[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 9){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_9) ; $i++){
+                    if(! in_array($Region_9[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_9_name[$Region_9[$i]], 'Pcode'=>$Region_9[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 10){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_10) ; $i++){
+                    if(! in_array($Region_10[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_10_name[$Region_10[$i]], 'Pcode'=>$Region_10[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 11){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_11) ; $i++){
+                    if(! in_array($Region_11[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_11_name[$Region_11[$i]], 'Pcode'=>$Region_11[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 12){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_12) ; $i++){
+                    if(! in_array($Region_12[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_12_name[$Region_12[$i]], 'Pcode'=>$Region_12[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }else if($r == 13){
+                for($ii=0 ; $ii<count($find_Map_Data_result); $ii++){ 
+                    array_push($p,$find_Map_Data_result[$ii]->Pcode);
+                }
+                for($i=0 ; $i<count($Region_13) ; $i++){
+                    if(! in_array($Region_13[$i], $p)){
+                        $notIn = array('Region'=>$r, 'PROVINCE_EN'=>$Region_13_name[$Region_13[$i]], 'Pcode'=>$Region_13[$i], 'wavg_unit_price'=>0, 'Total_Amount'=>0);
+                        $find_Map_Data_result = array_merge($find_Map_Data_result, array((object)$notIn));
+                    }
+                }
+            }
+        }
         return $find_Map_Data_result;
     }
 
@@ -460,158 +620,166 @@ class SearchController extends Controller
 
         for($i=0 ; $i< count($r) ; $i++){
             $pc = $r[$i]->Pcode;
-            $quan = $r[$i]->Total_Amount;
-            $pri = $r[$i]->wavg_unit_price;
+            if($r[$i]->Total_Amount != 0){
+                $quan = $r[$i]->Total_Amount;
+            }else{
+                $quan = Null;
+            }
+            if($r[$i]->wavg_unit_price != 0){
+                $pri = $r[$i]->wavg_unit_price;
+            }else{
+                $pri = Null;
+            }
             $quan_array[$pc] = $quan;
             $pri_array[$pc] = $pri;
             $quan_array_r = array_merge($quan_array_r, $quan_array);
             $pri_array_r = array_merge($pri_array_r, $pri_array);
         }
-        $re = $r[0]->Region;
-        if($re == '1'){
-            foreach ($Region_1 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '2'){
-            foreach ($Region_2 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '3'){
-            foreach ($Region_3 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '4'){
-            foreach ($Region_4 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '5'){
-            foreach ($Region_5 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '6'){
-            foreach ($Region_6 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '7'){
-            foreach ($Region_7 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '8'){
-            foreach ($Region_8 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '9'){
-            foreach ($Region_9 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '10'){
-            foreach ($Region_10 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '11'){
-            foreach ($Region_11 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '12'){
-            foreach ($Region_12 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }else if($re == '13'){
-            foreach ($Region_13 as &$ii) {
-                if(!array_key_exists($ii,$quan_array_r)){
-                    $quan_array[$ii] = NULL;
-                    $quan_array_r = array_merge($quan_array_r, $quan_array);
-                }
-                if(!array_key_exists($ii,$pri_array_r)){
-                    $pri_array[$ii] = NULL;
-                    $pri_array_r = array_merge($pri_array_r, $pri_array);
-                }
-            }
-        }
+        // $re = $r[0]->Region;
+        // if($re == '1'){
+        //     foreach ($Region_1 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '2'){
+        //     foreach ($Region_2 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '3'){
+        //     foreach ($Region_3 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '4'){
+        //     foreach ($Region_4 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '5'){
+        //     foreach ($Region_5 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '6'){
+        //     foreach ($Region_6 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '7'){
+        //     foreach ($Region_7 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '8'){
+        //     foreach ($Region_8 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '9'){
+        //     foreach ($Region_9 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '10'){
+        //     foreach ($Region_10 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '11'){
+        //     foreach ($Region_11 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '12'){
+        //     foreach ($Region_12 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }else if($re == '13'){
+        //     foreach ($Region_13 as &$ii) {
+        //         if(!array_key_exists($ii,$quan_array_r)){
+        //             $quan_array[$ii] = NULL;
+        //             $quan_array_r = array_merge($quan_array_r, $quan_array);
+        //         }
+        //         if(!array_key_exists($ii,$pri_array_r)){
+        //             $pri_array[$ii] = NULL;
+        //             $pri_array_r = array_merge($pri_array_r, $pri_array);
+        //         }
+        //     }
+        // }
         return [$quan_array_r, $pri_array_r];
     }
 }

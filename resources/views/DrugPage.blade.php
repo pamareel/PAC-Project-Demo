@@ -974,7 +974,6 @@
 
                                             <?php
                                             }else{
-                                                //Gini = NULL because PAC = 0
                                             ?>
                                                 <td style="text-align:right;">0</td>
                                         </tr>
