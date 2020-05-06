@@ -191,7 +191,7 @@
         </div>
     </div>
     <script>
-            //// For WHole Country Chart Option ///////////////////////////////////////////
+            // For WHole Country Chart Option ///////////////////////////////////////////
             var optionData = {
                 name: "Whole Country",
                 type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -275,13 +275,10 @@
                     tooltips:{
                         enabled:true
                     },
-                    onClick: ChartDrilldownHandler_Region,
-                    cursor: "pointer",
-                    explodeOnClick: false
                 }
             };
-            //// For RegionChart Option ///////////////////////////////////////////
-            var optionData_Region = [{
+            //// For Region 1 Chart Option ///////////////////////////////////////////
+            var optionData_Region1 = [{
                 name: "Region 1",
                 type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                 data:{
@@ -366,25 +363,27 @@
             ////////// generate chart ////////////////////////////////////////
             let myChart = document.getElementById('myChart').getContext('2d');
             let massPopChart = new Chart(myChart, optionData);
-            // massPopChart.render();
             
-            function ChartDrilldownHandler_Region(e) {
-                // alert('hi');
-                // alert(e);
-                var a = 1;
-                if( a == 1){
-                    let chartR = new Chart(myChart, optionData_Region[0]);
-                    // chartR.render();
-                    document.getElementById('backButton').style.display = 'show';
-                    // $("#backButton").toggleClass("visible");
-                }
-                // chart.render();
+            // function ChartDrilldownHandler_Region(e) {
+            //     // alert('hi');
+            //     // alert(e);
+            //     var a = 1;
+            //     if( a == 1){
+            //         let chartR = new Chart(myChart, optionData_Region[0]);
+            //         // chartR.render();
+            //         // document.getElementById('backButton').style.display = 'show';
+            //         // $("#backButton").toggleClass("visible");
+            //     }
+            //     // chart.render();
                 
-            }
+            // }
+    </script>
     <!-- *************************************************************** -->
     <!-- END 100% stacked bar chart -->
     <!-- *************************************************************** -->
+  
 
+    <script>
     <!-- *************************************************************** -->
     <!-- Start Thai Map -->
     <!-- *************************************************************** -->
@@ -446,6 +445,181 @@
         var reg13_quan = {!! json_encode($quan_array_r13) !!};
         
         $(document).ready(function() {
+            $Reg1_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg1_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+
+                }
+            }
+            $Reg2_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg2_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+
+                }
+            }
+            $Reg3_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg3_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+
+                }
+            }
+            $Reg4_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg4_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                }
+            }
+            $Reg5_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg5_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                }
+            }
+            $Reg6_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg6_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                }
+            }
+            $Reg7_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg7_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+
+                }
+            }
+            $Reg8_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg8_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+
+                }
+            }
+            $Reg9_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg9_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+
+                }
+            }
+            $Reg10_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg10_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                }
+            }
+            $Reg11_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg11_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                }
+            }
+            $Reg12_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg12_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                }
+            }
+            $Reg13_map_pri = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverColor: 'black',
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg13_pri,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                }
+            }
             $Thai_map_pri = {
                 map: ['thai_en'],
                 backgroundColor: 'beige',
@@ -467,23 +641,83 @@
                 onRegionOver: function (event, code, region) {
                     //sample to interact with map
                     if (code == 'TH-50') {
-                        // document.getElementById("vmapTH").style.background = "purple";
-                        
-                        // alert("You hover "+region);
-                        // event.preventDefault();
                         document.getElementById("your_h1_id").innerHTML = "your new text here"    
                     }
                 },
                 onRegionClick: function (element, code, region) {
-                    //sample to interact with map
-                    // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
-                    // alert(message);
-
+                    $("#backButton").toggleClass("invisible");
+                    $('#vmapTH_quan').toggleClass("invisible");
+                    $("#Map_Quan_TH").toggleClass("invisible");
+                    $('#vmapTH_pri').toggleClass("invisible");
+                    $("#Map_Pri_TH").toggleClass("invisible");
+                    if(Region_1.includes(code)) {
+                        $('#vmapTH_quan_r1').removeClass('invisible');   
+                        $("#Map_Quan_Region_1").removeClass('invisible');   
+                        $('#vmapTH_pri_r1').removeClass('invisible');   
+                        $("#Map_Pri_Region_1").removeClass('invisible');   
+                    }else if(Region_2.includes(code)) {
+                        $('#vmapTH_quan_r2').removeClass('invisible');  
+                        $("#Map_Quan_Region_2").removeClass('invisible');  
+                        $('#vmapTH_pri_r2').removeClass('invisible');  
+                        $("#Map_Pri_Region_2").removeClass('invisible');  
+                    }else if(Region_3.includes(code)) {
+                        $('#vmapTH_quan_r3').removeClass('invisible');   
+                        $("#Map_Quan_Region_3").removeClass('invisible');   
+                        $('#vmapTH_pri_r3').removeClass('invisible');   
+                        $("#Map_Pri_Region_3").removeClass('invisible');   
+                    }else if(Region_4.includes(code)) {
+                        $('#vmapTH_quan_r4').removeClass('invisible');  
+                        $("#Map_Quan_Region_4").removeClass('invisible');  
+                        $('#vmapTH_pri_r4').removeClass('invisible');  
+                        $("#Map_Pri_Region_4").removeClass('invisible');  
+                    }else if(Region_5.includes(code)) {
+                        $('#vmapTH_quan_r5').removeClass('invisible');  
+                        $("#Map_Quan_Region_5").removeClass('invisible');  
+                        $('#vmapTH_pri_r5').removeClass('invisible');  
+                        $("#Map_Pri_Region_5").removeClass('invisible');  
+                    }else if(Region_6.includes(code)) {
+                        $('#vmapTH_quan_r6').removeClass('invisible');  
+                        $("#Map_Quan_Region_6").removeClass('invisible'); 
+                        $('#vmapTH_pri_r6').removeClass('invisible');  
+                        $("#Map_Pri_Region_6").removeClass('invisible');  
+                    }else if(Region_7.includes(code)) {
+                        $('#vmapTH_quan_r7').removeClass('invisible');   
+                        $("#Map_Quan_Region_7").removeClass('invisible');   
+                        $('#vmapTH_pri_r7').removeClass('invisible');   
+                        $("#Map_Pri_Region_7").removeClass('invisible');   
+                    }else if(Region_8.includes(code)) {
+                        $('#vmapTH_quan_r8').removeClass('invisible');  
+                        $("#Map_Quan_Region_8").removeClass('invisible');  
+                        $('#vmapTH_pri_r8').removeClass('invisible');  
+                        $("#Map_Pri_Region_8").removeClass('invisible');  
+                    }else if(Region_9.includes(code)) {
+                        $('#vmapTH_quan_r9').removeClass('invisible');  
+                        $("#Map_Quan_Region_9").removeClass('invisible');  
+                        $('#vmapTH_pri_r9').removeClass('invisible');  
+                        $("#Map_Pri_Region_9").removeClass('invisible');  
+                    }else if(Region_10.includes(code)) {
+                        $('#vmapTH_quan_r10').removeClass('invisible');  
+                        $("#Map_Quan_Region_10").removeClass('invisible');  
+                        $('#vmapTH_pri_r10').removeClass('invisible');  
+                        $("#Map_Pri_Region_10").removeClass('invisible');  
+                    }else if(Region_11.includes(code)) {
+                        $('#vmapTH_quan_r11').removeClass('invisible');   
+                        $("#Map_Quan_Region_11").removeClass('invisible');   
+                        $('#vmapTH_pri_r11').removeClass('invisible');   
+                        $("#Map_Pri_Region_11").removeClass('invisible');   
+                    }else if(Region_12.includes(code)) {
+                        $('#vmapTH_quan_r12').removeClass('invisible');  
+                        $("#Map_Quan_Region_12").removeClass('invisible');  
+                        $('#vmapTH_pri_r12').removeClass('invisible');  
+                        $("#Map_Pri_Region_12").removeClass('invisible');  
+                    }else if(Region_13.includes(code)) {
+                        $('#vmapTH_quan_r13').removeClass('invisible');  
+                        $("#Map_Quan_Region_13").removeClass('invisible');  
+                        $('#vmapTH_pri_r13').removeClass('invisible');  
+                        $("#Map_Pri_Region_13").removeClass('invisible');   
+                    }
                 }
             }
-            //draw chart
-            $('#vmapTH_pri').vectorMap($Thai_map_pri)
-
             /////////////////////////////////////////////////////////////////////////////////////
             //---------------------------------------------------------------------------------//
             ////////// for quantity /////////////////////////////////////////////////////////////
@@ -641,85 +875,117 @@
                 map: ['thai_en'],
                 backgroundColor: 'beige',
                 hoverOpacity: 0.7,
-                enableZoom: true,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: data_sets_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
-                // colors: color_sets,      
-                onLabelShow: function(event, label, code){
-                },
-                onRegionOver: function (event, code, region) {
-                    //sample to interact with map
-                    if (code == 'TH-50') {
-                        // document.getElementById("vmapTH").style.background = "purple";
-                        
-                        // alert("You hover "+region);
-                        // event.preventDefault();
-                    }
-                },
+                // colors: color_sets,
                 onRegionClick: function (element, code, region) {
                     $("#backButton").toggleClass("invisible");
                     $('#vmapTH_quan').toggleClass("invisible");
                     $("#Map_Quan_TH").toggleClass("invisible");
-                    if (Region_1.includes(code)) {
+                    $('#vmapTH_pri').toggleClass("invisible");
+                    $("#Map_Pri_TH").toggleClass("invisible");
+                    if(Region_1.includes(code)) {
                         $('#vmapTH_quan_r1').removeClass('invisible');   
                         $("#Map_Quan_Region_1").removeClass('invisible');   
-                        $('#vmapTH_quan_r1').vectorMap($Reg1_map_quan);
+                        $('#vmapTH_pri_r1').removeClass('invisible');   
+                        $("#Map_Pri_Region_1").removeClass('invisible');   
                     }else if(Region_2.includes(code)) {
-                        $('#vmapTH_quan_r2').toggleClass("invisible");
-                        $("#Map_Quan_Region_2").toggleClass("invisible");
-                        $('#vmapTH_quan_r2').vectorMap($Reg2_map_quan);
+                        $('#vmapTH_quan_r2').removeClass('invisible');  
+                        $("#Map_Quan_Region_2").removeClass('invisible');  
+                        $('#vmapTH_pri_r2').removeClass('invisible');  
+                        $("#Map_Pri_Region_2").removeClass('invisible');  
                     }else if(Region_3.includes(code)) {
                         $('#vmapTH_quan_r3').removeClass('invisible');   
                         $("#Map_Quan_Region_3").removeClass('invisible');   
-                        $('#vmapTH_quan_r3').vectorMap($Reg3_map_quan);
+                        $('#vmapTH_pri_r3').removeClass('invisible');   
+                        $("#Map_Pri_Region_3").removeClass('invisible');   
                     }else if(Region_4.includes(code)) {
-                        $('#vmapTH_quan_r4').toggleClass("invisible");
-                        $("#Map_Quan_Region_4").toggleClass("invisible");
-                        $('#vmapTH_quan_r4').vectorMap($Reg4_map_quan);
+                        $('#vmapTH_quan_r4').removeClass('invisible');  
+                        $("#Map_Quan_Region_4").removeClass('invisible');  
+                        $('#vmapTH_pri_r4').removeClass('invisible');  
+                        $("#Map_Pri_Region_4").removeClass('invisible');  
                     }else if(Region_5.includes(code)) {
-                        $('#vmapTH_quan_r5').toggleClass("invisible");
-                        $("#Map_Quan_Region_5").toggleClass("invisible");
-                        $('#vmapTH_quan_r5').vectorMap($Reg5_map_quan);
+                        $('#vmapTH_quan_r5').removeClass('invisible');  
+                        $("#Map_Quan_Region_5").removeClass('invisible');  
+                        $('#vmapTH_pri_r5').removeClass('invisible');  
+                        $("#Map_Pri_Region_5").removeClass('invisible');  
                     }else if(Region_6.includes(code)) {
-                        $('#vmapTH_quan_r6').toggleClass("invisible");
-                        $("#Map_Quan_Region_6").toggleClass("invisible");
-                        $('#vmapTH_quan_r6').vectorMap($Reg6_map_quan);
+                        $('#vmapTH_quan_r6').removeClass('invisible');  
+                        $("#Map_Quan_Region_6").removeClass('invisible'); 
+                        $('#vmapTH_pri_r6').removeClass('invisible');  
+                        $("#Map_Pri_Region_6").removeClass('invisible');  
                     }else if(Region_7.includes(code)) {
                         $('#vmapTH_quan_r7').removeClass('invisible');   
                         $("#Map_Quan_Region_7").removeClass('invisible');   
-                        $('#vmapTH_quan_r7').vectorMap($Reg7_map_quan);
+                        $('#vmapTH_pri_r7').removeClass('invisible');   
+                        $("#Map_Pri_Region_7").removeClass('invisible');   
                     }else if(Region_8.includes(code)) {
-                        $('#vmapTH_quan_r8').toggleClass("invisible");
-                        $("#Map_Quan_Region_8").toggleClass("invisible");
-                        $('#vmapTH_quan_r8').vectorMap($Reg8_map_quan);
+                        $('#vmapTH_quan_r8').removeClass('invisible');  
+                        $("#Map_Quan_Region_8").removeClass('invisible');  
+                        $('#vmapTH_pri_r8').removeClass('invisible');  
+                        $("#Map_Pri_Region_8").removeClass('invisible');  
                     }else if(Region_9.includes(code)) {
-                        $('#vmapTH_quan_r9').toggleClass("invisible");
-                        $("#Map_Quan_Region_9").toggleClass("invisible");
-                        $('#vmapTH_quan_r9').vectorMap($Reg9_map_quan);
+                        $('#vmapTH_quan_r9').removeClass('invisible');  
+                        $("#Map_Quan_Region_9").removeClass('invisible');  
+                        $('#vmapTH_pri_r9').removeClass('invisible');  
+                        $("#Map_Pri_Region_9").removeClass('invisible');  
                     }else if(Region_10.includes(code)) {
-                        $('#vmapTH_quan_r10').toggleClass("invisible");
-                        $("#Map_Quan_Region_10").toggleClass("invisible");
-                        $('#vmapTH_quan_r10').vectorMap($Reg10_map_quan);
+                        $('#vmapTH_quan_r10').removeClass('invisible');  
+                        $("#Map_Quan_Region_10").removeClass('invisible');  
+                        $('#vmapTH_pri_r10').removeClass('invisible');  
+                        $("#Map_Pri_Region_10").removeClass('invisible');  
                     }else if(Region_11.includes(code)) {
                         $('#vmapTH_quan_r11').removeClass('invisible');   
                         $("#Map_Quan_Region_11").removeClass('invisible');   
-                        $('#vmapTH_quan_r11').vectorMap($Reg11_map_quan);
+                        $('#vmapTH_pri_r11').removeClass('invisible');   
+                        $("#Map_Pri_Region_11").removeClass('invisible');   
                     }else if(Region_12.includes(code)) {
-                        $('#vmapTH_quan_r12').toggleClass("invisible");
-                        $("#Map_Quan_Region_12").toggleClass("invisible");
-                        $('#vmapTH_quan_r12').vectorMap($Reg12_map_quan);
+                        $('#vmapTH_quan_r12').removeClass('invisible');  
+                        $("#Map_Quan_Region_12").removeClass('invisible');  
+                        $('#vmapTH_pri_r12').removeClass('invisible');  
+                        $("#Map_Pri_Region_12").removeClass('invisible');  
                     }else if(Region_13.includes(code)) {
-                        $('#vmapTH_quan_r13').toggleClass("invisible");
-                        $("#Map_Quan_Region_13").toggleClass("invisible");
-                        $('#vmapTH_quan_r13').vectorMap($Reg13_map_quan);
+                        $('#vmapTH_quan_r13').removeClass('invisible');  
+                        $("#Map_Quan_Region_13").removeClass('invisible');  
+                        $('#vmapTH_pri_r13').removeClass('invisible');  
+                        $("#Map_Pri_Region_13").removeClass('invisible');   
                     }
                 }
             }
-            //draw chart quantity
+            //draw chart TH
             $('#vmapTH_quan').vectorMap($Thai_map_quan)
+            $('#vmapTH_pri').vectorMap($Thai_map_pri)
+            //draw chart region
+            $('#vmapTH_quan_r1').vectorMap($Reg1_map_quan);
+            $('#vmapTH_pri_r1').vectorMap($Reg1_map_pri);
+            $('#vmapTH_quan_r2').vectorMap($Reg2_map_quan);
+            $('#vmapTH_pri_r2').vectorMap($Reg2_map_pri);
+            $('#vmapTH_quan_r3').vectorMap($Reg3_map_quan);
+            $('#vmapTH_pri_r3').vectorMap($Reg3_map_pri);
+            $('#vmapTH_quan_r4').vectorMap($Reg4_map_quan);
+            $('#vmapTH_pri_r4').vectorMap($Reg4_map_pri);
+            $('#vmapTH_quan_r5').vectorMap($Reg5_map_quan);
+            $('#vmapTH_pri_r5').vectorMap($Reg5_map_pri);
+            $('#vmapTH_quan_r6').vectorMap($Reg6_map_quan);
+            $('#vmapTH_pri_r6').vectorMap($Reg6_map_pri);
+            $('#vmapTH_quan_r7').vectorMap($Reg7_map_quan);
+            $('#vmapTH_pri_r7').vectorMap($Reg7_map_pri);
+            $('#vmapTH_quan_r8').vectorMap($Reg8_map_quan);
+            $('#vmapTH_pri_r8').vectorMap($Reg8_map_pri);
+            $('#vmapTH_quan_r9').vectorMap($Reg9_map_quan);
+            $('#vmapTH_pri_r9').vectorMap($Reg9_map_pri);
+            $('#vmapTH_quan_r10').vectorMap($Reg10_map_quan);
+            $('#vmapTH_pri_r10').vectorMap($Reg10_map_pri);
+            $('#vmapTH_quan_r11').vectorMap($Reg11_map_quan);
+            $('#vmapTH_pri_r11').vectorMap($Reg11_map_pri);
+            $('#vmapTH_quan_r12').vectorMap($Reg12_map_quan);
+            $('#vmapTH_pri_r12').vectorMap($Reg12_map_pri);
+            $('#vmapTH_quan_r13').vectorMap($Reg13_map_quan);
+            $('#vmapTH_pri_r13').vectorMap($Reg13_map_pri);
             // if(xx == 'High'){
             //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'red'});
             // }else if(xx == 'Medium'){
@@ -731,47 +997,75 @@
                 $(this).toggleClass("invisible");
                 $('#vmapTH_quan').toggleClass("invisible");
                 $("#Map_Quan_TH").toggleClass("invisible");
+                $('#vmapTH_pri').toggleClass("invisible");
+                $("#Map_Pri_TH").toggleClass("invisible");
                 
-                if(!document.getElementById('vmapTH_quan_r1').classList.contains('invisible')){
+                if(!document.getElementById('vmapTH_quan_r1').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r1').classList.contains('invisible')){
                     $('#vmapTH_quan_r1').addClass('invisible');   
                     $('#Map_Quan_Region_1').addClass('invisible');   
-                }else if(!document.getElementById('vmapTH_quan_r2').classList.contains('invisible')){
-                    $('#vmapTH_quan_r2').toggleClass("invisible");
-                    $('#Map_Quan_Region_2').toggleClass("invisible");
-                }else if(!document.getElementById('vmapTH_quan_r3').classList.contains('invisible')){
+                    $('#vmapTH_pri_r1').addClass('invisible');   
+                    $('#Map_Pri_Region_1').addClass('invisible');     
+                }else if(!document.getElementById('vmapTH_quan_r2').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r2').classList.contains('invisible')){
+                    $('#vmapTH_quan_r2').addClass('invisible'); 
+                    $('#Map_Quan_Region_2').addClass('invisible'); 
+                    $('#vmapTH_pri_r2').addClass('invisible'); 
+                    $('#Map_Pri_Region_2').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r3').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r3').classList.contains('invisible')){
                     $('#vmapTH_quan_r3').addClass('invisible');   
                     $('#Map_Quan_Region_3').addClass('invisible');   
-                }else if(!document.getElementById('vmapTH_quan_r4').classList.contains('invisible')){
-                    $('#vmapTH_quan_r4').toggleClass("invisible");
-                    $('#Map_Quan_Region_4').toggleClass("invisible");
-                }else if(!document.getElementById('vmapTH_quan_r5').classList.contains('invisible')){
-                    $('#vmapTH_quan_r5').toggleClass("invisible");
-                    $('#Map_Quan_Region_5').toggleClass("invisible");
-                }else if(!document.getElementById('vmapTH_quan_r6').classList.contains('invisible')){
-                    $('#vmapTH_quan_r6').toggleClass("invisible");
-                    $('#Map_Quan_Region_6').toggleClass("invisible");
-                }else if(!document.getElementById('vmapTH_quan_r7').classList.contains('invisible')){
-                    $('#vmapTH_quan_r7').toggleClass("invisible");
-                    $('#Map_Quan_Region_7').toggleClass("invisible");
-                }else if(!document.getElementById('vmapTH_quan_r8').classList.contains('invisible')){
+                    $('#vmapTH_pri_r3').addClass('invisible'); 
+                    $('#Map_Pri_Region_3').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r4').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r4').classList.contains('invisible')){
+                    $('#vmapTH_quan_r4').addClass('invisible'); 
+                    $('#Map_Quan_Region_4').addClass('invisible'); 
+                    $('#vmapTH_pri_r4').addClass('invisible'); 
+                    $('#Map_Pri_Region_4').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r5').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r5').classList.contains('invisible')){
+                    $('#vmapTH_quan_r5').addClass('invisible'); 
+                    $('#Map_Quan_Region_5').addClass('invisible'); 
+                    $('#vmapTH_pri_r5').addClass('invisible'); 
+                    $('#Map_Pri_Region_5').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r6').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r6').classList.contains('invisible')){
+                    $('#vmapTH_quan_r6').addClass('invisible'); 
+                    $('#Map_Quan_Region_6').addClass('invisible'); 
+                    $('#vmapTH_pri_r6').addClass('invisible'); 
+                    $('#Map_Pri_Region_6').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r7').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r7').classList.contains('invisible')){
+                    $('#vmapTH_quan_r7').addClass('invisible'); 
+                    $('#Map_Quan_Region_7').addClass('invisible'); 
+                    $('#vmapTH_pri_r7').addClass('invisible'); 
+                    $('#Map_Pri_Region_7').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r8').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r8').classList.contains('invisible')){
                     $('#vmapTH_quan_r8').addClass('invisible');   
-                    $('#Map_Quan_Region_8').addClass('invisible');   
-                }else if(!document.getElementById('vmapTH_quan_r9').classList.contains('invisible')){
-                    $('#vmapTH_quan_r9').toggleClass("invisible");
-                    $('#Map_Quan_Region_9').toggleClass("invisible");
-                }else if(!document.getElementById('vmapTH_quan_r10').classList.contains('invisible')){
-                    $('#vmapTH_quan_r10').toggleClass("invisible");
-                    $('#Map_Quan_Region_10').toggleClass("invisible");
-                }else if(!document.getElementById('vmapTH_quan_r11').classList.contains('invisible')){
-                    $('#vmapTH_quan_r11').toggleClass("invisible");
-                    $('#Map_Quan_Region_11').toggleClass("invisible");
-                }else if(!document.getElementById('vmapTH_quan_r12').classList.contains('invisible')){
-                    $('#vmapTH_quan_r12').toggleClass("invisible");
-                    $('#Map_Quan_Region_12').toggleClass("invisible");
-                }else if(!document.getElementById('vmapTH_quan_r13').classList.contains('invisible')){
-                    $('#vmapTH_quan_r13').toggleClass("invisible");
-                    $('#Map_Quan_Region_13').toggleClass("invisible");
-                }                
+                    $('#Map_Quan_Region_8').addClass('invisible');  
+                    $('#vmapTH_pri_r8').addClass('invisible');   
+                    $('#Map_Pri_Region_8').addClass('invisible');  
+                }else if(!document.getElementById('vmapTH_quan_r9').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r9').classList.contains('invisible')){
+                    $('#vmapTH_quan_r9').addClass('invisible'); 
+                    $('#Map_Quan_Region_9').addClass('invisible'); 
+                    $('#vmapTH_pri_r9').addClass('invisible'); 
+                    $('#Map_Pri_Region_9').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r10').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r10').classList.contains('invisible')){
+                    $('#vmapTH_quan_r10').addClass('invisible'); 
+                    $('#Map_Quan_Region_10').addClass('invisible'); 
+                    $('#vmapTH_pri_r10').addClass('invisible'); 
+                    $('#Map_Pri_Region_10').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r11').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r11').classList.contains('invisible')){
+                    $('#vmapTH_quan_r11').addClass('invisible'); 
+                    $('#Map_Quan_Region_11').addClass('invisible'); 
+                    $('#vmapTH_pri_r11').addClass('invisible'); 
+                    $('#Map_Pri_Region_11').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r12').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r12').classList.contains('invisible')){
+                    $('#vmapTH_quan_r12').addClass('invisible'); 
+                    $('#Map_Quan_Region_12').addClass('invisible'); 
+                    $('#vmapTH_pri_r12').addClass('invisible'); 
+                    $('#Map_Pri_Region_12').addClass('invisible'); 
+                }else if(!document.getElementById('vmapTH_quan_r13').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r13').classList.contains('invisible')){
+                    $('#vmapTH_quan_r13').addClass('invisible'); 
+                    $('#Map_Quan_Region_13').addClass('invisible'); 
+                    $('#vmapTH_pri_r13').addClass('invisible'); 
+                    $('#Map_Pri_Region_13').addClass('invisible'); 
+                }         
             });
         });
     </script>
@@ -793,54 +1087,472 @@
         }
     </style>
     <div class="row">
-        <div class="col-md-7 col-lg-6">
+        <div class="col-md-7 col-lg-6" id = 'Price by Region'>
             <div class="card">
                 <div class="card-body">
                     <h1>Price by region</h1>
+                    <button class="btn invisible" id="backButton">&lt; Drill Up</button>
+                    test if click at any Region chart will drill down
                     <div class='row'>
-                    <div id="vmapTH_pri" style="width: 200px; height: 300px;"></div>
-                    <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                        <thead>
-                        <tr role="row">
-                            <th style="text-align:center;">Region</th>
-                            <th style="text-align:center;">wavg unit price</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            for($i = 0; $i < count($resultThaiMap); $i++){
-                            ?>
-                                <tr>
-                                    <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
-                                    <?php
-                                    if ($resultThaiMap[$i]->wavg_unit_price != NULL){
-                                    ?>
-                                        <td style="text-align:right;">{{ $resultThaiMap[$i]->wavg_unit_price }}</td>
+                        <div id="vmapTH_pri" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r1" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r2" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r3" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r4" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r5" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r6" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r7" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r8" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r9" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r10" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r11" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r12" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_pri_r13" style="width: 200px; height: 300px;"></div>
 
-                                    <?php
-                                    }else{
-                                        //Gini = NULL because PAC = 0
-                                    ?>
-                                        <td style="text-align:right;">0</td>
+                        <div id="Map_Pri_TH">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Region</th>
+                                    <th style="text-align:center;">wavg unit price</th>
                                 </tr>
-                            <?php
-                                }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
+                                            <?php
+                                            if ($resultThaiMap[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_1">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg1[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_2">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg2[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg2[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_3">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg3[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg3[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_4">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg4[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg4[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_5">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg5[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg5[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_6">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg6[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg6[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_7">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg7[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg7[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_8">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg8[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg8[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_9">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg9[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg9[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_10">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg10[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg10[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_11">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg11[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg11[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_12">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg12[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg12[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Pri_Region_13">
+                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">wavg unit price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg13[$i]->wavg_unit_price != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg13[$i]->wavg_unit_price }}</td>
+
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     test if hover at Chaing new text will show up
                     <div><h1 id="your_h1_id"></h1></div>
                 </div>
             </div>
         </div>
-        <div class="col-md-7 col-lg-6">
+        <div class="col-md-7 col-lg-6" id = 'Quantity by Region'>
             <div class="card">
                 <div class="card-body">
                     <h1>Quantity by region</h1>
-                    <button class="btn invisible" id="backButton">&lt; Back</button>
-                    test if click at Chaing Mai new chart will show up
                     <div class='row'>
                         <div id="vmapTH_quan" style="width: 200px; height: 300px;"></div>
                         <div class = "invisible" id="vmapTH_quan_r1" style="width: 200px; height: 300px;"></div>
@@ -878,7 +1590,6 @@
 
                                             <?php
                                             }else{
-                                                //Gini = NULL because PAC = 0
                                             ?>
                                                 <td style="text-align:right;">0</td>
                                         </tr>
@@ -910,7 +1621,6 @@
 
                                             <?php
                                             }else{
-                                                //Gini = NULL because PAC = 0
                                             ?>
                                                 <td style="text-align:right;">0</td>
                                         </tr>
@@ -974,7 +1684,6 @@
 
                                             <?php
                                             }else{
-                                                //Gini = NULL because PAC = 0
                                             ?>
                                                 <td style="text-align:right;">0</td>
                                         </tr>
