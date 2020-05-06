@@ -73,7 +73,19 @@ class SearchController extends Controller
             // TH
             [$chartHighPercent, $chartMedPercent, $chartLowPercent] = $this->chart_Low_Med_High_All($countHosAll,$year,$GT,$Dname,$method);
             // Region
-
+            [$chartRegion_1, $chartHighPercent_1, $chartMedPercent_1, $chartLowPercent_1] = $this->chart_Low_Med_High($r1_count,1,$Region_1_name,$year,$GT,$Dname,$method);
+            [$chartRegion_2, $chartHighPercent_2, $chartMedPercent_2, $chartLowPercent_2] = $this->chart_Low_Med_High($r2_count,2,$Region_2_name,$year,$GT,$Dname,$method);
+            [$chartRegion_3, $chartHighPercent_3, $chartMedPercent_3, $chartLowPercent_3] = $this->chart_Low_Med_High($r3_count,3,$Region_3_name,$year,$GT,$Dname,$method);
+            [$chartRegion_4, $chartHighPercent_4, $chartMedPercent_4, $chartLowPercent_4] = $this->chart_Low_Med_High($r4_count,4,$Region_4_name,$year,$GT,$Dname,$method);
+            [$chartRegion_5, $chartHighPercent_5, $chartMedPercent_5, $chartLowPercent_5] = $this->chart_Low_Med_High($r5_count,5,$Region_5_name,$year,$GT,$Dname,$method);
+            [$chartRegion_6, $chartHighPercent_6, $chartMedPercent_6, $chartLowPercent_6] = $this->chart_Low_Med_High($r6_count,6,$Region_6_name,$year,$GT,$Dname,$method);
+            [$chartRegion_7, $chartHighPercent_7, $chartMedPercent_7, $chartLowPercent_7] = $this->chart_Low_Med_High($r7_count,7,$Region_7_name,$year,$GT,$Dname,$method);
+            [$chartRegion_8, $chartHighPercent_8, $chartMedPercent_8, $chartLowPercent_8] = $this->chart_Low_Med_High($r8_count,8,$Region_8_name,$year,$GT,$Dname,$method);
+            [$chartRegion_9, $chartHighPercent_9, $chartMedPercent_9, $chartLowPercent_9] = $this->chart_Low_Med_High($r9_count,9,$Region_9_name,$year,$GT,$Dname,$method);
+            [$chartRegion_10, $chartHighPercent_10, $chartMedPercent_10, $chartLowPercent_10] = $this->chart_Low_Med_High($r10_count,10,$Region_10_name,$year,$GT,$Dname,$method);
+            [$chartRegion_11, $chartHighPercent_11, $chartMedPercent_11, $chartLowPercent_11] = $this->chart_Low_Med_High($r11_count,11,$Region_11_name,$year,$GT,$Dname,$method);
+            [$chartRegion_12, $chartHighPercent_12, $chartMedPercent_12, $chartLowPercent_12] = $this->chart_Low_Med_High($r12_count,12,$Region_12_name,$year,$GT,$Dname,$method);
+            [$chartRegion_13, $chartHighPercent_13, $chartMedPercent_13, $chartLowPercent_13] = $this->chart_Low_Med_High($r13_count,13,$Region_13_name,$year,$GT,$Dname,$method);
 
             //////////////Start Thai Map///////////////////////////////////////////////////////////
             $resultThaiMap = $this->find_Map_Data('All',$year,$GT,$Dname,$method);
@@ -115,10 +127,12 @@ class SearchController extends Controller
         if(empty($resultSearch))
         {
             $resultSearch = 'No value';
+            $resultState = 'Please select again';
             $chartLowPercent = NULL;
             $chartMedPercent = NULL;
             $chartHighPercent = NULL;
-            $resultState = 'Please select again';
+            $chartRegion_1 = NULL;
+            
             $resultThaiMap = NULL;
             $pri_array_all = NULL;
             $quan_array_all = NULL;
@@ -162,13 +176,15 @@ class SearchController extends Controller
             $quan_array_r13 = NULL;
             $pri_array_r13 = NULL;
         }
-        
         $send_data = array(
             'resultSearch'=>$resultSearch,
-            'chartLowPercent'=>$chartLowPercent,
-            'chartMedPercent'=>$chartMedPercent,
-            'chartHighPercent'=>$chartHighPercent,
             'resultState'=>$resultState,
+            'chartLowPercent'=>$chartLowPercent,'chartMedPercent'=>$chartMedPercent,'chartHighPercent'=>$chartHighPercent,
+            'chartRegion_1'=>$chartRegion_1,'chartLowPercent_1'=>$chartLowPercent_1,'chartMedPercent_1'=>$chartMedPercent_1,'chartHighPercent_1'=>$chartHighPercent_1,
+            'chartRegion_2'=>$chartRegion_2,'chartLowPercent_2'=>$chartLowPercent_2,'chartMedPercent_2'=>$chartMedPercent_2,'chartHighPercent_2'=>$chartHighPercent_2,
+            'chartRegion_3'=>$chartRegion_3,'chartLowPercent_3'=>$chartLowPercent_3,'chartMedPercent_3'=>$chartMedPercent_3,'chartHighPercent_3'=>$chartHighPercent_3,
+            'chartRegion_4'=>$chartRegion_4,'chartLowPercent_4'=>$chartLowPercent_4,'chartMedPercent_4'=>$chartMedPercent_4,'chartHighPercent_4'=>$chartHighPercent_4,
+
             'resultThaiMap'=>$resultThaiMap,
             'pri_array_all'=>$pri_array_all,
             'quan_array_all'=>$quan_array_all,
@@ -317,58 +333,40 @@ class SearchController extends Controller
         foreach($Region_name as $Pcode => $Province) {
             array_push($chartProvince,$Province);
             if($method == 'All'){
-                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' group by Region";
-                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' group by Region";
-                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' group by Region";
+                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
+                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
+                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
             }else{
-                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
-                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
-                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
+                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
+                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
             }
-
-        }
-        for($t=1 ; $t<=count($Region_name) ; $t++){
-            array_push($chartProvince,$t);
-            if($method == 'All'){
-                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' group by Region";
-                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' group by Region";
-                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' group by Region";
-            }else{
-                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
-                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
-                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' and Method ='".$method."' group by Region";
-            }
-            
             /////// for Low PAC ////////////////////////////////////////////////
             $lowPac = DB::select($query_low);
-            $ttt = $t-1;
-
-            if($lowPac != null && $countHosAll[$ttt] != 0){
-                $Low_dataPercent = 100*($lowPac[0]->n)/$countHosAll[$ttt];
+            if($lowPac != null && $countHosRegion != 0){
+                $Low_dataPercent = 100*($lowPac[0]->n)/$countHosRegion;
             }else{
                 $Low_dataPercent = 0;
             }
             array_push($chartLowPercent,$Low_dataPercent);
-
             /////// for Medium PAC ////////////////////////////////////////////////
             $medPac = DB::select($query_med);
-            if($medPac != null && $countHosAll[$ttt] != 0){
-                $Med_dataPercent = 100*($medPac[0]->n)/$countHosAll[$ttt];
+            if($medPac != null && $countHosRegion != 0){
+                $Med_dataPercent = 100*($medPac[0]->n)/$countHosRegion;
             }else{
                 $Med_dataPercent = 0;
             }
             array_push($chartMedPercent,$Med_dataPercent);
-
             /////// for High PAC ////////////////////////////////////////////////
             $highPac = DB::select($query_high);
-            if($highPac != null && $countHosAll[$ttt] != 0){
-                $High_dataPercent = 100*($highPac[0]->n)/$countHosAll[$ttt];
+            if($highPac != null && $countHosRegion != 0){
+                $High_dataPercent = 100*($highPac[0]->n)/$countHosRegion;
             }else{
                 $High_dataPercent = 0;
             }
             array_push($chartHighPercent,$High_dataPercent);  
         }
-        return [$chartHighPercent, $chartMedPercent, $chartLowPercent];
+        return [$chartProvince, $chartHighPercent, $chartMedPercent, $chartLowPercent];
     }
     function find_Map_Data($r,$y,$g,$na,$m){
         if($r == 'All'){

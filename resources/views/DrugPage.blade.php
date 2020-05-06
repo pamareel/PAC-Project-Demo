@@ -277,19 +277,41 @@
                     },
                 }
             };
+            
+            
+            ////////// generate chart ////////////////////////////////////////
+            let myChart = document.getElementById('myChart').getContext('2d');
+            // alert(myChart);
+            let massPopChart = new Chart(myChart, optionData);
+            
+            // function ChartDrilldownHandler_Region(e) {
+            //     // alert('hi');
+            //     // alert(e);
+            //     var a = 1;
+            //     if( a == 1){
+            //         let chartR = new Chart(myChart, optionData_Region[0]);
+            //         // chartR.render();
+            //         // document.getElementById('backButton').style.display = 'show';
+            //         // $("#backButton").toggleClass("visible");
+            //     }
+            //     // chart.render();
+                
+            // }
+
             //// For Region 1 Chart Option ///////////////////////////////////////////
-            var optionData_Region1 = [{
+            var optionData_Region1 = {
                 name: "Region 1",
                 type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                 data:{
-                    labels:['Region1', 'Region2', 'Region3', 'Region4', 'Region5', 'Region6'
-                        ,'Region7', 'Region8'],
+                    // labels:[{{ $chartRegion_1[0] }}, {{ $chartRegion_1[1] }}, {{ $chartRegion_1[2] }}, {{ $chartRegion_1[3] }}, {{ $chartRegion_1[4] }},
+                    // {{ $chartRegion_1[5] }}, {{ $chartRegion_1[6] }}, {{ $chartRegion_1[7] }}],
+                    labels:['1','2','3','4','5','6','7','8'],
                     datasets:[
                     {
                         label:'Low Purchasing Power',
-                        data: [{{ $chartLowPercent[0] }}, {{ $chartLowPercent[1] }}, {{ $chartLowPercent[2] }},
-                            {{ $chartLowPercent[3] }}, {{ $chartLowPercent[4] }}, {{ $chartLowPercent[5] }},
-                            {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}],
+                        data: [{{ $chartLowPercent_1[0] }}, {{ $chartLowPercent_1[1] }}, {{ $chartLowPercent_1[2] }},
+                            {{ $chartLowPercent_1[3] }}, {{ $chartLowPercent_1[4] }}, {{ $chartLowPercent_1[5] }},
+                            {{ $chartLowPercent_1[6] }}, {{ $chartLowPercent_1[7] }}],
                         backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
@@ -298,9 +320,9 @@
                     },
                     {
                         label:'Medium Purchasing Power',
-                        data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
-                            {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
-                            {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}],
+                        data: [{{ $chartMedPercent_1[0] }} , {{ $chartMedPercent_1[1] }}, {{ $chartMedPercent_1[2] }},
+                            {{ $chartMedPercent_1[3] }}, {{ $chartMedPercent_1[4] }}, {{ $chartMedPercent_1[5] }},
+                            {{ $chartMedPercent_1[6] }}, {{ $chartMedPercent_1[7] }}],
                         backgroundColor:'yellow',
                         borderWidth:1,
                         borderColor:'#777',
@@ -308,9 +330,9 @@
                         hoverBorderColor:'#000'
                     },{
                         label:'High Purchasing Power',
-                        data:[{{ $chartHighPercent[0] }}, {{ $chartHighPercent[1] }}, {{ $chartHighPercent[2] }},
-                            {{ $chartHighPercent[3] }}, {{ $chartHighPercent[4] }}, {{ $chartHighPercent[5] }},
-                            {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}],
+                        data:[{{ $chartHighPercent_1[0] }}, {{ $chartHighPercent_1[1] }}, {{ $chartHighPercent_1[2] }},
+                            {{ $chartHighPercent_1[3] }}, {{ $chartHighPercent_1[4] }}, {{ $chartHighPercent_1[5] }},
+                            {{ $chartHighPercent_1[6] }}, {{ $chartHighPercent_1[7] }}],
                         backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
@@ -356,27 +378,7 @@
                         enabled:true
                     }
                 }
-                // click: ChartDrilldownHandler_Region,
-                // cursor: "pointer",
-                // explodeOnClick: false
-            }];
-            ////////// generate chart ////////////////////////////////////////
-            let myChart = document.getElementById('myChart').getContext('2d');
-            let massPopChart = new Chart(myChart, optionData);
-            
-            // function ChartDrilldownHandler_Region(e) {
-            //     // alert('hi');
-            //     // alert(e);
-            //     var a = 1;
-            //     if( a == 1){
-            //         let chartR = new Chart(myChart, optionData_Region[0]);
-            //         // chartR.render();
-            //         // document.getElementById('backButton').style.display = 'show';
-            //         // $("#backButton").toggleClass("visible");
-            //     }
-            //     // chart.render();
-                
-            // }
+            };
     </script>
     <!-- *************************************************************** -->
     <!-- END 100% stacked bar chart -->
