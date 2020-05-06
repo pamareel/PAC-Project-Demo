@@ -2,7 +2,7 @@
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
-
+@endsection
 @section('script')
 <!-- 100%-stack bar chart -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -177,7 +177,7 @@
                     Region -> Size of hospital
                 </a>
                 <?php
-                if(isset($chartHighPercent)){
+                if(isset($chartHighPercent) || isset($chartMedPercent) || isset($chartLowPercent)){
                 ?>
                     <canvas id="myChart"></canvas>
                 <?php
@@ -191,92 +191,196 @@
         </div>
     </div>
     <script>
-            let myChart = document.getElementById('myChart').getContext('2d');
-            let massPopChart = new Chart(myChart, {
-            type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-            data:{
-                labels:['Region1', 'Region2', 'Region3', 'Region4', 'Region5', 'Region6'
-                    ,'Region7', 'Region8', 'Region9', 'Region10', 'Region11', 'Region12', 'Region13'],
-                datasets:[
+            //// For WHole Country Chart Option ///////////////////////////////////////////
+            var optionData = {
+                name: "Whole Country",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['Region1', 'Region2', 'Region3', 'Region4', 'Region5', 'Region6'
+                        ,'Region7', 'Region8', 'Region9', 'Region10', 'Region11', 'Region12', 'Region13'],
+                    datasets:[
                     {
-                    label:'Low Purchasing Power',
-                    data: [{{ $chartLowPercent[0] }}, {{ $chartLowPercent[1] }}, {{ $chartLowPercent[2] }},
-                        {{ $chartLowPercent[3] }}, {{ $chartLowPercent[4] }}, {{ $chartLowPercent[5] }},
-                        {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}, {{ $chartLowPercent[8] }},
-                        {{ $chartLowPercent[9] }}, {{ $chartLowPercent[10] }}, {{ $chartLowPercent[11] }},
-                        {{ $chartLowPercent[12] }}],
-                    backgroundColor:'green',
-                    borderWidth:1,
-                    borderColor:'#777',
-                    hoverBorderWidth:3,
-                    hoverBorderColor:'#000'
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent[0] }}, {{ $chartLowPercent[1] }}, {{ $chartLowPercent[2] }},
+                            {{ $chartLowPercent[3] }}, {{ $chartLowPercent[4] }}, {{ $chartLowPercent[5] }},
+                            {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}, {{ $chartLowPercent[8] }},
+                            {{ $chartLowPercent[9] }}, {{ $chartLowPercent[10] }}, {{ $chartLowPercent[11] }},
+                            {{ $chartLowPercent[12] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
+                            {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
+                            {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}, {{ $chartMedPercent[8] }},
+                            {{ $chartMedPercent[9] }}, {{ $chartMedPercent[10] }}, {{ $chartMedPercent[11] }},
+                            {{ $chartMedPercent[12] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent[0] }}, {{ $chartHighPercent[1] }}, {{ $chartHighPercent[2] }},
+                            {{ $chartHighPercent[3] }}, {{ $chartHighPercent[4] }}, {{ $chartHighPercent[5] }},
+                            {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}, {{ $chartHighPercent[8] }},
+                            {{ $chartHighPercent[9] }}, {{ $chartHighPercent[10] }}, {{ $chartHighPercent[11] }},
+                            {{ $chartHighPercent[12] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
                 },
-                {
-                    label:'Medium Purchasing Power',
-                    data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
-                        {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
-                        {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}, {{ $chartMedPercent[8] }},
-                        {{ $chartMedPercent[9] }}, {{ $chartMedPercent[10] }}, {{ $chartMedPercent[11] }},
-                        {{ $chartMedPercent[12] }}],
-                    backgroundColor:'yellow',
-                    borderWidth:1,
-                    borderColor:'#777',
-                    hoverBorderWidth:3,
-                    hoverBorderColor:'#000'
-                },{
-                    label:'High Purchasing Power',
-                    data:[{{ $chartHighPercent[0] }}, {{ $chartHighPercent[1] }}, {{ $chartHighPercent[2] }},
-                        {{ $chartHighPercent[3] }}, {{ $chartHighPercent[4] }}, {{ $chartHighPercent[5] }},
-                        {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}, {{ $chartHighPercent[8] }},
-                        {{ $chartHighPercent[9] }}, {{ $chartHighPercent[10] }}, {{ $chartHighPercent[11] }},
-                        {{ $chartHighPercent[12] }}],
-                    backgroundColor:'red',
-                    borderWidth:1,
-                    borderColor:'#777',
-                    hoverBorderWidth:3,
-                    hoverBorderColor:'#000'
-                }]
-            },
-            options:{
-                title:{
-                    display:true,
-                    text:'Purchasing Power in Thailand',
-                    fontSize:25,
-                },
-                scales: {
-                    xAxes: [{ stacked: true }],
-                    yAxes: [{ stacked: true, 
-                                ticks: {
-                                beginAtZero: true,
-                                max: 100
-                                },
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Percentage (%)'
-                                }
-                            }]
-                },
-                legend:{
-                    display:true,
-                    position:'right',
-                    labels:{
-                        fontColor:'#000',
-                    }
-                },
-                layout:{
-                    padding:{
-                        left:20,
-                        right:20,
-                        bottom:0,
-                        top:20
-                    }
-                },
-                tooltips:{
-                    enabled:true
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Thailand',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    },
+                    onClick: ChartDrilldownHandler_Region,
+                    cursor: "pointer",
+                    explodeOnClick: false
                 }
+            };
+            //// For RegionChart Option ///////////////////////////////////////////
+            var optionData_Region = [{
+                name: "Region 1",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['Region1', 'Region2', 'Region3', 'Region4', 'Region5', 'Region6'
+                        ,'Region7', 'Region8'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent[0] }}, {{ $chartLowPercent[1] }}, {{ $chartLowPercent[2] }},
+                            {{ $chartLowPercent[3] }}, {{ $chartLowPercent[4] }}, {{ $chartLowPercent[5] }},
+                            {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
+                            {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
+                            {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent[0] }}, {{ $chartHighPercent[1] }}, {{ $chartHighPercent[2] }},
+                            {{ $chartHighPercent[3] }}, {{ $chartHighPercent[4] }}, {{ $chartHighPercent[5] }},
+                            {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 1',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+                // click: ChartDrilldownHandler_Region,
+                // cursor: "pointer",
+                // explodeOnClick: false
+            }];
+            ////////// generate chart ////////////////////////////////////////
+            let myChart = document.getElementById('myChart').getContext('2d');
+            let massPopChart = new Chart(myChart, optionData);
+            // massPopChart.render();
+            
+            function ChartDrilldownHandler_Region(e) {
+                // alert('hi');
+                // alert(e);
+                var a = 1;
+                if( a == 1){
+                    let chartR = new Chart(myChart, optionData_Region[0]);
+                    // chartR.render();
+                    document.getElementById('backButton').style.display = 'show';
+                    // $("#backButton").toggleClass("visible");
+                }
+                // chart.render();
+                
             }
-            });    
-    </script>
     <!-- *************************************************************** -->
     <!-- END 100% stacked bar chart -->
     <!-- *************************************************************** -->
@@ -284,12 +388,62 @@
     <!-- *************************************************************** -->
     <!-- Start Thai Map -->
     <!-- *************************************************************** -->
-    <script>
-        // xx='Low';
-        
+        var Region_1 = ['TH-50','TH-57','TH-51','TH-52','TH-54','TH-55','TH-56','TH-58'];
+        var Region_2 = ['TH-65','TH-67','TH-53','TH-63','TH-64'];
+        var Region_3 = ['TH-60','TH-62','TH-66','TH-61','TH-18'];
+        var Region_4 = ['TH-17','TH-16','TH-19','TH-12','TH-14','TH-15','TH-13','TH-26'];
+        var Region_5 = ['TH-70','TH-72','TH-73','TH-71','TH-75','TH-74','TH-76','TH-77'];
+        var Region_6 = ['TH-20','TH-21','TH-22','TH-23','TH-11','TH-24','TH-25','TH-27'];
+        var Region_7 = ['TH-40','TH-44','TH-45','TH-46'];
+        var Region_8 = ['TH-41','TH-47','TH-48','TH-42','TH-39','TH-43']; //+'บึงกาฬ'
+        var Region_9 = ['TH-30','TH-36','TH-31','TH-32'];
+        var Region_10 = ['TH-34','TH-33','TH-35','TH-37','TH-49'];
+        var Region_11 = ['TH-86','TH-85','TH-84','TH-80','TH-82','TH-81','TH-83'];
+        var Region_12 = ['TH-96','TH-94','TH-95','TH-90','TH-91','TH-93','TH-92'];
+        var Region_13 = ['TH-10'];
         // var coll = {"TH-30":"purple","TH-20":"yellow"};
+        ////////////// TH ////////////////////
         var data_sets_pri = {!! json_encode($pri_array_all) !!};
         var data_sets_quan = {!! json_encode($quan_array_all) !!};
+        ////////////// Region 1 //////////////
+        var reg1_pri = {!! json_encode($pri_array_r1) !!};
+        var reg1_quan = {!! json_encode($quan_array_r1) !!};
+        ////////////// Region 2 //////////////
+        var reg2_pri = {!! json_encode($pri_array_r2) !!};
+        var reg2_quan = {!! json_encode($quan_array_r2) !!};
+        ////////////// Region 3 //////////////
+        var reg3_pri = {!! json_encode($pri_array_r3) !!};
+        var reg3_quan = {!! json_encode($quan_array_r3) !!};
+        ////////////// Region 4 //////////////
+        var reg4_pri = {!! json_encode($pri_array_r4) !!};
+        var reg4_quan = {!! json_encode($quan_array_r4) !!};
+        ////////////// Region 5 //////////////
+        var reg5_pri = {!! json_encode($pri_array_r5) !!};
+        var reg5_quan = {!! json_encode($quan_array_r5) !!};
+        ////////////// Region 6 //////////////
+        var reg6_pri = {!! json_encode($pri_array_r6) !!};
+        var reg6_quan = {!! json_encode($quan_array_r6) !!};
+        ////////////// Region 7 //////////////
+        var reg7_pri = {!! json_encode($pri_array_r7) !!};
+        var reg7_quan = {!! json_encode($quan_array_r7) !!};
+        ////////////// Region 8 //////////////
+        var reg8_pri = {!! json_encode($pri_array_r8) !!};
+        var reg8_quan = {!! json_encode($quan_array_r8) !!};
+        ////////////// Region 9 //////////////
+        var reg9_pri = {!! json_encode($pri_array_r9) !!};
+        var reg9_quan = {!! json_encode($quan_array_r9) !!};
+        ////////////// Region 10 //////////////
+        var reg10_pri = {!! json_encode($pri_array_r10) !!};
+        var reg10_quan = {!! json_encode($quan_array_r10) !!};
+        ////////////// Region 11 //////////////
+        var reg11_pri = {!! json_encode($pri_array_r11) !!};
+        var reg11_quan = {!! json_encode($quan_array_r11) !!};
+        ////////////// Region 12 //////////////
+        var reg12_pri = {!! json_encode($pri_array_r12) !!};
+        var reg12_quan = {!! json_encode($quan_array_r12) !!};
+        ////////////// Region 13 //////////////
+        var reg13_pri = {!! json_encode($pri_array_r13) !!};
+        var reg13_quan = {!! json_encode($quan_array_r13) !!};
         
         $(document).ready(function() {
             $Thai_map_pri = {
@@ -313,7 +467,6 @@
                 onRegionOver: function (event, code, region) {
                     //sample to interact with map
                     if (code == 'TH-50') {
-                        document.getElementById('vmapTH_pri').tooltip = "def";
                         // document.getElementById("vmapTH").style.background = "purple";
                         
                         // alert("You hover "+region);
@@ -325,12 +478,165 @@
                     //sample to interact with map
                     // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
                     // alert(message);
+
                 }
             }
             //draw chart
             $('#vmapTH_pri').vectorMap($Thai_map_pri)
 
-            ////////// for quantity ////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////
+            //---------------------------------------------------------------------------------//
+            ////////// for quantity /////////////////////////////////////////////////////////////
+            $Reg1_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg1_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial',
+                // colors: color_sets,      
+                onRegionClick: function (element, code, region) {
+                    //sample to interact with map
+                    // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+                    // alert(message);
+                }
+            }
+            $Reg2_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg2_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg3_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg3_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg4_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg4_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg5_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg5_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg6_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg6_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg7_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg7_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg8_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg8_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg9_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg9_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg10_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg10_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg11_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg11_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg12_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg12_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg13_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg13_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+
             $Thai_map_quan = {
                 map: ['thai_en'],
                 backgroundColor: 'beige',
@@ -342,9 +648,7 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 // colors: color_sets,      
-                onLabelShow: function(event, label, code)
-                {
-
+                onLabelShow: function(event, label, code){
                 },
                 onRegionOver: function (event, code, region) {
                     //sample to interact with map
@@ -356,11 +660,61 @@
                     }
                 },
                 onRegionClick: function (element, code, region) {
-                    //sample to interact with map
-                    // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
-                    // alert(message);
-                    if (code == 'TH-50') {
-                        $('#vmapTH_quan2').vectorMap($Thai_map_quan);
+                    $("#backButton").toggleClass("invisible");
+                    $('#vmapTH_quan').toggleClass("invisible");
+                    $("#Map_Quan_TH").toggleClass("invisible");
+                    if (Region_1.includes(code)) {
+                        $('#vmapTH_quan_r1').removeClass('invisible');   
+                        $("#Map_Quan_Region_1").removeClass('invisible');   
+                        $('#vmapTH_quan_r1').vectorMap($Reg1_map_quan);
+                    }else if(Region_2.includes(code)) {
+                        $('#vmapTH_quan_r2').toggleClass("invisible");
+                        $("#Map_Quan_Region_2").toggleClass("invisible");
+                        $('#vmapTH_quan_r2').vectorMap($Reg2_map_quan);
+                    }else if(Region_3.includes(code)) {
+                        $('#vmapTH_quan_r3').removeClass('invisible');   
+                        $("#Map_Quan_Region_3").removeClass('invisible');   
+                        $('#vmapTH_quan_r3').vectorMap($Reg3_map_quan);
+                    }else if(Region_4.includes(code)) {
+                        $('#vmapTH_quan_r4').toggleClass("invisible");
+                        $("#Map_Quan_Region_4").toggleClass("invisible");
+                        $('#vmapTH_quan_r4').vectorMap($Reg4_map_quan);
+                    }else if(Region_5.includes(code)) {
+                        $('#vmapTH_quan_r5').toggleClass("invisible");
+                        $("#Map_Quan_Region_5").toggleClass("invisible");
+                        $('#vmapTH_quan_r5').vectorMap($Reg5_map_quan);
+                    }else if(Region_6.includes(code)) {
+                        $('#vmapTH_quan_r6').toggleClass("invisible");
+                        $("#Map_Quan_Region_6").toggleClass("invisible");
+                        $('#vmapTH_quan_r6').vectorMap($Reg6_map_quan);
+                    }else if(Region_7.includes(code)) {
+                        $('#vmapTH_quan_r7').removeClass('invisible');   
+                        $("#Map_Quan_Region_7").removeClass('invisible');   
+                        $('#vmapTH_quan_r7').vectorMap($Reg7_map_quan);
+                    }else if(Region_8.includes(code)) {
+                        $('#vmapTH_quan_r8').toggleClass("invisible");
+                        $("#Map_Quan_Region_8").toggleClass("invisible");
+                        $('#vmapTH_quan_r8').vectorMap($Reg8_map_quan);
+                    }else if(Region_9.includes(code)) {
+                        $('#vmapTH_quan_r9').toggleClass("invisible");
+                        $("#Map_Quan_Region_9").toggleClass("invisible");
+                        $('#vmapTH_quan_r9').vectorMap($Reg9_map_quan);
+                    }else if(Region_10.includes(code)) {
+                        $('#vmapTH_quan_r10').toggleClass("invisible");
+                        $("#Map_Quan_Region_10").toggleClass("invisible");
+                        $('#vmapTH_quan_r10').vectorMap($Reg10_map_quan);
+                    }else if(Region_11.includes(code)) {
+                        $('#vmapTH_quan_r11').removeClass('invisible');   
+                        $("#Map_Quan_Region_11").removeClass('invisible');   
+                        $('#vmapTH_quan_r11').vectorMap($Reg11_map_quan);
+                    }else if(Region_12.includes(code)) {
+                        $('#vmapTH_quan_r12').toggleClass("invisible");
+                        $("#Map_Quan_Region_12").toggleClass("invisible");
+                        $('#vmapTH_quan_r12').vectorMap($Reg12_map_quan);
+                    }else if(Region_13.includes(code)) {
+                        $('#vmapTH_quan_r13').toggleClass("invisible");
+                        $("#Map_Quan_Region_13").toggleClass("invisible");
+                        $('#vmapTH_quan_r13').vectorMap($Reg13_map_quan);
                     }
                 }
             }
@@ -373,8 +727,71 @@
             // }else if(xx == 'Low'){
             //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'green'});
             // }
+            $("#backButton").click(function() { 
+                $(this).toggleClass("invisible");
+                $('#vmapTH_quan').toggleClass("invisible");
+                $("#Map_Quan_TH").toggleClass("invisible");
+                
+                if(!document.getElementById('vmapTH_quan_r1').classList.contains('invisible')){
+                    $('#vmapTH_quan_r1').addClass('invisible');   
+                    $('#Map_Quan_Region_1').addClass('invisible');   
+                }else if(!document.getElementById('vmapTH_quan_r2').classList.contains('invisible')){
+                    $('#vmapTH_quan_r2').toggleClass("invisible");
+                    $('#Map_Quan_Region_2').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r3').classList.contains('invisible')){
+                    $('#vmapTH_quan_r3').addClass('invisible');   
+                    $('#Map_Quan_Region_3').addClass('invisible');   
+                }else if(!document.getElementById('vmapTH_quan_r4').classList.contains('invisible')){
+                    $('#vmapTH_quan_r4').toggleClass("invisible");
+                    $('#Map_Quan_Region_4').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r5').classList.contains('invisible')){
+                    $('#vmapTH_quan_r5').toggleClass("invisible");
+                    $('#Map_Quan_Region_5').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r6').classList.contains('invisible')){
+                    $('#vmapTH_quan_r6').toggleClass("invisible");
+                    $('#Map_Quan_Region_6').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r7').classList.contains('invisible')){
+                    $('#vmapTH_quan_r7').toggleClass("invisible");
+                    $('#Map_Quan_Region_7').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r8').classList.contains('invisible')){
+                    $('#vmapTH_quan_r8').addClass('invisible');   
+                    $('#Map_Quan_Region_8').addClass('invisible');   
+                }else if(!document.getElementById('vmapTH_quan_r9').classList.contains('invisible')){
+                    $('#vmapTH_quan_r9').toggleClass("invisible");
+                    $('#Map_Quan_Region_9').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r10').classList.contains('invisible')){
+                    $('#vmapTH_quan_r10').toggleClass("invisible");
+                    $('#Map_Quan_Region_10').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r11').classList.contains('invisible')){
+                    $('#vmapTH_quan_r11').toggleClass("invisible");
+                    $('#Map_Quan_Region_11').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r12').classList.contains('invisible')){
+                    $('#vmapTH_quan_r12').toggleClass("invisible");
+                    $('#Map_Quan_Region_12').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r13').classList.contains('invisible')){
+                    $('#vmapTH_quan_r13').toggleClass("invisible");
+                    $('#Map_Quan_Region_13').toggleClass("invisible");
+                }                
+            });
         });
     </script>
+    <style>
+        #backButton {
+            border-radius: 4px;
+            padding: 8px;
+            border: none;
+            font-size: 16px;
+            background-color: #2eacd1;
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .invisible {
+            display: none;
+        }
+    </style>
     <div class="row">
         <div class="col-md-7 col-lg-6">
             <div class="card">
@@ -422,41 +839,473 @@
             <div class="card">
                 <div class="card-body">
                     <h1>Quantity by region</h1>
+                    <button class="btn invisible" id="backButton">&lt; Back</button>
+                    test if click at Chaing Mai new chart will show up
                     <div class='row'>
-                    <div id="vmapTH_quan" style="width: 200px; height: 300px;"></div>
-                    <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                        <thead>
-                        <tr role="row">
-                            <th style="text-align:center;">Region</th>
-                            <th style="text-align:center;">Quantity</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            for($i = 0; $i < count($resultThaiMap); $i++){
-                            ?>
-                                <tr>
-                                    <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
-                                    <?php
-                                    if ($resultThaiMap[$i]->Total_Amount != NULL){
-                                    ?>
-                                        <td style="text-align:right;">{{ $resultThaiMap[$i]->Total_Amount }}</td>
+                        <div id="vmapTH_quan" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r1" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r2" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r3" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r4" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r5" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r6" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r7" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r8" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r9" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r10" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r11" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r12" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r13" style="width: 200px; height: 300px;"></div>
 
-                                    <?php
-                                    }else{
-                                        //Gini = NULL because PAC = 0
-                                    ?>
-                                        <td style="text-align:right;">0</td>
+                        <div id="Map_Quan_TH">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Region</th>
+                                    <th style="text-align:center;">Quantity</th>
                                 </tr>
-                            <?php
-                                }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
+                                            <?php
+                                            if ($resultThaiMap[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_1">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg1[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_2">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg2[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg2[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_3">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg3[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg3[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_4">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg4[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg4[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_5">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg5[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg5[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_6">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg6[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg6[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_7">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg7[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg7[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_8">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg8[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg8[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_9">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg9[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg9[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_10">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg10[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg10[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_11">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg11[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg11[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_12">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg12[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg12[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_13">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg13[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg13[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    test if click at Chaing new chart will show up
-                    <div id="vmapTH_quan2" style="width: 200px; height: 300px;"></div>
                 </div>
             </div>
         </div>
@@ -467,285 +1316,6 @@
     <?php
     }
     ?>
-    
-    
-    <!-- *************************************************************** -->
-    <!-- Start Location and Earnings Charts Section -->
-    <!-- *************************************************************** -->
-    <div class="row">
-        <div class="col-md-6 col-lg-8">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-start">
-                        <h4 class="card-title mb-0">Earning Statistics</h4>
-                        <div class="ml-auto">
-                            <div class="dropdown sub-dropdown">
-                                <button class="btn btn-link text-muted dropdown-toggle" type="button"
-                                    id="dd1" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i data-feather="more-vertical"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
-                                    <a class="dropdown-item" href="#">Insert</a>
-                                    <a class="dropdown-item" href="#">Update</a>
-                                    <a class="dropdown-item" href="#">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pl-4 mb-5">
-                        <div class="stats ct-charts position-relative" style="height: 315px;"></div>
-                    </div>
-                    <ul class="list-inline text-center mt-4 mb-0">
-                        <li class="list-inline-item text-muted font-italic">Earnings for this month</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Recent Activity</h4>
-                    <div class="mt-4 activity">
-                        <div class="d-flex align-items-start border-left-line pb-3">
-                            <div>
-                                <a href="javascript:void(0)" class="btn btn-info btn-circle mb-2 btn-item">
-                                    <i data-feather="shopping-cart"></i>
-                                </a>
-                            </div>
-                            <div class="ml-3 mt-2">
-                                <h5 class="text-dark font-weight-medium mb-2">New Product Sold!</h5>
-                                <p class="font-14 mb-2 text-muted">John Musa just purchased <br> Cannon 5M
-                                    Camera.
-                                </p>
-                                <span class="font-weight-light font-14 text-muted">10 Minutes Ago</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start border-left-line pb-3">
-                            <div>
-                                <a href="javascript:void(0)"
-                                    class="btn btn-danger btn-circle mb-2 btn-item">
-                                    <i data-feather="message-square"></i>
-                                </a>
-                            </div>
-                            <div class="ml-3 mt-2">
-                                <h5 class="text-dark font-weight-medium mb-2">New Support Ticket</h5>
-                                <p class="font-14 mb-2 text-muted">Richardson just create support <br>
-                                    ticket</p>
-                                <span class="font-weight-light font-14 text-muted">25 Minutes Ago</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start border-left-line">
-                            <div>
-                                <a href="javascript:void(0)" class="btn btn-cyan btn-circle mb-2 btn-item">
-                                    <i data-feather="bell"></i>
-                                </a>
-                            </div>
-                            <div class="ml-3 mt-2">
-                                <h5 class="text-dark font-weight-medium mb-2">Notification Pending Order!
-                                </h5>
-                                <p class="font-14 mb-2 text-muted">One Pending order from Ryne <br> Doe</p>
-                                <span class="font-weight-light font-14 mb-1 d-block text-muted">2 Hours
-                                    Ago</span>
-                                <a href="javascript:void(0)" class="font-14 border-bottom pb-1 border-info">Load More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- *************************************************************** -->
-    <!-- End Location and Earnings Charts Section -->
-    <!-- *************************************************************** -->
-    <!-- *************************************************************** -->
-    <!-- Start Top Leader Table -->
-    <!-- *************************************************************** -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center mb-4">
-                        <h4 class="card-title">Top Leaders</h4>
-                        <div class="ml-auto">
-                            <div class="dropdown sub-dropdown">
-                                <button class="btn btn-link text-muted dropdown-toggle" type="button"
-                                    id="dd1" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i data-feather="more-vertical"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
-                                    <a class="dropdown-item" href="#">Insert</a>
-                                    <a class="dropdown-item" href="#">Update</a>
-                                    <a class="dropdown-item" href="#">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table no-wrap v-middle mb-0">
-                            <thead>
-                                <tr class="border-0">
-                                    <th class="border-0 font-14 font-weight-medium text-muted">Team Lead
-                                    </th>
-                                    <th class="border-0 font-14 font-weight-medium text-muted px-2">Project
-                                    </th>
-                                    <th class="border-0 font-14 font-weight-medium text-muted">Team</th>
-                                    <th class="border-0 font-14 font-weight-medium text-muted text-center">
-                                        Status
-                                    </th>
-                                    <th class="border-0 font-14 font-weight-medium text-muted text-center">
-                                        Weeks
-                                    </th>
-                                    <th class="border-0 font-14 font-weight-medium text-muted">Budget</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="border-top-0 px-2 py-4">
-                                        <div class="d-flex no-block align-items-center">
-                                            <div class="mr-3"><img
-                                                    src="{{ asset('plugins/images/users/widget-table-pic1.jpg') }}"
-                                                    alt="user" class="rounded-circle" width="45"
-                                                    height="45" /></div>
-                                            <div class="">
-                                                <h5 class="text-dark mb-0 font-16 font-weight-medium">Hanna
-                                                    Gover</h5>
-                                                <span class="text-muted font-14">hgover@gmail.com</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="border-top-0 text-muted px-2 py-4 font-14">Elite Admin</td>
-                                    <td class="border-top-0 px-2 py-4">
-                                        <div class="popover-icon">
-                                            <a class="btn btn-primary rounded-circle btn-circle font-12"
-                                                href="javascript:void(0)">DS</a>
-                                            <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
-                                                href="javascript:void(0)">SS</a>
-                                            <a class="btn btn-cyan rounded-circle btn-circle font-12 popover-item"
-                                                href="javascript:void(0)">RP</a>
-                                            <a class="btn btn-success text-white rounded-circle btn-circle font-20"
-                                                href="javascript:void(0)">+</a>
-                                        </div>
-                                    </td>
-                                    <td class="border-top-0 text-center px-2 py-4"><i
-                                            class="fa fa-circle text-primary font-12" data-toggle="tooltip"
-                                            data-placement="top" title="In Testing"></i></td>
-                                    <td
-                                        class="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
-                                        35
-                                    </td>
-                                    <td class="font-weight-medium text-dark border-top-0 px-2 py-4">$96K
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-2 py-4">
-                                        <div class="d-flex no-block align-items-center">
-                                            <div class="mr-3"><img
-                                                    src="{{ asset('plugins/images/users/widget-table-pic2.jpg') }}"
-                                                    alt="user" class="rounded-circle" width="45"
-                                                    height="45" /></div>
-                                            <div class="">
-                                                <h5 class="text-dark mb-0 font-16 font-weight-medium">Daniel
-                                                    Kristeen
-                                                </h5>
-                                                <span class="text-muted font-14">Kristeen@gmail.com</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-muted px-2 py-4 font-14">Real Homes WP Theme</td>
-                                    <td class="px-2 py-4">
-                                        <div class="popover-icon">
-                                            <a class="btn btn-primary rounded-circle btn-circle font-12"
-                                                href="javascript:void(0)">DS</a>
-                                            <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
-                                                href="javascript:void(0)">SS</a>
-                                            <a class="btn btn-success text-white rounded-circle btn-circle font-20"
-                                                href="javascript:void(0)">+</a>
-                                        </div>
-                                    </td>
-                                    <td class="text-center px-2 py-4"><i
-                                            class="fa fa-circle text-success font-12" data-toggle="tooltip"
-                                            data-placement="top" title="Done"></i>
-                                    </td>
-                                    <td class="text-center text-muted font-weight-medium px-2 py-4">32</td>
-                                    <td class="font-weight-medium text-dark px-2 py-4">$85K</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-2 py-4">
-                                        <div class="d-flex no-block align-items-center">
-                                            <div class="mr-3"><img
-                                                    src="{{ asset('plugins/images/users/widget-table-pic3.jpg') }}"
-                                                    alt="user" class="rounded-circle" width="45"
-                                                    height="45" /></div>
-                                            <div class="">
-                                                <h5 class="text-dark mb-0 font-16 font-weight-medium">Julian
-                                                    Josephs
-                                                </h5>
-                                                <span class="text-muted font-14">Josephs@gmail.com</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-muted px-2 py-4 font-14">MedicalPro WP Theme</td>
-                                    <td class="px-2 py-4">
-                                        <div class="popover-icon">
-                                            <a class="btn btn-primary rounded-circle btn-circle font-12"
-                                                href="javascript:void(0)">DS</a>
-                                            <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
-                                                href="javascript:void(0)">SS</a>
-                                            <a class="btn btn-cyan rounded-circle btn-circle font-12 popover-item"
-                                                href="javascript:void(0)">RP</a>
-                                            <a class="btn btn-success text-white rounded-circle btn-circle font-20"
-                                                href="javascript:void(0)">+</a>
-                                        </div>
-                                    </td>
-                                    <td class="text-center px-2 py-4"><i
-                                            class="fa fa-circle text-primary font-12" data-toggle="tooltip"
-                                            data-placement="top" title="Done"></i>
-                                    </td>
-                                    <td class="text-center text-muted font-weight-medium px-2 py-4">29</td>
-                                    <td class="font-weight-medium text-dark px-2 py-4">$81K</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-2 py-4">
-                                        <div class="d-flex no-block align-items-center">
-                                            <div class="mr-3"><img
-                                                    src="{{ asset('plugins/images/users/widget-table-pic4.jpg') }}"
-                                                    alt="user" class="rounded-circle" width="45"
-                                                    height="45" /></div>
-                                            <div class="">
-                                                <h5 class="text-dark mb-0 font-16 font-weight-medium">Jan
-                                                    Petrovic
-                                                </h5>
-                                                <span class="text-muted font-14">hgover@gmail.com</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-muted px-2 py-4 font-14">Hosting Press HTML</td>
-                                    <td class="px-2 py-4">
-                                        <div class="popover-icon">
-                                            <a class="btn btn-primary rounded-circle btn-circle font-12"
-                                                href="javascript:void(0)">DS</a>
-                                            <a class="btn btn-success text-white font-20 rounded-circle btn-circle"
-                                                href="javascript:void(0)">+</a>
-                                        </div>
-                                    </td>
-                                    <td class="text-center px-2 py-4"><i
-                                            class="fa fa-circle text-danger font-12" data-toggle="tooltip"
-                                            data-placement="top" title="In Progress"></i></td>
-                                    <td class="text-center text-muted font-weight-medium px-2 py-4">23</td>
-                                    <td class="font-weight-medium text-dark px-2 py-4">$80K</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- *************************************************************** -->
-    <!-- End Top Leader Table -->
-    <!-- *************************************************************** -->
 
 </div>
 <!-- ============================================================== -->
