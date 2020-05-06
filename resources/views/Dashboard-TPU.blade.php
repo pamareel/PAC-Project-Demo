@@ -84,13 +84,6 @@
 
 <div id="TA" value = {{ $TA }} style="display:none;">hello</div>
 
-<!-- Not used-->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-<!-- End Not used -->
-
 
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
@@ -332,16 +325,3 @@
 <!-- ============================================================== -->
 
 @endsection
-
-@section('javascripts')
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready( function () {
-            $('#datatable').DataTable({
-                "sScrollX": "100%",
-                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
-            });
-        });
-    </script>
-@endsection
-
