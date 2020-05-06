@@ -388,12 +388,62 @@
     <!-- *************************************************************** -->
     <!-- Start Thai Map -->
     <!-- *************************************************************** -->
+        var Region_1 = ['TH-50','TH-57','TH-51','TH-52','TH-54','TH-55','TH-56','TH-58'];
+        var Region_2 = ['TH-65','TH-67','TH-53','TH-63','TH-64'];
+        var Region_3 = ['TH-60','TH-62','TH-66','TH-61','TH-18'];
+        var Region_4 = ['TH-17','TH-16','TH-19','TH-12','TH-14','TH-15','TH-13','TH-26'];
+        var Region_5 = ['TH-70','TH-72','TH-73','TH-71','TH-75','TH-74','TH-76','TH-77'];
+        var Region_6 = ['TH-20','TH-21','TH-22','TH-23','TH-11','TH-24','TH-25','TH-27'];
+        var Region_7 = ['TH-40','TH-44','TH-45','TH-46'];
+        var Region_8 = ['TH-41','TH-47','TH-48','TH-42','TH-39','TH-43']; //+'บึงกาฬ'
+        var Region_9 = ['TH-30','TH-36','TH-31','TH-32'];
+        var Region_10 = ['TH-34','TH-33','TH-35','TH-37','TH-49'];
+        var Region_11 = ['TH-86','TH-85','TH-84','TH-80','TH-82','TH-81','TH-83'];
+        var Region_12 = ['TH-96','TH-94','TH-95','TH-90','TH-91','TH-93','TH-92'];
+        var Region_13 = ['TH-10'];
         // var coll = {"TH-30":"purple","TH-20":"yellow"};
         ////////////// TH ////////////////////
         var data_sets_pri = {!! json_encode($pri_array_all) !!};
         var data_sets_quan = {!! json_encode($quan_array_all) !!};
         ////////////// Region 1 //////////////
+        var reg1_pri = {!! json_encode($pri_array_r1) !!};
         var reg1_quan = {!! json_encode($quan_array_r1) !!};
+        ////////////// Region 2 //////////////
+        var reg2_pri = {!! json_encode($pri_array_r2) !!};
+        var reg2_quan = {!! json_encode($quan_array_r2) !!};
+        ////////////// Region 3 //////////////
+        var reg3_pri = {!! json_encode($pri_array_r3) !!};
+        var reg3_quan = {!! json_encode($quan_array_r3) !!};
+        ////////////// Region 4 //////////////
+        var reg4_pri = {!! json_encode($pri_array_r4) !!};
+        var reg4_quan = {!! json_encode($quan_array_r4) !!};
+        ////////////// Region 5 //////////////
+        var reg5_pri = {!! json_encode($pri_array_r5) !!};
+        var reg5_quan = {!! json_encode($quan_array_r5) !!};
+        ////////////// Region 6 //////////////
+        var reg6_pri = {!! json_encode($pri_array_r6) !!};
+        var reg6_quan = {!! json_encode($quan_array_r6) !!};
+        ////////////// Region 7 //////////////
+        var reg7_pri = {!! json_encode($pri_array_r7) !!};
+        var reg7_quan = {!! json_encode($quan_array_r7) !!};
+        ////////////// Region 8 //////////////
+        var reg8_pri = {!! json_encode($pri_array_r8) !!};
+        var reg8_quan = {!! json_encode($quan_array_r8) !!};
+        ////////////// Region 9 //////////////
+        var reg9_pri = {!! json_encode($pri_array_r9) !!};
+        var reg9_quan = {!! json_encode($quan_array_r9) !!};
+        ////////////// Region 10 //////////////
+        var reg10_pri = {!! json_encode($pri_array_r10) !!};
+        var reg10_quan = {!! json_encode($quan_array_r10) !!};
+        ////////////// Region 11 //////////////
+        var reg11_pri = {!! json_encode($pri_array_r11) !!};
+        var reg11_quan = {!! json_encode($quan_array_r11) !!};
+        ////////////// Region 12 //////////////
+        var reg12_pri = {!! json_encode($pri_array_r12) !!};
+        var reg12_quan = {!! json_encode($quan_array_r12) !!};
+        ////////////// Region 13 //////////////
+        var reg13_pri = {!! json_encode($pri_array_r13) !!};
+        var reg13_quan = {!! json_encode($quan_array_r13) !!};
         
         $(document).ready(function() {
             $Thai_map_pri = {
@@ -434,7 +484,9 @@
             //draw chart
             $('#vmapTH_pri').vectorMap($Thai_map_pri)
 
-            ////////// for quantity ////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////
+            //---------------------------------------------------------------------------------//
+            ////////// for quantity /////////////////////////////////////////////////////////////
             $Reg1_map_quan = {
                 map: ['thai_en'],
                 backgroundColor: 'beige',
@@ -450,14 +502,141 @@
                     //sample to interact with map
                     // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
                     // alert(message);
-                    if (code == 'TH-50') {
-                        $('#vmapTH_quan').toggleClass('invisible');
-                        $('#vmapTH_quan2').toggleClass('invisible');
-                        $("#backButton").toggleClass("invisible");
-                        $('#vmapTH_quan2').vectorMap($Thai_map_quan);
-                    }
                 }
             }
+            $Reg2_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg2_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg3_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg3_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg4_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg4_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg5_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg5_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg6_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg6_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg7_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg7_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg8_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg8_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg9_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg9_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg10_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg10_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg11_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg11_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg12_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg12_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+            $Reg13_map_quan = {
+                map: ['thai_en'],
+                backgroundColor: 'beige',
+                hoverOpacity: 0.7,
+                enableZoom: true,
+                showTooltip: true,
+                color: '#ffffff',
+                values: reg13_quan,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            }
+
             $Thai_map_quan = {
                 map: ['thai_en'],
                 backgroundColor: 'beige',
@@ -469,9 +648,7 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 // colors: color_sets,      
-                onLabelShow: function(event, label, code)
-                {
-
+                onLabelShow: function(event, label, code){
                 },
                 onRegionOver: function (event, code, region) {
                     //sample to interact with map
@@ -483,16 +660,61 @@
                     }
                 },
                 onRegionClick: function (element, code, region) {
-                    //sample to interact with map
-                    // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
-                    // alert(message);
-                    if (code == 'TH-50') {
-                        $('#vmapTH_quan').toggleClass('invisible');
-                        $('#vmapTH_quan_r1').toggleClass('invisible');
-                        $("#backButton").toggleClass("invisible");
-                        $("#Map_Quan_TH").toggleClass("invisible");
-                        $("#Map_Quan_Region_1").toggleClass("invisible");
+                    $("#backButton").toggleClass("invisible");
+                    $('#vmapTH_quan').toggleClass("invisible");
+                    $("#Map_Quan_TH").toggleClass("invisible");
+                    if (Region_1.includes(code)) {
+                        $('#vmapTH_quan_r1').removeClass('invisible');   
+                        $("#Map_Quan_Region_1").removeClass('invisible');   
                         $('#vmapTH_quan_r1').vectorMap($Reg1_map_quan);
+                    }else if(Region_2.includes(code)) {
+                        $('#vmapTH_quan_r2').toggleClass("invisible");
+                        $("#Map_Quan_Region_2").toggleClass("invisible");
+                        $('#vmapTH_quan_r2').vectorMap($Reg2_map_quan);
+                    }else if(Region_3.includes(code)) {
+                        $('#vmapTH_quan_r3').removeClass('invisible');   
+                        $("#Map_Quan_Region_3").removeClass('invisible');   
+                        $('#vmapTH_quan_r3').vectorMap($Reg3_map_quan);
+                    }else if(Region_4.includes(code)) {
+                        $('#vmapTH_quan_r4').toggleClass("invisible");
+                        $("#Map_Quan_Region_4").toggleClass("invisible");
+                        $('#vmapTH_quan_r4').vectorMap($Reg4_map_quan);
+                    }else if(Region_5.includes(code)) {
+                        $('#vmapTH_quan_r5').toggleClass("invisible");
+                        $("#Map_Quan_Region_5").toggleClass("invisible");
+                        $('#vmapTH_quan_r5').vectorMap($Reg5_map_quan);
+                    }else if(Region_6.includes(code)) {
+                        $('#vmapTH_quan_r6').toggleClass("invisible");
+                        $("#Map_Quan_Region_6").toggleClass("invisible");
+                        $('#vmapTH_quan_r6').vectorMap($Reg6_map_quan);
+                    }else if(Region_7.includes(code)) {
+                        $('#vmapTH_quan_r7').removeClass('invisible');   
+                        $("#Map_Quan_Region_7").removeClass('invisible');   
+                        $('#vmapTH_quan_r7').vectorMap($Reg7_map_quan);
+                    }else if(Region_8.includes(code)) {
+                        $('#vmapTH_quan_r8').toggleClass("invisible");
+                        $("#Map_Quan_Region_8").toggleClass("invisible");
+                        $('#vmapTH_quan_r8').vectorMap($Reg8_map_quan);
+                    }else if(Region_9.includes(code)) {
+                        $('#vmapTH_quan_r9').toggleClass("invisible");
+                        $("#Map_Quan_Region_9").toggleClass("invisible");
+                        $('#vmapTH_quan_r9').vectorMap($Reg9_map_quan);
+                    }else if(Region_10.includes(code)) {
+                        $('#vmapTH_quan_r10').toggleClass("invisible");
+                        $("#Map_Quan_Region_10").toggleClass("invisible");
+                        $('#vmapTH_quan_r10').vectorMap($Reg10_map_quan);
+                    }else if(Region_11.includes(code)) {
+                        $('#vmapTH_quan_r11').removeClass('invisible');   
+                        $("#Map_Quan_Region_11").removeClass('invisible');   
+                        $('#vmapTH_quan_r11').vectorMap($Reg11_map_quan);
+                    }else if(Region_12.includes(code)) {
+                        $('#vmapTH_quan_r12').toggleClass("invisible");
+                        $("#Map_Quan_Region_12").toggleClass("invisible");
+                        $('#vmapTH_quan_r12').vectorMap($Reg12_map_quan);
+                    }else if(Region_13.includes(code)) {
+                        $('#vmapTH_quan_r13').toggleClass("invisible");
+                        $("#Map_Quan_Region_13").toggleClass("invisible");
+                        $('#vmapTH_quan_r13').vectorMap($Reg13_map_quan);
                     }
                 }
             }
@@ -507,10 +729,49 @@
             // }
             $("#backButton").click(function() { 
                 $(this).toggleClass("invisible");
-                $('#vmapTH_quan').toggleClass('invisible');
-                $('#vmapTH_quan_r1').toggleClass('invisible');
+                $('#vmapTH_quan').toggleClass("invisible");
                 $("#Map_Quan_TH").toggleClass("invisible");
-                $("#Map_Quan_Region_1").toggleClass("invisible");
+                
+                if(!document.getElementById('vmapTH_quan_r1').classList.contains('invisible')){
+                    $('#vmapTH_quan_r1').addClass('invisible');   
+                    $('#Map_Quan_Region_1').addClass('invisible');   
+                }else if(!document.getElementById('vmapTH_quan_r2').classList.contains('invisible')){
+                    $('#vmapTH_quan_r2').toggleClass("invisible");
+                    $('#Map_Quan_Region_2').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r3').classList.contains('invisible')){
+                    $('#vmapTH_quan_r3').addClass('invisible');   
+                    $('#Map_Quan_Region_3').addClass('invisible');   
+                }else if(!document.getElementById('vmapTH_quan_r4').classList.contains('invisible')){
+                    $('#vmapTH_quan_r4').toggleClass("invisible");
+                    $('#Map_Quan_Region_4').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r5').classList.contains('invisible')){
+                    $('#vmapTH_quan_r5').toggleClass("invisible");
+                    $('#Map_Quan_Region_5').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r6').classList.contains('invisible')){
+                    $('#vmapTH_quan_r6').toggleClass("invisible");
+                    $('#Map_Quan_Region_6').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r7').classList.contains('invisible')){
+                    $('#vmapTH_quan_r7').toggleClass("invisible");
+                    $('#Map_Quan_Region_7').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r8').classList.contains('invisible')){
+                    $('#vmapTH_quan_r8').addClass('invisible');   
+                    $('#Map_Quan_Region_8').addClass('invisible');   
+                }else if(!document.getElementById('vmapTH_quan_r9').classList.contains('invisible')){
+                    $('#vmapTH_quan_r9').toggleClass("invisible");
+                    $('#Map_Quan_Region_9').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r10').classList.contains('invisible')){
+                    $('#vmapTH_quan_r10').toggleClass("invisible");
+                    $('#Map_Quan_Region_10').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r11').classList.contains('invisible')){
+                    $('#vmapTH_quan_r11').toggleClass("invisible");
+                    $('#Map_Quan_Region_11').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r12').classList.contains('invisible')){
+                    $('#vmapTH_quan_r12').toggleClass("invisible");
+                    $('#Map_Quan_Region_12').toggleClass("invisible");
+                }else if(!document.getElementById('vmapTH_quan_r13').classList.contains('invisible')){
+                    $('#vmapTH_quan_r13').toggleClass("invisible");
+                    $('#Map_Quan_Region_13').toggleClass("invisible");
+                }                
             });
         });
     </script>
@@ -581,69 +842,469 @@
                     <button class="btn invisible" id="backButton">&lt; Back</button>
                     test if click at Chaing Mai new chart will show up
                     <div class='row'>
-                    <div id="vmapTH_quan" style="width: 200px; height: 300px;"></div>
-                    <div class='invisible' id="vmapTH_quan_r1" style="width: 200px; height: 300px;"></div>
-                    <table class="table-white table-striped" id = "Map_Quan_TH" ole="grid" aria-describedby="default_order_info">
-                        <thead>
-                        <tr role="row">
-                            <th style="text-align:center;">Region</th>
-                            <th style="text-align:center;">Quantity</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            for($i = 0; $i < count($resultThaiMap); $i++){
-                            ?>
-                                <tr>
-                                    <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
-                                    <?php
-                                    if ($resultThaiMap[$i]->Total_Amount != NULL){
-                                    ?>
-                                        <td style="text-align:right;">{{ $resultThaiMap[$i]->Total_Amount }}</td>
+                        <div id="vmapTH_quan" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r1" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r2" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r3" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r4" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r5" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r6" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r7" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r8" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r9" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r10" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r11" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r12" style="width: 200px; height: 300px;"></div>
+                        <div class = "invisible" id="vmapTH_quan_r13" style="width: 200px; height: 300px;"></div>
 
-                                    <?php
-                                    }else{
-                                        //Gini = NULL because PAC = 0
-                                    ?>
-                                        <td style="text-align:right;">0</td>
+                        <div id="Map_Quan_TH">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Region</th>
+                                    <th style="text-align:center;">Quantity</th>
                                 </tr>
-                            <?php
-                                }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                    
-                    <table class="table-white table-striped invisible" id = "Map_Quan_Region_1" ole="grid" aria-describedby="default_order_info">
-                        <thead>
-                        <tr role="row">
-                            <th style="text-align:center;">Province</th>
-                            <th style="text-align:center;">Quantity</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
-                            ?>
-                                <tr>
-                                    <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
+                                </thead>
+                                <tbody>
                                     <?php
-                                    if ($resultThaiMap_Reg1[$i]->Total_Amount != NULL){
+                                    for($i = 0; $i < count($resultThaiMap); $i++){
                                     ?>
-                                        <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->Total_Amount }}</td>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
+                                            <?php
+                                            if ($resultThaiMap[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap[$i]->Total_Amount }}</td>
 
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
                                     <?php
-                                    }else{
-                                        //Gini = NULL because PAC = 0
+                                        }
+                                    }
                                     ?>
-                                        <td style="text-align:right;">0</td>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_1">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
                                 </tr>
-                            <?php
-                                }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg1[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_2">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg2[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg2[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_3">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg3[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg3[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_4">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg4[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg4[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_5">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg5[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg5[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_6">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg6[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg6[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_7">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg7[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg7[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_8">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg8[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg8[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_9">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg9[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg9[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_10">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg10[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg10[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_11">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg11[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg11[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_12">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg12[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg12[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class = "invisible" id="Map_Quan_Region_13">
+                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">Province</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
+                                    ?>
+                                        <tr>
+                                            <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
+                                            <?php
+                                            if ($resultThaiMap_Reg13[$i]->Total_Amount != NULL){
+                                            ?>
+                                                <td style="text-align:right;">{{ $resultThaiMap_Reg13[$i]->Total_Amount }}</td>
+
+                                            <?php
+                                            }else{
+                                                //Gini = NULL because PAC = 0
+                                            ?>
+                                                <td style="text-align:right;">0</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -207,13 +207,24 @@ class SearchController extends Controller
 
         [$quan_array_all, $pri_array_all] = $this->FindQuan_Pri_All($resultThaiMap);
         [$quan_array_r1, $pri_array_r1] = $this->FindQuan_Pri_Region($resultThaiMap_Reg1);
+        [$quan_array_r2, $pri_array_r2] = $this->FindQuan_Pri_Region($resultThaiMap_Reg2);
+        [$quan_array_r3, $pri_array_r3] = $this->FindQuan_Pri_Region($resultThaiMap_Reg3);
+        [$quan_array_r4, $pri_array_r4] = $this->FindQuan_Pri_Region($resultThaiMap_Reg4);
+        [$quan_array_r5, $pri_array_r5] = $this->FindQuan_Pri_Region($resultThaiMap_Reg5);
+        [$quan_array_r6, $pri_array_r6] = $this->FindQuan_Pri_Region($resultThaiMap_Reg6);
+        [$quan_array_r7, $pri_array_r7] = $this->FindQuan_Pri_Region($resultThaiMap_Reg7);
+        [$quan_array_r8, $pri_array_r8] = $this->FindQuan_Pri_Region($resultThaiMap_Reg8);
+        [$quan_array_r9, $pri_array_r9] = $this->FindQuan_Pri_Region($resultThaiMap_Reg9);
+        [$quan_array_r10, $pri_array_r10] = $this->FindQuan_Pri_Region($resultThaiMap_Reg10);
+        [$quan_array_r11, $pri_array_r11] = $this->FindQuan_Pri_Region($resultThaiMap_Reg11);
+        [$quan_array_r12, $pri_array_r12] = $this->FindQuan_Pri_Region($resultThaiMap_Reg12);
+        [$quan_array_r13, $pri_array_r13] = $this->FindQuan_Pri_Region($resultThaiMap_Reg13);
 
         // $mapp = (object) ['TH-30' => 'purple', 'TH-20' => 'yellow'];
         // $mapp = "{'TH-30':'purple', 'TH-20':'red'}";
         //////////////END Thai Map/////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////
         //////////////Send data back to view///////////////////////////////////////////////////
-        // $resultThaiMap_Reg1= [];
         if(empty($resultSearch))
         {
             $resultSearch = 'No value';
@@ -221,12 +232,48 @@ class SearchController extends Controller
             $chartMedPercent = NULL;
             $chartHighPercent = NULL;
             $resultState = 'Please select again';
+            $resultThaiMap = NULL;
             $pri_array_all = NULL;
             $quan_array_all = NULL;
-            $resultThaiMap = NULL;
             $resultThaiMap_Reg1 = NULL;
             $quan_array_r1 = NULL;
             $pri_array_r1 = NULL;
+            $resultThaiMap_Reg2 = NULL;
+            $quan_array_r2 = NULL;
+            $pri_array_r2 = NULL;
+            $resultThaiMap_Reg3 = NULL;
+            $quan_array_r3 = NULL;
+            $pri_array_r3 = NULL;
+            $resultThaiMap_Reg4 = NULL;
+            $quan_array_r4 = NULL;
+            $pri_array_r4 = NULL;
+            $resultThaiMap_Reg5 = NULL;
+            $quan_array_r5 = NULL;
+            $pri_array_r5 = NULL;
+            $resultThaiMap_Reg6 = NULL;
+            $quan_array_r6 = NULL;
+            $pri_array_r6 = NULL;
+            $resultThaiMap_Reg7 = NULL;
+            $quan_array_r7 = NULL;
+            $pri_array_r7 = NULL;
+            $resultThaiMap_Reg8 = NULL;
+            $quan_array_r8 = NULL;
+            $pri_array_r8 = NULL;
+            $resultThaiMap_Reg9 = NULL;
+            $quan_array_r9 = NULL;
+            $pri_array_r9 = NULL;
+            $resultThaiMap_Reg10 = NULL;
+            $quan_array_r10 = NULL;
+            $pri_array_r10 = NULL;
+            $resultThaiMap_Reg11 = NULL;
+            $quan_array_r11 = NULL;
+            $pri_array_r11 = NULL;
+            $resultThaiMap_Reg12 = NULL;
+            $quan_array_r12 = NULL;
+            $pri_array_r12 = NULL;
+            $resultThaiMap_Reg13 = NULL;
+            $quan_array_r13 = NULL;
+            $pri_array_r13 = NULL;
         }
         $send_data = array(
             'resultSearch'=>$resultSearch,
@@ -234,13 +281,48 @@ class SearchController extends Controller
             'chartMedPercent'=>$chartMedPercent,
             'chartHighPercent'=>$chartHighPercent,
             'resultState'=>$resultState,
-            // 'mapp'=>$mapp,
+            'resultThaiMap'=>$resultThaiMap,
             'pri_array_all'=>$pri_array_all,
             'quan_array_all'=>$quan_array_all,
-            'resultThaiMap'=>$resultThaiMap,
             'resultThaiMap_Reg1'=>$resultThaiMap_Reg1,
             'quan_array_r1'=>$quan_array_r1,
-            'pri_array_r1'=>$pri_array_r1
+            'pri_array_r1'=>$pri_array_r1,
+            'resultThaiMap_Reg2'=>$resultThaiMap_Reg2,
+            'quan_array_r2'=>$quan_array_r2,
+            'pri_array_r2'=>$pri_array_r2,
+            'resultThaiMap_Reg3'=>$resultThaiMap_Reg3,
+            'quan_array_r3'=>$quan_array_r3,
+            'pri_array_r3'=>$pri_array_r3,
+            'resultThaiMap_Reg4'=>$resultThaiMap_Reg4,
+            'quan_array_r4'=>$quan_array_r4,
+            'pri_array_r4'=>$pri_array_r4,
+            'resultThaiMap_Reg5'=>$resultThaiMap_Reg5,
+            'quan_array_r5'=>$quan_array_r5,
+            'pri_array_r5'=>$pri_array_r5,
+            'resultThaiMap_Reg6'=>$resultThaiMap_Reg6,
+            'quan_array_r6'=>$quan_array_r6,
+            'pri_array_r6'=>$pri_array_r6,
+            'resultThaiMap_Reg7'=>$resultThaiMap_Reg7,
+            'quan_array_r7'=>$quan_array_r7,
+            'pri_array_r7'=>$pri_array_r7,
+            'resultThaiMap_Reg8'=>$resultThaiMap_Reg8,
+            'quan_array_r8'=>$quan_array_r8,
+            'pri_array_r8'=>$pri_array_r8,
+            'resultThaiMap_Reg9'=>$resultThaiMap_Reg9,
+            'quan_array_r9'=>$quan_array_r9,
+            'pri_array_r9'=>$pri_array_r9,
+            'resultThaiMap_Reg10'=>$resultThaiMap_Reg10,
+            'quan_array_r10'=>$quan_array_r10,
+            'pri_array_r10'=>$pri_array_r10,
+            'resultThaiMap_Reg11'=>$resultThaiMap_Reg11,
+            'quan_array_r11'=>$quan_array_r11,
+            'pri_array_r11'=>$pri_array_r11,
+            'resultThaiMap_Reg12'=>$resultThaiMap_Reg12,
+            'quan_array_r12'=>$quan_array_r12,
+            'pri_array_r12'=>$pri_array_r12,
+            'resultThaiMap_Reg13'=>$resultThaiMap_Reg13,
+            'quan_array_r13'=>$quan_array_r13,
+            'pri_array_r13'=>$pri_array_r13
         );
         return view('DrugPage', $send_data);
     }
@@ -388,22 +470,143 @@ class SearchController extends Controller
         $re = $r[0]->Region;
         if($re == '1'){
             foreach ($Region_1 as &$ii) {
-                if($quan_array_r[$ii] == NULL){
+                if(!array_key_exists($ii,$quan_array_r)){
                     $quan_array[$ii] = NULL;
                     $quan_array_r = array_merge($quan_array_r, $quan_array);
                 }
-                if($pri_array_r[$ii] == NULL){
+                if(!array_key_exists($ii,$pri_array_r)){
                     $pri_array[$ii] = NULL;
                     $pri_array_r = array_merge($pri_array_r, $pri_array);
                 }
             }
         }else if($re == '2'){
             foreach ($Region_2 as &$ii) {
-                if($quan_array_r[$ii] == NULL){
+                if(!array_key_exists($ii,$quan_array_r)){
                     $quan_array[$ii] = NULL;
                     $quan_array_r = array_merge($quan_array_r, $quan_array);
                 }
-                if($pri_array_r[$ii] == NULL){
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '3'){
+            foreach ($Region_3 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '4'){
+            foreach ($Region_4 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '5'){
+            foreach ($Region_5 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '6'){
+            foreach ($Region_6 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '7'){
+            foreach ($Region_7 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '8'){
+            foreach ($Region_8 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '9'){
+            foreach ($Region_9 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '10'){
+            foreach ($Region_10 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '11'){
+            foreach ($Region_11 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '12'){
+            foreach ($Region_12 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
+                    $pri_array[$ii] = NULL;
+                    $pri_array_r = array_merge($pri_array_r, $pri_array);
+                }
+            }
+        }else if($re == '13'){
+            foreach ($Region_13 as &$ii) {
+                if(!array_key_exists($ii,$quan_array_r)){
+                    $quan_array[$ii] = NULL;
+                    $quan_array_r = array_merge($quan_array_r, $quan_array);
+                }
+                if(!array_key_exists($ii,$pri_array_r)){
                     $pri_array[$ii] = NULL;
                     $pri_array_r = array_merge($pri_array_r, $pri_array);
                 }
