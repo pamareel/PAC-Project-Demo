@@ -128,53 +128,35 @@ class SearchController extends Controller
         {
             $resultSearch = 'No value';
             $resultState = 'Please select again';
-            $chartLowPercent = NULL;
-            $chartMedPercent = NULL;
-            $chartHighPercent = NULL;
-            $chartRegion_1 = NULL;
+            $chartLowPercent = NULL; $chartMedPercent = NULL; $chartHighPercent = NULL;
+            $chartRegion_1 = NULL; $chartLowPercent_1 = NULL; $chartMedPercent_1 = NULL; $chartHighPercent_1 = NULL;
+            $chartRegion_2 = NULL; $chartLowPercent_2 = NULL; $chartMedPercent_2 = NULL; $chartHighPercent_2 = NULL;
+            $chartRegion_3 = NULL; $chartLowPercent_3 = NULL; $chartMedPercent_3 = NULL; $chartHighPercent_3 = NULL;
+            $chartRegion_4 = NULL; $chartLowPercent_4 = NULL; $chartMedPercent_4 = NULL; $chartHighPercent_4 = NULL;
+            $chartRegion_5 = NULL; $chartLowPercent_5 = NULL; $chartMedPercent_5 = NULL; $chartHighPercent_5 = NULL;
+            $chartRegion_6 = NULL; $chartLowPercent_6 = NULL; $chartMedPercent_6 = NULL; $chartHighPercent_6 = NULL;
+            $chartRegion_7 = NULL; $chartLowPercent_7 = NULL; $chartMedPercent_7 = NULL; $chartHighPercent_7 = NULL;
+            $chartRegion_8 = NULL; $chartLowPercent_8 = NULL; $chartMedPercent_8 = NULL; $chartHighPercent_8 = NULL;
+            $chartRegion_9 = NULL; $chartLowPercent_9 = NULL; $chartMedPercent_9 = NULL; $chartHighPercent_9 = NULL;
+            $chartRegion_10 = NULL; $chartLowPercent_10 = NULL; $chartMedPercent_10 = NULL; $chartHighPercent_10 = NULL;
+            $chartRegion_11 = NULL; $chartLowPercent_11 = NULL; $chartMedPercent_11 = NULL; $chartHighPercent_11 = NULL;
+            $chartRegion_12 = NULL; $chartLowPercent_12 = NULL; $chartMedPercent_12 = NULL; $chartHighPercent_12 = NULL;
+            $chartRegion_13 = NULL; $chartLowPercent_13 = NULL; $chartMedPercent_13 = NULL; $chartHighPercent_13 = NULL;
+            $resultThaiMap = NULL; $pri_array_all = NULL; $quan_array_all = NULL;
             
-            $resultThaiMap = NULL;
-            $pri_array_all = NULL;
-            $quan_array_all = NULL;
-            $resultThaiMap_Reg1 = NULL;
-            $quan_array_r1 = NULL;
-            $pri_array_r1 = NULL;
-            $resultThaiMap_Reg2 = NULL;
-            $quan_array_r2 = NULL;
-            $pri_array_r2 = NULL;
-            $resultThaiMap_Reg3 = NULL;
-            $quan_array_r3 = NULL;
-            $pri_array_r3 = NULL;
-            $resultThaiMap_Reg4 = NULL;
-            $quan_array_r4 = NULL;
-            $pri_array_r4 = NULL;
-            $resultThaiMap_Reg5 = NULL;
-            $quan_array_r5 = NULL;
-            $pri_array_r5 = NULL;
-            $resultThaiMap_Reg6 = NULL;
-            $quan_array_r6 = NULL;
-            $pri_array_r6 = NULL;
-            $resultThaiMap_Reg7 = NULL;
-            $quan_array_r7 = NULL;
-            $pri_array_r7 = NULL;
-            $resultThaiMap_Reg8 = NULL;
-            $quan_array_r8 = NULL;
-            $pri_array_r8 = NULL;
-            $resultThaiMap_Reg9 = NULL;
-            $quan_array_r9 = NULL;
-            $pri_array_r9 = NULL;
-            $resultThaiMap_Reg10 = NULL;
-            $quan_array_r10 = NULL;
-            $pri_array_r10 = NULL;
-            $resultThaiMap_Reg11 = NULL;
-            $quan_array_r11 = NULL;
-            $pri_array_r11 = NULL;
-            $resultThaiMap_Reg12 = NULL;
-            $quan_array_r12 = NULL;
-            $pri_array_r12 = NULL;
-            $resultThaiMap_Reg13 = NULL;
-            $quan_array_r13 = NULL;
-            $pri_array_r13 = NULL;
+            $resultThaiMap_Reg1 = NULL; $quan_array_r1 = NULL; $pri_array_r1 = NULL;
+            $resultThaiMap_Reg2 = NULL; $quan_array_r2 = NULL; $pri_array_r2 = NULL;
+            $resultThaiMap_Reg3 = NULL; $quan_array_r3 = NULL; $pri_array_r3 = NULL;
+            $resultThaiMap_Reg4 = NULL; $quan_array_r4 = NULL; $pri_array_r4 = NULL;
+            $resultThaiMap_Reg5 = NULL; $quan_array_r5 = NULL; $pri_array_r5 = NULL;
+            $resultThaiMap_Reg6 = NULL; $quan_array_r6 = NULL; $pri_array_r6 = NULL;
+            $resultThaiMap_Reg7 = NULL; $quan_array_r7 = NULL; $pri_array_r7 = NULL;
+            $resultThaiMap_Reg8 = NULL; $quan_array_r8 = NULL; $pri_array_r8 = NULL;
+            $resultThaiMap_Reg9 = NULL; $quan_array_r9 = NULL; $pri_array_r9 = NULL;
+            $resultThaiMap_Reg10 = NULL; $quan_array_r10 = NULL; $pri_array_r10 = NULL;
+            $resultThaiMap_Reg11 = NULL; $quan_array_r11 = NULL; $pri_array_r11 = NULL;
+            $resultThaiMap_Reg12 = NULL; $quan_array_r12 = NULL; $pri_array_r12 = NULL;
+            $resultThaiMap_Reg13 = NULL; $quan_array_r13 = NULL; $pri_array_r13 = NULL;
         }
         $send_data = array(
             'resultSearch'=>$resultSearch,
@@ -184,6 +166,15 @@ class SearchController extends Controller
             'chartRegion_2'=>$chartRegion_2,'chartLowPercent_2'=>$chartLowPercent_2,'chartMedPercent_2'=>$chartMedPercent_2,'chartHighPercent_2'=>$chartHighPercent_2,
             'chartRegion_3'=>$chartRegion_3,'chartLowPercent_3'=>$chartLowPercent_3,'chartMedPercent_3'=>$chartMedPercent_3,'chartHighPercent_3'=>$chartHighPercent_3,
             'chartRegion_4'=>$chartRegion_4,'chartLowPercent_4'=>$chartLowPercent_4,'chartMedPercent_4'=>$chartMedPercent_4,'chartHighPercent_4'=>$chartHighPercent_4,
+            'chartRegion_5'=>$chartRegion_5,'chartLowPercent_5'=>$chartLowPercent_5,'chartMedPercent_5'=>$chartMedPercent_5,'chartHighPercent_5'=>$chartHighPercent_5,
+            'chartRegion_6'=>$chartRegion_6,'chartLowPercent_6'=>$chartLowPercent_6,'chartMedPercent_6'=>$chartMedPercent_6,'chartHighPercent_6'=>$chartHighPercent_6,
+            'chartRegion_7'=>$chartRegion_7,'chartLowPercent_7'=>$chartLowPercent_7,'chartMedPercent_7'=>$chartMedPercent_7,'chartHighPercent_7'=>$chartHighPercent_7,
+            'chartRegion_8'=>$chartRegion_8,'chartLowPercent_8'=>$chartLowPercent_8,'chartMedPercent_8'=>$chartMedPercent_8,'chartHighPercent_8'=>$chartHighPercent_8,
+            'chartRegion_9'=>$chartRegion_9,'chartLowPercent_9'=>$chartLowPercent_9,'chartMedPercent_9'=>$chartMedPercent_9,'chartHighPercent_9'=>$chartHighPercent_9,
+            'chartRegion_10'=>$chartRegion_10,'chartLowPercent_10'=>$chartLowPercent_10,'chartMedPercent_10'=>$chartMedPercent_10,'chartHighPercent_10'=>$chartHighPercent_10,
+            'chartRegion_11'=>$chartRegion_11,'chartLowPercent_11'=>$chartLowPercent_11,'chartMedPercent_11'=>$chartMedPercent_11,'chartHighPercent_11'=>$chartHighPercent_11,
+            'chartRegion_12'=>$chartRegion_12,'chartLowPercent_12'=>$chartLowPercent_12,'chartMedPercent_12'=>$chartMedPercent_12,'chartHighPercent_12'=>$chartHighPercent_12,
+            'chartRegion_13'=>$chartRegion_13,'chartLowPercent_13'=>$chartLowPercent_13,'chartMedPercent_13'=>$chartMedPercent_13,'chartHighPercent_13'=>$chartHighPercent_13,
 
             'resultThaiMap'=>$resultThaiMap,
             'pri_array_all'=>$pri_array_all,
@@ -310,6 +301,7 @@ class SearchController extends Controller
         }
         return [$chartHighPercent, $chartMedPercent, $chartLowPercent];
     }
+
     function chart_Low_Med_High($countHosRegion,$r,$Region_name,$year,$GT,$Dname,$method){
         $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
         $Region_2_name = ['TH-65'=>'Phitsanulok','TH-67'=>'Phetchabun','TH-53'=>'Uttaradit','TH-63'=>'Tak','TH-64'=>'Sukhothai'];
@@ -324,6 +316,21 @@ class SearchController extends Controller
         $Region_11_name = ['TH-86'=>'Chumphon','TH-85'=>'Ranong','TH-84'=>'Surat Thani','TH-80'=>'Nakhon Si Thammarat','TH-82'=>'Phangnga','TH-81'=>'Krabi','TH-83'=>'Phuket'];
         $Region_12_name = ['TH-96'=>'Narathiwat','TH-94'=>'Pattani','TH-95'=>'Yala','TH-90'=>'Songkhla','TH-91'=>'Satun','TH-93'=>'Phatthalung','TH-92'=>'Trang'];
         $Region_13_name = ['TH-10'=>'Bangkok Metropolis'];
+
+        foreach($Region_name as $Pcode => $Province){
+            if($method == 'All'){
+                $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PROVINCE_EN = '".$Province."'";
+            }else{
+                $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PROVINCE_EN = '".$Province."' and Method ='".$method."'";
+            }
+            $p_count_query = DB::select($countquery_r);
+            if($p_count_query != null){
+                $p_count[$Province] = $p_count_query[0]->n;
+            }else{
+                $p_count[$Province] = 0;
+            }
+        }
+        
         ////// init ////////////////////////////////////////////////////////
         $chartProvince = array();
         $chartLowPercent = array();
@@ -344,15 +351,16 @@ class SearchController extends Controller
             /////// for Low PAC ////////////////////////////////////////////////
             $lowPac = DB::select($query_low);
             if($lowPac != null && $countHosRegion != 0){
-                $Low_dataPercent = 100*($lowPac[0]->n)/$countHosRegion;
+                $Low_dataPercent = 100*($lowPac[0]->n)/$p_count[$Province];
             }else{
                 $Low_dataPercent = 0;
             }
             array_push($chartLowPercent,$Low_dataPercent);
+            
             /////// for Medium PAC ////////////////////////////////////////////////
             $medPac = DB::select($query_med);
             if($medPac != null && $countHosRegion != 0){
-                $Med_dataPercent = 100*($medPac[0]->n)/$countHosRegion;
+                $Med_dataPercent = 100*($medPac[0]->n)/$p_count[$Province];
             }else{
                 $Med_dataPercent = 0;
             }
@@ -360,7 +368,7 @@ class SearchController extends Controller
             /////// for High PAC ////////////////////////////////////////////////
             $highPac = DB::select($query_high);
             if($highPac != null && $countHosRegion != 0){
-                $High_dataPercent = 100*($highPac[0]->n)/$countHosRegion;
+                $High_dataPercent = 100*($highPac[0]->n)/$p_count[$Province];
             }else{
                 $High_dataPercent = 0;
             }

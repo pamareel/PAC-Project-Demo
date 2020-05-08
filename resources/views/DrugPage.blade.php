@@ -170,7 +170,7 @@
     $i=0;
     if(!empty($resultSearch) && $resultSearch != 'No value'){
     ?>
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <a class="customize-input float-right" href="/policy/DrugPage/SizeHospital">
@@ -266,10 +266,10 @@
                     },
                     layout:{
                         padding:{
-                            left:20,
-                            right:20,
-                            bottom:20,
-                            top:20
+                            left:5,
+                            right:5,
+                            bottom:5,
+                            top:5
                         }
                     },
                     tooltips:{
@@ -279,32 +279,16 @@
             };
             
             ////////// generate chart ////////////////////////////////////////
-            let myChart = document.getElementById('myChart').getContext('2d');
-            // alert(myChart);
-            let massPopChart = new Chart(myChart, optionData);
-            
-            // function ChartDrilldownHandler_Region(e) {
-            //     // alert('hi');
-            //     // alert(e);
-            //     var a = 1;
-            //     if( a == 1){
-            //         let chartR = new Chart(myChart, optionData_Region[0]);
-            //         // chartR.render();
-            //         // document.getElementById('backButton').style.display = 'show';
-            //         // $("#backButton").toggleClass("visible");
-            //     }
-            //     // chart.render();
-                
-            // }
+            $.myChart = document.getElementById('myChart').getContext('2d');
+            $.massPopChart = new Chart(myChart, optionData);
 
             //// For Region 1 Chart Option ///////////////////////////////////////////
             var optionData_Region1 = {
                 name: "Region 1",
                 type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                 data:{
-                    // labels:[{{ $chartRegion_1[0] }}, {{ $chartRegion_1[1] }}, {{ $chartRegion_1[2] }}, {{ $chartRegion_1[3] }}, {{ $chartRegion_1[4] }},
-                    // {{ $chartRegion_1[5] }}, {{ $chartRegion_1[6] }}, {{ $chartRegion_1[7] }}],
-                    labels:['1','2','3','4','5','6','7','8'],
+                    labels:['{{ $chartRegion_1[0] }}', '{{ $chartRegion_1[1] }}', '{{ $chartRegion_1[2] }}', '{{ $chartRegion_1[3] }}', '{{ $chartRegion_1[4] }}',
+                    '{{ $chartRegion_1[5] }}', '{{ $chartRegion_1[6] }}', '{{ $chartRegion_1[7] }}'],
                     datasets:[
                     {
                         label:'Low Purchasing Power',
@@ -377,14 +361,941 @@
                         enabled:true
                     }
                 }
+            };    
+            //// For Region 2 Chart Option ///////////////////////////////////////////
+            var optionData_Region2 = {
+                name: "Region 2",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_2[0] }}', '{{ $chartRegion_2[1] }}', '{{ $chartRegion_2[2] }}', '{{ $chartRegion_2[3] }}', '{{ $chartRegion_2[4] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_2[0] }}, {{ $chartLowPercent_2[1] }}, {{ $chartLowPercent_2[2] }},
+                            {{ $chartLowPercent_2[3] }}, {{ $chartLowPercent_2[4] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_2[0] }} , {{ $chartMedPercent_2[1] }}, {{ $chartMedPercent_2[2] }},
+                            {{ $chartMedPercent_2[3] }}, {{ $chartMedPercent_2[4] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_2[0] }}, {{ $chartHighPercent_2[1] }}, {{ $chartHighPercent_2[2] }},
+                            {{ $chartHighPercent_2[3] }}, {{ $chartHighPercent_2[4] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 2',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            };  
+            //// For Region 3 Chart Option ///////////////////////////////////////////
+            var optionData_Region3 = {
+                name: "Region 3",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_3[0] }}', '{{ $chartRegion_3[1] }}', '{{ $chartRegion_3[2] }}', '{{ $chartRegion_3[3] }}', '{{ $chartRegion_3[4] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_3[0] }}, {{ $chartLowPercent_3[1] }}, {{ $chartLowPercent_3[2] }},
+                            {{ $chartLowPercent_3[3] }}, {{ $chartLowPercent_3[4] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_3[0] }} , {{ $chartMedPercent_3[1] }}, {{ $chartMedPercent_3[2] }},
+                            {{ $chartMedPercent_3[3] }}, {{ $chartMedPercent_3[4] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_3[0] }}, {{ $chartHighPercent_3[1] }}, {{ $chartHighPercent_3[2] }},
+                            {{ $chartHighPercent_3[3] }}, {{ $chartHighPercent_3[4] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 3',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            };  
+            //// For Region 4 Chart Option ///////////////////////////////////////////
+            var optionData_Region4 = {
+                name: "Region 4",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_4[0] }}', '{{ $chartRegion_4[1] }}', '{{ $chartRegion_4[2] }}', '{{ $chartRegion_4[3] }}', '{{ $chartRegion_4[4] }}',
+                    '{{ $chartRegion_4[5] }}', '{{ $chartRegion_4[6] }}', '{{ $chartRegion_4[7] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_4[0] }}, {{ $chartLowPercent_4[1] }}, {{ $chartLowPercent_4[2] }},
+                            {{ $chartLowPercent_4[3] }}, {{ $chartLowPercent_4[4] }}, {{ $chartLowPercent_4[5] }},
+                            {{ $chartLowPercent_4[6] }}, {{ $chartLowPercent_4[7] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_4[0] }} , {{ $chartMedPercent_4[1] }}, {{ $chartMedPercent_4[2] }},
+                            {{ $chartMedPercent_4[3] }}, {{ $chartMedPercent_4[4] }}, {{ $chartMedPercent_4[5] }},
+                            {{ $chartMedPercent_4[6] }}, {{ $chartMedPercent_4[7] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_4[0] }}, {{ $chartHighPercent_4[1] }}, {{ $chartHighPercent_4[2] }},
+                            {{ $chartHighPercent_4[3] }}, {{ $chartHighPercent_4[4] }}, {{ $chartHighPercent_4[5] }},
+                            {{ $chartHighPercent_4[6] }}, {{ $chartHighPercent_4[7] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 4',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
             };
-    </script>
+            //// For Region 5 Chart Option ///////////////////////////////////////////
+            var optionData_Region5 = {
+                name: "Region 5",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_5[0] }}', '{{ $chartRegion_5[1] }}', '{{ $chartRegion_5[2] }}', '{{ $chartRegion_5[3] }}', '{{ $chartRegion_5[4] }}',
+                    '{{ $chartRegion_5[5] }}', '{{ $chartRegion_5[6] }}', '{{ $chartRegion_5[7] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_5[0] }}, {{ $chartLowPercent_5[1] }}, {{ $chartLowPercent_5[2] }},
+                            {{ $chartLowPercent_5[3] }}, {{ $chartLowPercent_5[4] }}, {{ $chartLowPercent_5[5] }},
+                            {{ $chartLowPercent_5[6] }}, {{ $chartLowPercent_5[7] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_5[0] }} , {{ $chartMedPercent_5[1] }}, {{ $chartMedPercent_5[2] }},
+                            {{ $chartMedPercent_5[3] }}, {{ $chartMedPercent_5[4] }}, {{ $chartMedPercent_5[5] }},
+                            {{ $chartMedPercent_5[6] }}, {{ $chartMedPercent_5[7] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_5[0] }}, {{ $chartHighPercent_5[1] }}, {{ $chartHighPercent_5[2] }},
+                            {{ $chartHighPercent_5[3] }}, {{ $chartHighPercent_5[4] }}, {{ $chartHighPercent_5[5] }},
+                            {{ $chartHighPercent_5[6] }}, {{ $chartHighPercent_5[7] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 5',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            }; 
+            //// For Region 6 Chart Option ///////////////////////////////////////////
+            var optionData_Region6 = {
+                name: "Region 6",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_6[0] }}', '{{ $chartRegion_6[1] }}', '{{ $chartRegion_6[2] }}', '{{ $chartRegion_6[3] }}', '{{ $chartRegion_6[4] }}',
+                    '{{ $chartRegion_6[5] }}', '{{ $chartRegion_6[6] }}', '{{ $chartRegion_6[7] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_6[0] }}, {{ $chartLowPercent_6[1] }}, {{ $chartLowPercent_6[2] }},
+                            {{ $chartLowPercent_6[3] }}, {{ $chartLowPercent_6[4] }}, {{ $chartLowPercent_6[5] }},
+                            {{ $chartLowPercent_6[6] }}, {{ $chartLowPercent_6[7] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_6[0] }} , {{ $chartMedPercent_6[1] }}, {{ $chartMedPercent_6[2] }},
+                            {{ $chartMedPercent_6[3] }}, {{ $chartMedPercent_6[4] }}, {{ $chartMedPercent_6[5] }},
+                            {{ $chartMedPercent_6[6] }}, {{ $chartMedPercent_6[7] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_6[0] }}, {{ $chartHighPercent_6[1] }}, {{ $chartHighPercent_6[2] }},
+                            {{ $chartHighPercent_6[3] }}, {{ $chartHighPercent_6[4] }}, {{ $chartHighPercent_6[5] }},
+                            {{ $chartHighPercent_6[6] }}, {{ $chartHighPercent_6[7] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 6',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            };
+            //// For Region 7 Chart Option ///////////////////////////////////////////
+            var optionData_Region7 = {
+                name: "Region 7",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_7[0] }}', '{{ $chartRegion_7[1] }}', '{{ $chartRegion_7[2] }}', '{{ $chartRegion_7[3] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_7[0] }}, {{ $chartLowPercent_7[1] }}, {{ $chartLowPercent_7[2] }},
+                            {{ $chartLowPercent_7[3] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_7[0] }} , {{ $chartMedPercent_7[1] }}, {{ $chartMedPercent_7[2] }},
+                            {{ $chartMedPercent_7[3] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_7[0] }}, {{ $chartHighPercent_7[1] }}, {{ $chartHighPercent_7[2] }},
+                            {{ $chartHighPercent_7[3] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 7',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            };  
+            //// For Region 8 Chart Option ///////////////////////////////////////////
+            var optionData_Region8 = {
+                name: "Region 8",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_8[0] }}', '{{ $chartRegion_8[1] }}', '{{ $chartRegion_8[2] }}', '{{ $chartRegion_8[3] }}',
+                            '{{ $chartRegion_8[4] }}', '{{ $chartRegion_8[5] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_8[0] }}, {{ $chartLowPercent_8[1] }}, {{ $chartLowPercent_8[2] }},
+                            {{ $chartLowPercent_8[3] }}, {{ $chartLowPercent_8[4] }}, {{ $chartLowPercent_8[5] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_8[0] }} , {{ $chartMedPercent_8[1] }}, {{ $chartMedPercent_8[2] }},
+                            {{ $chartMedPercent_8[3] }}, {{ $chartMedPercent_8[4] }}, {{ $chartMedPercent_8[5] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_8[0] }}, {{ $chartHighPercent_8[1] }}, {{ $chartHighPercent_8[2] }},
+                            {{ $chartHighPercent_8[3] }}, {{ $chartHighPercent_8[4] }}, {{ $chartHighPercent_8[5] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 8',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            };
+            //// For Region 9 Chart Option ///////////////////////////////////////////
+            var optionData_Region9 = {
+                name: "Region 9",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_9[0] }}', '{{ $chartRegion_9[1] }}', '{{ $chartRegion_9[2] }}', '{{ $chartRegion_9[3] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_9[0] }}, {{ $chartLowPercent_9[1] }}, {{ $chartLowPercent_9[2] }},
+                            {{ $chartLowPercent_9[3] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_9[0] }} , {{ $chartMedPercent_9[1] }}, {{ $chartMedPercent_9[2] }},
+                            {{ $chartMedPercent_9[3] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_9[0] }}, {{ $chartHighPercent_9[1] }}, {{ $chartHighPercent_9[2] }},
+                            {{ $chartHighPercent_9[3] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 9',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            };  
+            //// For Region 10 Chart Option ///////////////////////////////////////////
+            var optionData_Region10 = {
+                name: "Region 10",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_10[0] }}', '{{ $chartRegion_10[1] }}', '{{ $chartRegion_10[2] }}', '{{ $chartRegion_10[3] }}', '{{ $chartRegion_10[4] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_10[0] }}, {{ $chartLowPercent_10[1] }}, {{ $chartLowPercent_10[2] }},
+                            {{ $chartLowPercent_10[3] }}, {{ $chartLowPercent_10[4] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_10[0] }} , {{ $chartMedPercent_10[1] }}, {{ $chartMedPercent_10[2] }},
+                            {{ $chartMedPercent_10[3] }}, {{ $chartMedPercent_10[4] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_10[0] }}, {{ $chartHighPercent_10[1] }}, {{ $chartHighPercent_10[2] }},
+                            {{ $chartHighPercent_10[3] }}, {{ $chartHighPercent_10[4] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 10',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            };  
+            //// For Region 11 Chart Option ///////////////////////////////////////////
+            var optionData_Region11 = {
+                name: "Region 11",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_11[0] }}', '{{ $chartRegion_11[1] }}', '{{ $chartRegion_11[2] }}', '{{ $chartRegion_11[3] }}', '{{ $chartRegion_11[4] }}',
+                    '{{ $chartRegion_11[5] }}', '{{ $chartRegion_11[6] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_11[0] }}, {{ $chartLowPercent_11[1] }}, {{ $chartLowPercent_11[2] }},
+                            {{ $chartLowPercent_11[3] }}, {{ $chartLowPercent_11[4] }}, {{ $chartLowPercent_11[5] }},
+                            {{ $chartLowPercent_11[6] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_11[0] }} , {{ $chartMedPercent_11[1] }}, {{ $chartMedPercent_11[2] }},
+                            {{ $chartMedPercent_11[3] }}, {{ $chartMedPercent_11[4] }}, {{ $chartMedPercent_11[5] }},
+                            {{ $chartMedPercent_11[6] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_11[0] }}, {{ $chartHighPercent_11[1] }}, {{ $chartHighPercent_11[2] }},
+                            {{ $chartHighPercent_11[3] }}, {{ $chartHighPercent_11[4] }}, {{ $chartHighPercent_11[5] }},
+                            {{ $chartHighPercent_11[6] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 11',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            }; 
+            //// For Region 12 Chart Option ///////////////////////////////////////////
+            var optionData_Region12 = {
+                name: "Region 12",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_12[0] }}', '{{ $chartRegion_12[1] }}', '{{ $chartRegion_12[2] }}', '{{ $chartRegion_12[3] }}', '{{ $chartRegion_12[4] }}',
+                    '{{ $chartRegion_12[5] }}', '{{ $chartRegion_12[6] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_12[0] }}, {{ $chartLowPercent_12[1] }}, {{ $chartLowPercent_12[2] }},
+                            {{ $chartLowPercent_12[3] }}, {{ $chartLowPercent_12[4] }}, {{ $chartLowPercent_12[5] }},
+                            {{ $chartLowPercent_12[6] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_12[0] }} , {{ $chartMedPercent_12[1] }}, {{ $chartMedPercent_12[2] }},
+                            {{ $chartMedPercent_12[3] }}, {{ $chartMedPercent_12[4] }}, {{ $chartMedPercent_12[5] }},
+                            {{ $chartMedPercent_12[6] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_12[0] }}, {{ $chartHighPercent_12[1] }}, {{ $chartHighPercent_12[2] }},
+                            {{ $chartHighPercent_12[3] }}, {{ $chartHighPercent_12[4] }}, {{ $chartHighPercent_12[5] }},
+                            {{ $chartHighPercent_12[6] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 12',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            }; 
+            //// For Region 13 Chart Option ///////////////////////////////////////////
+            var optionData_Region13 = {
+                name: "Region 13",
+                type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:['{{ $chartRegion_13[0] }}'],
+                    datasets:[
+                    {
+                        label:'Low Purchasing Power',
+                        data: [{{ $chartLowPercent_13[0] }}],
+                        backgroundColor:'green',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },
+                    {
+                        label:'Medium Purchasing Power',
+                        data: [{{ $chartMedPercent_13[0] }}],
+                        backgroundColor:'yellow',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    },{
+                        label:'High Purchasing Power',
+                        data:[{{ $chartHighPercent_13[0] }}],
+                        backgroundColor:'red',
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }],
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Purchasing Power in Region 13',
+                        fontSize:25,
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{ stacked: true, 
+                                    ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Percentage (%)'
+                                    }
+                                }]
+                    },
+                    legend:{
+                        display:true,
+                        position:'bottom',
+                        labels:{
+                            fontColor:'#000',
+                        } 
+                    },
+                    layout:{
+                        padding:{
+                            left:20,
+                            right:20,
+                            bottom:20,
+                            top:20
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    }
+                }
+            };  
     <!-- *************************************************************** -->
     <!-- END 100% stacked bar chart -->
     <!-- *************************************************************** -->
   
-
-    <script>
     <!-- *************************************************************** -->
     <!-- Start Thai Map -->
     <!-- *************************************************************** -->
@@ -651,71 +1562,98 @@
                     $("#Map_Quan_TH").toggleClass("invisible");
                     $('#vmapTH_pri').toggleClass("invisible");
                     $("#Map_Pri_TH").toggleClass("invisible");
+                    $.massPopChart.destroy();
                     if(Region_1.includes(code)) {
                         $('#vmapTH_quan_r1').removeClass('invisible');   
                         $("#Map_Quan_Region_1").removeClass('invisible');   
                         $('#vmapTH_pri_r1').removeClass('invisible');   
                         $("#Map_Pri_Region_1").removeClass('invisible');   
+                        var myChart_1 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_1 = new Chart(myChart_1, optionData_Region1);
                     }else if(Region_2.includes(code)) {
                         $('#vmapTH_quan_r2').removeClass('invisible');  
                         $("#Map_Quan_Region_2").removeClass('invisible');  
                         $('#vmapTH_pri_r2').removeClass('invisible');  
-                        $("#Map_Pri_Region_2").removeClass('invisible');  
+                        $("#Map_Pri_Region_2").removeClass('invisible'); 
+                        var myChart_2 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_2 = new Chart(myChart_2, optionData_Region2); 
                     }else if(Region_3.includes(code)) {
                         $('#vmapTH_quan_r3').removeClass('invisible');   
                         $("#Map_Quan_Region_3").removeClass('invisible');   
                         $('#vmapTH_pri_r3').removeClass('invisible');   
-                        $("#Map_Pri_Region_3").removeClass('invisible');   
+                        $("#Map_Pri_Region_3").removeClass('invisible');
+                        var myChart_3 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_3 = new Chart(myChart_3, optionData_Region3);
                     }else if(Region_4.includes(code)) {
                         $('#vmapTH_quan_r4').removeClass('invisible');  
                         $("#Map_Quan_Region_4").removeClass('invisible');  
                         $('#vmapTH_pri_r4').removeClass('invisible');  
                         $("#Map_Pri_Region_4").removeClass('invisible');  
+                        var myChart_4 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_4 = new Chart(myChart_4, optionData_Region4);
                     }else if(Region_5.includes(code)) {
                         $('#vmapTH_quan_r5').removeClass('invisible');  
                         $("#Map_Quan_Region_5").removeClass('invisible');  
                         $('#vmapTH_pri_r5').removeClass('invisible');  
                         $("#Map_Pri_Region_5").removeClass('invisible');  
+                        var myChart_5 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_5 = new Chart(myChart_5, optionData_Region5);
                     }else if(Region_6.includes(code)) {
                         $('#vmapTH_quan_r6').removeClass('invisible');  
                         $("#Map_Quan_Region_6").removeClass('invisible'); 
                         $('#vmapTH_pri_r6').removeClass('invisible');  
                         $("#Map_Pri_Region_6").removeClass('invisible');  
+                        var myChart_6 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_6 = new Chart(myChart_6, optionData_Region6);
                     }else if(Region_7.includes(code)) {
                         $('#vmapTH_quan_r7').removeClass('invisible');   
                         $("#Map_Quan_Region_7").removeClass('invisible');   
                         $('#vmapTH_pri_r7').removeClass('invisible');   
                         $("#Map_Pri_Region_7").removeClass('invisible');   
+                        var myChart_7 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_7 = new Chart(myChart_7, optionData_Region7);
                     }else if(Region_8.includes(code)) {
                         $('#vmapTH_quan_r8').removeClass('invisible');  
                         $("#Map_Quan_Region_8").removeClass('invisible');  
                         $('#vmapTH_pri_r8').removeClass('invisible');  
-                        $("#Map_Pri_Region_8").removeClass('invisible');  
+                        $("#Map_Pri_Region_8").removeClass('invisible'); 
+                        var myChart_8 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_8 = new Chart(myChart_8, optionData_Region8); 
                     }else if(Region_9.includes(code)) {
                         $('#vmapTH_quan_r9').removeClass('invisible');  
                         $("#Map_Quan_Region_9").removeClass('invisible');  
                         $('#vmapTH_pri_r9').removeClass('invisible');  
                         $("#Map_Pri_Region_9").removeClass('invisible');  
+                        var myChart_9 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_9 = new Chart(myChart_9, optionData_Region9);
                     }else if(Region_10.includes(code)) {
                         $('#vmapTH_quan_r10').removeClass('invisible');  
                         $("#Map_Quan_Region_10").removeClass('invisible');  
                         $('#vmapTH_pri_r10').removeClass('invisible');  
                         $("#Map_Pri_Region_10").removeClass('invisible');  
+                        var myChart_10 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_10 = new Chart(myChart_10, optionData_Region10);
                     }else if(Region_11.includes(code)) {
                         $('#vmapTH_quan_r11').removeClass('invisible');   
                         $("#Map_Quan_Region_11").removeClass('invisible');   
                         $('#vmapTH_pri_r11').removeClass('invisible');   
                         $("#Map_Pri_Region_11").removeClass('invisible');   
+                        var myChart_11 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_11 = new Chart(myChart_11, optionData_Region11);
                     }else if(Region_12.includes(code)) {
                         $('#vmapTH_quan_r12').removeClass('invisible');  
                         $("#Map_Quan_Region_12").removeClass('invisible');  
                         $('#vmapTH_pri_r12').removeClass('invisible');  
                         $("#Map_Pri_Region_12").removeClass('invisible');  
+                        var myChart_12 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_12 = new Chart(myChart_12, optionData_Region12);
                     }else if(Region_13.includes(code)) {
                         $('#vmapTH_quan_r13').removeClass('invisible');  
                         $("#Map_Quan_Region_13").removeClass('invisible');  
                         $('#vmapTH_pri_r13').removeClass('invisible');  
                         $("#Map_Pri_Region_13").removeClass('invisible');   
+                        var myChart_13 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_13 = new Chart(myChart_13, optionData_Region13);
                     }
                 }
             }
@@ -889,71 +1827,98 @@
                     $("#Map_Quan_TH").toggleClass("invisible");
                     $('#vmapTH_pri').toggleClass("invisible");
                     $("#Map_Pri_TH").toggleClass("invisible");
+                    $.massPopChart.destroy();
                     if(Region_1.includes(code)) {
                         $('#vmapTH_quan_r1').removeClass('invisible');   
                         $("#Map_Quan_Region_1").removeClass('invisible');   
                         $('#vmapTH_pri_r1').removeClass('invisible');   
                         $("#Map_Pri_Region_1").removeClass('invisible');   
+                        var myChart_1 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_1 = new Chart(myChart_1, optionData_Region1);
                     }else if(Region_2.includes(code)) {
                         $('#vmapTH_quan_r2').removeClass('invisible');  
                         $("#Map_Quan_Region_2").removeClass('invisible');  
                         $('#vmapTH_pri_r2').removeClass('invisible');  
-                        $("#Map_Pri_Region_2").removeClass('invisible');  
+                        $("#Map_Pri_Region_2").removeClass('invisible'); 
+                        var myChart_2 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_2 = new Chart(myChart_2, optionData_Region2); 
                     }else if(Region_3.includes(code)) {
                         $('#vmapTH_quan_r3').removeClass('invisible');   
                         $("#Map_Quan_Region_3").removeClass('invisible');   
                         $('#vmapTH_pri_r3').removeClass('invisible');   
-                        $("#Map_Pri_Region_3").removeClass('invisible');   
+                        $("#Map_Pri_Region_3").removeClass('invisible');
+                        var myChart_3 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_3 = new Chart(myChart_3, optionData_Region3);
                     }else if(Region_4.includes(code)) {
                         $('#vmapTH_quan_r4').removeClass('invisible');  
                         $("#Map_Quan_Region_4").removeClass('invisible');  
                         $('#vmapTH_pri_r4').removeClass('invisible');  
                         $("#Map_Pri_Region_4").removeClass('invisible');  
+                        var myChart_4 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_4 = new Chart(myChart_4, optionData_Region4);
                     }else if(Region_5.includes(code)) {
                         $('#vmapTH_quan_r5').removeClass('invisible');  
                         $("#Map_Quan_Region_5").removeClass('invisible');  
                         $('#vmapTH_pri_r5').removeClass('invisible');  
                         $("#Map_Pri_Region_5").removeClass('invisible');  
+                        var myChart_5 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_5 = new Chart(myChart_5, optionData_Region5);
                     }else if(Region_6.includes(code)) {
                         $('#vmapTH_quan_r6').removeClass('invisible');  
                         $("#Map_Quan_Region_6").removeClass('invisible'); 
                         $('#vmapTH_pri_r6').removeClass('invisible');  
                         $("#Map_Pri_Region_6").removeClass('invisible');  
+                        var myChart_6 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_6 = new Chart(myChart_6, optionData_Region6);
                     }else if(Region_7.includes(code)) {
                         $('#vmapTH_quan_r7').removeClass('invisible');   
                         $("#Map_Quan_Region_7").removeClass('invisible');   
                         $('#vmapTH_pri_r7').removeClass('invisible');   
                         $("#Map_Pri_Region_7").removeClass('invisible');   
+                        var myChart_7 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_7 = new Chart(myChart_7, optionData_Region7);
                     }else if(Region_8.includes(code)) {
                         $('#vmapTH_quan_r8').removeClass('invisible');  
                         $("#Map_Quan_Region_8").removeClass('invisible');  
                         $('#vmapTH_pri_r8').removeClass('invisible');  
-                        $("#Map_Pri_Region_8").removeClass('invisible');  
+                        $("#Map_Pri_Region_8").removeClass('invisible'); 
+                        var myChart_8 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_8 = new Chart(myChart_8, optionData_Region8); 
                     }else if(Region_9.includes(code)) {
                         $('#vmapTH_quan_r9').removeClass('invisible');  
                         $("#Map_Quan_Region_9").removeClass('invisible');  
                         $('#vmapTH_pri_r9').removeClass('invisible');  
                         $("#Map_Pri_Region_9").removeClass('invisible');  
+                        var myChart_9 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_9 = new Chart(myChart_9, optionData_Region9);
                     }else if(Region_10.includes(code)) {
                         $('#vmapTH_quan_r10').removeClass('invisible');  
                         $("#Map_Quan_Region_10").removeClass('invisible');  
                         $('#vmapTH_pri_r10').removeClass('invisible');  
                         $("#Map_Pri_Region_10").removeClass('invisible');  
+                        var myChart_10 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_10 = new Chart(myChart_10, optionData_Region10);
                     }else if(Region_11.includes(code)) {
                         $('#vmapTH_quan_r11').removeClass('invisible');   
                         $("#Map_Quan_Region_11").removeClass('invisible');   
                         $('#vmapTH_pri_r11').removeClass('invisible');   
                         $("#Map_Pri_Region_11").removeClass('invisible');   
+                        var myChart_11 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_11 = new Chart(myChart_11, optionData_Region11);
                     }else if(Region_12.includes(code)) {
                         $('#vmapTH_quan_r12').removeClass('invisible');  
                         $("#Map_Quan_Region_12").removeClass('invisible');  
                         $('#vmapTH_pri_r12').removeClass('invisible');  
                         $("#Map_Pri_Region_12").removeClass('invisible');  
+                        var myChart_12 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_12 = new Chart(myChart_12, optionData_Region12);
                     }else if(Region_13.includes(code)) {
                         $('#vmapTH_quan_r13').removeClass('invisible');  
                         $("#Map_Quan_Region_13").removeClass('invisible');  
                         $('#vmapTH_pri_r13').removeClass('invisible');  
                         $("#Map_Pri_Region_13").removeClass('invisible');   
+                        var myChart_13 = $("#myChart").get(0).getContext("2d");
+                        $.massPopChart_13 = new Chart(myChart_13, optionData_Region13);
                     }
                 }
             }
@@ -1000,73 +1965,87 @@
                 $("#Map_Quan_TH").toggleClass("invisible");
                 $('#vmapTH_pri').toggleClass("invisible");
                 $("#Map_Pri_TH").toggleClass("invisible");
-                
+
                 if(!document.getElementById('vmapTH_quan_r1').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r1').classList.contains('invisible')){
                     $('#vmapTH_quan_r1').addClass('invisible');   
                     $('#Map_Quan_Region_1').addClass('invisible');   
                     $('#vmapTH_pri_r1').addClass('invisible');   
-                    $('#Map_Pri_Region_1').addClass('invisible');     
+                    $('#Map_Pri_Region_1').addClass('invisible'); 
+                    $.massPopChart_1.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r2').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r2').classList.contains('invisible')){
                     $('#vmapTH_quan_r2').addClass('invisible'); 
                     $('#Map_Quan_Region_2').addClass('invisible'); 
                     $('#vmapTH_pri_r2').addClass('invisible'); 
                     $('#Map_Pri_Region_2').addClass('invisible'); 
+                    $.massPopChart_2.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r3').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r3').classList.contains('invisible')){
                     $('#vmapTH_quan_r3').addClass('invisible');   
                     $('#Map_Quan_Region_3').addClass('invisible');   
                     $('#vmapTH_pri_r3').addClass('invisible'); 
                     $('#Map_Pri_Region_3').addClass('invisible'); 
+                    $.massPopChart_3.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r4').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r4').classList.contains('invisible')){
                     $('#vmapTH_quan_r4').addClass('invisible'); 
                     $('#Map_Quan_Region_4').addClass('invisible'); 
                     $('#vmapTH_pri_r4').addClass('invisible'); 
                     $('#Map_Pri_Region_4').addClass('invisible'); 
+                    $.massPopChart_4.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r5').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r5').classList.contains('invisible')){
                     $('#vmapTH_quan_r5').addClass('invisible'); 
                     $('#Map_Quan_Region_5').addClass('invisible'); 
                     $('#vmapTH_pri_r5').addClass('invisible'); 
                     $('#Map_Pri_Region_5').addClass('invisible'); 
+                    $.massPopChart_5.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r6').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r6').classList.contains('invisible')){
                     $('#vmapTH_quan_r6').addClass('invisible'); 
                     $('#Map_Quan_Region_6').addClass('invisible'); 
                     $('#vmapTH_pri_r6').addClass('invisible'); 
                     $('#Map_Pri_Region_6').addClass('invisible'); 
+                    $.massPopChart_6.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r7').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r7').classList.contains('invisible')){
                     $('#vmapTH_quan_r7').addClass('invisible'); 
                     $('#Map_Quan_Region_7').addClass('invisible'); 
                     $('#vmapTH_pri_r7').addClass('invisible'); 
-                    $('#Map_Pri_Region_7').addClass('invisible'); 
+                    $('#Map_Pri_Region_7').addClass('invisible');
+                    $.massPopChart_7.destroy(); 
                 }else if(!document.getElementById('vmapTH_quan_r8').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r8').classList.contains('invisible')){
                     $('#vmapTH_quan_r8').addClass('invisible');   
                     $('#Map_Quan_Region_8').addClass('invisible');  
                     $('#vmapTH_pri_r8').addClass('invisible');   
-                    $('#Map_Pri_Region_8').addClass('invisible');  
+                    $('#Map_Pri_Region_8').addClass('invisible'); 
+                    $.massPopChart_8.destroy(); 
                 }else if(!document.getElementById('vmapTH_quan_r9').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r9').classList.contains('invisible')){
                     $('#vmapTH_quan_r9').addClass('invisible'); 
                     $('#Map_Quan_Region_9').addClass('invisible'); 
                     $('#vmapTH_pri_r9').addClass('invisible'); 
                     $('#Map_Pri_Region_9').addClass('invisible'); 
+                    $.massPopChart_9.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r10').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r10').classList.contains('invisible')){
                     $('#vmapTH_quan_r10').addClass('invisible'); 
                     $('#Map_Quan_Region_10').addClass('invisible'); 
                     $('#vmapTH_pri_r10').addClass('invisible'); 
                     $('#Map_Pri_Region_10').addClass('invisible'); 
+                    $.massPopChart_10.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r11').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r11').classList.contains('invisible')){
                     $('#vmapTH_quan_r11').addClass('invisible'); 
                     $('#Map_Quan_Region_11').addClass('invisible'); 
                     $('#vmapTH_pri_r11').addClass('invisible'); 
                     $('#Map_Pri_Region_11').addClass('invisible'); 
+                    $.massPopChart_11.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r12').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r12').classList.contains('invisible')){
                     $('#vmapTH_quan_r12').addClass('invisible'); 
                     $('#Map_Quan_Region_12').addClass('invisible'); 
                     $('#vmapTH_pri_r12').addClass('invisible'); 
                     $('#Map_Pri_Region_12').addClass('invisible'); 
+                    $.massPopChart_12.destroy();
                 }else if(!document.getElementById('vmapTH_quan_r13').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r13').classList.contains('invisible')){
                     $('#vmapTH_quan_r13').addClass('invisible'); 
                     $('#Map_Quan_Region_13').addClass('invisible'); 
                     $('#vmapTH_pri_r13').addClass('invisible'); 
                     $('#Map_Pri_Region_13').addClass('invisible'); 
-                }         
+                    $.massPopChart_13.destroy();
+                } 
+                $.massPopChart = new Chart(myChart, optionData);      
             });
         });
     </script>
