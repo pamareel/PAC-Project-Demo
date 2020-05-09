@@ -170,23 +170,63 @@
     $i=0;
     if(!empty($resultSearch) && $resultSearch != 'No value'){
     ?>
+    <style>
+        #Region_To_Size, #Size_To_Region {
+            border-radius: 4px;
+            padding: 8px;
+            border: none;
+            font-size: 16px;
+            background-color: beige;
+            color: grey;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            // Start Size of Hospital ///////
+            $("#Region_To_Size").click(function() { 
+                $(this).toggleClass("invisible");
+                $("#Size_To_Region").toggleClass("invisible");
+                $("#Price_by_Region").addClass("invisible");
+                $("#Quantity_by_Region").addClass("invisible");
+            });
+            $("#Size_To_Region").click(function() { 
+                $(this).toggleClass("invisible");
+                $("#Region_To_Size").toggleClass("invisible");
+                $("#Price_by_Region").removeClass("invisible");  
+                $("#Quantity_by_Region").removeClass("invisible");
+            });
+        });
+        // END size of Hospital /////////
+    </script>
     <div class="row" id = 'Stack_Bar'>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <a class="customize-input float-right" href="/policy/DrugPage/SizeHospital">
-                    Region -> Size of hospital
-                </a>
-                <?php
-                if(isset($chartHighPercent) || isset($chartMedPercent) || isset($chartLowPercent)){
-                ?>
-                    <canvas id="myChart"></canvas>
-                <?php
-                }else{
-                ?>
-                    <canvas id="myChart">No Data</canvas>
-                <?php
-                }
-                ?>
+                <div class="card-body">
+                    <button class="btn" id="Region_To_Size">Region > Size of hospital</button>
+                    <button class="btn invisible" id="Size_To_Region">Size of hospital > Region</button>
+                    <br/>
+                    <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
+                        <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
+                            <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
+                                <?php
+                                if(isset($chartHighPercent) || isset($chartMedPercent) || isset($chartLowPercent)){
+                                ?>
+                                    <canvas id="myChart" style="margin: auto;"></canvas>
+                                <?php
+                                }else{
+                                ?>
+                                    <canvas id="myChart">No Data</canvas>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -266,10 +306,10 @@
                     },
                     layout:{
                         padding:{
-                            left:5,
-                            right:5,
-                            bottom:5,
-                            top:5
+                            left:0,
+                            right:0,
+                            bottom:0,
+                            top:0
                         }
                     },
                     tooltips:{
@@ -1418,7 +1458,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["green","yellow","red"]},
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_1);
@@ -2142,6 +2182,7 @@
                     $("#Map_Quan_TH").toggleClass("invisible");
                     $('#vmapTH_pri').toggleClass("invisible");
                     $("#Map_Pri_TH").toggleClass("invisible");
+                    $("#Region_To_Size").addClass("invisible");
                     $.massPopChart.destroy();
                     if(Region_1.includes(code)) {
                         $('#vmapTH_quan_r1').removeClass('invisible');   
@@ -2999,6 +3040,7 @@
                     $("#Map_Quan_TH").toggleClass("invisible");
                     $('#vmapTH_pri').toggleClass("invisible");
                     $("#Map_Pri_TH").toggleClass("invisible");
+                    $("#Region_To_Size").addClass("invisible");
                     $.massPopChart.destroy();
                     if(Region_1.includes(code)) {
                         $('#vmapTH_quan_r1').removeClass('invisible');   
@@ -3137,7 +3179,7 @@
                 $("#Map_Quan_TH").toggleClass("invisible");
                 $('#vmapTH_pri').toggleClass("invisible");
                 $("#Map_Pri_TH").toggleClass("invisible");
-
+                $("#Region_To_Size").removeClass("invisible");
                 if(!document.getElementById('vmapTH_quan_r1').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r1').classList.contains('invisible')){
                     $('#vmapTH_quan_r1').addClass('invisible');   
                     $('#Map_Quan_Region_1').addClass('invisible');   
@@ -3227,7 +3269,7 @@
                 $("#Quantity_by_Region").removeClass('invisible');  
                 $("#Stack_Bar").removeClass('invisible');   
             });
-            
+            // END Region ///////////////////
         });
     </script>
     <style>
@@ -3265,9 +3307,6 @@
         }
     </style>
     <div class="row">
-        <!-- *************************************************************** -->
-        <!-- Start Donut in Province level -->
-        <!-- *************************************************************** -->
         <div class="col-md-12 col-lg-12 invisible" id = 'Province_Donut'>
             <div class="card">
                 <div class="card-body">
@@ -3289,9 +3328,6 @@
                 </div>
             </div>
         </div>
-        <!-- *************************************************************** -->
-        <!-- End Donut in Province level -->
-        <!-- *************************************************************** -->
         <div class="col-md-7 col-lg-6" id = 'Price_by_Region'>
             <div class="card">
                 <div class="card-body">
@@ -4224,13 +4260,7 @@
                 </div>
             </div>
         </div>
-        <!-- *************************************************************** -->
-        <!-- End Thai Map in Region level -->
-        <!-- *************************************************************** -->
         
-        <!-- *************************************************************** -->
-        <!-- Start Table Donut -->
-        <!-- *************************************************************** -->
         <div class="col-md-12 col-lg-12 invisible" id = 'Table_Hos_by_Province'>
             <div class="card">
                 <div class="card-body">
@@ -4258,9 +4288,6 @@
             </div>
         </div>
     </div>
-    <!-- *************************************************************** -->
-    <!-- End Table Donut -->
-    <!-- *************************************************************** -->
     <?php
     }
     ?>
