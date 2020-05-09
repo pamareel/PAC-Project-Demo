@@ -170,7 +170,7 @@
     $i=0;
     if(!empty($resultSearch) && $resultSearch != 'No value'){
     ?>
-    <div class="row">
+    <div class="row" id = 'Stack_Bar'>
         <div class="col-md-8">
             <div class="card">
                 <a class="customize-input float-right" href="/policy/DrugPage/SizeHospital">
@@ -1368,7 +1368,18 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
-
+                    if(Region_1.includes(code)) {
+                        $("#Province_Donut").removeClass('invisible');  
+                        $('#Table_Hos_by_Province').removeClass('invisible');  
+                        $('#Price_by_Region').addClass('invisible');   
+                        $("#Quantity_by_Region").addClass('invisible');   
+                        $("#Stack_Bar").addClass('invisible');  
+                    }
+                    if(code == 'TH-30'){ //ChiangMai
+                        //in option > modify header/donut
+                        //show donut
+                        //show table
+                    }
                 }
             }
             $Reg2_map_pri = {
@@ -2047,6 +2058,14 @@
                 } 
                 $.massPopChart = new Chart(myChart, optionData);      
             });
+            $("#backButton2").click(function() { 
+                $('#Province_Donut').addClass('invisible');  
+                $('#Table_Hos_by_Province').addClass('invisible');  
+                $('#Price_by_Region').removeClass('invisible');   
+                $("#Quantity_by_Region").removeClass('invisible');  
+                $("#Quantity_by_Region").removeClass('invisible');  
+                $("#Stack_Bar").removeClass('invisible');   
+            });
         });
     </script>
     <style>
@@ -2062,16 +2081,43 @@
             right: 10px;
             cursor: pointer;
         }
+        #backButton2 {
+            border-radius: 4px;
+            padding: 8px;
+            border: none;
+            font-size: 16px;
+            background-color: beige;
+            color: grey;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
         .invisible {
             display: none;
         }
     </style>
     <div class="row">
-        <div class="col-md-7 col-lg-6" id = 'Price by Region'>
+        <div class="col-md-12 col-lg-12 invisible" id = 'Province_Donut'>
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn" id="backButton2">&lt; Drill Up</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12 invisible" id = 'Table_Hos_by_Province'>
+            <div class="card">
+                <div class="card-body">
+                    ---Table---
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-lg-6" id = 'Price_by_Region'>
             <div class="card">
                 <div class="card-body">
                     <h1>Price by region</h1>
                     <button class="btn invisible" id="backButton">&lt; Drill Up</button>
+                    <button class="btn invisible" id="backButton2">&lt; Drill Up</button>
                     test if click at any Region chart will drill down
                     <div class='row'>
                         <div id="vmapTH_pri" style="width: 200px; height: 300px;"></div>
@@ -2529,7 +2575,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7 col-lg-6" id = 'Quantity by Region'>
+        <div class="col-md-7 col-lg-6" id = 'Quantity_by_Region'>
             <div class="card">
                 <div class="card-body">
                     <h1>Quantity by region</h1>
