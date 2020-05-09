@@ -200,20 +200,20 @@
                         ,'Region7', 'Region8', 'Region9', 'Region10', 'Region11', 'Region12', 'Region13'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent[0] }}, {{ $chartLowPercent[1] }}, {{ $chartLowPercent[2] }},
                             {{ $chartLowPercent[3] }}, {{ $chartLowPercent[4] }}, {{ $chartLowPercent[5] }},
                             {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}, {{ $chartLowPercent[8] }},
                             {{ $chartLowPercent[9] }}, {{ $chartLowPercent[10] }}, {{ $chartLowPercent[11] }},
                             {{ $chartLowPercent[12] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average',
                         data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
                             {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
                             {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}, {{ $chartMedPercent[8] }},
@@ -225,13 +225,13 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent[0] }}, {{ $chartHighPercent[1] }}, {{ $chartHighPercent[2] }},
                             {{ $chartHighPercent[3] }}, {{ $chartHighPercent[4] }}, {{ $chartHighPercent[5] }},
                             {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}, {{ $chartHighPercent[8] }},
                             {{ $chartHighPercent[9] }}, {{ $chartHighPercent[10] }}, {{ $chartHighPercent[11] }},
                             {{ $chartHighPercent[12] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -286,7 +286,7 @@
                         ,'Region7', 'Region8'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent[0] }}, {{ $chartLowPercent[1] }}, {{ $chartLowPercent[2] }},
                             {{ $chartLowPercent[3] }}, {{ $chartLowPercent[4] }}, {{ $chartLowPercent[5] }},
                             {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}],
@@ -297,7 +297,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average',
                         data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
                             {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
                             {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}],
@@ -307,7 +307,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above average',
                         data:[{{ $chartHighPercent[0] }}, {{ $chartHighPercent[1] }}, {{ $chartHighPercent[2] }},
                             {{ $chartHighPercent[3] }}, {{ $chartHighPercent[4] }}, {{ $chartHighPercent[5] }},
                             {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}],
