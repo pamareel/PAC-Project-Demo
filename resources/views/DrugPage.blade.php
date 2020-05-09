@@ -206,7 +206,7 @@
                             {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}, {{ $chartLowPercent[8] }},
                             {{ $chartLowPercent[9] }}, {{ $chartLowPercent[10] }}, {{ $chartLowPercent[11] }},
                             {{ $chartLowPercent[12] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -231,7 +231,7 @@
                             {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}, {{ $chartHighPercent[8] }},
                             {{ $chartHighPercent[9] }}, {{ $chartHighPercent[10] }}, {{ $chartHighPercent[11] }},
                             {{ $chartHighPercent[12] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -295,7 +295,7 @@
                         data: [{{ $chartLowPercent_1[0] }}, {{ $chartLowPercent_1[1] }}, {{ $chartLowPercent_1[2] }},
                             {{ $chartLowPercent_1[3] }}, {{ $chartLowPercent_1[4] }}, {{ $chartLowPercent_1[5] }},
                             {{ $chartLowPercent_1[6] }}, {{ $chartLowPercent_1[7] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -316,7 +316,7 @@
                         data:[{{ $chartHighPercent_1[0] }}, {{ $chartHighPercent_1[1] }}, {{ $chartHighPercent_1[2] }},
                             {{ $chartHighPercent_1[3] }}, {{ $chartHighPercent_1[4] }}, {{ $chartHighPercent_1[5] }},
                             {{ $chartHighPercent_1[6] }}, {{ $chartHighPercent_1[7] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -373,7 +373,7 @@
                         label:'Low Purchasing Power',
                         data: [{{ $chartLowPercent_2[0] }}, {{ $chartLowPercent_2[1] }}, {{ $chartLowPercent_2[2] }},
                             {{ $chartLowPercent_2[3] }}, {{ $chartLowPercent_2[4] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -392,7 +392,7 @@
                         label:'High Purchasing Power',
                         data:[{{ $chartHighPercent_2[0] }}, {{ $chartHighPercent_2[1] }}, {{ $chartHighPercent_2[2] }},
                             {{ $chartHighPercent_2[3] }}, {{ $chartHighPercent_2[4] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -449,7 +449,7 @@
                         label:'Low Purchasing Power',
                         data: [{{ $chartLowPercent_3[0] }}, {{ $chartLowPercent_3[1] }}, {{ $chartLowPercent_3[2] }},
                             {{ $chartLowPercent_3[3] }}, {{ $chartLowPercent_3[4] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -468,7 +468,7 @@
                         label:'High Purchasing Power',
                         data:[{{ $chartHighPercent_3[0] }}, {{ $chartHighPercent_3[1] }}, {{ $chartHighPercent_3[2] }},
                             {{ $chartHighPercent_3[3] }}, {{ $chartHighPercent_3[4] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -527,7 +527,7 @@
                         data: [{{ $chartLowPercent_4[0] }}, {{ $chartLowPercent_4[1] }}, {{ $chartLowPercent_4[2] }},
                             {{ $chartLowPercent_4[3] }}, {{ $chartLowPercent_4[4] }}, {{ $chartLowPercent_4[5] }},
                             {{ $chartLowPercent_4[6] }}, {{ $chartLowPercent_4[7] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -548,7 +548,7 @@
                         data:[{{ $chartHighPercent_4[0] }}, {{ $chartHighPercent_4[1] }}, {{ $chartHighPercent_4[2] }},
                             {{ $chartHighPercent_4[3] }}, {{ $chartHighPercent_4[4] }}, {{ $chartHighPercent_4[5] }},
                             {{ $chartHighPercent_4[6] }}, {{ $chartHighPercent_4[7] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -607,7 +607,7 @@
                         data: [{{ $chartLowPercent_5[0] }}, {{ $chartLowPercent_5[1] }}, {{ $chartLowPercent_5[2] }},
                             {{ $chartLowPercent_5[3] }}, {{ $chartLowPercent_5[4] }}, {{ $chartLowPercent_5[5] }},
                             {{ $chartLowPercent_5[6] }}, {{ $chartLowPercent_5[7] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -628,7 +628,7 @@
                         data:[{{ $chartHighPercent_5[0] }}, {{ $chartHighPercent_5[1] }}, {{ $chartHighPercent_5[2] }},
                             {{ $chartHighPercent_5[3] }}, {{ $chartHighPercent_5[4] }}, {{ $chartHighPercent_5[5] }},
                             {{ $chartHighPercent_5[6] }}, {{ $chartHighPercent_5[7] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -687,7 +687,7 @@
                         data: [{{ $chartLowPercent_6[0] }}, {{ $chartLowPercent_6[1] }}, {{ $chartLowPercent_6[2] }},
                             {{ $chartLowPercent_6[3] }}, {{ $chartLowPercent_6[4] }}, {{ $chartLowPercent_6[5] }},
                             {{ $chartLowPercent_6[6] }}, {{ $chartLowPercent_6[7] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -708,7 +708,7 @@
                         data:[{{ $chartHighPercent_6[0] }}, {{ $chartHighPercent_6[1] }}, {{ $chartHighPercent_6[2] }},
                             {{ $chartHighPercent_6[3] }}, {{ $chartHighPercent_6[4] }}, {{ $chartHighPercent_6[5] }},
                             {{ $chartHighPercent_6[6] }}, {{ $chartHighPercent_6[7] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -765,7 +765,7 @@
                         label:'Low Purchasing Power',
                         data: [{{ $chartLowPercent_7[0] }}, {{ $chartLowPercent_7[1] }}, {{ $chartLowPercent_7[2] }},
                             {{ $chartLowPercent_7[3] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -784,7 +784,7 @@
                         label:'High Purchasing Power',
                         data:[{{ $chartHighPercent_7[0] }}, {{ $chartHighPercent_7[1] }}, {{ $chartHighPercent_7[2] }},
                             {{ $chartHighPercent_7[3] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -842,7 +842,7 @@
                         label:'Low Purchasing Power',
                         data: [{{ $chartLowPercent_8[0] }}, {{ $chartLowPercent_8[1] }}, {{ $chartLowPercent_8[2] }},
                             {{ $chartLowPercent_8[3] }}, {{ $chartLowPercent_8[4] }}, {{ $chartLowPercent_8[5] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -861,7 +861,7 @@
                         label:'High Purchasing Power',
                         data:[{{ $chartHighPercent_8[0] }}, {{ $chartHighPercent_8[1] }}, {{ $chartHighPercent_8[2] }},
                             {{ $chartHighPercent_8[3] }}, {{ $chartHighPercent_8[4] }}, {{ $chartHighPercent_8[5] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -918,7 +918,7 @@
                         label:'Low Purchasing Power',
                         data: [{{ $chartLowPercent_9[0] }}, {{ $chartLowPercent_9[1] }}, {{ $chartLowPercent_9[2] }},
                             {{ $chartLowPercent_9[3] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -937,7 +937,7 @@
                         label:'High Purchasing Power',
                         data:[{{ $chartHighPercent_9[0] }}, {{ $chartHighPercent_9[1] }}, {{ $chartHighPercent_9[2] }},
                             {{ $chartHighPercent_9[3] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -994,7 +994,7 @@
                         label:'Low Purchasing Power',
                         data: [{{ $chartLowPercent_10[0] }}, {{ $chartLowPercent_10[1] }}, {{ $chartLowPercent_10[2] }},
                             {{ $chartLowPercent_10[3] }}, {{ $chartLowPercent_10[4] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1013,7 +1013,7 @@
                         label:'High Purchasing Power',
                         data:[{{ $chartHighPercent_10[0] }}, {{ $chartHighPercent_10[1] }}, {{ $chartHighPercent_10[2] }},
                             {{ $chartHighPercent_10[3] }}, {{ $chartHighPercent_10[4] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1072,7 +1072,7 @@
                         data: [{{ $chartLowPercent_11[0] }}, {{ $chartLowPercent_11[1] }}, {{ $chartLowPercent_11[2] }},
                             {{ $chartLowPercent_11[3] }}, {{ $chartLowPercent_11[4] }}, {{ $chartLowPercent_11[5] }},
                             {{ $chartLowPercent_11[6] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1093,7 +1093,7 @@
                         data:[{{ $chartHighPercent_11[0] }}, {{ $chartHighPercent_11[1] }}, {{ $chartHighPercent_11[2] }},
                             {{ $chartHighPercent_11[3] }}, {{ $chartHighPercent_11[4] }}, {{ $chartHighPercent_11[5] }},
                             {{ $chartHighPercent_11[6] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1152,7 +1152,7 @@
                         data: [{{ $chartLowPercent_12[0] }}, {{ $chartLowPercent_12[1] }}, {{ $chartLowPercent_12[2] }},
                             {{ $chartLowPercent_12[3] }}, {{ $chartLowPercent_12[4] }}, {{ $chartLowPercent_12[5] }},
                             {{ $chartLowPercent_12[6] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1173,7 +1173,7 @@
                         data:[{{ $chartHighPercent_12[0] }}, {{ $chartHighPercent_12[1] }}, {{ $chartHighPercent_12[2] }},
                             {{ $chartHighPercent_12[3] }}, {{ $chartHighPercent_12[4] }}, {{ $chartHighPercent_12[5] }},
                             {{ $chartHighPercent_12[6] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1229,7 +1229,7 @@
                     {
                         label:'Low Purchasing Power',
                         data: [{{ $chartLowPercent_13[0] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'red',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1246,7 +1246,7 @@
                     },{
                         label:'High Purchasing Power',
                         data:[{{ $chartHighPercent_13[0] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'green',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1356,7 +1356,19 @@
         var reg13_pri = {!! json_encode($pri_array_r13) !!};
         var reg13_quan = {!! json_encode($quan_array_r13) !!};
 
-        
+        $Region_1_name = {"TH-50":"Chiang Mai","TH-57":"Chiang Rai","TH-51":"Lamphun","TH-52":"Lampang","TH-54":"Phrae","TH-55":"Nan","TH-56":"Phayao","TH-58":"Mae Hong Son"};
+        $Region_2_name = {'TH-65':'Phitsanulok','TH-67':'Phetchabun','TH-53':'Uttaradit','TH-63':'Tak','TH-64':'Sukhothai'};
+        $Region_3_name = {'TH-60':'Nakhon Sawan','TH-62':'Kamphaeng Phet','TH-66':'Phichit','TH-61':'Uthai Thani','TH-18':'Chai Nat'};
+        $Region_4_name = {'TH-17':'Sing Buri','TH-16':'Lop Buri','TH-19':'Saraburi','TH-12':'Nonthaburi','TH-14':'Phra Nakhon Si Ayutthaya','TH-15':'Ang Thong','TH-13':'Pathum Thani','TH-26':'Nakhon Nayok'};
+        $Region_5_name = {'TH-70':'Ratchaburi','TH-72':'Suphan Buri','TH-73':'Nakhon Pathom','TH-71':'Kanchanaburi','TH-75':'Samut Songkhram','TH-74':'Samut Sakhon','TH-76':'Phetchaburi','TH-77':'Prachuap Khiri Khan'};
+        $Region_6_name = {'TH-20':'Chon Buri','TH-21':'Rayong','TH-22':'Chanthaburi','TH-23':'Trat','TH-11':'Samut Prakan','TH-24':'Chachoengsao','TH-25':'Prachin Buri','TH-27':'Sa Kaeo'};
+        $Region_7_name = {'TH-40':'Khon Kaen','TH-44':'Maha Sarakham','TH-45':'Roi Et','TH-46':'Kalasin'};
+        $Region_8_name = {'TH-41':'Udon Thani','TH-47':'Sakon Nakhon','TH-48':'Nakhon Phanom','TH-42':'Loei','TH-39':'Nong Bua Lam Phu','TH-43':'Nong Khai'}; //+'บึงกาฬ'
+        $Region_9_name = {'TH-30':'Nakhon Ratchasima','TH-36':'Chaiyaphum','TH-31':'Buri Ram','TH-32':'Surin'};
+        $Region_10_name = {'TH-34':'Ubon Ratchathani','TH-33':'Si Sa Ket','TH-35':'Yasothon','TH-37':'Amnat Charoen','TH-49':'Mukdahan'};
+        $Region_11_name = {'TH-86':'Chumphon','TH-85':'Ranong','TH-84':'Surat Thani','TH-80':'Nakhon Si Thammarat','TH-82':'Phangnga','TH-81':'Krabi','TH-83':'Phuket'};
+        $Region_12_name = {'TH-96':'Narathiwat','TH-94':'Pattani','TH-95':'Yala','TH-90':'Songkhla','TH-91':'Satun','TH-93':'Phatthalung','TH-92':'Trang'};
+        $Region_13_name = {'TH-10':'Bangkok Metropolis'};
         
         $(document).ready(function() {
             $Reg1_map_pri = {
@@ -1372,33 +1384,48 @@
                 onRegionClick: function (element, code, region) {
                     var content = '';
                     var content_1 = '';
+                    var low = '';
+                    var low_1 = '';
+                    var med = '';
+                    var med_1 = '';
+                    var high = '';
+                    var high_1 = '';
+                    var total = '';
                     if(Region_1.includes(code)) {
-                        $("#Province_Donut").removeClass('invisible');  
-                        $('#Table_Hos_by_Province').removeClass('invisible');  
-                        $('#Price_by_Region').addClass('invisible');   
-                        $("#Quantity_by_Region").addClass('invisible');   
-                        $("#Stack_Bar").addClass('invisible'); 
-
                         //table
                         content = {!! json_encode($tableD_r1) !!};
-                        content_1 = content[code]
-                        $('#Table_Hos_by_Province tbody').html(content_1);
+                        content_1 = content[code];
+                        if(content_1 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_1_name[code];
+                            low = {!! json_encode($donutD_low_r1) !!};
+                            low_1 = low[code];
+                            med = {!! json_encode($donutD_med_r1) !!};
+                            med_1 = med[code];
+                            high = {!! json_encode($donutD_high_r1) !!};
+                            high_1 = high[code];
+                            total = low_1 + med_1 + high_1;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_1],['Medium Purchasing Power', med_1],['Low Purchasing Power', low_1]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_1);
+                        }else if(content_1 == '' || content_1 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
                     }
-                    if (code == 'TH-50') { //ChiangMai
-                        //donut graph
-                        document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + code;
-                        c3.generate({ 
-                            bindto:"#purchasing_power_donut",
-                            data:{columns:[["High Purchasing Power",100],['Medium Purchasing Power',50],['Low Purchasing Power',3]],
-                            type:"donut",
-                            tooltip:{show:!0}},
-                            donut:{label:{show:!1},
-                            title:"Purchasing Power ",width:50},
-                            legend:{hide:!0},
-                            color:{pattern:["#edf2f6","#5f76e8","#ff4f70"]}
-                        });
-                    }
-                    //'TH-50','TH-57','TH-51','TH-52','TH-54','TH-55','TH-56','TH-58'
                 }
             }
             $Reg2_map_pri = {
@@ -1413,18 +1440,48 @@
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
                     var content = '';
-                    var content_1 = '';
+                    var content_2 = '';
+                    var low = '';
+                    var low_2 = '';
+                    var med = '';
+                    var med_2 = '';
+                    var high = '';
+                    var high_2 = '';
+                    var total = '';
                     if(Region_2.includes(code)) {
-                        $("#Province_Donut").removeClass('invisible');  
-                        $('#Table_Hos_by_Province').removeClass('invisible');  
-                        $('#Price_by_Region').addClass('invisible');   
-                        $("#Quantity_by_Region").addClass('invisible');   
-                        $("#Stack_Bar").addClass('invisible'); 
-
                         //table
                         content = {!! json_encode($tableD_r2) !!};
-                        content_1 = content[code]
-                        $('#Table_Hos_by_Province tbody').html(content_1);
+                        content_2 = content[code];
+                        if(content_2 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_2_name[code];
+                            low = {!! json_encode($donutD_low_r2) !!};
+                            low_2 = low[code];
+                            med = {!! json_encode($donutD_med_r2) !!};
+                            med_2 = med[code];
+                            high = {!! json_encode($donutD_high_r2) !!};
+                            high_2 = high[code];
+                            total = low_2 + med_2 + high_2;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_2],['Medium Purchasing Power', med_2],['Low Purchasing Power', low_2]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_2);
+                        }else if(content_2 == '' || content_2 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
                     }
                 }
             }
@@ -1439,7 +1496,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
-
+                    var content = '';
+                    var content_3 = '';
+                    var low = '';
+                    var low_3 = '';
+                    var med = '';
+                    var med_3 = '';
+                    var high = '';
+                    var high_3 = '';
+                    var total = '';
+                    if(Region_3.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r3) !!};
+                        content_3 = content[code];
+                        if(content_3 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_3_name[code];
+                            low = {!! json_encode($donutD_low_r3) !!};
+                            low_3 = low[code];
+                            med = {!! json_encode($donutD_med_r3) !!};
+                            med_3 = med[code];
+                            high = {!! json_encode($donutD_high_r3) !!};
+                            high_3 = high[code];
+                            total = low_3 + med_3 + high_3;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_3],['Medium Purchasing Power', med_3],['Low Purchasing Power', low_3]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_3);
+                        }else if(content_3 == '' || content_3 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg4_map_pri = {
@@ -1453,6 +1553,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_4 = '';
+                    var low = '';
+                    var low_4 = '';
+                    var med = '';
+                    var med_4 = '';
+                    var high = '';
+                    var high_4 = '';
+                    var total = '';
+                    if(Region_4.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r4) !!};
+                        content_4 = content[code];
+                        if(content_4 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_4_name[code];
+                            low = {!! json_encode($donutD_low_r4) !!};
+                            low_4 = low[code];
+                            med = {!! json_encode($donutD_med_r4) !!};
+                            med_4 = med[code];
+                            high = {!! json_encode($donutD_high_r4) !!};
+                            high_4 = high[code];
+                            total = low_4 + med_4 + high_4;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_4],['Medium Purchasing Power', med_4],['Low Purchasing Power', low_4]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_4);
+                        }else if(content_4 == '' || content_4 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg5_map_pri = {
@@ -1466,6 +1610,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_5 = '';
+                    var low = '';
+                    var low_5 = '';
+                    var med = '';
+                    var med_5 = '';
+                    var high = '';
+                    var high_5 = '';
+                    var total = '';
+                    if(Region_5.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r5) !!};
+                        content_5 = content[code];
+                        if(content_5 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_5_name[code];
+                            low = {!! json_encode($donutD_low_r5) !!};
+                            low_5 = low[code];
+                            med = {!! json_encode($donutD_med_r5) !!};
+                            med_5 = med[code];
+                            high = {!! json_encode($donutD_high_r5) !!};
+                            high_5 = high[code];
+                            total = low_5 + med_5 + high_5;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_5],['Medium Purchasing Power', med_5],['Low Purchasing Power', low_5]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_5);
+                        }else if(content_5 == '' || content_5 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg6_map_pri = {
@@ -1479,6 +1667,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_6 = '';
+                    var low = '';
+                    var low_6 = '';
+                    var med = '';
+                    var med_6 = '';
+                    var high = '';
+                    var high_6 = '';
+                    var total = '';
+                    if(Region_6.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r6) !!};
+                        content_6 = content[code];
+                        if(content_6 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_6_name[code];
+                            low = {!! json_encode($donutD_low_r6) !!};
+                            low_6 = low[code];
+                            med = {!! json_encode($donutD_med_r6) !!};
+                            med_6 = med[code];
+                            high = {!! json_encode($donutD_high_r6) !!};
+                            high_6 = high[code];
+                            total = low_6 + med_6 + high_6;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_6],['Medium Purchasing Power', med_6],['Low Purchasing Power', low_6]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_6);
+                        }else if(content_6 == '' || content_6 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg7_map_pri = {
@@ -1492,7 +1724,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
-
+                    var content = '';
+                    var content_7 = '';
+                    var low = '';
+                    var low_7 = '';
+                    var med = '';
+                    var med_7 = '';
+                    var high = '';
+                    var high_7 = '';
+                    var total = '';
+                    if(Region_7.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r7) !!};
+                        content_7 = content[code];
+                        if(content_7 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_7_name[code];
+                            low = {!! json_encode($donutD_low_r7) !!};
+                            low_7 = low[code];
+                            med = {!! json_encode($donutD_med_r7) !!};
+                            med_7 = med[code];
+                            high = {!! json_encode($donutD_high_r7) !!};
+                            high_7 = high[code];
+                            total = low_7 + med_7 + high_7;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_7],['Medium Purchasing Power', med_7],['Low Purchasing Power', low_7]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_7);
+                        }else if(content_7 == '' || content_7 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg8_map_pri = {
@@ -1506,7 +1781,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
-
+                    var content = '';
+                    var content_8 = '';
+                    var low = '';
+                    var low_8 = '';
+                    var med = '';
+                    var med_8 = '';
+                    var high = '';
+                    var high_8 = '';
+                    var total = '';
+                    if(Region_8.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r8) !!};
+                        content_8 = content[code];
+                        if(content_8 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_8_name[code];
+                            low = {!! json_encode($donutD_low_r8) !!};
+                            low_8 = low[code];
+                            med = {!! json_encode($donutD_med_r8) !!};
+                            med_8 = med[code];
+                            high = {!! json_encode($donutD_high_r8) !!};
+                            high_8 = high[code];
+                            total = low_8 + med_8 + high_8;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_8],['Medium Purchasing Power', med_8],['Low Purchasing Power', low_8]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_8);
+                        }else if(content_8 == '' || content_8 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg9_map_pri = {
@@ -1520,7 +1838,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
-
+                    var content = '';
+                    var content_9 = '';
+                    var low = '';
+                    var low_9 = '';
+                    var med = '';
+                    var med_9 = '';
+                    var high = '';
+                    var high_9 = '';
+                    var total = '';
+                    if(Region_9.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r9) !!};
+                        content_9 = content[code];
+                        if(content_9 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_9_name[code];
+                            low = {!! json_encode($donutD_low_r9) !!};
+                            low_9 = low[code];
+                            med = {!! json_encode($donutD_med_r9) !!};
+                            med_9 = med[code];
+                            high = {!! json_encode($donutD_high_r9) !!};
+                            high_9 = high[code];
+                            total = low_9 + med_9 + high_9;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_9],['Medium Purchasing Power', med_9],['Low Purchasing Power', low_9]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_9);
+                        }else if(content_9 == '' || content_9 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg10_map_pri = {
@@ -1534,6 +1895,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_10 = '';
+                    var low = '';
+                    var low_10 = '';
+                    var med = '';
+                    var med_10 = '';
+                    var high = '';
+                    var high_10 = '';
+                    var total = '';
+                    if(Region_10.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r10) !!};
+                        content_10 = content[code];
+                        if(content_10 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_10_name[code];
+                            low = {!! json_encode($donutD_low_r10) !!};
+                            low_10 = low[code];
+                            med = {!! json_encode($donutD_med_r10) !!};
+                            med_10 = med[code];
+                            high = {!! json_encode($donutD_high_r10) !!};
+                            high_10 = high[code];
+                            total = low_10 + med_10 + high_10;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_10],['Medium Purchasing Power', med_10],['Low Purchasing Power', low_10]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_10);
+                        }else if(content_10 == '' || content_10 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg11_map_pri = {
@@ -1547,6 +1952,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_11 = '';
+                    var low = '';
+                    var low_11 = '';
+                    var med = '';
+                    var med_11 = '';
+                    var high = '';
+                    var high_11 = '';
+                    var total = '';
+                    if(Region_11.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r11) !!};
+                        content_11 = content[code];
+                        if(content_11 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_11_name[code];
+                            low = {!! json_encode($donutD_low_r11) !!};
+                            low_11 = low[code];
+                            med = {!! json_encode($donutD_med_r11) !!};
+                            med_11 = med[code];
+                            high = {!! json_encode($donutD_high_r11) !!};
+                            high_11 = high[code];
+                            total = low_11 + med_11 + high_11;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_11],['Medium Purchasing Power', med_11],['Low Purchasing Power', low_11]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_11);
+                        }else if(content_11 == '' || content_11 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg12_map_pri = {
@@ -1560,6 +2009,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_12 = '';
+                    var low = '';
+                    var low_12 = '';
+                    var med = '';
+                    var med_12 = '';
+                    var high = '';
+                    var high_12 = '';
+                    var total = '';
+                    if(Region_12.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r12) !!};
+                        content_12 = content[code];
+                        if(content_12 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_12_name[code];
+                            low = {!! json_encode($donutD_low_r12) !!};
+                            low_12 = low[code];
+                            med = {!! json_encode($donutD_med_r12) !!};
+                            med_12 = med[code];
+                            high = {!! json_encode($donutD_high_r12) !!};
+                            high_12 = high[code];
+                            total = low_12 + med_12 + high_12;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_12],['Medium Purchasing Power', med_12],['Low Purchasing Power', low_12]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_12);
+                        }else if(content_12 == '' || content_12 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg13_map_pri = {
@@ -1573,6 +2066,50 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_13 = '';
+                    var low = '';
+                    var low_13 = '';
+                    var med = '';
+                    var med_13 = '';
+                    var high = '';
+                    var high_13 = '';
+                    var total = '';
+                    if(Region_13.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r13) !!};
+                        content_13 = content[code];
+                        if(content_13 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_13_name[code];
+                            low = {!! json_encode($donutD_low_r13) !!};
+                            low_13 = low[code];
+                            med = {!! json_encode($donutD_med_r13) !!};
+                            med_13 = med[code];
+                            high = {!! json_encode($donutD_high_r13) !!};
+                            high_13 = high[code];
+                            total = low_13 + med_13 + high_13;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_13],['Medium Purchasing Power', med_13],['Low Purchasing Power', low_13]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_13);
+                        }else if(content_13 == '' || content_13 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Thai_map_pri = {
@@ -1713,11 +2250,51 @@
                 values: reg1_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
-                // colors: color_sets,      
                 onRegionClick: function (element, code, region) {
-                    //sample to interact with map
-                    // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
-                    // alert(message);
+                    var content = '';
+                    var content_1 = '';
+                    var low = '';
+                    var low_1 = '';
+                    var med = '';
+                    var med_1 = '';
+                    var high = '';
+                    var high_1 = '';
+                    var total = '';
+                    if(Region_1.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r1) !!};
+                        content_1 = content[code];
+                        if(content_1 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_1_name[code];
+                            low = {!! json_encode($donutD_low_r1) !!};
+                            low_1 = low[code];
+                            med = {!! json_encode($donutD_med_r1) !!};
+                            med_1 = med[code];
+                            high = {!! json_encode($donutD_high_r1) !!};
+                            high_1 = high[code];
+                            total = low_1 + med_1 + high_1;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_1],['Medium Purchasing Power', med_1],['Low Purchasing Power', low_1]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_1);
+                        }else if(content_1 == '' || content_1 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
                 }
             }
             $Reg2_map_quan = {
@@ -1729,7 +2306,53 @@
                 color: '#ffffff',
                 values: reg2_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_2 = '';
+                    var low = '';
+                    var low_2 = '';
+                    var med = '';
+                    var med_2 = '';
+                    var high = '';
+                    var high_2 = '';
+                    var total = '';
+                    if(Region_2.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r2) !!};
+                        content_2 = content[code];
+                        if(content_2 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_2_name[code];
+                            low = {!! json_encode($donutD_low_r2) !!};
+                            low_2 = low[code];
+                            med = {!! json_encode($donutD_med_r2) !!};
+                            med_2 = med[code];
+                            high = {!! json_encode($donutD_high_r2) !!};
+                            high_2 = high[code];
+                            total = low_2 + med_2 + high_2;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_2],['Medium Purchasing Power', med_2],['Low Purchasing Power', low_2]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_2);
+                        }else if(content_2 == '' || content_2 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg3_map_quan = {
                 map: ['thai_en'],
@@ -1740,7 +2363,53 @@
                 color: '#ffffff',
                 values: reg3_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_3 = '';
+                    var low = '';
+                    var low_3 = '';
+                    var med = '';
+                    var med_3 = '';
+                    var high = '';
+                    var high_3 = '';
+                    var total = '';
+                    if(Region_3.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r3) !!};
+                        content_3 = content[code];
+                        if(content_3 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_3_name[code];
+                            low = {!! json_encode($donutD_low_r3) !!};
+                            low_3 = low[code];
+                            med = {!! json_encode($donutD_med_r3) !!};
+                            med_3 = med[code];
+                            high = {!! json_encode($donutD_high_r3) !!};
+                            high_3 = high[code];
+                            total = low_3 + med_3 + high_3;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_3],['Medium Purchasing Power', med_3],['Low Purchasing Power', low_3]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_3);
+                        }else if(content_3 == '' || content_3 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg4_map_quan = {
                 map: ['thai_en'],
@@ -1751,7 +2420,53 @@
                 color: '#ffffff',
                 values: reg4_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_4 = '';
+                    var low = '';
+                    var low_4 = '';
+                    var med = '';
+                    var med_4 = '';
+                    var high = '';
+                    var high_4 = '';
+                    var total = '';
+                    if(Region_4.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r4) !!};
+                        content_4 = content[code];
+                        if(content_4 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_4_name[code];
+                            low = {!! json_encode($donutD_low_r4) !!};
+                            low_4 = low[code];
+                            med = {!! json_encode($donutD_med_r4) !!};
+                            med_4 = med[code];
+                            high = {!! json_encode($donutD_high_r4) !!};
+                            high_4 = high[code];
+                            total = low_4 + med_4 + high_4;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_4],['Medium Purchasing Power', med_4],['Low Purchasing Power', low_4]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_4);
+                        }else if(content_4 == '' || content_4 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg5_map_quan = {
                 map: ['thai_en'],
@@ -1762,7 +2477,53 @@
                 color: '#ffffff',
                 values: reg5_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_5 = '';
+                    var low = '';
+                    var low_5 = '';
+                    var med = '';
+                    var med_5 = '';
+                    var high = '';
+                    var high_5 = '';
+                    var total = '';
+                    if(Region_5.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r5) !!};
+                        content_5 = content[code];
+                        if(content_5 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_5_name[code];
+                            low = {!! json_encode($donutD_low_r5) !!};
+                            low_5 = low[code];
+                            med = {!! json_encode($donutD_med_r5) !!};
+                            med_5 = med[code];
+                            high = {!! json_encode($donutD_high_r5) !!};
+                            high_5 = high[code];
+                            total = low_5 + med_5 + high_5;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_5],['Medium Purchasing Power', med_5],['Low Purchasing Power', low_5]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_5);
+                        }else if(content_5 == '' || content_5 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg6_map_quan = {
                 map: ['thai_en'],
@@ -1773,7 +2534,53 @@
                 color: '#ffffff',
                 values: reg6_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_6 = '';
+                    var low = '';
+                    var low_6 = '';
+                    var med = '';
+                    var med_6 = '';
+                    var high = '';
+                    var high_6 = '';
+                    var total = '';
+                    if(Region_6.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r6) !!};
+                        content_6 = content[code];
+                        if(content_6 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_6_name[code];
+                            low = {!! json_encode($donutD_low_r6) !!};
+                            low_6 = low[code];
+                            med = {!! json_encode($donutD_med_r6) !!};
+                            med_6 = med[code];
+                            high = {!! json_encode($donutD_high_r6) !!};
+                            high_6 = high[code];
+                            total = low_6 + med_6 + high_6;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_6],['Medium Purchasing Power', med_6],['Low Purchasing Power', low_6]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_6);
+                        }else if(content_6 == '' || content_6 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg7_map_quan = {
                 map: ['thai_en'],
@@ -1784,7 +2591,53 @@
                 color: '#ffffff',
                 values: reg7_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_7 = '';
+                    var low = '';
+                    var low_7 = '';
+                    var med = '';
+                    var med_7 = '';
+                    var high = '';
+                    var high_7 = '';
+                    var total = '';
+                    if(Region_7.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r7) !!};
+                        content_7 = content[code];
+                        if(content_7 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_7_name[code];
+                            low = {!! json_encode($donutD_low_r7) !!};
+                            low_7 = low[code];
+                            med = {!! json_encode($donutD_med_r7) !!};
+                            med_7 = med[code];
+                            high = {!! json_encode($donutD_high_r7) !!};
+                            high_7 = high[code];
+                            total = low_7 + med_7 + high_7;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_7],['Medium Purchasing Power', med_7],['Low Purchasing Power', low_7]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_7);
+                        }else if(content_7 == '' || content_7 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg8_map_quan = {
                 map: ['thai_en'],
@@ -1795,7 +2648,53 @@
                 color: '#ffffff',
                 values: reg8_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_8 = '';
+                    var low = '';
+                    var low_8 = '';
+                    var med = '';
+                    var med_8 = '';
+                    var high = '';
+                    var high_8 = '';
+                    var total = '';
+                    if(Region_8.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r8) !!};
+                        content_8 = content[code];
+                        if(content_8 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_8_name[code];
+                            low = {!! json_encode($donutD_low_r8) !!};
+                            low_8 = low[code];
+                            med = {!! json_encode($donutD_med_r8) !!};
+                            med_8 = med[code];
+                            high = {!! json_encode($donutD_high_r8) !!};
+                            high_8 = high[code];
+                            total = low_8 + med_8 + high_8;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_8],['Medium Purchasing Power', med_8],['Low Purchasing Power', low_8]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_8);
+                        }else if(content_8 == '' || content_8 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg9_map_quan = {
                 map: ['thai_en'],
@@ -1806,7 +2705,53 @@
                 color: '#ffffff',
                 values: reg9_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_9 = '';
+                    var low = '';
+                    var low_9 = '';
+                    var med = '';
+                    var med_9 = '';
+                    var high = '';
+                    var high_9 = '';
+                    var total = '';
+                    if(Region_9.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r9) !!};
+                        content_9 = content[code];
+                        if(content_9 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_9_name[code];
+                            low = {!! json_encode($donutD_low_r9) !!};
+                            low_9 = low[code];
+                            med = {!! json_encode($donutD_med_r9) !!};
+                            med_9 = med[code];
+                            high = {!! json_encode($donutD_high_r9) !!};
+                            high_9 = high[code];
+                            total = low_9 + med_9 + high_9;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_9],['Medium Purchasing Power', med_9],['Low Purchasing Power', low_9]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_9);
+                        }else if(content_9 == '' || content_9 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg10_map_quan = {
                 map: ['thai_en'],
@@ -1817,7 +2762,53 @@
                 color: '#ffffff',
                 values: reg10_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_10 = '';
+                    var low = '';
+                    var low_10 = '';
+                    var med = '';
+                    var med_10 = '';
+                    var high = '';
+                    var high_10 = '';
+                    var total = '';
+                    if(Region_10.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r10) !!};
+                        content_10 = content[code];
+                        if(content_10 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_10_name[code];
+                            low = {!! json_encode($donutD_low_r10) !!};
+                            low_10 = low[code];
+                            med = {!! json_encode($donutD_med_r10) !!};
+                            med_10 = med[code];
+                            high = {!! json_encode($donutD_high_r10) !!};
+                            high_10 = high[code];
+                            total = low_10 + med_10 + high_10;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_10],['Medium Purchasing Power', med_10],['Low Purchasing Power', low_10]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_10);
+                        }else if(content_10 == '' || content_10 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg11_map_quan = {
                 map: ['thai_en'],
@@ -1828,7 +2819,53 @@
                 color: '#ffffff',
                 values: reg11_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_11 = '';
+                    var low = '';
+                    var low_11 = '';
+                    var med = '';
+                    var med_11 = '';
+                    var high = '';
+                    var high_11 = '';
+                    var total = '';
+                    if(Region_11.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r11) !!};
+                        content_11 = content[code];
+                        if(content_11 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_11_name[code];
+                            low = {!! json_encode($donutD_low_r11) !!};
+                            low_11 = low[code];
+                            med = {!! json_encode($donutD_med_r11) !!};
+                            med_11 = med[code];
+                            high = {!! json_encode($donutD_high_r11) !!};
+                            high_11 = high[code];
+                            total = low_11 + med_11 + high_11;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_11],['Medium Purchasing Power', med_11],['Low Purchasing Power', low_11]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_11);
+                        }else if(content_11 == '' || content_11 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg12_map_quan = {
                 map: ['thai_en'],
@@ -1839,7 +2876,53 @@
                 color: '#ffffff',
                 values: reg12_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_12 = '';
+                    var low = '';
+                    var low_12 = '';
+                    var med = '';
+                    var med_12 = '';
+                    var high = '';
+                    var high_12 = '';
+                    var total = '';
+                    if(Region_12.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r12) !!};
+                        content_12 = content[code];
+                        if(content_12 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_12_name[code];
+                            low = {!! json_encode($donutD_low_r12) !!};
+                            low_12 = low[code];
+                            med = {!! json_encode($donutD_med_r12) !!};
+                            med_12 = med[code];
+                            high = {!! json_encode($donutD_high_r12) !!};
+                            high_12 = high[code];
+                            total = low_12 + med_12 + high_12;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_12],['Medium Purchasing Power', med_12],['Low Purchasing Power', low_12]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_12);
+                        }else if(content_12 == '' || content_12 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
             $Reg13_map_quan = {
                 map: ['thai_en'],
@@ -1850,7 +2933,53 @@
                 color: '#ffffff',
                 values: reg13_quan,
                 scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+                normalizeFunction: 'polynomial',
+                onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_13 = '';
+                    var low = '';
+                    var low_13 = '';
+                    var med = '';
+                    var med_13 = '';
+                    var high = '';
+                    var high_13 = '';
+                    var total = '';
+                    if(Region_13.includes(code)) {
+                        //table
+                        content = {!! json_encode($tableD_r13) !!};
+                        content_13 = content[code];
+                        if(content_13 != ''){
+                            $("#Province_Donut").removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Price_by_Region').addClass('invisible');   
+                            $("#Quantity_by_Region").addClass('invisible');   
+                            $("#Stack_Bar").addClass('invisible'); 
+                            //donut graph
+                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_13_name[code];
+                            low = {!! json_encode($donutD_low_r13) !!};
+                            low_13 = low[code];
+                            med = {!! json_encode($donutD_med_r13) !!};
+                            med_13 = med[code];
+                            high = {!! json_encode($donutD_high_r13) !!};
+                            high_13 = high[code];
+                            total = low_13 + med_13 + high_13;
+                            c3.generate({ 
+                                bindto:"#purchasing_power_donut",
+                                data:{columns:[["High Purchasing Power", high_13],['Medium Purchasing Power', med_13],['Low Purchasing Power', low_13]],
+                                type:"donut",
+                                tooltip:{show:!0}},
+                                donut:{label:{show:!1},
+                                title: total + " Hospitals",width:50},
+                                legend:{hide:!0},
+                                color:{pattern:["green","yellow","red"]}
+                            });
+                            //table
+                            $('#Table_Hos_by_Province tbody').html(content_13);
+                        }else if(content_13 == '' || content_13 == NULL){
+                            alert('Cannot drill down because no data');
+                        }
+                    }
+                }
             }
 
             $Thai_map_quan = {
@@ -2129,6 +3258,11 @@
         .invisible {
             display: none;
         }
+        .center {
+            margin: auto;
+            // border: 3px solid #73AD21;
+            padding: 10px;
+        }
     </style>
     <div class="row">
         <!-- *************************************************************** -->
@@ -2138,15 +3272,20 @@
             <div class="card">
                 <div class="card-body">
                     <button class="btn" id="backButton2">&lt; Drill Up</button>
-                    <h4 id="Title_Donut" style="color:black;"></h4>
-                    <div id="purchasing_power_donut" class="mt-2" style="height:283px; width:100%;"></div>
-                    <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
-                    <span class="text-muted" >High Purchasing Power</span>
-                    <i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i>
-                    <span class="text-muted" >Medium Purchasing Power</span>
-                    &nbsp;
-                    <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
-                    <span class="text-muted" >Low Purchasing Power</span>
+                    <h4 id="Title_Donut" style="color:black; text-align:center;"></h4>
+                    <div class='row center' >
+                        <div id="purchasing_power_donut" class="mt-2 col-md-6 center" style="height:283px; width:60%;"></div>
+                        <div class="col-md-5 center">
+                            <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
+                            <span class="text-muted" >High Purchasing Power</span>
+                            <br/>
+                            <i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i>
+                            <span class="text-muted" >Medium Purchasing Power</span>
+                            <br/>
+                            <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
+                            <span class="text-muted" >Low Purchasing Power</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3095,7 +4234,8 @@
         <div class="col-md-12 col-lg-12 invisible" id = 'Table_Hos_by_Province'>
             <div class="card">
                 <div class="card-body">
-                    ---Table---
+                    <h3 style="text-align:center; color:black;">List of Hospital</h3>
+                    <br/>
                     <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                         <thead>
                         <tr role="row">

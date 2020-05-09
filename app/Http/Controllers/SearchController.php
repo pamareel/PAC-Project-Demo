@@ -118,8 +118,21 @@ class SearchController extends Controller
             [$quan_array_r12, $pri_array_r12] = $this->FindQuan_Pri_Region($resultThaiMap_Reg12);
             [$quan_array_r13, $pri_array_r13] = $this->FindQuan_Pri_Region($resultThaiMap_Reg13);
 
-            ///// Donut ///////
-            ///////////////////
+            //////// Donut ///////
+            [$donutD_low_r1, $donutD_med_r1, $donutD_high_r1] = $this->dataDonut_Region(1,$Region_1_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r2, $donutD_med_r2, $donutD_high_r2] = $this->dataDonut_Region(2,$Region_2_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r3, $donutD_med_r3, $donutD_high_r3] = $this->dataDonut_Region(3,$Region_3_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r4, $donutD_med_r4, $donutD_high_r4] = $this->dataDonut_Region(4,$Region_4_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r5, $donutD_med_r5, $donutD_high_r5] = $this->dataDonut_Region(5,$Region_5_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r6, $donutD_med_r6, $donutD_high_r6] = $this->dataDonut_Region(6,$Region_6_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r7, $donutD_med_r7, $donutD_high_r7] = $this->dataDonut_Region(7,$Region_7_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r8, $donutD_med_r8, $donutD_high_r8] = $this->dataDonut_Region(8,$Region_8_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r9, $donutD_med_r9, $donutD_high_r9] = $this->dataDonut_Region(9,$Region_9_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r10, $donutD_med_r10, $donutD_high_r10] = $this->dataDonut_Region(10,$Region_10_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r11, $donutD_med_r11, $donutD_high_r11] = $this->dataDonut_Region(11,$Region_11_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r12, $donutD_med_r12, $donutD_high_r12] = $this->dataDonut_Region(12,$Region_12_name,$year,$GT,$Dname,$method);
+            [$donutD_low_r13, $donutD_med_r13, $donutD_high_r13] = $this->dataDonut_Region(13,$Region_13_name,$year,$GT,$Dname,$method);
+            //////// END Donut ///////////
             
             //// Table Hospital ////////
             $tableD_r1 = $this->tableForRegion(1,$year,$GT,$Dname,$method);
@@ -135,7 +148,7 @@ class SearchController extends Controller
             $tableD_r11 = $this->tableForRegion(11,$year,$GT,$Dname,$method);
             $tableD_r12 = $this->tableForRegion(12,$year,$GT,$Dname,$method);
             $tableD_r13 = $this->tableForRegion(13,$year,$GT,$Dname,$method);
-            ////
+            ///// END Table Hospital ///////
         }
         // $mapp = (object) ['TH-30' => 'purple', 'TH-20' => 'yellow'];
         // $mapp = "{'TH-30':'purple', 'TH-20':'red'}";
@@ -175,6 +188,24 @@ class SearchController extends Controller
             $resultThaiMap_Reg11 = NULL; $quan_array_r11 = NULL; $pri_array_r11 = NULL;
             $resultThaiMap_Reg12 = NULL; $quan_array_r12 = NULL; $pri_array_r12 = NULL;
             $resultThaiMap_Reg13 = NULL; $quan_array_r13 = NULL; $pri_array_r13 = NULL;
+
+            $donutD_low_r1 = NULL; $donutD_med_r1 = NULL; $donutD_high_r1 = NULL;
+            $donutD_low_r2 = NULL; $donutD_med_r2 = NULL; $donutD_high_r2 = NULL;
+            $donutD_low_r3 = NULL; $donutD_med_r3 = NULL; $donutD_high_r3 = NULL;
+            $donutD_low_r4 = NULL; $donutD_med_r4 = NULL; $donutD_high_r4 = NULL;
+            $donutD_low_r5 = NULL; $donutD_med_r5 = NULL; $donutD_high_r5 = NULL;
+            $donutD_low_r6 = NULL; $donutD_med_r6 = NULL; $donutD_high_r6 = NULL;
+            $donutD_low_r7 = NULL; $donutD_med_r7 = NULL; $donutD_high_r7 = NULL;
+            $donutD_low_r8 = NULL; $donutD_med_r8 = NULL; $donutD_high_r8 = NULL;
+            $donutD_low_r9 = NULL; $donutD_med_r9 = NULL; $donutD_high_r9 = NULL;
+            $donutD_low_r10 = NULL; $donutD_med_r10 = NULL; $donutD_high_r10 = NULL;
+            $donutD_low_r11 = NULL; $donutD_med_r11 = NULL; $donutD_high_r11 = NULL;
+            $donutD_low_r12 = NULL; $donutD_med_r12 = NULL; $donutD_high_r12 = NULL;
+            $donutD_low_r13 = NULL; $donutD_med_r13 = NULL; $donutD_high_r13 = NULL;
+
+            $tableD_r1 = NULL; $tableD_r2 = NULL; $tableD_r3 = NULL; $tableD_r4 = NULL;
+            $tableD_r5 = NULL; $tableD_r6 = NULL; $tableD_r7 = NULL; $tableD_r8 = NULL; $tableD_r9 = NULL;
+            $tableD_r10 = NULL; $tableD_r11 = NULL; $tableD_r12 = NULL; $tableD_r13 = NULL;
         }
         $send_data = array(
             'resultSearch'=>$resultSearch,
@@ -208,6 +239,20 @@ class SearchController extends Controller
             'resultThaiMap_Reg11'=>$resultThaiMap_Reg11, 'quan_array_r11'=>$quan_array_r11, 'pri_array_r11'=>$pri_array_r11,
             'resultThaiMap_Reg12'=>$resultThaiMap_Reg12, 'quan_array_r12'=>$quan_array_r12, 'pri_array_r12'=>$pri_array_r12,
             'resultThaiMap_Reg13'=>$resultThaiMap_Reg13, 'quan_array_r13'=>$quan_array_r13, 'pri_array_r13'=>$pri_array_r13,
+
+            'donutD_low_r1'=>$donutD_low_r1, 'donutD_med_r1'=>$donutD_med_r1, 'donutD_high_r1'=>$donutD_high_r1,
+            'donutD_low_r2'=>$donutD_low_r2, 'donutD_med_r2'=>$donutD_med_r2, 'donutD_high_r2'=>$donutD_high_r2,
+            'donutD_low_r3'=>$donutD_low_r3, 'donutD_med_r3'=>$donutD_med_r3, 'donutD_high_r3'=>$donutD_high_r3,
+            'donutD_low_r4'=>$donutD_low_r4, 'donutD_med_r4'=>$donutD_med_r4, 'donutD_high_r4'=>$donutD_high_r4,
+            'donutD_low_r5'=>$donutD_low_r5, 'donutD_med_r5'=>$donutD_med_r5, 'donutD_high_r5'=>$donutD_high_r5,
+            'donutD_low_r6'=>$donutD_low_r6, 'donutD_med_r6'=>$donutD_med_r6, 'donutD_high_r6'=>$donutD_high_r6,
+            'donutD_low_r7'=>$donutD_low_r7, 'donutD_med_r7'=>$donutD_med_r7, 'donutD_high_r7'=>$donutD_high_r7,
+            'donutD_low_r8'=>$donutD_low_r8, 'donutD_med_r8'=>$donutD_med_r8, 'donutD_high_r8'=>$donutD_high_r8,
+            'donutD_low_r9'=>$donutD_low_r9, 'donutD_med_r9'=>$donutD_med_r9, 'donutD_high_r9'=>$donutD_high_r9,
+            'donutD_low_r10'=>$donutD_low_r10, 'donutD_med_r10'=>$donutD_med_r10, 'donutD_high_r10'=>$donutD_high_r10,
+            'donutD_low_r11'=>$donutD_low_r11, 'donutD_med_r11'=>$donutD_med_r11, 'donutD_high_r11'=>$donutD_high_r11,
+            'donutD_low_r12'=>$donutD_low_r12, 'donutD_med_r12'=>$donutD_med_r12, 'donutD_high_r12'=>$donutD_high_r12,
+            'donutD_low_r13'=>$donutD_low_r13, 'donutD_med_r13'=>$donutD_med_r13, 'donutD_high_r13'=>$donutD_high_r13,
 
             'tableD_r1'=>$tableD_r1, 'tableD_r2'=>$tableD_r2, 'tableD_r3'=>$tableD_r3, 'tableD_r4'=>$tableD_r4, 'tableD_r5'=>$tableD_r5,
             'tableD_r6'=>$tableD_r6, 'tableD_r7'=>$tableD_r7, 'tableD_r8'=>$tableD_r8, 'tableD_r9'=>$tableD_r9, 'tableD_r10'=>$tableD_r10,
@@ -297,20 +342,6 @@ class SearchController extends Controller
     }
 
     function chart_Low_Med_High($countHosRegion,$r,$Region_name,$year,$GT,$Dname,$method){
-        $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
-        $Region_2_name = ['TH-65'=>'Phitsanulok','TH-67'=>'Phetchabun','TH-53'=>'Uttaradit','TH-63'=>'Tak','TH-64'=>'Sukhothai'];
-        $Region_3_name = ['TH-60'=>'Nakhon Sawan','TH-62'=>'Kamphaeng Phet','TH-66'=>'Phichit','TH-61'=>'Uthai Thani','TH-18'=>'Chai Nat'];
-        $Region_4_name = ['TH-17'=>'Sing Buri','TH-16'=>'Lop Buri','TH-19'=>'Saraburi','TH-12'=>'Nonthaburi','TH-14'=>'Phra Nakhon Si Ayutthaya','TH-15'=>'Ang Thong','TH-13'=>'Pathum Thani','TH-26'=>'Nakhon Nayok'];
-        $Region_5_name = ['TH-70'=>'Ratchaburi','TH-72'=>'Suphan Buri','TH-73'=>'Nakhon Pathom','TH-71'=>'Kanchanaburi','TH-75'=>'Samut Songkhram','TH-74'=>'Samut Sakhon','TH-76'=>'Phetchaburi','TH-77'=>'Prachuap Khiri Khan'];
-        $Region_6_name = ['TH-20'=>'Chon Buri','TH-21'=>'Rayong','TH-22'=>'Chanthaburi','TH-23'=>'Trat','TH-11'=>'Samut Prakan','TH-24'=>'Chachoengsao','TH-25'=>'Prachin Buri','TH-27'=>'Sa Kaeo'];
-        $Region_7_name = ['TH-40'=>'Khon Kaen','TH-44'=>'Maha Sarakham','TH-45'=>'Roi Et','TH-46'=>'Kalasin'];
-        $Region_8_name = ['TH-41'=>'Udon Thani','TH-47'=>'Sakon Nakhon','TH-48'=>'Nakhon Phanom','TH-42'=>'Loei','TH-39'=>'Nong Bua Lam Phu','TH-43'=>'Nong Khai']; //+'บึงกาฬ'
-        $Region_9_name = ['TH-30'=>'Nakhon Ratchasima','TH-36'=>'Chaiyaphum','TH-31'=>'Buri Ram','TH-32'=>'Surin'];
-        $Region_10_name = ['TH-34'=>'Ubon Ratchathani','TH-33'=>'Si Sa Ket','TH-35'=>'Yasothon','TH-37'=>'Amnat Charoen','TH-49'=>'Mukdahan'];
-        $Region_11_name = ['TH-86'=>'Chumphon','TH-85'=>'Ranong','TH-84'=>'Surat Thani','TH-80'=>'Nakhon Si Thammarat','TH-82'=>'Phangnga','TH-81'=>'Krabi','TH-83'=>'Phuket'];
-        $Region_12_name = ['TH-96'=>'Narathiwat','TH-94'=>'Pattani','TH-95'=>'Yala','TH-90'=>'Songkhla','TH-91'=>'Satun','TH-93'=>'Phatthalung','TH-92'=>'Trang'];
-        $Region_13_name = ['TH-10'=>'Bangkok Metropolis'];
-
         foreach($Region_name as $Pcode => $Province){
             if($method == 'All'){
                 $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PROVINCE_EN = '".$Province."'";
@@ -851,6 +882,57 @@ class SearchController extends Controller
         // }
         return [$quan_array_r, $pri_array_r];
     }
+    function dataDonut_Region($r,$Region_name,$year,$GT,$Dname,$method){
+        $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
+        $dataDonut_Region_low_result = [];
+        $result_low = [];
+        $dataDonut_Region_med_result = [];
+        $result_med = [];
+        $dataDonut_Region_high_result = [];
+        $result_high = [];
+        foreach($Region_name as $Pcode => $Province){
+            if($method == 'All'){
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and PROVINCE_EN ='".$Province."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and PROVINCE_EN ='".$Province."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and PROVINCE_EN ='".$Province."'";
+            }else{
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
+            }
+
+            /////// for Low PAC ////////////////////////////////////////////////
+            $lowPac = DB::select($query_low);
+            if($lowPac != null){
+                $Low_data = $lowPac[0]->n;
+            }else{
+                $Low_data = 0;
+            }
+            $result_low = array($Pcode => $Low_data);
+            $dataDonut_Region_low_result = array_merge($dataDonut_Region_low_result, $result_low);
+
+            /////// for Med PAC ////////////////////////////////////////////////
+            $medPac = DB::select($query_med);
+            if($medPac != null){
+                $Med_data = $medPac[0]->n;
+            }else{
+                $Med_data = 0;
+            }
+            $result_med = array($Pcode => $Med_data);
+            $dataDonut_Region_med_result = array_merge($dataDonut_Region_med_result, $result_med);
+
+            /////// for High PAC ////////////////////////////////////////////////
+            $highPac = DB::select($query_high);
+            if($highPac != null){
+                $High_data = $highPac[0]->n;
+            }else{
+                $High_data = 0;
+            }
+            $result_high = array($Pcode => $High_data);
+            $dataDonut_Region_high_result = array_merge($dataDonut_Region_high_result, $result_high);
+        }
+        return [$dataDonut_Region_low_result, $dataDonut_Region_med_result, $dataDonut_Region_high_result];
+    }
     function tableForRegion($r,$y,$g,$na,$m){
         $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
         $Region_2_name = ['TH-65'=>'Phitsanulok','TH-67'=>'Phetchabun','TH-53'=>'Uttaradit','TH-63'=>'Tak','TH-64'=>'Sukhothai'];
@@ -871,7 +953,7 @@ class SearchController extends Controller
         if($m == 'All'){
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -892,7 +974,7 @@ class SearchController extends Controller
                 }
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -913,7 +995,7 @@ class SearchController extends Controller
                 }
             }else if($r == 3){
                 foreach($Region_3_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -934,7 +1016,7 @@ class SearchController extends Controller
                 }
             }else if($r == 4){
                 foreach($Region_4_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -955,7 +1037,7 @@ class SearchController extends Controller
                 }
             }else if($r == 5){
                 foreach($Region_5_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -976,7 +1058,7 @@ class SearchController extends Controller
                 }
             }else if($r == 6){
                 foreach($Region_6_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -997,7 +1079,7 @@ class SearchController extends Controller
                 }
             }else if($r == 7){
                 foreach($Region_7_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1018,7 +1100,7 @@ class SearchController extends Controller
                 }
             }else if($r == 8){
                 foreach($Region_8_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1039,7 +1121,7 @@ class SearchController extends Controller
                 }
             }else if($r == 9){
                 foreach($Region_9_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1060,7 +1142,7 @@ class SearchController extends Controller
                 }
             }else if($r == 10){
                 foreach($Region_10_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1081,7 +1163,7 @@ class SearchController extends Controller
                 }
             }else if($r == 11){
                 foreach($Region_11_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1102,7 +1184,7 @@ class SearchController extends Controller
                 }
             }else if($r == 12){
                 foreach($Region_12_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1123,7 +1205,7 @@ class SearchController extends Controller
                 }
             }else if($r == 13){
                 foreach($Region_13_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1146,7 +1228,7 @@ class SearchController extends Controller
         }else{
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1167,7 +1249,7 @@ class SearchController extends Controller
                 }
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1188,7 +1270,7 @@ class SearchController extends Controller
                 }
             }else if($r == 3){
                 foreach($Region_3_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1209,7 +1291,7 @@ class SearchController extends Controller
                 }
             }else if($r == 4){
                 foreach($Region_4_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1230,7 +1312,7 @@ class SearchController extends Controller
                 }
             }else if($r == 5){
                 foreach($Region_5_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1251,7 +1333,7 @@ class SearchController extends Controller
                 }
             }else if($r == 6){
                 foreach($Region_6_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1272,7 +1354,7 @@ class SearchController extends Controller
                 }
             }else if($r == 7){
                 foreach($Region_7_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1293,7 +1375,7 @@ class SearchController extends Controller
                 }
             }else if($r == 8){
                 foreach($Region_8_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1314,7 +1396,7 @@ class SearchController extends Controller
                 }
             }else if($r == 9){
                 foreach($Region_9_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1335,7 +1417,7 @@ class SearchController extends Controller
                 }
             }else if($r == 10){
                 foreach($Region_10_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1356,7 +1438,7 @@ class SearchController extends Controller
                 }
             }else if($r == 11){
                 foreach($Region_11_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1377,7 +1459,7 @@ class SearchController extends Controller
                 }
             }else if($r == 12){
                 foreach($Region_12_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1398,7 +1480,7 @@ class SearchController extends Controller
                 }
             }else if($r == 13){
                 foreach($Region_13_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
