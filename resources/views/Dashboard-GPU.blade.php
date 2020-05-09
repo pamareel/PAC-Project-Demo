@@ -3,9 +3,12 @@
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
+<!-- <script src="{{ asset('js/Chart.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script> -->
 @endsection
 
 @section('content')
+
 
 <!-- set parameter -->
 <?php
@@ -13,6 +16,7 @@
     //2561
     $top5Amount = DB::select('EXEC findTop5GPU61');
     $totalAmount = DB::select('select sum(Total_Real_Amount) as total FROM GPU WHERE BUDGET_YEAR=2561;');
+
     // set parameter
     $n1 = $top5Amount[0]->GPU_NAME;
     $n2 = $top5Amount[1]->GPU_NAME;
@@ -238,7 +242,7 @@
                         <?php
                         if(isset($annualSpendingChart)){
                         ?>
-                            {!! $annualSpendingChart->container() !!}
+                            <div> {!! $annualSpendingChart->container() !!} </div>
                         <?php
                         }else{
                         ?>
@@ -693,3 +697,4 @@
         });
     </script>
 @endsection
+
