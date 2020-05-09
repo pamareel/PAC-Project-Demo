@@ -1355,6 +1355,8 @@
         ////////////// Region 13 //////////////
         var reg13_pri = {!! json_encode($pri_array_r13) !!};
         var reg13_quan = {!! json_encode($quan_array_r13) !!};
+
+        
         
         $(document).ready(function() {
             $Reg1_map_pri = {
@@ -1368,18 +1370,35 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_1 = '';
                     if(Region_1.includes(code)) {
                         $("#Province_Donut").removeClass('invisible');  
                         $('#Table_Hos_by_Province').removeClass('invisible');  
                         $('#Price_by_Region').addClass('invisible');   
                         $("#Quantity_by_Region").addClass('invisible');   
-                        $("#Stack_Bar").addClass('invisible');  
+                        $("#Stack_Bar").addClass('invisible'); 
+
+                        //table
+                        content = {!! json_encode($tableD_r1) !!};
+                        content_1 = content[code]
+                        $('#Table_Hos_by_Province tbody').html(content_1);
                     }
-                    if(code == 'TH-30'){ //ChiangMai
-                        //in option > modify header/donut
-                        //show donut
-                        //show table
+                    if (code == 'TH-50') { //ChiangMai
+                        //donut graph
+                        document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + code;
+                        c3.generate({ 
+                            bindto:"#purchasing_power_donut",
+                            data:{columns:[["High Purchasing Power",100],['Medium Purchasing Power',50],['Low Purchasing Power',3]],
+                            type:"donut",
+                            tooltip:{show:!0}},
+                            donut:{label:{show:!1},
+                            title:"Purchasing Power ",width:50},
+                            legend:{hide:!0},
+                            color:{pattern:["#edf2f6","#5f76e8","#ff4f70"]}
+                        });
                     }
+                    //'TH-50','TH-57','TH-51','TH-52','TH-54','TH-55','TH-56','TH-58'
                 }
             }
             $Reg2_map_pri = {
@@ -1393,7 +1412,20 @@
                 scaleColors: ['#C8EEFF', '#006491'],
                 normalizeFunction: 'polynomial',
                 onRegionClick: function (element, code, region) {
+                    var content = '';
+                    var content_1 = '';
+                    if(Region_2.includes(code)) {
+                        $("#Province_Donut").removeClass('invisible');  
+                        $('#Table_Hos_by_Province').removeClass('invisible');  
+                        $('#Price_by_Region').addClass('invisible');   
+                        $("#Quantity_by_Region").addClass('invisible');   
+                        $("#Stack_Bar").addClass('invisible'); 
 
+                        //table
+                        content = {!! json_encode($tableD_r2) !!};
+                        content_1 = content[code]
+                        $('#Table_Hos_by_Province tbody').html(content_1);
+                    }
                 }
             }
             $Reg3_map_pri = {
@@ -2066,6 +2098,7 @@
                 $("#Quantity_by_Region").removeClass('invisible');  
                 $("#Stack_Bar").removeClass('invisible');   
             });
+            
         });
     </script>
     <style>
@@ -2098,20 +2131,28 @@
         }
     </style>
     <div class="row">
+        <!-- *************************************************************** -->
+        <!-- Start Donut in Province level -->
+        <!-- *************************************************************** -->
         <div class="col-md-12 col-lg-12 invisible" id = 'Province_Donut'>
             <div class="card">
                 <div class="card-body">
                     <button class="btn" id="backButton2">&lt; Drill Up</button>
+                    <h4 id="Title_Donut" style="color:black;"></h4>
+                    <div id="purchasing_power_donut" class="mt-2" style="height:283px; width:100%;"></div>
+                    <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
+                    <span class="text-muted" >High Purchasing Power</span>
+                    <i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i>
+                    <span class="text-muted" >Medium Purchasing Power</span>
+                    &nbsp;
+                    <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
+                    <span class="text-muted" >Low Purchasing Power</span>
                 </div>
             </div>
         </div>
-        <div class="col-md-12 col-lg-12 invisible" id = 'Table_Hos_by_Province'>
-            <div class="card">
-                <div class="card-body">
-                    ---Table---
-                </div>
-            </div>
-        </div>
+        <!-- *************************************************************** -->
+        <!-- End Donut in Province level -->
+        <!-- *************************************************************** -->
         <div class="col-md-7 col-lg-6" id = 'Price_by_Region'>
             <div class="card">
                 <div class="card-body">
@@ -3044,9 +3085,41 @@
                 </div>
             </div>
         </div>
+        <!-- *************************************************************** -->
+        <!-- End Thai Map in Region level -->
+        <!-- *************************************************************** -->
+        
+        <!-- *************************************************************** -->
+        <!-- Start Table Donut -->
+        <!-- *************************************************************** -->
+        <div class="col-md-12 col-lg-12 invisible" id = 'Table_Hos_by_Province'>
+            <div class="card">
+                <div class="card-body">
+                    ---Table---
+                    <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                        <thead>
+                        <tr role="row">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>IP</th>
+                            <th>OP</th>
+                            <th>Wavg Unit Price</th>
+                            <th>Quantity</th>
+                            <th>Total Spend</th>
+                            <th>PAC</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
     </div>
     <!-- *************************************************************** -->
-    <!-- End Thai Map -->
+    <!-- End Table Donut -->
     <!-- *************************************************************** -->
     <?php
     }

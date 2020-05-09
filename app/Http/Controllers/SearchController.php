@@ -118,6 +118,24 @@ class SearchController extends Controller
             [$quan_array_r12, $pri_array_r12] = $this->FindQuan_Pri_Region($resultThaiMap_Reg12);
             [$quan_array_r13, $pri_array_r13] = $this->FindQuan_Pri_Region($resultThaiMap_Reg13);
 
+            ///// Donut ///////
+            ///////////////////
+            
+            //// Table Hospital ////////
+            $tableD_r1 = $this->tableForRegion(1,$year,$GT,$Dname,$method);
+            $tableD_r2 = $this->tableForRegion(2,$year,$GT,$Dname,$method);
+            $tableD_r3 = $this->tableForRegion(3,$year,$GT,$Dname,$method);
+            $tableD_r4 = $this->tableForRegion(4,$year,$GT,$Dname,$method);
+            $tableD_r5 = $this->tableForRegion(5,$year,$GT,$Dname,$method);
+            $tableD_r6 = $this->tableForRegion(6,$year,$GT,$Dname,$method);
+            $tableD_r7 = $this->tableForRegion(7,$year,$GT,$Dname,$method);
+            $tableD_r8 = $this->tableForRegion(8,$year,$GT,$Dname,$method);
+            $tableD_r9 = $this->tableForRegion(9,$year,$GT,$Dname,$method);
+            $tableD_r10 = $this->tableForRegion(10,$year,$GT,$Dname,$method);
+            $tableD_r11 = $this->tableForRegion(11,$year,$GT,$Dname,$method);
+            $tableD_r12 = $this->tableForRegion(12,$year,$GT,$Dname,$method);
+            $tableD_r13 = $this->tableForRegion(13,$year,$GT,$Dname,$method);
+            ////
         }
         // $mapp = (object) ['TH-30' => 'purple', 'TH-20' => 'yellow'];
         // $mapp = "{'TH-30':'purple', 'TH-20':'red'}";
@@ -176,48 +194,24 @@ class SearchController extends Controller
             'chartRegion_12'=>$chartRegion_12,'chartLowPercent_12'=>$chartLowPercent_12,'chartMedPercent_12'=>$chartMedPercent_12,'chartHighPercent_12'=>$chartHighPercent_12,
             'chartRegion_13'=>$chartRegion_13,'chartLowPercent_13'=>$chartLowPercent_13,'chartMedPercent_13'=>$chartMedPercent_13,'chartHighPercent_13'=>$chartHighPercent_13,
 
-            'resultThaiMap'=>$resultThaiMap,
-            'pri_array_all'=>$pri_array_all,
-            'quan_array_all'=>$quan_array_all,
-            'resultThaiMap_Reg1'=>$resultThaiMap_Reg1,
-            'quan_array_r1'=>$quan_array_r1,
-            'pri_array_r1'=>$pri_array_r1,
-            'resultThaiMap_Reg2'=>$resultThaiMap_Reg2,
-            'quan_array_r2'=>$quan_array_r2,
-            'pri_array_r2'=>$pri_array_r2,
-            'resultThaiMap_Reg3'=>$resultThaiMap_Reg3,
-            'quan_array_r3'=>$quan_array_r3,
-            'pri_array_r3'=>$pri_array_r3,
-            'resultThaiMap_Reg4'=>$resultThaiMap_Reg4,
-            'quan_array_r4'=>$quan_array_r4,
-            'pri_array_r4'=>$pri_array_r4,
-            'resultThaiMap_Reg5'=>$resultThaiMap_Reg5,
-            'quan_array_r5'=>$quan_array_r5,
-            'pri_array_r5'=>$pri_array_r5,
-            'resultThaiMap_Reg6'=>$resultThaiMap_Reg6,
-            'quan_array_r6'=>$quan_array_r6,
-            'pri_array_r6'=>$pri_array_r6,
-            'resultThaiMap_Reg7'=>$resultThaiMap_Reg7,
-            'quan_array_r7'=>$quan_array_r7,
-            'pri_array_r7'=>$pri_array_r7,
-            'resultThaiMap_Reg8'=>$resultThaiMap_Reg8,
-            'quan_array_r8'=>$quan_array_r8,
-            'pri_array_r8'=>$pri_array_r8,
-            'resultThaiMap_Reg9'=>$resultThaiMap_Reg9,
-            'quan_array_r9'=>$quan_array_r9,
-            'pri_array_r9'=>$pri_array_r9,
-            'resultThaiMap_Reg10'=>$resultThaiMap_Reg10,
-            'quan_array_r10'=>$quan_array_r10,
-            'pri_array_r10'=>$pri_array_r10,
-            'resultThaiMap_Reg11'=>$resultThaiMap_Reg11,
-            'quan_array_r11'=>$quan_array_r11,
-            'pri_array_r11'=>$pri_array_r11,
-            'resultThaiMap_Reg12'=>$resultThaiMap_Reg12,
-            'quan_array_r12'=>$quan_array_r12,
-            'pri_array_r12'=>$pri_array_r12,
-            'resultThaiMap_Reg13'=>$resultThaiMap_Reg13,
-            'quan_array_r13'=>$quan_array_r13,
-            'pri_array_r13'=>$pri_array_r13
+            'resultThaiMap'=>$resultThaiMap, 'pri_array_all'=>$pri_array_all, 'quan_array_all'=>$quan_array_all,
+            'resultThaiMap_Reg1'=>$resultThaiMap_Reg1, 'quan_array_r1'=>$quan_array_r1, 'pri_array_r1'=>$pri_array_r1,
+            'resultThaiMap_Reg2'=>$resultThaiMap_Reg2, 'quan_array_r2'=>$quan_array_r2, 'pri_array_r2'=>$pri_array_r2,
+            'resultThaiMap_Reg3'=>$resultThaiMap_Reg3, 'quan_array_r3'=>$quan_array_r3, 'pri_array_r3'=>$pri_array_r3,
+            'resultThaiMap_Reg4'=>$resultThaiMap_Reg4, 'quan_array_r4'=>$quan_array_r4, 'pri_array_r4'=>$pri_array_r4,
+            'resultThaiMap_Reg5'=>$resultThaiMap_Reg5, 'quan_array_r5'=>$quan_array_r5, 'pri_array_r5'=>$pri_array_r5,
+            'resultThaiMap_Reg6'=>$resultThaiMap_Reg6, 'quan_array_r6'=>$quan_array_r6, 'pri_array_r6'=>$pri_array_r6,
+            'resultThaiMap_Reg7'=>$resultThaiMap_Reg7, 'quan_array_r7'=>$quan_array_r7, 'pri_array_r7'=>$pri_array_r7,
+            'resultThaiMap_Reg8'=>$resultThaiMap_Reg8, 'quan_array_r8'=>$quan_array_r8, 'pri_array_r8'=>$pri_array_r8,
+            'resultThaiMap_Reg9'=>$resultThaiMap_Reg9, 'quan_array_r9'=>$quan_array_r9, 'pri_array_r9'=>$pri_array_r9,
+            'resultThaiMap_Reg10'=>$resultThaiMap_Reg10, 'quan_array_r10'=>$quan_array_r10, 'pri_array_r10'=>$pri_array_r10,
+            'resultThaiMap_Reg11'=>$resultThaiMap_Reg11, 'quan_array_r11'=>$quan_array_r11, 'pri_array_r11'=>$pri_array_r11,
+            'resultThaiMap_Reg12'=>$resultThaiMap_Reg12, 'quan_array_r12'=>$quan_array_r12, 'pri_array_r12'=>$pri_array_r12,
+            'resultThaiMap_Reg13'=>$resultThaiMap_Reg13, 'quan_array_r13'=>$quan_array_r13, 'pri_array_r13'=>$pri_array_r13,
+
+            'tableD_r1'=>$tableD_r1, 'tableD_r2'=>$tableD_r2, 'tableD_r3'=>$tableD_r3, 'tableD_r4'=>$tableD_r4, 'tableD_r5'=>$tableD_r5,
+            'tableD_r6'=>$tableD_r6, 'tableD_r7'=>$tableD_r7, 'tableD_r8'=>$tableD_r8, 'tableD_r9'=>$tableD_r9, 'tableD_r10'=>$tableD_r10,
+            'tableD_r11'=>$tableD_r11, 'tableD_r12'=>$tableD_r12, 'tableD_r13'=>$tableD_r13
         );
         return view('DrugPage', $send_data);
     }
@@ -856,5 +850,575 @@ class SearchController extends Controller
         //     }
         // }
         return [$quan_array_r, $pri_array_r];
+    }
+    function tableForRegion($r,$y,$g,$na,$m){
+        $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
+        $Region_2_name = ['TH-65'=>'Phitsanulok','TH-67'=>'Phetchabun','TH-53'=>'Uttaradit','TH-63'=>'Tak','TH-64'=>'Sukhothai'];
+        $Region_3_name = ['TH-60'=>'Nakhon Sawan','TH-62'=>'Kamphaeng Phet','TH-66'=>'Phichit','TH-61'=>'Uthai Thani','TH-18'=>'Chai Nat'];
+        $Region_4_name = ['TH-17'=>'Sing Buri','TH-16'=>'Lop Buri','TH-19'=>'Saraburi','TH-12'=>'Nonthaburi','TH-14'=>'Phra Nakhon Si Ayutthaya','TH-15'=>'Ang Thong','TH-13'=>'Pathum Thani','TH-26'=>'Nakhon Nayok'];
+        $Region_5_name = ['TH-70'=>'Ratchaburi','TH-72'=>'Suphan Buri','TH-73'=>'Nakhon Pathom','TH-71'=>'Kanchanaburi','TH-75'=>'Samut Songkhram','TH-74'=>'Samut Sakhon','TH-76'=>'Phetchaburi','TH-77'=>'Prachuap Khiri Khan'];
+        $Region_6_name = ['TH-20'=>'Chon Buri','TH-21'=>'Rayong','TH-22'=>'Chanthaburi','TH-23'=>'Trat','TH-11'=>'Samut Prakan','TH-24'=>'Chachoengsao','TH-25'=>'Prachin Buri','TH-27'=>'Sa Kaeo'];
+        $Region_7_name = ['TH-40'=>'Khon Kaen','TH-44'=>'Maha Sarakham','TH-45'=>'Roi Et','TH-46'=>'Kalasin'];
+        $Region_8_name = ['TH-41'=>'Udon Thani','TH-47'=>'Sakon Nakhon','TH-48'=>'Nakhon Phanom','TH-42'=>'Loei','TH-39'=>'Nong Bua Lam Phu','TH-43'=>'Nong Khai']; //+'บึงกาฬ'
+        $Region_9_name = ['TH-30'=>'Nakhon Ratchasima','TH-36'=>'Chaiyaphum','TH-31'=>'Buri Ram','TH-32'=>'Surin'];
+        $Region_10_name = ['TH-34'=>'Ubon Ratchathani','TH-33'=>'Si Sa Ket','TH-35'=>'Yasothon','TH-37'=>'Amnat Charoen','TH-49'=>'Mukdahan'];
+        $Region_11_name = ['TH-86'=>'Chumphon','TH-85'=>'Ranong','TH-84'=>'Surat Thani','TH-80'=>'Nakhon Si Thammarat','TH-82'=>'Phangnga','TH-81'=>'Krabi','TH-83'=>'Phuket'];
+        $Region_12_name = ['TH-96'=>'Narathiwat','TH-94'=>'Pattani','TH-95'=>'Yala','TH-90'=>'Songkhla','TH-91'=>'Satun','TH-93'=>'Phatthalung','TH-92'=>'Trang'];
+        $Region_13_name = ['TH-10'=>'Bangkok Metropolis'];
+
+        $tableForRegion_result = [];
+        $content = '';
+        if($m == 'All'){
+            if($r == 1){
+                foreach($Region_1_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 2){
+                foreach($Region_2_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 3){
+                foreach($Region_3_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 4){
+                foreach($Region_4_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 5){
+                foreach($Region_5_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 6){
+                foreach($Region_6_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 7){
+                foreach($Region_7_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 8){
+                foreach($Region_8_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 9){
+                foreach($Region_9_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 10){
+                foreach($Region_10_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 11){
+                foreach($Region_11_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 12){
+                foreach($Region_12_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 13){
+                foreach($Region_13_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }
+        }else{
+            if($r == 1){
+                foreach($Region_1_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 2){
+                foreach($Region_2_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 3){
+                foreach($Region_3_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 4){
+                foreach($Region_4_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 5){
+                foreach($Region_5_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 6){
+                foreach($Region_6_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 7){
+                foreach($Region_7_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 8){
+                foreach($Region_8_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 9){
+                foreach($Region_9_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 10){
+                foreach($Region_10_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 11){
+                foreach($Region_11_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 12){
+                foreach($Region_12_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }else if($r == 13){
+                foreach($Region_13_name as $Pcode => $Province){
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."'";
+                    $result = DB::select($query_rd);
+                    $content = '';
+                    for ($i = 0; $i < Count($result) ; $i++) {
+                        $content .= '<tr>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '</tr>';
+                    }
+                    $result2 = array($Pcode => $content);
+                    $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+                }
+            }
+        }
+        return $tableForRegion_result;
     }
 }
