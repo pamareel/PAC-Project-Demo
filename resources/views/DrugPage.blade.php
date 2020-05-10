@@ -131,7 +131,7 @@
                         if ($resultSearch[$i]->Gini != NULL){
                         ?>
                             <td style="text-align:center;">{{ $resultSearch[$i]->Gini }}</td>
-
+                        </tr>
                         <?php
                         }else{
                             //Gini = NULL because PAC = 0
@@ -150,6 +150,7 @@
         ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <th>No data</th>
+            <script>alert('No Data, Please select again');</script>
         <?php
         }
         ?>
@@ -726,7 +727,7 @@
         <div class="col-md-7">
             <div class="card">
                 <div class="card-body">
-                    <h4 id="Size_Donut" style="color:black; text-align:center;"></h4>
+                    <h4 id="Size_Donut" style="color:black; text-align:center;">Purchasing Quantity</h4>
                     <div class='row center'>
                         <div id="size_quan_donut" class="mt-2 col-md-7 center" style="height:283px; width:60%;"></div>
                         <div class="center" style="width: 100%;">
