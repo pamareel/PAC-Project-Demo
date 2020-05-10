@@ -24,22 +24,24 @@ Route::get('/DashboardPage', function () {
     return view('dashboardpage');
 })->name('dashboardpage');
 
+// DrugPage
 Route::get('/DrugPage', function () {
     return view('drugpage');
 })->name('drugpage');
-// Route::get('/DrugPage', 'DrugPageController@index')->name('drugpage');
-
+//Search Filter in DrugPage 
+Route::get('/searchHos', 'HospitalController@index');
 
 Route::get('/HospitalPage', function () {
     return view('hospitalpage');
 })->name('hospitalpage');
+//Search Filter in HospitalPage 
+Route::get('/search', 'SearchController@index');
+
 Route::get('/testDB', 'EbiddingController@testDB');
 Route::get('/testDB2', 'DashboardController@getTOP5GPU');
 
 // Dashboard
 Route::get('/policy/{TGX}', 'DashboardController@index');
-//Search Filter in DrugPage 
-Route::get('/search', 'SearchController@index');
 
 Route::get('/policy', 'DashboardController@policy')->name('policy_dashboard');
 Route::get('/ebidding', 'EbiddingController@getEbiddingInfo');
