@@ -131,7 +131,7 @@
                         if ($resultSearch[$i]->Gini != NULL){
                         ?>
                             <td style="text-align:center;">{{ $resultSearch[$i]->Gini }}</td>
-
+                        </tr>
                         <?php
                         }else{
                             //Gini = NULL because PAC = 0
@@ -150,6 +150,7 @@
         ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <th>No data</th>
+            <script>alert('No Data, Please select again');</script>
         <?php
         }
         ?>

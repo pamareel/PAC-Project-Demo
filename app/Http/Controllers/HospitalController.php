@@ -28,7 +28,7 @@ class HospitalController extends Controller
             $province = $_GET['province'];
             $type = $_GET['type'];
             $Hname= $_GET['Hname'];
-            $resultState = "".$year.", ".$region.", ".$province.", ".$type.", ".$Hname."";
+            $resultState = "".$year.", Region ".$region.", ".$province.", Type ".$type.", ".$Hname."";
             $statement = '';
             if($region == 'All'){
                 ////// table show //////////////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ class HospitalController extends Controller
                 
             }else{
                 ////// table show //////////////////////////////////////////////////////////////////////
-                $statement .= "select * from Hos_detail where BUDGET_YEAR = ".$year." and Region = '".$region."' ";
+                $statement .= "select DEPT_ID, DEPT_NAME, ServicePlanType, PROVINCE_EN, Region, FORMAT(IP, N'N0') as IP, FORMAT(OP, N'N0') as OP, CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend from Hos_detail where BUDGET_YEAR = ".$year." and Region = '".$region."' ";
             }
             if($province != 'All'){
                 $statement .= "and PROVINCE_EN ='".$province."' ";
@@ -50,9 +50,13 @@ class HospitalController extends Controller
             $resultSearch = DB::select($statement);
         }
         if(empty($resultSearch)){
+            $resultSearch = 'No value';
+            $resultState = 'Please select again';
 
         }
-        $send_data = array();
+        $send_data = array(
+            'resultSearch'=>$resultSearch, 'resultState'=>$resultState
+        );
         return view('HospitalPage', $send_data);
     }
 }
