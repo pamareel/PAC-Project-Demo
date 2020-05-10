@@ -101,6 +101,12 @@
         if($resultSearch != 'No value'){
         ?>
             <div class="card-body">
+            <div>
+                Result : {{ $resultState }}
+                <br/>
+                Found result : {{ count($resultSearch) }} values
+            </div>
+            <h4 style="text-align:center;">List of Hospital</h4>
             <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                 <thead>
                 <tr role="row">
@@ -116,11 +122,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <div>
-                    Result : {{ $resultState }}
-                    <br/>
-                    Found result : {{ count($resultSearch) }} values
-                </div>
                     <?php
                     for($i = 0; $i < count($resultSearch); $i++){
                     ?>
