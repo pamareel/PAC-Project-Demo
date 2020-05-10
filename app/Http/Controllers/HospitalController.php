@@ -47,7 +47,7 @@ class HospitalController extends Controller
                 $statement .= "and DEPT_NAME = '".$Hname."'";
             }
             $resultSearch = DB::select($statement);
-            $table_resultSearch = $this->resultSearch_table($resultSearch);
+            $table_resultSearch = $this->resultSearch_table($resultSearch, $year);
         }
         if(empty($resultSearch)){
             $resultSearch = 'No value';
@@ -60,7 +60,7 @@ class HospitalController extends Controller
         return view('HospitalPage', $send_data);
     }
 
-    function resultSearch_table($result){
+    function resultSearch_table($result, $year){
         $resultSearch_table_result = [];
         $content = '';
         if($result != null){
@@ -78,12 +78,11 @@ class HospitalController extends Controller
                 // $Hname = $result[$i]->DEPT_NAME;
                 // $content .= 'href=\'/hospitalDashboard/'.$Hname.'\'>Dashboard</a></td>';
                 $content .= '<td style="text-align:center;"><button class="btn" style="background-color:beige;"';
-                $Hname = $result[$i]->DEPT_NAME;
-                $content .= 'onclick = "location=\'/hospitalDashboard/'.$Hname.'\'">Dashboard</a></td>';
+                $Hid = $result[$i]->DEPT_ID;
+                $content .= 'onclick = "location=\'/hospitalDashboard/'.$year.'/'.$Hid.'\'">Dashboard</a></td>';
                 $content .= '</tr>';
             }
         }
-        dump($content);
         return $content;
     }
 }
