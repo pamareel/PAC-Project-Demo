@@ -1554,15 +1554,18 @@ class SearchController extends Controller
         $chartLowPercent = array();
         $chartMedPercent = array();
         $chartHighPercent = array();
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $AVG = DB::select($query_AVG);
+        $avg = $AVG[0]->avg;
         foreach($size_hospital_name as $s){
             if($method == 'All'){
-                $low_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value<0.8;";
-                $med_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value < 1 and PAC_value>=0.8;";
-                $high_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value >=1;";
+                $low_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value < '".$avg."';";
+                $med_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value = '".$avg."';";
+                $high_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value > '".$avg."';";
             }else{
-                $low_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value<0.8;";
-                $med_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value < 1 and PAC_value>=0.8;";
-                $high_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value >= 1;";
+                $low_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value < '".$avg."';";
+                $med_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value = '".$avg."';";
+                $high_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value > '".$avg."';";
             }
 
             if($s == 'NULL'){

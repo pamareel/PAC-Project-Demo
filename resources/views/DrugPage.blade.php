@@ -193,7 +193,7 @@
                 labels: sizeAll,
                 datasets:[
                 {
-                    label:'Low Purchasing Power',
+                    label:'Below Average',
                     data: [{{ $chartLow_Size[0] }}, {{ $chartLow_Size[1] }}, {{ $chartLow_Size[2] }},
                         {{ $chartLow_Size[3] }}, {{ $chartLow_Size[4] }}, {{ $chartLow_Size[5] }},
                         {{ $chartLow_Size[6] }}, {{ $chartLow_Size[7] }}],
@@ -204,7 +204,7 @@
                     hoverBorderColor:'#000'
                 },
                 {
-                    label:'Medium Purchasing Power',
+                    label:'Average = {{$avg}}',
                     data: [ {{ $chartMed_Size[0] }} , {{ $chartMed_Size[1] }}, {{ $chartMed_Size[2] }},
                         {{ $chartMed_Size[3] }}, {{ $chartMed_Size[4] }}, {{ $chartMed_Size[5] }},
                         {{ $chartMed_Size[6] }}, {{ $chartMed_Size[7] }}],
@@ -214,7 +214,7 @@
                     hoverBorderWidth:3,
                     hoverBorderColor:'#000'
                 },{
-                    label:'High Purchasing Power',
+                    label:'Above Average',
                     data:[{{ $chartHigh_Size[0] }}, {{ $chartHigh_Size[1] }}, {{ $chartHigh_Size[2] }},
                         {{ $chartHigh_Size[3] }}, {{ $chartHigh_Size[4] }}, {{ $chartHigh_Size[5] }},
                         {{ $chartHigh_Size[6] }}, {{ $chartHigh_Size[7] }}],
