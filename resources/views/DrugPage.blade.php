@@ -171,7 +171,7 @@
     if(!empty($resultSearch) && $resultSearch != 'No value'){
     ?>
     <style>
-        #Region_To_Size, #Size_To_Region, #backButton_size, #backButton_Type {
+        #Region_To_Size, #Size_To_Region, #backButton_Type {
             border-radius: 4px;
             padding: 8px;
             border: none;
@@ -692,7 +692,6 @@
                             <span class="text-muted" >Below Average</span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -727,7 +726,6 @@
         <div class="col-md-7">
             <div class="card">
                 <div class="card-body">
-                    <button class="btn" id="backButton_size">&lt; Drill Up</button>
                     <h4 id="Size_Donut" style="color:black; text-align:center;"></h4>
                     <div class='row center'>
                         <div id="size_quan_donut" class="mt-2 col-md-7 center" style="height:283px; width:60%;"></div>
