@@ -171,7 +171,7 @@
     if(!empty($resultSearch) && $resultSearch != 'No value'){
     ?>
     <style>
-        #Region_To_Size, #Size_To_Region {
+        #Region_To_Size, #Size_To_Region, #backButton_size {
             border-radius: 4px;
             padding: 8px;
             border: none;
@@ -274,6 +274,7 @@
                 $.massPopChart.destroy();
                 var myChart_s1 = $("#myChart").get(0).getContext("2d");
                 $.massPopChart_s = new Chart(myChart_s1, sizeData);
+                $('#Donut_Type').removeClass('invisible');  
             });
             $("#Size_To_Region").click(function() { 
                 $(this).toggleClass("invisible");
@@ -283,6 +284,7 @@
                 $.massPopChart_s.destroy();
                 var myChart_s2 = $("#myChart").get(0).getContext("2d");
                 $.massPopChart = new Chart(myChart_s2, optionData);
+                $('#Donut_Type').addClass('invisible');  
             });
         });
         // END size of Hospital /////////
@@ -315,6 +317,48 @@
             </div>
         </div>
     </div>
+    <div class="row invisible" id = 'Donut_Type'>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn" id="backButton_size">&lt; Drill Up</button>
+                    <h4 id="Size_Donut" style="color:black; text-align:center;"></h4>
+                    <div class='row center'>
+                        <div id="size_quan_donut" class="mt-2 col-md-6 center" style="height:283px; width:60%;"></div>
+                        <div>
+                            <table id="datatable" style="width: 100%;" role="grid">
+                                <thead>
+                                <tr role="row">
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th># of Hopitals</th>
+                                    <th>Unit Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                <td><i class="fas fa-circle font-10 mr-2" style="color:green;"></i></td>
+                                <td><span class="text-muted" >Type A</span></td>
+                                </tr>
+                                <tr>
+                                <td><i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i></td>
+                                <td><span class="text-muted" >Type S</span></td>
+                                </tr>
+                                <tr>
+                                <td><i class="fas fa-circle font-10 mr-2" style="color:red;"></i></td>
+                                <td><span class="text-muted" >Type M1</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
     <script>
             // For WHole Country Chart Option ///////////////////////////////////////////
             var optionData = {
