@@ -155,6 +155,9 @@ class SearchController extends Controller
             [$chart_Size, $chartLow_Size, $chartMed_Size, $chartHigh_Size] = $this->stack_size_hospital($year,$GT,$Dname,$method);
             $Donut_Type_result = $this->Donut_Type_Hos($year,$GT,$Dname,$method);
             $Type_Hos_table = $this->tableForTypeHos($Donut_Type_result);
+
+            [$total_type, $chartType, $chartOver_type, $chartAvg_type, $chartUnder_type] = $this->donut_type_drill_down($year,$GT,$Dname,$method);
+            $table_type_drill = $this->tableForType_drill_down($year,$GT,$Dname,$method);
         }
         // $mapp = (object) ['TH-30' => 'purple', 'TH-20' => 'yellow'];
         // $mapp = "{'TH-30':'purple', 'TH-20':'red'}";
@@ -215,6 +218,9 @@ class SearchController extends Controller
             
             $chart_Size = NULL; $chartLow_Size = NULL; $chartMed_Size = NULL; $chartHigh_Size = NULL;
             $Donut_Type_result = NULL; $Type_Hos_table = NULL;
+
+            $total_type = NULL; $chartType = NULL; $chartOver_type = NULL; $chartAvg_type = NULL; $chartUnder_type = NULL;
+            $table_type_drill = NULL;
         }
         $send_data = array(
             'resultSearch'=>$resultSearch,
@@ -269,7 +275,10 @@ class SearchController extends Controller
             'tableD_r11'=>$tableD_r11, 'tableD_r12'=>$tableD_r12, 'tableD_r13'=>$tableD_r13,
 
             'chart_Size'=>$chart_Size, 'chartLow_Size'=>$chartLow_Size, 'chartMed_Size'=>$chartMed_Size, 'chartHigh_Size'=>$chartHigh_Size,
-            'Donut_Type_result'=>$Donut_Type_result, 'Type_Hos_table'=>$Type_Hos_table
+            'Donut_Type_result'=>$Donut_Type_result, 'Type_Hos_table'=>$Type_Hos_table,
+
+            'total_type'=>$total_type, 'chartType'=>$chartType, 'chartOver_type'=>$chartOver_type, 'chartAvg_type'=>$chartAvg_type, 'chartUnder_type'=>$chartUnder_type,
+            'table_type_drill'=>$table_type_drill
         );
         return view('DrugPage', $send_data);
     }
@@ -1605,9 +1614,7 @@ class SearchController extends Controller
         $total = 0;
         foreach($size_hospital_name as $s){
             if($method == 'All'){
-                // $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, CONVERT(varchar, CAST(sum(Total_Amount) as money), 1) as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."';";
                 $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."';";
-
             }else{
                 $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."';";
             }
@@ -1659,5 +1666,106 @@ class SearchController extends Controller
             }  
         }
         return $content;
+    }
+    function donut_type_drill_down($year,$GT,$Dname,$method){
+        ////// init ////////////////////////////////////////////////////////
+        $chartType = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'NULL'];
+        $chartType2 = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'Undefined'];
+        $chartLowPercent = array();
+        $chartMedPercent = array();
+        $chartHighPercent = array();
+        $result_count2 = 0;
+        $total_type = [];
+        $total = 0;
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $AVG = DB::select($query_AVG);
+        $avg = $AVG[0]->avg;
+        ///// create array for stack bar chart ////////////////////////////////////////////////
+        foreach($chartType as $s) {
+            if($method == 'All'){
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and ServicePlanType ='".$s."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and ServicePlanType ='".$s."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and ServicePlanType ='".$s."'";
+                $q = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType ='".$s."';";
+            }else{
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and ServicePlanType ='".$s."' and Method ='".$method."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and ServicePlanType ='".$s."' and Method ='".$method."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and ServicePlanType ='".$s."' and Method ='".$method."'";
+                $q = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType ='".$s."' and Method ='".$method."';";
+            }
+
+            if($s == 'NULL'){
+                $s = 'Undefined';
+            }
+            /////// for Low PAC ////////////////////////////////////////////////
+            $lowPac = DB::select($query_low);
+            if($lowPac != null){
+                $Low_dataPercent = ($lowPac[0]->n);
+            }else{
+                $Low_dataPercent = 0;
+            }
+            $result_count2 = array($s => $Low_dataPercent);
+            $chartLowPercent = array_merge($chartLowPercent, $result_count2);
+            
+            /////// for Medium PAC ////////////////////////////////////////////////
+            $medPac = DB::select($query_med);
+            if($medPac != null){
+                $Med_dataPercent = ($medPac[0]->n);
+            }else{
+                $Med_dataPercent = 0;
+            }
+            $result_count2 = array($s => $Med_dataPercent);
+            $chartMedPercent = array_merge($chartMedPercent, $result_count2);
+
+            /////// for High PAC ////////////////////////////////////////////////
+            $highPac = DB::select($query_high);
+            if($highPac != null){
+                $High_dataPercent = ($highPac[0]->n);
+            }else{
+                $High_dataPercent = 0;
+            }
+            $result_count2 = array($s => $High_dataPercent);
+            $chartHighPercent = array_merge($chartHighPercent, $result_count2);
+
+            /////// for total hospital ////////////////////////////////////////
+            $result_q = DB::select($q);
+            if($result_q != NULL){
+                $total = $result_q[0]->n;
+            }else{
+                $total = 0;
+            }
+            $result_q2 = array($s => $total);
+            $total_type = array_merge($total_type, $result_q2);
+        }
+        return [$total_type, $chartType2, $chartHighPercent, $chartMedPercent, $chartLowPercent];
+    }
+    function tableForType_drill_down($y,$g,$na,$m){
+        ////// init ////////////////////////////////////////////////////////
+        $chartType = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'NULL'];
+        $tableForRegion_result = [];
+        foreach($chartType as $s){
+            $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, FORMAT(IP, N'N0') as IP, FORMAT(OP, N'N0') as OP, FORMAT(Total_Amount, N'N0') as Total_Amount, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend, cast(PAC_value as decimal(18,3)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and ServicePlanType = '".$s."' order by PAC_value;";
+            $result = DB::select($query_rd);
+            $content = '';
+            for ($i = 0; $i < Count($result) ; $i++) {
+                $content .= '<tr>';
+                $content .= '<td style="text-align:center;">'.$result[$i]->DEPT_ID.'</td>';
+                $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                $content .= '<td style="text-align:right;">'.$result[$i]->IP.'</td>';
+                $content .= '<td style="text-align:right;">'.$result[$i]->OP.'</td>';
+                $content .= '<td style="text-align:right;">'.$result[$i]->wavg_unit_price.'</td>';
+                $content .= '<td style="text-align:right;">'.$result[$i]->Total_Amount.'</td>';
+                $content .= '<td style="text-align:right;">'.$result[$i]->Total_Spend.'</td>';
+                $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
+                $content .= '</tr>';
+            }
+            if($s == 'NULL'){
+                $s = 'Undefined';
+            }
+            $result2 = array($s => $content);
+            $tableForRegion_result = array_merge($tableForRegion_result, $result2);
+        }
+        return $tableForRegion_result;
     }
 }

@@ -171,7 +171,7 @@
     if(!empty($resultSearch) && $resultSearch != 'No value'){
     ?>
     <style>
-        #Region_To_Size, #Size_To_Region, #backButton_size {
+        #Region_To_Size, #Size_To_Region, #backButton_size, #backButton_Type {
             border-radius: 4px;
             padding: 8px;
             border: none;
@@ -181,6 +181,16 @@
             position: absolute;
             top: 10px;
             right: 10px;
+            cursor: pointer;
+        }
+        #to_A, #to_S, #to_M1, #to_M2, #to_F1, #to_F2, #to_F3, #to_undefined{
+            border-radius: 4px;
+            padding: 10px;
+            border: none;
+            font-size: 16px;
+            background-color: beige;
+            color: grey;
+            position: block;
             cursor: pointer;
         }
     </style>
@@ -275,20 +285,14 @@
                 $.massPopChart.destroy();
                 var myChart_s1 = $("#myChart").get(0).getContext("2d");
                 $.massPopChart_s = new Chart(myChart_s1, sizeData);
-                // $('#Donut_Type').removeClass('invisible');  
-
                 //table
                 var content = '';
                 var content_1 = '';
-                var total = '';
                 content = {!! json_encode($Donut_Type_result) !!};
-                total = content['A']['Total_Total_Amount'] + content['S']['Total_Total_Amount'];
-                total = total + content['M1']['Total_Total_Amount'] + content['M2']['Total_Total_Amount'];
-                total = total + content['F1']['Total_Total_Amount'] + content['F2']['Total_Total_Amount'] + content['F3']['Total_Total_Amount'];
-                total = total + + content['Undefined']['Total_Total_Amount'];
                 content_1 = {!! json_encode($Type_Hos_table) !!};
                 if(content != ''){
                     $("#Donut_Type").removeClass('invisible');  
+                    $("#drill_down_type_button").removeClass("invisible");
                     //donut graph
                     c3.generate({ 
                         bindto:"#size_quan_donut",
@@ -318,13 +322,331 @@
                 $.massPopChart_s.destroy();
                 var myChart_s2 = $("#myChart").get(0).getContext("2d");
                 $.massPopChart = new Chart(myChart_s2, optionData);
-                $('#Donut_Type').addClass('invisible');  
+                $('#Donut_Type').addClass('invisible'); 
+                $("#drill_down_type_button").addClass("invisible"); 
             });
+            $("#to_A").click(function() { 
+                //table
+                var content = '';
+                var content_1 = '';
+                content = {!! json_encode($table_type_drill) !!};
+                content_1 = content['A'];
+                total = {!! json_encode($total_type) !!};
+                total_1 = total['A'];
+                if(content_1 != ''){
+                    $("#Donut_Type").addClass('invisible');  
+                    $("#drill_down_type_button").addClass("invisible");
+                    $('#Stack_Bar').addClass('invisible'); 
+                    $('#drill_down_donut').removeClass('invisible');
+                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type A";
+                    //donut graph
+                    low = {!! json_encode($chartUnder_type) !!};
+                    low_1 = low['A'];
+                    med = {!! json_encode($chartAvg_type) !!};
+                    med_1 = med['A'];
+                    high = {!! json_encode($chartOver_type) !!};
+                    high_1 = high['A'];
+                    c3.generate({ 
+                        bindto:"#size_quan_donut_all",
+                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        type:"donut",
+                        tooltip:{show:!0}},
+                        donut:{label:{show:!1},
+                        title: total_1 + " Hospitals",width:50},
+                        legend:{hide:!0},
+                        color:{pattern:["green","yellow","red"]},
+                    });
+                    //table
+                    $('#drill_down_table_type tbody').html(content_1);
+                }else if(content_1 == '' || content_1 == NULL){
+                    alert('No data');
+                }
+            });
+            $("#to_S").click(function() { 
+                //table
+                var content = '';
+                var content_1 = '';
+                content = {!! json_encode($table_type_drill) !!};
+                content_1 = content['S'];
+                total = {!! json_encode($total_type) !!};
+                total_1 = total['S'];
+                if(content_1 != ''){
+                    $("#Donut_Type").addClass('invisible');  
+                    $("#drill_down_type_button").addClass("invisible");
+                    $('#Stack_Bar').addClass('invisible'); 
+                    $('#drill_down_donut').removeClass('invisible');
+                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type S";
+                    //donut graph
+                    low = {!! json_encode($chartUnder_type) !!};
+                    low_1 = low['S'];
+                    med = {!! json_encode($chartAvg_type) !!};
+                    med_1 = med['S'];
+                    high = {!! json_encode($chartOver_type) !!};
+                    high_1 = high['S'];
+                    c3.generate({ 
+                        bindto:"#size_quan_donut_all",
+                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        type:"donut",
+                        tooltip:{show:!0}},
+                        donut:{label:{show:!1},
+                        title: total_1 + " Hospitals",width:50},
+                        legend:{hide:!0},
+                        color:{pattern:["green","yellow","red"]},
+                    });
+                    //table
+                    $('#drill_down_table_type tbody').html(content_1);
+                }else if(content_1 == '' || content_1 == NULL){
+                    alert('No data');
+                }
+            });
+            $("#to_M1").click(function() { 
+                //table
+                var content = '';
+                var content_1 = '';
+                content = {!! json_encode($table_type_drill) !!};
+                content_1 = content['M1'];
+                total = {!! json_encode($total_type) !!};
+                total_1 = total['M1'];
+                if(content_1 != ''){
+                    $("#Donut_Type").addClass('invisible');  
+                    $("#drill_down_type_button").addClass("invisible");
+                    $('#Stack_Bar').addClass('invisible'); 
+                    $('#drill_down_donut').removeClass('invisible');
+                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type M1";
+                    //donut graph
+                    low = {!! json_encode($chartUnder_type) !!};
+                    low_1 = low['M1'];
+                    med = {!! json_encode($chartAvg_type) !!};
+                    med_1 = med['M1'];
+                    high = {!! json_encode($chartOver_type) !!};
+                    high_1 = high['M1'];
+                    c3.generate({ 
+                        bindto:"#size_quan_donut_all",
+                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        type:"donut",
+                        tooltip:{show:!0}},
+                        donut:{label:{show:!1},
+                        title: total_1 + " Hospitals",width:50},
+                        legend:{hide:!0},
+                        color:{pattern:["green","yellow","red"]},
+                    });
+                    //table
+                    $('#drill_down_table_type tbody').html(content_1);
+                }else if(content_1 == '' || content_1 == NULL){
+                    alert('No data');
+                }
+            });
+            $("#to_M2").click(function() { 
+                //table
+                var content = '';
+                var content_1 = '';
+                content = {!! json_encode($table_type_drill) !!};
+                content_1 = content['M2'];
+                total = {!! json_encode($total_type) !!};
+                total_1 = total['M2'];
+                if(content_1 != ''){
+                    $("#Donut_Type").addClass('invisible');  
+                    $("#drill_down_type_button").addClass("invisible");
+                    $('#Stack_Bar').addClass('invisible'); 
+                    $('#drill_down_donut').removeClass('invisible');
+                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type M2";
+                    //donut graph
+                    low = {!! json_encode($chartUnder_type) !!};
+                    low_1 = low['M2'];
+                    med = {!! json_encode($chartAvg_type) !!};
+                    med_1 = med['M2'];
+                    high = {!! json_encode($chartOver_type) !!};
+                    high_1 = high['M2'];
+                    c3.generate({ 
+                        bindto:"#size_quan_donut_all",
+                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        type:"donut",
+                        tooltip:{show:!0}},
+                        donut:{label:{show:!1},
+                        title: total_1 + " Hospitals",width:50},
+                        legend:{hide:!0},
+                        color:{pattern:["green","yellow","red"]},
+                    });
+                    //table
+                    $('#drill_down_table_type tbody').html(content_1);
+                }else if(content_1 == '' || content_1 == NULL){
+                    alert('No data');
+                }
+            });
+            $("#to_F1").click(function() { 
+                //table
+                var content = '';
+                var content_1 = '';
+                content = {!! json_encode($table_type_drill) !!};
+                content_1 = content['F1'];
+                total = {!! json_encode($total_type) !!};
+                total_1 = total['F1'];
+                if(content_1 != ''){
+                    $("#Donut_Type").addClass('invisible');  
+                    $("#drill_down_type_button").addClass("invisible");
+                    $('#Stack_Bar').addClass('invisible'); 
+                    $('#drill_down_donut').removeClass('invisible');
+                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type F1";
+                    //donut graph
+                    low = {!! json_encode($chartUnder_type) !!};
+                    low_1 = low['F1'];
+                    med = {!! json_encode($chartAvg_type) !!};
+                    med_1 = med['F1'];
+                    high = {!! json_encode($chartOver_type) !!};
+                    high_1 = high['F1'];
+                    c3.generate({ 
+                        bindto:"#size_quan_donut_all",
+                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        type:"donut",
+                        tooltip:{show:!0}},
+                        donut:{label:{show:!1},
+                        title: total_1 + " Hospitals",width:50},
+                        legend:{hide:!0},
+                        color:{pattern:["green","yellow","red"]},
+                    });
+                    //table
+                    $('#drill_down_table_type tbody').html(content_1);
+                }else if(content_1 == '' || content_1 == NULL){
+                    alert('No data');
+                }
+            });
+            $("#to_F2").click(function() { 
+                //table
+                var content = '';
+                var content_1 = '';
+                content = {!! json_encode($table_type_drill) !!};
+                content_1 = content['F2'];
+                total = {!! json_encode($total_type) !!};
+                total_1 = total['F2'];
+                if(content_1 != ''){
+                    $("#Donut_Type").addClass('invisible');  
+                    $("#drill_down_type_button").addClass("invisible");
+                    $('#Stack_Bar').addClass('invisible'); 
+                    $('#drill_down_donut').removeClass('invisible');
+                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type F2";
+                    //donut graph
+                    low = {!! json_encode($chartUnder_type) !!};
+                    low_1 = low['F2'];
+                    med = {!! json_encode($chartAvg_type) !!};
+                    med_1 = med['F2'];
+                    high = {!! json_encode($chartOver_type) !!};
+                    high_1 = high['F2'];
+                    c3.generate({ 
+                        bindto:"#size_quan_donut_all",
+                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        type:"donut",
+                        tooltip:{show:!0}},
+                        donut:{label:{show:!1},
+                        title: total_1 + " Hospitals",width:50},
+                        legend:{hide:!0},
+                        color:{pattern:["green","yellow","red"]},
+                    });
+                    //table
+                    $('#drill_down_table_type tbody').html(content_1);
+                }else if(content_1 == '' || content_1 == NULL){
+                    alert('No data');
+                }
+            });
+            $("#to_F3").click(function() { 
+                //table
+                var content = '';
+                var content_1 = '';
+                content = {!! json_encode($table_type_drill) !!};
+                content_1 = content['F3'];
+                total = {!! json_encode($total_type) !!};
+                total_1 = total['F3'];
+                if(content_1 != ''){
+                    $("#Donut_Type").addClass('invisible');  
+                    $("#drill_down_type_button").addClass("invisible");
+                    $('#Stack_Bar').addClass('invisible'); 
+                    $('#drill_down_donut').removeClass('invisible');
+                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type F3";
+                    //donut graph
+                    low = {!! json_encode($chartUnder_type) !!};
+                    low_1 = low['F3'];
+                    med = {!! json_encode($chartAvg_type) !!};
+                    med_1 = med['F3'];
+                    high = {!! json_encode($chartOver_type) !!};
+                    high_1 = high['F3'];
+                    c3.generate({ 
+                        bindto:"#size_quan_donut_all",
+                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        type:"donut",
+                        tooltip:{show:!0}},
+                        donut:{label:{show:!1},
+                        title: total_1 + " Hospitals",width:50},
+                        legend:{hide:!0},
+                        color:{pattern:["green","yellow","red"]},
+                    });
+                    //table
+                    $('#drill_down_table_type tbody').html(content_1);
+                }else if(content_1 == '' || content_1 == NULL){
+                    alert('No data');
+                }
+            });
+            $("#to_undefined").click(function() { 
+                //table
+                var content = '';
+                var content_1 = '';
+                content = {!! json_encode($table_type_drill) !!};
+                content_1 = content['Undefined'];
+                total = {!! json_encode($total_type) !!};
+                total_1 = total['Undefined'];
+                if(content_1 != ''){
+                    $("#Donut_Type").addClass('invisible');  
+                    $("#drill_down_type_button").addClass("invisible");
+                    $('#Stack_Bar').addClass('invisible'); 
+                    $('#drill_down_donut').removeClass('invisible');
+                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type Undefined";
+                    //donut graph
+                    low = {!! json_encode($chartUnder_type) !!};
+                    low_1 = low['Undefined'];
+                    med = {!! json_encode($chartAvg_type) !!};
+                    med_1 = med['Undefined'];
+                    high = {!! json_encode($chartOver_type) !!};
+                    high_1 = high['Undefined'];
+                    c3.generate({ 
+                        bindto:"#size_quan_donut_all",
+                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        type:"donut",
+                        tooltip:{show:!0}},
+                        donut:{label:{show:!1},
+                        title: total_1 + " Hospitals",width:50},
+                        legend:{hide:!0},
+                        color:{pattern:["green","yellow","red"]},
+                    });
+                    //table
+                    $('#drill_down_table_type tbody').html(content_1);
+                }else if(content_1 == '' || content_1 == NULL){
+                    alert('No data');
+                }
+            });
+            $("#backButton_Type").click(function() { 
+                $("#drill_down_type_button").removeClass("invisible"); 
+                $('#Stack_Bar').removeClass('invisible'); 
+                $('#Donut_Type').removeClass('invisible'); 
+                $('#drill_down_donut').addClass('invisible'); 
+            });
+
         });
         // END size of Hospital /////////
     </script>
     <div class="row" id = 'Stack_Bar'>
         <div class="col-md-12">
+            <div class="card invisible" id="drill_down_type_button">
+                <div class="card-body" style="padding-top: 10px; padding-bottom: 3px; margin:auto;">
+                    <h4>Drill Down&nbsp;&nbsp;
+                    <button class="btn" id="to_A">To A</button>
+                    <button class="btn" id="to_S">To S</button>
+                    <button class="btn" id="to_M1">To M1</button>
+                    <button class="btn" id="to_M2">To M2</button>
+                    <button class="btn" id="to_F1">To F1</button>
+                    <button class="btn" id="to_F2">To F2</button>
+                    <button class="btn" id="to_F3">To F3</button>
+                    <button class="btn" id="to_undefined">To Undefined</button>
+                    </h4>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <button class="btn" id="Region_To_Size">Region > Type of hospital</button>
@@ -346,6 +668,56 @@
                                 ?>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row invisible" id="drill_down_donut">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn" id="backButton_Type">&lt; Drill Up</button>
+                    <h4 id="Size_Donut_title" style="color:black; text-align:center;"></h4>
+                    <div class='row center'>
+                        <div id="size_quan_donut_all" class="mt-2 col-md-7 center" style="height:283px; width:60%;"></div>
+                        <div class="col-md-5 center">
+                            <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
+                            <span class="text-muted" >Above Average</span>
+                            <br/>
+                            <i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i>
+                            <span class="text-muted" >Average = {{ $avg }} </span>
+                            <br/>
+                            <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
+                            <span class="text-muted" >Below Average</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 style="color:black; text-align:center;">List of Hospital</h4>
+                    <div class='row center'>
+                        <table id="drill_down_table_type" style="width: 100%;" role="grid">
+                            <thead>
+                            <tr role="row">
+                                <th style="text-align:center;">ID</th>
+                                <th style="text-align:center;">Name</th>
+                                <th style="text-align:center; padding:5px;">Type</th>
+                                <th style="text-align:center;">IP</th>
+                                <th style="text-align:center;">OP</th>
+                                <th style="text-align:center;">Avg Unit Price</th>
+                                <th style="text-align:center;">Quantity</th>
+                                <th style="text-align:center;">Total Spend</th>
+                                <th style="text-align:center;">PAC</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
