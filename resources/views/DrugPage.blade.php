@@ -253,7 +253,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
                             {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
                             {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}, {{ $chartMedPercent[8] }},
@@ -342,7 +342,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_1[0] }} , {{ $chartMedPercent_1[1] }}, {{ $chartMedPercent_1[2] }},
                             {{ $chartMedPercent_1[3] }}, {{ $chartMedPercent_1[4] }}, {{ $chartMedPercent_1[5] }},
                             {{ $chartMedPercent_1[6] }}, {{ $chartMedPercent_1[7] }}],
@@ -420,7 +420,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_2[0] }} , {{ $chartMedPercent_2[1] }}, {{ $chartMedPercent_2[2] }},
                             {{ $chartMedPercent_2[3] }}, {{ $chartMedPercent_2[4] }}],
                         backgroundColor:'yellow',
@@ -496,7 +496,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_3[0] }} , {{ $chartMedPercent_3[1] }}, {{ $chartMedPercent_3[2] }},
                             {{ $chartMedPercent_3[3] }}, {{ $chartMedPercent_3[4] }}],
                         backgroundColor:'yellow',
@@ -574,7 +574,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_4[0] }} , {{ $chartMedPercent_4[1] }}, {{ $chartMedPercent_4[2] }},
                             {{ $chartMedPercent_4[3] }}, {{ $chartMedPercent_4[4] }}, {{ $chartMedPercent_4[5] }},
                             {{ $chartMedPercent_4[6] }}, {{ $chartMedPercent_4[7] }}],
@@ -654,7 +654,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_5[0] }} , {{ $chartMedPercent_5[1] }}, {{ $chartMedPercent_5[2] }},
                             {{ $chartMedPercent_5[3] }}, {{ $chartMedPercent_5[4] }}, {{ $chartMedPercent_5[5] }},
                             {{ $chartMedPercent_5[6] }}, {{ $chartMedPercent_5[7] }}],
@@ -734,7 +734,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_6[0] }} , {{ $chartMedPercent_6[1] }}, {{ $chartMedPercent_6[2] }},
                             {{ $chartMedPercent_6[3] }}, {{ $chartMedPercent_6[4] }}, {{ $chartMedPercent_6[5] }},
                             {{ $chartMedPercent_6[6] }}, {{ $chartMedPercent_6[7] }}],
@@ -812,7 +812,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_7[0] }} , {{ $chartMedPercent_7[1] }}, {{ $chartMedPercent_7[2] }},
                             {{ $chartMedPercent_7[3] }}],
                         backgroundColor:'yellow',
@@ -889,7 +889,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_8[0] }} , {{ $chartMedPercent_8[1] }}, {{ $chartMedPercent_8[2] }},
                             {{ $chartMedPercent_8[3] }}, {{ $chartMedPercent_8[4] }}, {{ $chartMedPercent_8[5] }}],
                         backgroundColor:'yellow',
@@ -965,7 +965,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_9[0] }} , {{ $chartMedPercent_9[1] }}, {{ $chartMedPercent_9[2] }},
                             {{ $chartMedPercent_9[3] }}],
                         backgroundColor:'yellow',
@@ -1041,7 +1041,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_10[0] }} , {{ $chartMedPercent_10[1] }}, {{ $chartMedPercent_10[2] }},
                             {{ $chartMedPercent_10[3] }}, {{ $chartMedPercent_10[4] }}],
                         backgroundColor:'yellow',
@@ -1119,7 +1119,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_11[0] }} , {{ $chartMedPercent_11[1] }}, {{ $chartMedPercent_11[2] }},
                             {{ $chartMedPercent_11[3] }}, {{ $chartMedPercent_11[4] }}, {{ $chartMedPercent_11[5] }},
                             {{ $chartMedPercent_11[6] }}],
@@ -1199,7 +1199,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_12[0] }} , {{ $chartMedPercent_12[1] }}, {{ $chartMedPercent_12[2] }},
                             {{ $chartMedPercent_12[3] }}, {{ $chartMedPercent_12[4] }}, {{ $chartMedPercent_12[5] }},
                             {{ $chartMedPercent_12[6] }}],
@@ -1276,7 +1276,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_13[0] }}],
                         backgroundColor:'yellow',
                         borderWidth:1,
@@ -1452,7 +1452,7 @@
                             total = low_1 + med_1 + high_1;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_1],['Medium Purchasing Power', med_1],['Low Purchasing Power', low_1]],
+                                data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1509,7 +1509,7 @@
                             total = low_2 + med_2 + high_2;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_2],['Medium Purchasing Power', med_2],['Low Purchasing Power', low_2]],
+                                data:{columns:[["Above Average", high_2],['Average', med_2],['Below Average', low_2]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1566,7 +1566,7 @@
                             total = low_3 + med_3 + high_3;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_3],['Medium Purchasing Power', med_3],['Low Purchasing Power', low_3]],
+                                data:{columns:[["Above Average", high_3],['Average', med_3],['Below Average', low_3]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1623,7 +1623,7 @@
                             total = low_4 + med_4 + high_4;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_4],['Medium Purchasing Power', med_4],['Low Purchasing Power', low_4]],
+                                data:{columns:[["Above Average", high_4],['Average', med_4],['Below Average', low_4]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1680,7 +1680,7 @@
                             total = low_5 + med_5 + high_5;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_5],['Medium Purchasing Power', med_5],['Low Purchasing Power', low_5]],
+                                data:{columns:[["Above Average", high_5],['Average', med_5],['Below Average', low_5]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1737,7 +1737,7 @@
                             total = low_6 + med_6 + high_6;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_6],['Medium Purchasing Power', med_6],['Low Purchasing Power', low_6]],
+                                data:{columns:[["Above Average", high_6],['Average', med_6],['Below Average', low_6]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1794,7 +1794,7 @@
                             total = low_7 + med_7 + high_7;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_7],['Medium Purchasing Power', med_7],['Low Purchasing Power', low_7]],
+                                data:{columns:[["Above Average", high_7],['Average', med_7],['Below Average', low_7]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1851,7 +1851,7 @@
                             total = low_8 + med_8 + high_8;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_8],['Medium Purchasing Power', med_8],['Low Purchasing Power', low_8]],
+                                data:{columns:[["Above Average", high_8],['Average', med_8],['Below Average', low_8]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1908,7 +1908,7 @@
                             total = low_9 + med_9 + high_9;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_9],['Medium Purchasing Power', med_9],['Low Purchasing Power', low_9]],
+                                data:{columns:[["Above Average", high_9],['Average', med_9],['Below Average', low_9]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1965,7 +1965,7 @@
                             total = low_10 + med_10 + high_10;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_10],['Medium Purchasing Power', med_10],['Low Purchasing Power', low_10]],
+                                data:{columns:[["Above Average", high_10],['Average', med_10],['Below Average', low_10]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2022,7 +2022,7 @@
                             total = low_11 + med_11 + high_11;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_11],['Medium Purchasing Power', med_11],['Low Purchasing Power', low_11]],
+                                data:{columns:[["Above Average", high_11],['Average', med_11],['Below Average', low_11]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2079,7 +2079,7 @@
                             total = low_12 + med_12 + high_12;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_12],['Medium Purchasing Power', med_12],['Low Purchasing Power', low_12]],
+                                data:{columns:[["Above Average", high_12],['Average', med_12],['Below Average', low_12]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2136,7 +2136,7 @@
                             total = low_13 + med_13 + high_13;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_13],['Medium Purchasing Power', med_13],['Low Purchasing Power', low_13]],
+                                data:{columns:[["Above Average", high_13],['Average', med_13],['Below Average', low_13]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2322,7 +2322,7 @@
                             total = low_1 + med_1 + high_1;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_1],['Medium Purchasing Power', med_1],['Low Purchasing Power', low_1]],
+                                data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2379,7 +2379,7 @@
                             total = low_2 + med_2 + high_2;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_2],['Medium Purchasing Power', med_2],['Low Purchasing Power', low_2]],
+                                data:{columns:[["Above Average", high_2],['Average', med_2],['Below Average', low_2]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2436,7 +2436,7 @@
                             total = low_3 + med_3 + high_3;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_3],['Medium Purchasing Power', med_3],['Low Purchasing Power', low_3]],
+                                data:{columns:[["Above Average", high_3],['Average', med_3],['Below Average', low_3]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2493,7 +2493,7 @@
                             total = low_4 + med_4 + high_4;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_4],['Medium Purchasing Power', med_4],['Low Purchasing Power', low_4]],
+                                data:{columns:[["Above Average", high_4],['Average', med_4],['Below Average', low_4]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2550,7 +2550,7 @@
                             total = low_5 + med_5 + high_5;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_5],['Medium Purchasing Power', med_5],['Low Purchasing Power', low_5]],
+                                data:{columns:[["Above Average", high_5],['Average', med_5],['Below Average', low_5]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2607,7 +2607,7 @@
                             total = low_6 + med_6 + high_6;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_6],['Medium Purchasing Power', med_6],['Low Purchasing Power', low_6]],
+                                data:{columns:[["Above Average", high_6],['Average', med_6],['Below Average', low_6]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2664,7 +2664,7 @@
                             total = low_7 + med_7 + high_7;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_7],['Medium Purchasing Power', med_7],['Low Purchasing Power', low_7]],
+                                data:{columns:[["Above Average", high_7],['Average', med_7],['Below Average', low_7]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2721,7 +2721,7 @@
                             total = low_8 + med_8 + high_8;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_8],['Medium Purchasing Power', med_8],['Low Purchasing Power', low_8]],
+                                data:{columns:[["Above Average", high_8],['Average', med_8],['Below Average', low_8]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2778,7 +2778,7 @@
                             total = low_9 + med_9 + high_9;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_9],['Medium Purchasing Power', med_9],['Low Purchasing Power', low_9]],
+                                data:{columns:[["Above Average", high_9],['Average', med_9],['Below Average', low_9]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2835,7 +2835,7 @@
                             total = low_10 + med_10 + high_10;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_10],['Medium Purchasing Power', med_10],['Low Purchasing Power', low_10]],
+                                data:{columns:[["Above Average", high_10],['Average', med_10],['Below Average', low_10]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2892,7 +2892,7 @@
                             total = low_11 + med_11 + high_11;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_11],['Medium Purchasing Power', med_11],['Low Purchasing Power', low_11]],
+                                data:{columns:[["Above Average", high_11],['Average', med_11],['Below Average', low_11]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2949,7 +2949,7 @@
                             total = low_12 + med_12 + high_12;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_12],['Medium Purchasing Power', med_12],['Low Purchasing Power', low_12]],
+                                data:{columns:[["Above Average", high_12],['Average', med_12],['Below Average', low_12]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3006,7 +3006,7 @@
                             total = low_13 + med_13 + high_13;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_13],['Medium Purchasing Power', med_13],['Low Purchasing Power', low_13]],
+                                data:{columns:[["Above Average", high_13],['Average', med_13],['Below Average', low_13]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3315,14 +3315,14 @@
                     <div class='row center' >
                         <div id="purchasing_power_donut" class="mt-2 col-md-6 center" style="height:283px; width:60%;"></div>
                         <div class="col-md-5 center">
-                            <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
-                            <span class="text-muted" >High Purchasing Power</span>
+                            <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
+                            <span class="text-muted" >Above Average</span>
                             <br/>
                             <i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i>
-                            <span class="text-muted" >Medium Purchasing Power</span>
+                            <span class="text-muted" >Average = {{ $avg }} </span>
                             <br/>
-                            <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
-                            <span class="text-muted" >Low Purchasing Power</span>
+                            <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
+                            <span class="text-muted" >Below Average</span>
                         </div>
                     </div>
                 </div>
