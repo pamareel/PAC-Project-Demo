@@ -32,8 +32,7 @@ class HospitalController extends Controller
             $statement = '';
             if($region == 'All'){
                 ////// table show //////////////////////////////////////////////////////////////////////
-                $statement .= "select * from Hos_detail where BUDGET_YEAR = ".$year." ";
-                
+                $statement .= "select DEPT_ID, DEPT_NAME, ServicePlanType, PROVINCE_EN, Region, FORMAT(IP, N'N0') as IP, FORMAT(OP, N'N0') as OP, CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend from Hos_detail where BUDGET_YEAR = ".$year." ";
             }else{
                 ////// table show //////////////////////////////////////////////////////////////////////
                 $statement .= "select DEPT_ID, DEPT_NAME, ServicePlanType, PROVINCE_EN, Region, FORMAT(IP, N'N0') as IP, FORMAT(OP, N'N0') as OP, CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend from Hos_detail where BUDGET_YEAR = ".$year." and Region = '".$region."' ";
