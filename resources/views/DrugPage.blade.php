@@ -171,7 +171,7 @@
     if(!empty($resultSearch) && $resultSearch != 'No value'){
     ?>
     <style>
-        #Region_To_Size, #Size_To_Region {
+        #Region_To_Size, #Size_To_Region, #backButton_size {
             border-radius: 4px;
             padding: 8px;
             border: none;
@@ -185,6 +185,85 @@
         }
     </style>
     <script>
+        var sizeAll = {!! json_encode($chart_Size) !!};
+        var sizeData = {
+            name: "Type of Hospital",
+            type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data:{
+                labels: sizeAll,
+                datasets:[
+                {
+                    label:'Low Purchasing Power',
+                    data: [{{ $chartLow_Size[0] }}, {{ $chartLow_Size[1] }}, {{ $chartLow_Size[2] }},
+                        {{ $chartLow_Size[3] }}, {{ $chartLow_Size[4] }}, {{ $chartLow_Size[5] }},
+                        {{ $chartLow_Size[6] }}, {{ $chartLow_Size[7] }}],
+                    backgroundColor:'red',
+                    borderWidth:1,
+                    borderColor:'#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'#000'
+                },
+                {
+                    label:'Medium Purchasing Power',
+                    data: [ {{ $chartMed_Size[0] }} , {{ $chartMed_Size[1] }}, {{ $chartMed_Size[2] }},
+                        {{ $chartMed_Size[3] }}, {{ $chartMed_Size[4] }}, {{ $chartMed_Size[5] }},
+                        {{ $chartMed_Size[6] }}, {{ $chartMed_Size[7] }}],
+                    backgroundColor:'yellow',
+                    borderWidth:1,
+                    borderColor:'#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'#000'
+                },{
+                    label:'High Purchasing Power',
+                    data:[{{ $chartHigh_Size[0] }}, {{ $chartHigh_Size[1] }}, {{ $chartHigh_Size[2] }},
+                        {{ $chartHigh_Size[3] }}, {{ $chartHigh_Size[4] }}, {{ $chartHigh_Size[5] }},
+                        {{ $chartHigh_Size[6] }}, {{ $chartHigh_Size[7] }}],
+                    backgroundColor:'green',
+                    borderWidth:1,
+                    borderColor:'#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'#000'
+                }],
+            },
+            options:{
+                title:{
+                    display:true,
+                    text:'Purchasing Power in Thailand',
+                    fontSize:25,
+                },
+                scales: {
+                    xAxes: [{ stacked: true }],
+                    yAxes: [{ stacked: true, 
+                                ticks: {
+                                beginAtZero: true,
+                                max: 100
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Percentage (%)'
+                                }
+                            }]
+                },
+                legend:{
+                    display:true,
+                    position:'bottom',
+                    labels:{
+                        fontColor:'#000',
+                    } 
+                },
+                layout:{
+                    padding:{
+                        left:0,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }
+                },
+                tooltips:{
+                    enabled:true
+                },
+            }
+        };
         $(document).ready(function() {
             // Start Size of Hospital ///////
             $("#Region_To_Size").click(function() { 
@@ -192,12 +271,20 @@
                 $("#Size_To_Region").toggleClass("invisible");
                 $("#Price_by_Region").addClass("invisible");
                 $("#Quantity_by_Region").addClass("invisible");
+                $.massPopChart.destroy();
+                var myChart_s1 = $("#myChart").get(0).getContext("2d");
+                $.massPopChart_s = new Chart(myChart_s1, sizeData);
+                $('#Donut_Type').removeClass('invisible');  
             });
             $("#Size_To_Region").click(function() { 
                 $(this).toggleClass("invisible");
                 $("#Region_To_Size").toggleClass("invisible");
                 $("#Price_by_Region").removeClass("invisible");  
                 $("#Quantity_by_Region").removeClass("invisible");
+                $.massPopChart_s.destroy();
+                var myChart_s2 = $("#myChart").get(0).getContext("2d");
+                $.massPopChart = new Chart(myChart_s2, optionData);
+                $('#Donut_Type').addClass('invisible');  
             });
         });
         // END size of Hospital /////////
@@ -206,8 +293,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <button class="btn" id="Region_To_Size">Region > Size of hospital</button>
-                    <button class="btn invisible" id="Size_To_Region">Size of hospital > Region</button>
+                    <button class="btn" id="Region_To_Size">Region > Type of hospital</button>
+                    <button class="btn invisible" id="Size_To_Region">Type of hospital > Region</button>
                     <br/>
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                         <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
@@ -230,6 +317,48 @@
             </div>
         </div>
     </div>
+    <div class="row invisible" id = 'Donut_Type'>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn" id="backButton_size">&lt; Drill Up</button>
+                    <h4 id="Size_Donut" style="color:black; text-align:center;"></h4>
+                    <div class='row center'>
+                        <div id="size_quan_donut" class="mt-2 col-md-6 center" style="height:283px; width:60%;"></div>
+                        <div>
+                            <table id="datatable" style="width: 100%;" role="grid">
+                                <thead>
+                                <tr role="row">
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th># of Hopitals</th>
+                                    <th>Unit Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                <td><i class="fas fa-circle font-10 mr-2" style="color:green;"></i></td>
+                                <td><span class="text-muted" >Type A</span></td>
+                                </tr>
+                                <tr>
+                                <td><i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i></td>
+                                <td><span class="text-muted" >Type S</span></td>
+                                </tr>
+                                <tr>
+                                <td><i class="fas fa-circle font-10 mr-2" style="color:red;"></i></td>
+                                <td><span class="text-muted" >Type M1</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
     <script>
             // For WHole Country Chart Option ///////////////////////////////////////////
             var optionData = {

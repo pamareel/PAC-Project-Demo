@@ -150,6 +150,9 @@ class SearchController extends Controller
             $tableD_r12 = $this->tableForRegion(12,$year,$GT,$Dname,$method);
             $tableD_r13 = $this->tableForRegion(13,$year,$GT,$Dname,$method);
             ///// END Table Hospital ///////
+
+            //// Size of Hospital Level
+            [$chart_Size, $chartLow_Size, $chartMed_Size, $chartHigh_Size] = $this->stack_size_hospital($year,$GT,$Dname,$method);
         }
         // $mapp = (object) ['TH-30' => 'purple', 'TH-20' => 'yellow'];
         // $mapp = "{'TH-30':'purple', 'TH-20':'red'}";
@@ -258,7 +261,10 @@ class SearchController extends Controller
 
             'tableD_r1'=>$tableD_r1, 'tableD_r2'=>$tableD_r2, 'tableD_r3'=>$tableD_r3, 'tableD_r4'=>$tableD_r4, 'tableD_r5'=>$tableD_r5,
             'tableD_r6'=>$tableD_r6, 'tableD_r7'=>$tableD_r7, 'tableD_r8'=>$tableD_r8, 'tableD_r9'=>$tableD_r9, 'tableD_r10'=>$tableD_r10,
-            'tableD_r11'=>$tableD_r11, 'tableD_r12'=>$tableD_r12, 'tableD_r13'=>$tableD_r13
+            'tableD_r11'=>$tableD_r11, 'tableD_r12'=>$tableD_r12, 'tableD_r13'=>$tableD_r13,
+
+            'chart_Size'=>$chart_Size, 'chartLow_Size'=>$chartLow_Size, 'chartMed_Size'=>$chartMed_Size, 'chartHigh_Size'=>$chartHigh_Size
+
         );
         return view('DrugPage', $send_data);
     }
@@ -1512,5 +1518,79 @@ class SearchController extends Controller
             }
         }
         return $tableForRegion_result;
+    }
+    function stack_size_hospital($year,$GT,$Dname,$method){
+        $size_hospital_name = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'NULL'];
+
+        $result_count2 = [];
+        $result_count3 = [];
+        $countAllHos = 0;
+        foreach($size_hospital_name as $s){
+            if($method == 'All'){
+                $countquery_r = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."';";
+            }else{
+                $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."'";
+            }
+            $result_count = DB::select($countquery_r);
+            if($s == 'NULL'){
+                $s = 'Undefined';
+            }
+            if($result_count != null){
+                $result_count2 = array($s => $result_count[0]->n);
+                $countAllHos = $countAllHos + $result_count[0]->n;
+            }else{
+                $result_count2 = array($s => 0);
+                $countAllHos = $countAllHos + 0;
+            }
+            $result_count3 = array_merge($result_count3, $result_count2);
+        }
+
+        $chartType = array();
+        $chartLowPercent = array();
+        $chartMedPercent = array();
+        $chartHighPercent = array();
+        foreach($size_hospital_name as $s){
+            if($method == 'All'){
+                $low_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value<0.8;";
+                $med_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value < 1 and PAC_value>=0.8;";
+                $high_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value >=1;";
+            }else{
+                $low_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value<0.8;";
+                $med_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value < 1 and PAC_value>=0.8;";
+                $high_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value >= 1;";
+            }
+
+            if($s == 'NULL'){
+                $s = 'Undefined';
+            }
+            array_push($chartType,$s);
+            /////// for Low PAC ////////////////////////////////////////////////
+            $lowPac = DB::select($low_query);
+            if($lowPac != null && $result_count3[$s] != 0){
+                $Low_dataPercent = 100*($lowPac[0]->n)/$result_count3[$s];
+            }else{
+                $Low_dataPercent = 0;
+            }
+            array_push($chartLowPercent,$Low_dataPercent);
+
+            /////// for Med PAC ////////////////////////////////////////////////
+            $medPac = DB::select($med_query);
+            if($medPac != null && $result_count3[$s] != 0){
+                $Med_dataPercent = 100*($medPac[0]->n)/$result_count3[$s];
+            }else{
+                $Med_dataPercent = 0;
+            }
+            array_push($chartMedPercent,$Med_dataPercent);
+
+            /////// for Med PAC ////////////////////////////////////////////////
+            $highPac = DB::select($high_query);
+            if($highPac != null && $result_count3[$s] != 0){
+                $High_dataPercent = 100*($highPac[0]->n)/$result_count3[$s];
+            }else{
+                $High_dataPercent = 0;
+            }
+            array_push($chartHighPercent,$High_dataPercent);
+        }
+        return [$chartType, $chartLowPercent, $chartMedPercent, $chartHighPercent];
     }
 }
