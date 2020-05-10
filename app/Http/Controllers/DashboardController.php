@@ -33,11 +33,11 @@ class DashboardController extends Controller
         $s3 = $totalSpend[2]->total;
         $s4 = $totalSpend[1]->total;
         $s5 = $totalSpend[0]->total;
-        $t1 = $totalSpend[0]->total;
-        $t2 = $totalSpend[1]->total;
-        $t3 = $totalSpend[2]->total;
-        $t4 = $totalSpend[3]->total;
-        $t5 = $totalSpend[4]->total;
+        // $t1 = $totalSpend[0]->total;
+        // $t2 = $totalSpend[1]->total;
+        // $t3 = $totalSpend[2]->total;
+        // $t4 = $totalSpend[3]->total;
+        // $t5 = $totalSpend[4]->total;
         // $annualSpendingChart = new UserChart;
         // $annualSpendingChart->labels([$y1, $y2, $y3, $y4, $y5]);
         // $annualSpendingChart->dataset('Annaul Spending', 'line', [$s1, $s2, $s3, $s4, $s5]);
@@ -62,14 +62,25 @@ class DashboardController extends Controller
         // $annualSpendingChart->minimalist(true);
         $annualSpendingChart->labels([$y1, $y2, $y3, $y4, $y5]);
         $annualSpendingChart->dataset('Annual Spending', 'line', [$s1, $s2, $s3, $s4, $s5])->color($borderColors);
-        $annualSpendingChart->dataset('Annual Spending (invert)', 'line', [$t1, $t2, $t3, $t4, $t5]);
+        // $annualSpendingChart->dataset('Annual Spending (invert)', 'line', [$t1, $t2, $t3, $t4, $t5]);
         $x = array("30", "6", "23");
         $y = array("45", "2", "9");
         $corr = $this->Corr($x,$y);
             // ->backgroundcolor($fillColors);
+
         $send_data = array(
             'annualSpendingChart' => $annualSpendingChart,
-            'corr' => $corr
+            'corr' => $corr,
+            'y1' => $y1,
+            'y2' => $y2,
+            'y3' => $y3,
+            'y4' => $y4,
+            'y5' => $y5,
+            's1' => $s1,
+            's2' => $s2,
+            's3' => $s3,
+            's4' => $s4,
+            's5' => $s5
         );
         if($TGX == "TPU"){
             return view('Dashboard-TPU', $send_data );

@@ -5,6 +5,31 @@
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
 <!-- <script src="{{ asset('js/Chart.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script> -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Annual spending'],
+          ['{{$y1 ?? ''}}',  {{$s1 ?? ''}}],
+          ['{{$y2 ?? ''}}',  {{$s2 ?? ''}}],
+          ['{{$y3 ?? ''}}',  {{$s3 ?? ''}}],
+          ['{{$y4 ?? ''}}',  {{$s4 ?? ''}}],
+          ['{{$y5 ?? ''}}',  {{$s5 ?? ''}}]
+        ]);
+
+        var options = {
+          title: 'Total Annual Spending',
+        //   curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+</script>
 @endsection
 
 @section('content')
@@ -259,6 +284,14 @@
         <!-- End Total Annual Spending -->
         <!-- ============================================================== -->
     </div> 
+        <!-- *************************************************************** -->
+        <!-- Start Google line chart -->
+        <!-- *************************************************************** -->
+
+        <div id="curve_chart" style="width: 500px; height: 500px"></div>
+        <!-- *************************************************************** -->
+        <!-- End Google line chart -->
+        <!-- *************************************************************** -->
 
     <div class="row">
         <!-- *************************************************************** -->
@@ -688,13 +721,14 @@
 
 @section('javascripts')
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready( function () {
-            $('#datatable').DataTable({
-                "sScrollX": "100%",
-                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
-            });
+<script>
+    $(document).ready( function () {
+        $('#datatable').DataTable({
+            "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
         });
-    </script>
+    });
+</script>
+
 @endsection
 
