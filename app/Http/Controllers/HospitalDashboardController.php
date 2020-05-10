@@ -60,7 +60,6 @@ class HospitalDashboardController extends Controller
         }
         array_push($top5_GPU_amount, $other_GPU);
         array_push($top5_TPU_amount, $other_TPU);
-        dump($top5_GPU_name);
 
         return [$Hname, $GPU_result, $TPU_result, $top5_GPU_name, $top5_GPU_amount, $top5_TPU_name, $top5_TPU_amount];
     }
