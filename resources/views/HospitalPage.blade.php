@@ -88,72 +88,64 @@
 <!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
+
 <div class="container-fluid">
     <!-- Start Search Filter -->
     <?php
     $i=0;
     if(!empty($resultSearch)){
     ?>
+    
     <div class="row">
         <div class="col-md-12">
-        <div class="card">
-        <?php
-        if($resultSearch != 'No value'){
-        ?>
-            <div class="card-body">
-            <div>
-                Result : {{ $resultState }}
-                <br/>
-                Found result : {{ count($resultSearch) }} values
-            </div>
-            <h4 style="text-align:center;">List of Hospital</h4>
-            <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
-                <thead>
-                <tr role="row">
-                    <th style="text-align:center;">ID</th>
-                    <th style="text-align:center;">NAME</th>
-                    <th style="text-align:center;">Type</th>
-                    <th style="text-align:center;">Province</th>
-                    <th style="text-align:center;">Region</th>
-                    <th style="text-align:center;">IP</th>
-                    <th style="text-align:center;">OP</th>
-                    <th style="text-align:center;">Total Spend</th>
-                    <th style="text-align:center;">Dashboard</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    for($i = 0; $i < count($resultSearch); $i++){
-                    ?>
-                        <tr>
-                        <td style="text-align:center;">{{ $resultSearch[$i]->DEPT_ID }}</td>  
-                        <td style="text-align:left;">{{ $resultSearch[$i]->DEPT_NAME }}</td>
-                        <td style="text-align:center;">{{ $resultSearch[$i]->ServicePlanType }}</td>  
-                        <td style="text-align:center;">{{ $resultSearch[$i]->PROVINCE_EN }}</td>
-                        <td style="text-align:center;">{{ $resultSearch[$i]->Region }}</td>  
-                        <td style="text-align:right;">{{ $resultSearch[$i]->IP }}</td>
-                        <td style="text-align:right;">{{ $resultSearch[$i]->OP }}</td>
-                        <td style="text-align:right;">{{ $resultSearch[$i]->Total_Spend }}</td>
-                        <td style="text-align:center;">Dashboard</td>
+            <div class="card">
+                <?php
+                if($resultSearch != 'No value'){
+                ?>
+                    <div class="card-body">
+                    <div>
+                        Result : {{ $resultState }}
+                        <br/>
+                        Found result : {{ count($resultSearch) }} values
+                    </div>
+                    <h4 style="text-align:center;">List of Hospital</h4>
+                    <table id="tableSearch" style="width: 100%;">
+                        <thead>
+                        <tr role="row">
+                            <th style="text-align:center;">ID</th>
+                            <th style="text-align:center;">NAME</th>
+                            <th style="text-align:center;">Type</th>
+                            <th style="text-align:center;">Province</th>
+                            <th style="text-align:center;">Region</th>
+                            <th style="text-align:center;">IP</th>
+                            <th style="text-align:center;">OP</th>
+                            <th style="text-align:center;">Total Spend</th>
+                            <th style="text-align:center;">Dashboard</th>
                         </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    </div>
+                <?php
+                }else{
+                ?>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <th>No data</th>
+                    <script>alert('No Data, Please select again');</script>
+                <?php
+                }
+                ?>
             </div>
-        <?php
-        }else{
-        ?>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <th>No data</th>
-            <script>alert('No Data, Please select again');</script>
-        <?php
-        }
-        ?>
-        </div>
         </div>
     </div>
+    <script>
+        var content_1 = {!! json_encode($table_resultSearch) !!};
+        if(content_1 != null || content_1 != ''){
+            $('#tableSearch tbody').html(content_1);
+        }
+    </script>
+    
     <?php
     }
     ?>

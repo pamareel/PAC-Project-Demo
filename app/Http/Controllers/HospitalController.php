@@ -47,15 +47,43 @@ class HospitalController extends Controller
                 $statement .= "and DEPT_NAME = '".$Hname."'";
             }
             $resultSearch = DB::select($statement);
+            $table_resultSearch = $this->resultSearch_table($resultSearch);
         }
         if(empty($resultSearch)){
             $resultSearch = 'No value';
             $resultState = 'Please select again';
-
+            $table_resultSearch = NULL;
         }
         $send_data = array(
-            'resultSearch'=>$resultSearch, 'resultState'=>$resultState
+            'resultSearch'=>$resultSearch, 'resultState'=>$resultState, 'table_resultSearch'=>$table_resultSearch
         );
         return view('HospitalPage', $send_data);
+    }
+
+    function resultSearch_table($result){
+        $resultSearch_table_result = [];
+        $content = '';
+        if($result != null){
+            for ($i = 0; $i < Count($result) ; $i++) {
+                $content .= '<tr>';
+                $content .= '<td style="text-align:center;">'.$result[$i]->DEPT_ID.'</td>';
+                $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
+                $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                $content .= '<td style="text-align:center;">'.$result[$i]->PROVINCE_EN.'</td>';
+                $content .= '<td style="text-align:center;">'.$result[$i]->Region.'</td>';
+                $content .= '<td style="text-align:right;">'.$result[$i]->IP.'</td>';
+                $content .= '<td style="text-align:right;">'.$result[$i]->OP.'</td>';
+                $content .= '<td style="text-align:right;">'.$result[$i]->Total_Spend.'</td>';
+                // $content .= '<td style="text-align:center;"><a style="background-color:beige;"';
+                // $Hname = $result[$i]->DEPT_NAME;
+                // $content .= 'href=\'/hospitalDashboard/'.$Hname.'\'>Dashboard</a></td>';
+                $content .= '<td style="text-align:center;"><button class="btn" style="background-color:beige;"';
+                $Hname = $result[$i]->DEPT_NAME;
+                $content .= 'onclick = "location=\'/hospitalDashboard/'.$Hname.'\'">Dashboard</a></td>';
+                $content .= '</tr>';
+            }
+        }
+        dump($content);
+        return $content;
     }
 }

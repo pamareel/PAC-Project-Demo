@@ -37,6 +37,12 @@ Route::get('/HospitalPage', function () {
 //Search Filter in HospitalPage 
 Route::get('/search', 'SearchController@index');
 
+// Hospital Dashboard Page
+Route::get('/HospitalDashboardPage', function () {
+    return view('HospitalDashboardPage');
+})->name('HospitalDashboardPage');
+Route::get('/hospitalDashboard/{Hname}', 'HospitalDashboardController@index');
+
 Route::get('/testDB', 'EbiddingController@testDB');
 Route::get('/testDB2', 'DashboardController@getTOP5GPU');
 
