@@ -325,7 +325,7 @@
                         ,'Region7', 'Region8', 'Region9', 'Region10', 'Region11', 'Region12', 'Region13'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent[0] }}, {{ $chartLowPercent[1] }}, {{ $chartLowPercent[2] }},
                             {{ $chartLowPercent[3] }}, {{ $chartLowPercent[4] }}, {{ $chartLowPercent[5] }},
                             {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}, {{ $chartLowPercent[8] }},
@@ -338,7 +338,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
                             {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
                             {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}, {{ $chartMedPercent[8] }},
@@ -350,7 +350,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent[0] }}, {{ $chartHighPercent[1] }}, {{ $chartHighPercent[2] }},
                             {{ $chartHighPercent[3] }}, {{ $chartHighPercent[4] }}, {{ $chartHighPercent[5] }},
                             {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}, {{ $chartHighPercent[8] }},
@@ -416,7 +416,7 @@
                     '{{ $chartRegion_1[5] }}', '{{ $chartRegion_1[6] }}', '{{ $chartRegion_1[7] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_1[0] }}, {{ $chartLowPercent_1[1] }}, {{ $chartLowPercent_1[2] }},
                             {{ $chartLowPercent_1[3] }}, {{ $chartLowPercent_1[4] }}, {{ $chartLowPercent_1[5] }},
                             {{ $chartLowPercent_1[6] }}, {{ $chartLowPercent_1[7] }}],
@@ -427,7 +427,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_1[0] }} , {{ $chartMedPercent_1[1] }}, {{ $chartMedPercent_1[2] }},
                             {{ $chartMedPercent_1[3] }}, {{ $chartMedPercent_1[4] }}, {{ $chartMedPercent_1[5] }},
                             {{ $chartMedPercent_1[6] }}, {{ $chartMedPercent_1[7] }}],
@@ -437,7 +437,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_1[0] }}, {{ $chartHighPercent_1[1] }}, {{ $chartHighPercent_1[2] }},
                             {{ $chartHighPercent_1[3] }}, {{ $chartHighPercent_1[4] }}, {{ $chartHighPercent_1[5] }},
                             {{ $chartHighPercent_1[6] }}, {{ $chartHighPercent_1[7] }}],
@@ -495,7 +495,7 @@
                     labels:['{{ $chartRegion_2[0] }}', '{{ $chartRegion_2[1] }}', '{{ $chartRegion_2[2] }}', '{{ $chartRegion_2[3] }}', '{{ $chartRegion_2[4] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_2[0] }}, {{ $chartLowPercent_2[1] }}, {{ $chartLowPercent_2[2] }},
                             {{ $chartLowPercent_2[3] }}, {{ $chartLowPercent_2[4] }}],
                         backgroundColor:'red',
@@ -505,7 +505,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_2[0] }} , {{ $chartMedPercent_2[1] }}, {{ $chartMedPercent_2[2] }},
                             {{ $chartMedPercent_2[3] }}, {{ $chartMedPercent_2[4] }}],
                         backgroundColor:'yellow',
@@ -514,7 +514,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_2[0] }}, {{ $chartHighPercent_2[1] }}, {{ $chartHighPercent_2[2] }},
                             {{ $chartHighPercent_2[3] }}, {{ $chartHighPercent_2[4] }}],
                         backgroundColor:'green',
@@ -571,7 +571,7 @@
                     labels:['{{ $chartRegion_3[0] }}', '{{ $chartRegion_3[1] }}', '{{ $chartRegion_3[2] }}', '{{ $chartRegion_3[3] }}', '{{ $chartRegion_3[4] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_3[0] }}, {{ $chartLowPercent_3[1] }}, {{ $chartLowPercent_3[2] }},
                             {{ $chartLowPercent_3[3] }}, {{ $chartLowPercent_3[4] }}],
                         backgroundColor:'red',
@@ -581,7 +581,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_3[0] }} , {{ $chartMedPercent_3[1] }}, {{ $chartMedPercent_3[2] }},
                             {{ $chartMedPercent_3[3] }}, {{ $chartMedPercent_3[4] }}],
                         backgroundColor:'yellow',
@@ -590,7 +590,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_3[0] }}, {{ $chartHighPercent_3[1] }}, {{ $chartHighPercent_3[2] }},
                             {{ $chartHighPercent_3[3] }}, {{ $chartHighPercent_3[4] }}],
                         backgroundColor:'green',
@@ -648,7 +648,7 @@
                     '{{ $chartRegion_4[5] }}', '{{ $chartRegion_4[6] }}', '{{ $chartRegion_4[7] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_4[0] }}, {{ $chartLowPercent_4[1] }}, {{ $chartLowPercent_4[2] }},
                             {{ $chartLowPercent_4[3] }}, {{ $chartLowPercent_4[4] }}, {{ $chartLowPercent_4[5] }},
                             {{ $chartLowPercent_4[6] }}, {{ $chartLowPercent_4[7] }}],
@@ -659,7 +659,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_4[0] }} , {{ $chartMedPercent_4[1] }}, {{ $chartMedPercent_4[2] }},
                             {{ $chartMedPercent_4[3] }}, {{ $chartMedPercent_4[4] }}, {{ $chartMedPercent_4[5] }},
                             {{ $chartMedPercent_4[6] }}, {{ $chartMedPercent_4[7] }}],
@@ -669,7 +669,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_4[0] }}, {{ $chartHighPercent_4[1] }}, {{ $chartHighPercent_4[2] }},
                             {{ $chartHighPercent_4[3] }}, {{ $chartHighPercent_4[4] }}, {{ $chartHighPercent_4[5] }},
                             {{ $chartHighPercent_4[6] }}, {{ $chartHighPercent_4[7] }}],
@@ -728,7 +728,7 @@
                     '{{ $chartRegion_5[5] }}', '{{ $chartRegion_5[6] }}', '{{ $chartRegion_5[7] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_5[0] }}, {{ $chartLowPercent_5[1] }}, {{ $chartLowPercent_5[2] }},
                             {{ $chartLowPercent_5[3] }}, {{ $chartLowPercent_5[4] }}, {{ $chartLowPercent_5[5] }},
                             {{ $chartLowPercent_5[6] }}, {{ $chartLowPercent_5[7] }}],
@@ -739,7 +739,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_5[0] }} , {{ $chartMedPercent_5[1] }}, {{ $chartMedPercent_5[2] }},
                             {{ $chartMedPercent_5[3] }}, {{ $chartMedPercent_5[4] }}, {{ $chartMedPercent_5[5] }},
                             {{ $chartMedPercent_5[6] }}, {{ $chartMedPercent_5[7] }}],
@@ -749,7 +749,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_5[0] }}, {{ $chartHighPercent_5[1] }}, {{ $chartHighPercent_5[2] }},
                             {{ $chartHighPercent_5[3] }}, {{ $chartHighPercent_5[4] }}, {{ $chartHighPercent_5[5] }},
                             {{ $chartHighPercent_5[6] }}, {{ $chartHighPercent_5[7] }}],
@@ -808,7 +808,7 @@
                     '{{ $chartRegion_6[5] }}', '{{ $chartRegion_6[6] }}', '{{ $chartRegion_6[7] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_6[0] }}, {{ $chartLowPercent_6[1] }}, {{ $chartLowPercent_6[2] }},
                             {{ $chartLowPercent_6[3] }}, {{ $chartLowPercent_6[4] }}, {{ $chartLowPercent_6[5] }},
                             {{ $chartLowPercent_6[6] }}, {{ $chartLowPercent_6[7] }}],
@@ -819,7 +819,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_6[0] }} , {{ $chartMedPercent_6[1] }}, {{ $chartMedPercent_6[2] }},
                             {{ $chartMedPercent_6[3] }}, {{ $chartMedPercent_6[4] }}, {{ $chartMedPercent_6[5] }},
                             {{ $chartMedPercent_6[6] }}, {{ $chartMedPercent_6[7] }}],
@@ -829,7 +829,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_6[0] }}, {{ $chartHighPercent_6[1] }}, {{ $chartHighPercent_6[2] }},
                             {{ $chartHighPercent_6[3] }}, {{ $chartHighPercent_6[4] }}, {{ $chartHighPercent_6[5] }},
                             {{ $chartHighPercent_6[6] }}, {{ $chartHighPercent_6[7] }}],
@@ -887,7 +887,7 @@
                     labels:['{{ $chartRegion_7[0] }}', '{{ $chartRegion_7[1] }}', '{{ $chartRegion_7[2] }}', '{{ $chartRegion_7[3] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_7[0] }}, {{ $chartLowPercent_7[1] }}, {{ $chartLowPercent_7[2] }},
                             {{ $chartLowPercent_7[3] }}],
                         backgroundColor:'red',
@@ -897,7 +897,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_7[0] }} , {{ $chartMedPercent_7[1] }}, {{ $chartMedPercent_7[2] }},
                             {{ $chartMedPercent_7[3] }}],
                         backgroundColor:'yellow',
@@ -906,7 +906,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_7[0] }}, {{ $chartHighPercent_7[1] }}, {{ $chartHighPercent_7[2] }},
                             {{ $chartHighPercent_7[3] }}],
                         backgroundColor:'green',
@@ -964,7 +964,7 @@
                             '{{ $chartRegion_8[4] }}', '{{ $chartRegion_8[5] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_8[0] }}, {{ $chartLowPercent_8[1] }}, {{ $chartLowPercent_8[2] }},
                             {{ $chartLowPercent_8[3] }}, {{ $chartLowPercent_8[4] }}, {{ $chartLowPercent_8[5] }}],
                         backgroundColor:'red',
@@ -974,7 +974,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_8[0] }} , {{ $chartMedPercent_8[1] }}, {{ $chartMedPercent_8[2] }},
                             {{ $chartMedPercent_8[3] }}, {{ $chartMedPercent_8[4] }}, {{ $chartMedPercent_8[5] }}],
                         backgroundColor:'yellow',
@@ -983,7 +983,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_8[0] }}, {{ $chartHighPercent_8[1] }}, {{ $chartHighPercent_8[2] }},
                             {{ $chartHighPercent_8[3] }}, {{ $chartHighPercent_8[4] }}, {{ $chartHighPercent_8[5] }}],
                         backgroundColor:'green',
@@ -1040,7 +1040,7 @@
                     labels:['{{ $chartRegion_9[0] }}', '{{ $chartRegion_9[1] }}', '{{ $chartRegion_9[2] }}', '{{ $chartRegion_9[3] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_9[0] }}, {{ $chartLowPercent_9[1] }}, {{ $chartLowPercent_9[2] }},
                             {{ $chartLowPercent_9[3] }}],
                         backgroundColor:'red',
@@ -1050,7 +1050,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_9[0] }} , {{ $chartMedPercent_9[1] }}, {{ $chartMedPercent_9[2] }},
                             {{ $chartMedPercent_9[3] }}],
                         backgroundColor:'yellow',
@@ -1059,7 +1059,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_9[0] }}, {{ $chartHighPercent_9[1] }}, {{ $chartHighPercent_9[2] }},
                             {{ $chartHighPercent_9[3] }}],
                         backgroundColor:'green',
@@ -1116,7 +1116,7 @@
                     labels:['{{ $chartRegion_10[0] }}', '{{ $chartRegion_10[1] }}', '{{ $chartRegion_10[2] }}', '{{ $chartRegion_10[3] }}', '{{ $chartRegion_10[4] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_10[0] }}, {{ $chartLowPercent_10[1] }}, {{ $chartLowPercent_10[2] }},
                             {{ $chartLowPercent_10[3] }}, {{ $chartLowPercent_10[4] }}],
                         backgroundColor:'red',
@@ -1126,7 +1126,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_10[0] }} , {{ $chartMedPercent_10[1] }}, {{ $chartMedPercent_10[2] }},
                             {{ $chartMedPercent_10[3] }}, {{ $chartMedPercent_10[4] }}],
                         backgroundColor:'yellow',
@@ -1135,7 +1135,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_10[0] }}, {{ $chartHighPercent_10[1] }}, {{ $chartHighPercent_10[2] }},
                             {{ $chartHighPercent_10[3] }}, {{ $chartHighPercent_10[4] }}],
                         backgroundColor:'green',
@@ -1193,7 +1193,7 @@
                     '{{ $chartRegion_11[5] }}', '{{ $chartRegion_11[6] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_11[0] }}, {{ $chartLowPercent_11[1] }}, {{ $chartLowPercent_11[2] }},
                             {{ $chartLowPercent_11[3] }}, {{ $chartLowPercent_11[4] }}, {{ $chartLowPercent_11[5] }},
                             {{ $chartLowPercent_11[6] }}],
@@ -1204,7 +1204,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_11[0] }} , {{ $chartMedPercent_11[1] }}, {{ $chartMedPercent_11[2] }},
                             {{ $chartMedPercent_11[3] }}, {{ $chartMedPercent_11[4] }}, {{ $chartMedPercent_11[5] }},
                             {{ $chartMedPercent_11[6] }}],
@@ -1214,7 +1214,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_11[0] }}, {{ $chartHighPercent_11[1] }}, {{ $chartHighPercent_11[2] }},
                             {{ $chartHighPercent_11[3] }}, {{ $chartHighPercent_11[4] }}, {{ $chartHighPercent_11[5] }},
                             {{ $chartHighPercent_11[6] }}],
@@ -1273,7 +1273,7 @@
                     '{{ $chartRegion_12[5] }}', '{{ $chartRegion_12[6] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_12[0] }}, {{ $chartLowPercent_12[1] }}, {{ $chartLowPercent_12[2] }},
                             {{ $chartLowPercent_12[3] }}, {{ $chartLowPercent_12[4] }}, {{ $chartLowPercent_12[5] }},
                             {{ $chartLowPercent_12[6] }}],
@@ -1284,7 +1284,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_12[0] }} , {{ $chartMedPercent_12[1] }}, {{ $chartMedPercent_12[2] }},
                             {{ $chartMedPercent_12[3] }}, {{ $chartMedPercent_12[4] }}, {{ $chartMedPercent_12[5] }},
                             {{ $chartMedPercent_12[6] }}],
@@ -1294,7 +1294,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_12[0] }}, {{ $chartHighPercent_12[1] }}, {{ $chartHighPercent_12[2] }},
                             {{ $chartHighPercent_12[3] }}, {{ $chartHighPercent_12[4] }}, {{ $chartHighPercent_12[5] }},
                             {{ $chartHighPercent_12[6] }}],
@@ -1352,7 +1352,7 @@
                     labels:['{{ $chartRegion_13[0] }}'],
                     datasets:[
                     {
-                        label:'Low Purchasing Power',
+                        label:'Below Average',
                         data: [{{ $chartLowPercent_13[0] }}],
                         backgroundColor:'red',
                         borderWidth:1,
@@ -1361,7 +1361,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Medium Purchasing Power',
+                        label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_13[0] }}],
                         backgroundColor:'yellow',
                         borderWidth:1,
@@ -1369,7 +1369,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'High Purchasing Power',
+                        label:'Above Average',
                         data:[{{ $chartHighPercent_13[0] }}],
                         backgroundColor:'green',
                         borderWidth:1,
@@ -1537,7 +1537,7 @@
                             total = low_1 + med_1 + high_1;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_1],['Medium Purchasing Power', med_1],['Low Purchasing Power', low_1]],
+                                data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1594,7 +1594,7 @@
                             total = low_2 + med_2 + high_2;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_2],['Medium Purchasing Power', med_2],['Low Purchasing Power', low_2]],
+                                data:{columns:[["Above Average", high_2],['Average', med_2],['Below Average', low_2]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1651,7 +1651,7 @@
                             total = low_3 + med_3 + high_3;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_3],['Medium Purchasing Power', med_3],['Low Purchasing Power', low_3]],
+                                data:{columns:[["Above Average", high_3],['Average', med_3],['Below Average', low_3]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1708,7 +1708,7 @@
                             total = low_4 + med_4 + high_4;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_4],['Medium Purchasing Power', med_4],['Low Purchasing Power', low_4]],
+                                data:{columns:[["Above Average", high_4],['Average', med_4],['Below Average', low_4]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1765,7 +1765,7 @@
                             total = low_5 + med_5 + high_5;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_5],['Medium Purchasing Power', med_5],['Low Purchasing Power', low_5]],
+                                data:{columns:[["Above Average", high_5],['Average', med_5],['Below Average', low_5]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1822,7 +1822,7 @@
                             total = low_6 + med_6 + high_6;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_6],['Medium Purchasing Power', med_6],['Low Purchasing Power', low_6]],
+                                data:{columns:[["Above Average", high_6],['Average', med_6],['Below Average', low_6]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1879,7 +1879,7 @@
                             total = low_7 + med_7 + high_7;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_7],['Medium Purchasing Power', med_7],['Low Purchasing Power', low_7]],
+                                data:{columns:[["Above Average", high_7],['Average', med_7],['Below Average', low_7]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1936,7 +1936,7 @@
                             total = low_8 + med_8 + high_8;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_8],['Medium Purchasing Power', med_8],['Low Purchasing Power', low_8]],
+                                data:{columns:[["Above Average", high_8],['Average', med_8],['Below Average', low_8]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -1993,7 +1993,7 @@
                             total = low_9 + med_9 + high_9;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_9],['Medium Purchasing Power', med_9],['Low Purchasing Power', low_9]],
+                                data:{columns:[["Above Average", high_9],['Average', med_9],['Below Average', low_9]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2050,7 +2050,7 @@
                             total = low_10 + med_10 + high_10;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_10],['Medium Purchasing Power', med_10],['Low Purchasing Power', low_10]],
+                                data:{columns:[["Above Average", high_10],['Average', med_10],['Below Average', low_10]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2107,7 +2107,7 @@
                             total = low_11 + med_11 + high_11;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_11],['Medium Purchasing Power', med_11],['Low Purchasing Power', low_11]],
+                                data:{columns:[["Above Average", high_11],['Average', med_11],['Below Average', low_11]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2164,7 +2164,7 @@
                             total = low_12 + med_12 + high_12;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_12],['Medium Purchasing Power', med_12],['Low Purchasing Power', low_12]],
+                                data:{columns:[["Above Average", high_12],['Average', med_12],['Below Average', low_12]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2221,7 +2221,7 @@
                             total = low_13 + med_13 + high_13;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_13],['Medium Purchasing Power', med_13],['Low Purchasing Power', low_13]],
+                                data:{columns:[["Above Average", high_13],['Average', med_13],['Below Average', low_13]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2407,7 +2407,7 @@
                             total = low_1 + med_1 + high_1;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_1],['Medium Purchasing Power', med_1],['Low Purchasing Power', low_1]],
+                                data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2464,7 +2464,7 @@
                             total = low_2 + med_2 + high_2;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_2],['Medium Purchasing Power', med_2],['Low Purchasing Power', low_2]],
+                                data:{columns:[["Above Average", high_2],['Average', med_2],['Below Average', low_2]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2521,7 +2521,7 @@
                             total = low_3 + med_3 + high_3;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_3],['Medium Purchasing Power', med_3],['Low Purchasing Power', low_3]],
+                                data:{columns:[["Above Average", high_3],['Average', med_3],['Below Average', low_3]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2578,7 +2578,7 @@
                             total = low_4 + med_4 + high_4;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_4],['Medium Purchasing Power', med_4],['Low Purchasing Power', low_4]],
+                                data:{columns:[["Above Average", high_4],['Average', med_4],['Below Average', low_4]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2635,7 +2635,7 @@
                             total = low_5 + med_5 + high_5;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_5],['Medium Purchasing Power', med_5],['Low Purchasing Power', low_5]],
+                                data:{columns:[["Above Average", high_5],['Average', med_5],['Below Average', low_5]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2692,7 +2692,7 @@
                             total = low_6 + med_6 + high_6;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_6],['Medium Purchasing Power', med_6],['Low Purchasing Power', low_6]],
+                                data:{columns:[["Above Average", high_6],['Average', med_6],['Below Average', low_6]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2749,7 +2749,7 @@
                             total = low_7 + med_7 + high_7;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_7],['Medium Purchasing Power', med_7],['Low Purchasing Power', low_7]],
+                                data:{columns:[["Above Average", high_7],['Average', med_7],['Below Average', low_7]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2806,7 +2806,7 @@
                             total = low_8 + med_8 + high_8;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_8],['Medium Purchasing Power', med_8],['Low Purchasing Power', low_8]],
+                                data:{columns:[["Above Average", high_8],['Average', med_8],['Below Average', low_8]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2863,7 +2863,7 @@
                             total = low_9 + med_9 + high_9;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_9],['Medium Purchasing Power', med_9],['Low Purchasing Power', low_9]],
+                                data:{columns:[["Above Average", high_9],['Average', med_9],['Below Average', low_9]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2920,7 +2920,7 @@
                             total = low_10 + med_10 + high_10;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_10],['Medium Purchasing Power', med_10],['Low Purchasing Power', low_10]],
+                                data:{columns:[["Above Average", high_10],['Average', med_10],['Below Average', low_10]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2977,7 +2977,7 @@
                             total = low_11 + med_11 + high_11;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_11],['Medium Purchasing Power', med_11],['Low Purchasing Power', low_11]],
+                                data:{columns:[["Above Average", high_11],['Average', med_11],['Below Average', low_11]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3034,7 +3034,7 @@
                             total = low_12 + med_12 + high_12;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_12],['Medium Purchasing Power', med_12],['Low Purchasing Power', low_12]],
+                                data:{columns:[["Above Average", high_12],['Average', med_12],['Below Average', low_12]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3091,7 +3091,7 @@
                             total = low_13 + med_13 + high_13;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["High Purchasing Power", high_13],['Medium Purchasing Power', med_13],['Low Purchasing Power', low_13]],
+                                data:{columns:[["Above Average", high_13],['Average', med_13],['Below Average', low_13]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3400,14 +3400,14 @@
                     <div class='row center' >
                         <div id="purchasing_power_donut" class="mt-2 col-md-6 center" style="height:283px; width:60%;"></div>
                         <div class="col-md-5 center">
-                            <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
-                            <span class="text-muted" >High Purchasing Power</span>
+                            <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
+                            <span class="text-muted" >Above Average</span>
                             <br/>
                             <i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i>
-                            <span class="text-muted" >Medium Purchasing Power</span>
+                            <span class="text-muted" >Average = {{ $avg }} </span>
                             <br/>
-                            <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
-                            <span class="text-muted" >Low Purchasing Power</span>
+                            <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
+                            <span class="text-muted" >Below Average</span>
                         </div>
                     </div>
                 </div>

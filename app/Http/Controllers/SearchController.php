@@ -28,6 +28,7 @@ class SearchController extends Controller
             $GT = $_GET['GT'];
             $Dname= $_GET['Dname'];
             $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$Dname."";
+            
             // dump($_GET);
             // echo "<p>Your drug name is <b>" . $Dname . "</b>.</p>";
             ////////////////////////////////////////////////////////////////////
@@ -71,7 +72,7 @@ class SearchController extends Controller
             $countHosAll = array();
             array_push($countHosAll,$r1_count,$r2_count,$r3_count,$r4_count,$r5_count,$r6_count,$r7_count,$r8_count,$r9_count,$r10_count,$r11_count,$r12_count,$r13_count);
             // TH
-            [$chartHighPercent, $chartMedPercent, $chartLowPercent] = $this->chart_Low_Med_High_All($countHosAll,$year,$GT,$Dname,$method);
+            [$chartHighPercent, $chartMedPercent, $chartLowPercent, $avg] = $this->chart_Low_Med_High_All($countHosAll,$year,$GT,$Dname,$method);
             // Region
             [$chartRegion_1, $chartHighPercent_1, $chartMedPercent_1, $chartLowPercent_1] = $this->chart_Low_Med_High($r1_count,1,$Region_1_name,$year,$GT,$Dname,$method);
             [$chartRegion_2, $chartHighPercent_2, $chartMedPercent_2, $chartLowPercent_2] = $this->chart_Low_Med_High($r2_count,2,$Region_2_name,$year,$GT,$Dname,$method);
@@ -214,6 +215,7 @@ class SearchController extends Controller
             'resultSearch'=>$resultSearch,
             'resultState'=>$resultState,
             'chartLowPercent'=>$chartLowPercent,'chartMedPercent'=>$chartMedPercent,'chartHighPercent'=>$chartHighPercent,
+            'avg'=>$avg,
             'chartRegion_1'=>$chartRegion_1,'chartLowPercent_1'=>$chartLowPercent_1,'chartMedPercent_1'=>$chartMedPercent_1,'chartHighPercent_1'=>$chartHighPercent_1,
             'chartRegion_2'=>$chartRegion_2,'chartLowPercent_2'=>$chartLowPercent_2,'chartMedPercent_2'=>$chartMedPercent_2,'chartHighPercent_2'=>$chartHighPercent_2,
             'chartRegion_3'=>$chartRegion_3,'chartLowPercent_3'=>$chartLowPercent_3,'chartMedPercent_3'=>$chartMedPercent_3,'chartHighPercent_3'=>$chartHighPercent_3,
@@ -300,19 +302,21 @@ class SearchController extends Controller
         $chartLowPercent = array();
         $chartMedPercent = array();
         $chartHighPercent = array();
-        
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $AVG = DB::select($query_AVG);
+        $avg = $AVG[0]->avg;
         ///// create array for stack bar chart ////////////////////////////////////////////////
         for($t=1 ; $t<=13 ; $t++){
 
             array_push($chartRegion,$t);
             if($method == 'All'){
-                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' group by Region";
-                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' group by Region";
-                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' group by Region";
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and Region ='".$t."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and Region ='".$t."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and Region ='".$t."' group by Region";
             }else{
-                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
-                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and Region ='".$t."' and Method ='".$method."' group by Region";
-                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and Region ='".$t."' and Method ='".$method."' group by Region";
             }
             
             /////// for Low PAC ////////////////////////////////////////////////
@@ -344,7 +348,7 @@ class SearchController extends Controller
             }
             array_push($chartHighPercent,$High_dataPercent);  
         }
-        return [$chartHighPercent, $chartMedPercent, $chartLowPercent];
+        return [$chartHighPercent, $chartMedPercent, $chartLowPercent, $avg];
     }
 
     function chart_Low_Med_High($countHosRegion,$r,$Region_name,$year,$GT,$Dname,$method){
@@ -367,17 +371,20 @@ class SearchController extends Controller
         $chartLowPercent = array();
         $chartMedPercent = array();
         $chartHighPercent = array();
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $AVG = DB::select($query_AVG);
+        $avg = $AVG[0]->avg;
         ///// create array for stack bar chart ////////////////////////////////////////////////
         foreach($Region_name as $Pcode => $Province) {
             array_push($chartProvince,$Province);
             if($method == 'All'){
-                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
-                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
-                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
+                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
+                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
+                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
             }else{
-                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
-                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
-                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
+                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
+                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
+                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
             }
             /////// for Low PAC ////////////////////////////////////////////////
             $lowPac = DB::select($query_low);
@@ -896,15 +903,18 @@ class SearchController extends Controller
         $result_med = [];
         $dataDonut_Region_high_result = [];
         $result_high = [];
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $AVG = DB::select($query_AVG);
+        $avg = $AVG[0]->avg;
         foreach($Region_name as $Pcode => $Province){
             if($method == 'All'){
-                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and PROVINCE_EN ='".$Province."'";
-                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and PROVINCE_EN ='".$Province."'";
-                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and PROVINCE_EN ='".$Province."'";
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."'";
             }else{
-                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 0.8 and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
-                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < 1 and PAC_value>=0.8 and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
-                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value >= 1 and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
             }
 
             /////// for Low PAC ////////////////////////////////////////////////
