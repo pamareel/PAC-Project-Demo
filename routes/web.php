@@ -41,7 +41,7 @@ Route::get('/search', 'SearchController@index');
 Route::get('/HospitalDashboardPage', function () {
     return view('HospitalDashboardPage');
 })->name('HospitalDashboardPage');
-Route::get('/hospitalDashboard/{Hname}', 'HospitalDashboardController@index');
+Route::get('/hospitalDashboard/{year}/{Hname}', 'HospitalDashboardController@index');
 
 Route::get('/testDB', 'EbiddingController@testDB');
 Route::get('/testDB2', 'DashboardController@getTOP5GPU');
