@@ -264,6 +264,7 @@
                 },
             }
         };
+        var color_d = {'A':'purple', 'S':'blue', 'M1':'green', 'M2':'yellow', 'F1':'orange', 'F2':'red', 'F3':'pink', 'Undefined':'black'};
         $(document).ready(function() {
             // Start Size of Hospital ///////
             $("#Region_To_Size").click(function() { 
@@ -274,7 +275,40 @@
                 $.massPopChart.destroy();
                 var myChart_s1 = $("#myChart").get(0).getContext("2d");
                 $.massPopChart_s = new Chart(myChart_s1, sizeData);
-                $('#Donut_Type').removeClass('invisible');  
+                // $('#Donut_Type').removeClass('invisible');  
+
+                //table
+                var content = '';
+                var content_1 = '';
+                var total = '';
+                content = {!! json_encode($Donut_Type_result) !!};
+                total = content['A']['Total_Total_Amount'] + content['S']['Total_Total_Amount'];
+                total = total + content['M1']['Total_Total_Amount'] + content['M2']['Total_Total_Amount'];
+                total = total + content['F1']['Total_Total_Amount'] + content['F2']['Total_Total_Amount'] + content['F3']['Total_Total_Amount'];
+                total = total + + content['Undefined']['Total_Total_Amount'];
+                content_1 = {!! json_encode($Type_Hos_table) !!};
+                if(content != ''){
+                    $("#Donut_Type").removeClass('invisible');  
+                    //donut graph
+                    c3.generate({ 
+                        bindto:"#size_quan_donut",
+                        data:{columns:[["Type A", content['A']['Total_Total_Amount']], ['Type S', content['S']['Total_Total_Amount']],
+                            ['Type M1', content['M1']['Total_Total_Amount']], ["Type M2", content['M2']['Total_Total_Amount']],
+                            ['Type F1', content['F1']['Total_Total_Amount']], ['Type F2', content['F2']['Total_Total_Amount']],
+                            ["Type F3", content['F3']['Total_Total_Amount']], ['Undefined', content['Undefined']['Total_Total_Amount']]],
+                            type:"donut",
+                            tooltip:{show:!0}
+                        },
+                        donut:{label:{show:!1},
+                        title: "Total " + content['total'],width:30},
+                        legend:{hide:!0},
+                        color:{pattern:[color_d['A'],color_d['S'],color_d['M1'],color_d['M2'],color_d['F1'],color_d['F2'],color_d['F3'],color_d['Undefined']]}
+                    });
+                    //table
+                    $('#Table_quan_donut tbody').html(content_1);
+                }else if(content == '' || content == NULL){
+                    alert('No data');
+                }
             });
             $("#Size_To_Region").click(function() { 
                 $(this).toggleClass("invisible");
@@ -318,37 +352,25 @@
         </div>
     </div>
     <div class="row invisible" id = 'Donut_Type'>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-body">
                     <button class="btn" id="backButton_size">&lt; Drill Up</button>
                     <h4 id="Size_Donut" style="color:black; text-align:center;"></h4>
                     <div class='row center'>
-                        <div id="size_quan_donut" class="mt-2 col-md-6 center" style="height:283px; width:60%;"></div>
-                        <div>
-                            <table id="datatable" style="width: 100%;" role="grid">
+                        <div id="size_quan_donut" class="mt-2 col-md-7 center" style="height:283px; width:60%;"></div>
+                        <div class="center" style="width: 100%;">
+                            <table id="Table_quan_donut" style="width: 100%;" role="grid">
                                 <thead>
                                 <tr role="row">
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th># of Hopitals</th>
-                                    <th>Unit Price</th>
-                                    <th>Quantity</th>
+                                    <th style="text-align:center;"></th>
+                                    <th style="text-align:center;">Name</th>
+                                    <th style="text-align:center; padding:5px;"># of Hopitals</th>
+                                    <th style="text-align:center;">Unit Price</th>
+                                    <th style="text-align:center;">Quantity</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                <td><i class="fas fa-circle font-10 mr-2" style="color:green;"></i></td>
-                                <td><span class="text-muted" >Type A</span></td>
-                                </tr>
-                                <tr>
-                                <td><i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i></td>
-                                <td><span class="text-muted" >Type S</span></td>
-                                </tr>
-                                <tr>
-                                <td><i class="fas fa-circle font-10 mr-2" style="color:red;"></i></td>
-                                <td><span class="text-muted" >Type M1</span></td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>

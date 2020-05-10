@@ -153,6 +153,8 @@ class SearchController extends Controller
 
             //// Size of Hospital Level
             [$chart_Size, $chartLow_Size, $chartMed_Size, $chartHigh_Size] = $this->stack_size_hospital($year,$GT,$Dname,$method);
+            $Donut_Type_result = $this->Donut_Type_Hos($year,$GT,$Dname,$method);
+            $Type_Hos_table = $this->tableForTypeHos($Donut_Type_result);
         }
         // $mapp = (object) ['TH-30' => 'purple', 'TH-20' => 'yellow'];
         // $mapp = "{'TH-30':'purple', 'TH-20':'red'}";
@@ -210,6 +212,9 @@ class SearchController extends Controller
             $tableD_r1 = NULL; $tableD_r2 = NULL; $tableD_r3 = NULL; $tableD_r4 = NULL;
             $tableD_r5 = NULL; $tableD_r6 = NULL; $tableD_r7 = NULL; $tableD_r8 = NULL; $tableD_r9 = NULL;
             $tableD_r10 = NULL; $tableD_r11 = NULL; $tableD_r12 = NULL; $tableD_r13 = NULL;
+            
+            $chart_Size = NULL; $chartLow_Size = NULL; $chartMed_Size = NULL; $chartHigh_Size = NULL;
+            $Donut_Type_result = NULL; $Type_Hos_table = NULL;
         }
         $send_data = array(
             'resultSearch'=>$resultSearch,
@@ -263,8 +268,8 @@ class SearchController extends Controller
             'tableD_r6'=>$tableD_r6, 'tableD_r7'=>$tableD_r7, 'tableD_r8'=>$tableD_r8, 'tableD_r9'=>$tableD_r9, 'tableD_r10'=>$tableD_r10,
             'tableD_r11'=>$tableD_r11, 'tableD_r12'=>$tableD_r12, 'tableD_r13'=>$tableD_r13,
 
-            'chart_Size'=>$chart_Size, 'chartLow_Size'=>$chartLow_Size, 'chartMed_Size'=>$chartMed_Size, 'chartHigh_Size'=>$chartHigh_Size
-
+            'chart_Size'=>$chart_Size, 'chartLow_Size'=>$chartLow_Size, 'chartMed_Size'=>$chartMed_Size, 'chartHigh_Size'=>$chartHigh_Size,
+            'Donut_Type_result'=>$Donut_Type_result, 'Type_Hos_table'=>$Type_Hos_table
         );
         return view('DrugPage', $send_data);
     }
@@ -1592,5 +1597,67 @@ class SearchController extends Controller
             array_push($chartHighPercent,$High_dataPercent);
         }
         return [$chartType, $chartLowPercent, $chartMedPercent, $chartHighPercent];
+    }
+    function Donut_Type_Hos($year,$GT,$Dname,$method){
+        $size_hospital_name = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'NULL'];
+        $result_count2 = [];
+        $result_count3 = [];
+        $total = 0;
+        foreach($size_hospital_name as $s){
+            if($method == 'All'){
+                // $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, CONVERT(varchar, CAST(sum(Total_Amount) as money), 1) as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."';";
+                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."';";
+
+            }else{
+                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."';";
+            }
+            $result_count = DB::select($countquery_r);
+            if($s == 'NULL'){
+                $s = 'Undefined';
+            }
+            $result_count2 = array($s => $result_count[0]);
+            $result_count3 = array_merge($result_count3, $result_count2);
+            
+        }
+        if($method == 'All'){
+            $q = "select FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."';";
+        }else{
+            $q = "select FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Method ='".$method."';";
+        }
+        $result_q = DB::select($q);
+        if($result_q != NULL){
+            $total = $result_q[0]->Total_Amount;
+        }else{
+            $total = 0;
+        }
+        $result_count2 = array('total' => $total);
+        $result_count3 = array_merge($result_count3, $result_count2);
+        return $result_count3;
+    }
+    function tableForTypeHos($query){
+        $size_hospital_name = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'Undefined'];
+        $color = ['A'=>'purple', 'S'=>'blue', 'M1'=>'green', 'M2'=>'yellow', 'F1'=>'orange', 'F2'=>'red', 'F3'=>'pink', 'Undefined'=>'black'];
+        $tableForTypeHos_result = [];
+        $content = '';
+        foreach($size_hospital_name as $s){
+            if($query[$s] == null){
+                $content .= '<tr>';
+                $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$color[$s].';"></td>';
+                $content .= '<td style="text-align:center;">'.$s.'</td>';
+                $content .= '<td style="text-align:center;">0</td>';
+                $content .= '<td style="text-align:right;">0</td>';
+                $content .= '<td style="text-align:right;">0</td>';
+                $content .= '</tr>';
+            }else{
+                $content .= '<tr>';
+                $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$color[$s].';"></td>';
+                $content .= '<td style="text-align:center;">'.$s.'</td>';
+                $content .= '<td style="text-align:center;">'.$query[$s]->num_hos.'</td>';
+                $content .= '<td style="text-align:right;">'.$query[$s]->Wavg_unit_price.'</td>';
+                $content .= '<td style="text-align:right;">'.$query[$s]->Total_Amount.'</td>';
+                $content .= '</tr>';
+            }  
+        }
+        return $content;
     }
 }
