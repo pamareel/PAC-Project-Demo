@@ -136,19 +136,19 @@ class SearchController extends Controller
             //////// END Donut ///////////
             
             //// Table Hospital ////////
-            $tableD_r1 = $this->tableForRegion(1,$year,$GT,$Dname,$method);
-            $tableD_r2 = $this->tableForRegion(2,$year,$GT,$Dname,$method);
-            $tableD_r3 = $this->tableForRegion(3,$year,$GT,$Dname,$method);
-            $tableD_r4 = $this->tableForRegion(4,$year,$GT,$Dname,$method);
-            $tableD_r5 = $this->tableForRegion(5,$year,$GT,$Dname,$method);
-            $tableD_r6 = $this->tableForRegion(6,$year,$GT,$Dname,$method);
-            $tableD_r7 = $this->tableForRegion(7,$year,$GT,$Dname,$method);
-            $tableD_r8 = $this->tableForRegion(8,$year,$GT,$Dname,$method);
-            $tableD_r9 = $this->tableForRegion(9,$year,$GT,$Dname,$method);
-            $tableD_r10 = $this->tableForRegion(10,$year,$GT,$Dname,$method);
-            $tableD_r11 = $this->tableForRegion(11,$year,$GT,$Dname,$method);
-            $tableD_r12 = $this->tableForRegion(12,$year,$GT,$Dname,$method);
-            $tableD_r13 = $this->tableForRegion(13,$year,$GT,$Dname,$method);
+            [$cor_r1, $tableD_r1] = $this->tableForRegion(1,$year,$GT,$Dname,$method);
+            [$cor_r2, $tableD_r2] = $this->tableForRegion(2,$year,$GT,$Dname,$method);
+            [$cor_r3, $tableD_r3] = $this->tableForRegion(3,$year,$GT,$Dname,$method);
+            [$cor_r4, $tableD_r4] = $this->tableForRegion(4,$year,$GT,$Dname,$method);
+            [$cor_r5, $tableD_r5] = $this->tableForRegion(5,$year,$GT,$Dname,$method);
+            [$cor_r6, $tableD_r6] = $this->tableForRegion(6,$year,$GT,$Dname,$method);
+            [$cor_r7, $tableD_r7] = $this->tableForRegion(7,$year,$GT,$Dname,$method);
+            [$cor_r8, $tableD_r8] = $this->tableForRegion(8,$year,$GT,$Dname,$method);
+            [$cor_r9, $tableD_r9] = $this->tableForRegion(9,$year,$GT,$Dname,$method);
+            [$cor_r10, $tableD_r10] = $this->tableForRegion(10,$year,$GT,$Dname,$method);
+            [$cor_r11, $tableD_r11] = $this->tableForRegion(11,$year,$GT,$Dname,$method);
+            [$cor_r12, $tableD_r12] = $this->tableForRegion(12,$year,$GT,$Dname,$method);
+            [$cor_r13, $tableD_r13] = $this->tableForRegion(13,$year,$GT,$Dname,$method);
             ///// END Table Hospital ///////
 
             //// Size of Hospital Level
@@ -278,7 +278,9 @@ class SearchController extends Controller
             'Donut_Type_result'=>$Donut_Type_result, 'Type_Hos_table'=>$Type_Hos_table,
 
             'total_type'=>$total_type, 'chartType'=>$chartType, 'chartOver_type'=>$chartOver_type, 'chartAvg_type'=>$chartAvg_type, 'chartUnder_type'=>$chartUnder_type,
-            'table_type_drill'=>$table_type_drill
+            'table_type_drill'=>$table_type_drill,
+
+            'cor_r1'=>$cor_r1
         );
         return view('DrugPage', $send_data);
     }
@@ -980,12 +982,15 @@ class SearchController extends Controller
 
         $tableForRegion_result = [];
         $content = '';
+        $cor_table_result3 = [];
         if($m == 'All'){
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -998,10 +1003,18 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $result[$i]->Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
                     }
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
+                dump($cor_table_result3);
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
@@ -1531,7 +1544,8 @@ class SearchController extends Controller
                 }
             }
         }
-        return $tableForRegion_result;
+
+        return [$cor_table_result3, $tableForRegion_result];
     }
     function stack_size_hospital($year,$GT,$Dname,$method){
         $size_hospital_name = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'NULL'];
