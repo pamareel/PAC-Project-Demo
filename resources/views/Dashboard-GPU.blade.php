@@ -251,38 +251,6 @@
         <!-- End Top10 drug unit price -->
         <!-- ============================================================== -->
 
-        <!-- ============================================================== -->
-        <!-- Total Annual Spending -->
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Total Annual Spending</h4>
-                    <ul class="list-inline text-right">
-                        <li class="list-inline-item">
-                            <h5><i class="fa fa-circle mr-1 text-info"></i>Annaul Spending</h5>
-                        </li>
-                    </ul>
-                    <div class="card-body py-3 px-3">
-                        
-                        <?php
-                        if(isset($annualSpendingChart)){
-                        ?>
-                            <div> {!! $annualSpendingChart->container() !!} </div>
-                        <?php
-                        }else{
-                        ?>
-                            <h1>No Data<h1>
-                        <?php  
-                        }
-                        ?>
-                    </div>
-                    <td>Correlation</td>&nbsp;<td>{{ $corr ?? '' }}</td>
-                    <!--?php echo $corr; ?--> 
-                </div>
-            </div>
-        </div>
-        <!-- End Total Annual Spending -->
-        <!-- ============================================================== -->
     </div> 
         <!-- *************************************************************** -->
         <!-- Start Google line chart -->

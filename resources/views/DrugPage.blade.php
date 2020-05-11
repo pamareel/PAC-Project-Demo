@@ -2,6 +2,7 @@
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @endsection
 @section('script')
 <!-- 100%-stack bar chart -->
@@ -1933,6 +1934,12 @@
         $Region_13_name = {'TH-10':'Bangkok Metropolis'};
         
         $(document).ready(function() {
+            var cor_options = {
+                title: 'Total Annual Spending',
+                //   curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+            google.charts.load('current', {'packages':['corechart']});
             $Reg1_map_pri = {
                 map: ['thai_en'],
                 backgroundColor: 'beige',
@@ -1984,6 +1991,15 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_1);
+                            //correlation
+                            cor_data = {!! json_encode($cor_r1) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_1 == '' || content_1 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3789,7 +3805,7 @@
                 $('#Price_by_Region').removeClass('invisible');   
                 $("#Quantity_by_Region").removeClass('invisible');  
                 $("#Quantity_by_Region").removeClass('invisible');  
-                $("#Stack_Bar").removeClass('invisible');   
+                $("#Stack_Bar").removeClass('invisible'); 
             });
             // END Region ///////////////////
         });
@@ -4809,6 +4825,11 @@
                 </div>
             </div>
         </div>
+
+        <div id="curve_chart" style="width: 500px; height: 400px"></div>
+
+
+
     </div>
     <?php
     }
