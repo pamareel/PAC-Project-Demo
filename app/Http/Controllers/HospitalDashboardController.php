@@ -14,6 +14,9 @@ class HospitalDashboardController extends Controller
         $GPU_table_Donut = $this->table_GPU_Donut_Hospital($donut_hos_drug_GPU);
         $TPU_table_Donut = $this->table_TPU_Donut_Hospital($donut_hos_drug_TPU);
 
+        [$perfLowPercent_GPU, $perfHighPercent_GPU] = $this->GPU_perf_Chart_Hospital($Hid, 'GPU', $year, $donut_hos_drug_GPU);
+        [$perfLowPercent_TPU, $perfHighPercent_TPU] = $this->TPU_perf_Chart_Hospital($Hid, 'TPU', $year, $donut_hos_drug_TPU);
+
         $sendData = array(
             'Hname'=>$Hname,
             'donut_hos_drug_GPU'=>$donut_hos_drug_GPU,
@@ -21,7 +24,9 @@ class HospitalDashboardController extends Controller
             'top5_GPU_name'=>$top5_GPU_name, 'top5_GPU_amount'=>$top5_GPU_amount,
             'top5_TPU_name'=>$top5_TPU_name, 'top5_TPU_amount'=>$top5_TPU_amount,
             'total_drug'=>$total_drug,
-            'GPU_table_Donut'=>$GPU_table_Donut, 'TPU_table_Donut'=>$TPU_table_Donut
+            'GPU_table_Donut'=>$GPU_table_Donut, 'TPU_table_Donut'=>$TPU_table_Donut,
+            'perfLowPercent_GPU'=>$perfLowPercent_GPU, 'perfHighPercent_GPU'=>$perfHighPercent_GPU,
+            'perfLowPercent_TPU'=>$perfLowPercent_TPU, 'perfHighPercent_TPU'=>$perfHighPercent_TPU
         );
         return view('HospitalDashboardPage', $sendData );
     }
@@ -31,17 +36,17 @@ class HospitalDashboardController extends Controller
         // $query_rd .= "CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend FROM Hos_detail ";
         // $query_rd .= "where BUDGET_YEAR = '".$year."' and DEPT_ID ='".$Hid."';";
 
-        $query_gpu = "SELECT DEPT_ID, DEPT_NAME, GPU_ID, GPU_NAME, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount ";
-        $query_gpu .= "FROM PAC_hos_GPU where BUDGET_YEAR = '2562' and DEPT_ID = '".$Hid."' order by Total_Total_Amount DESC;";
+        $query_gpu = "SELECT DEPT_ID, DEPT_NAME, GPU_ID, GPU_NAME, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
+        $query_gpu .= "FROM PAC_hos_GPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by Total_Total_Amount DESC;";
         $GPU_result = DB::select($query_gpu);
         $Hname = $GPU_result[0]->DEPT_NAME;
 
-        $query_tpu = "SELECT DEPT_ID, DEPT_NAME, TPU_ID, TPU_NAME, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount ";
-        $query_tpu .= "FROM PAC_hos_TPU where BUDGET_YEAR = '2562' and DEPT_ID = '".$Hid."' order by Total_Total_Amount DESC;";
+        $query_tpu = "SELECT DEPT_ID, DEPT_NAME, TPU_ID, TPU_NAME, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
+        $query_tpu .= "FROM PAC_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by Total_Total_Amount DESC;";
         $TPU_result = DB::select($query_tpu);
 
         $query_total_drug = "SELECT DEPT_ID, DEPT_NAME, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount ";
-        $query_total_drug .= "FROM PAC_hos_TPU where BUDGET_YEAR = '2562' and DEPT_ID = '".$Hid."' group by DEPT_ID, DEPT_NAME order by Total_Total_Amount DESC;";
+        $query_total_drug .= "FROM PAC_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' group by DEPT_ID, DEPT_NAME order by Total_Total_Amount DESC;";
         $query_total_drug_result = DB::select($query_total_drug);
         $total_drug = $query_total_drug_result[0]->Total_Total_Amount;
 
@@ -99,5 +104,45 @@ class HospitalDashboardController extends Controller
             $content .= '</tr>';
         }
         return $content;
+    }
+    function GPU_perf_Chart_Hospital($Hid, $GT, $year, $query){
+        $perfLow = 0;
+        $perfHigh = 0;
+        for($i=0 ; $i<Count($query) ; $i++){
+            $GID = $query[$i]->GPU_ID;
+            $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_ID ='".$GID."'";
+            $AVG = DB::select($query_AVG);
+            $avg = $AVG[0]->avg;
+
+            $PAC_h = $query[$i]->PAC_value;
+            if($PAC_h < $avg){
+                $perfLow = $perfLow+1;
+            }else if($PAC_h >= $avg){
+                $perfHigh = $perfHigh+1;
+            }
+        }
+        $perfLowPercent = 100*$perfLow/Count($query);
+        $perfHighPercent = 100*$perfHigh/Count($query);
+        return [$perfLowPercent, $perfHighPercent];
+    }
+    function TPU_perf_Chart_Hospital($Hid, $GT, $year, $query){
+        $perfLow = 0;
+        $perfHigh = 0;
+        for($i=0 ; $i<Count($query) ; $i++){
+            $TID = $query[$i]->TPU_ID;
+            $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_ID ='".$TID."'";
+            $AVG = DB::select($query_AVG);
+            $avg = $AVG[0]->avg;
+
+            $PAC_h = $query[$i]->PAC_value;
+            if($PAC_h < $avg){
+                $perfLow = $perfLow+1;
+            }else if($PAC_h >= $avg){
+                $perfHigh = $perfHigh+1;
+            }
+        }
+        $perfLowPercent = 100*$perfLow/Count($query);
+        $perfHighPercent = 100*$perfHigh/Count($query);
+        return [$perfLowPercent, $perfHighPercent];
     }
 }
