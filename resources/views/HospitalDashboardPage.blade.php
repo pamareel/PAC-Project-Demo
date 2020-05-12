@@ -81,7 +81,7 @@
         <!-- </div> -->
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 invisible" id="Donut_hoss">
             <div class="card">
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Drug Purchasing Quantity</h4>
@@ -149,8 +149,10 @@
             // alert('Hi');
             $("#GPU").click(function() {
                 $(this).toggleClass("invisible");
+                $("#Donut_hoss").removeClass("invisible");
                 $("#GPU_to_TPU").removeClass("invisible");
                 $("#TPU").addClass("invisible");
+
                 document.getElementById("change-level").innerHTML = "Change Level : ";
                 //Donut chart
                 $.chartX = c3.generate({ 
@@ -173,6 +175,7 @@
 
             $("#TPU").click(function() {
                 $(this).toggleClass("invisible");
+                $("#Donut_hoss").removeClass("invisible");
                 $("#TPU_to_GPU").removeClass("invisible");
                 $("#GPU").addClass("invisible");
                 document.getElementById("change-level").innerHTML = "Change Level : ";
