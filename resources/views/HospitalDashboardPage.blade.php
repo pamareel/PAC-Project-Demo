@@ -114,6 +114,30 @@
             </div>
         </div>       
     </div>
+    
+    <div class="row">
+        <div class="col-md-12 invisible" id="CostSave_Hos">
+            <div class="card">
+                <div class="card-body">
+                    <h4 style="color:black; text-align:center;">Cost Saving</h4>
+                    <div class="card col-md-5 center" style="background-color:pink;">
+                        <span id="total_sc" style="text-align:center;"></span>
+                    </div>
+                    <!-- Cost Saving table -->
+                    <div class="center" style="width: 100%;">
+                            <table id="Cost_saving_table" style="width: 100%;" role="grid">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -156,7 +180,19 @@
     Donut_thead_TPU += '<th style="text-align:center;">Unit Price</th><th style="text-align:center;">Quantity</th></tr>';
 
     HosName = {!! json_encode($Hname) !!};
-    
+
+    Cost_save_thead_GPU = '<tr role="row"><th style="text-align:center;">GPU</th><th style="text-align:center; padding:5px;">Name</th>';
+    Cost_save_thead_GPU += '<th style="text-align:center;">Number of TPU</th><th style="text-align:center;">Real Total Spending</th>'
+    Cost_save_thead_GPU += '<th style="text-align:center;">Potential Saving Cost</th><th style="text-align:center;">Saving (%)</th></tr>';
+
+    Cost_save_thead_TPU = '<tr role="row"><th style="text-align:center;">GPU</th><th style="text-align:center; padding:5px;">GPU Name</th>';
+    Cost_save_thead_TPU += '<th style="text-align:center;">TPU</th><th style="text-align:center; padding:5px;">TPU Name</th>';
+    Cost_save_thead_TPU += '<th style="text-align:center;">Real Total Spending</th>'
+    Cost_save_thead_TPU += '<th style="text-align:center;">Potential Saving Cost</th><th style="text-align:center;">Saving (%)</th></tr>';
+
+    GPU_table_cost_save = {!! json_encode($GPU_Cost_saving_table_hos) !!};
+    TPU_table_cost_save = {!! json_encode($TPU_Cost_saving_table_hos) !!};
+
     //for performance chart
     //PerformanceChart
     var optionGPU = {
@@ -302,6 +338,7 @@
                 $("#GPU_to_TPU").removeClass("invisible");
                 $("#TPU").addClass("invisible");
                 $("#Overall_Drug_Perf").removeClass("invisible");
+                $("#CostSave_Hos").removeClass("invisible");
 
                 document.getElementById("change-level").innerHTML = "Change Level : ";
                 //Donut chart
@@ -324,6 +361,10 @@
                 //perf stack chart
                 var myChart_pc = $("#perfChart").get(0).getContext("2d");
                 $.myChart_pc2 = new Chart(myChart_pc, optionGPU);
+                //table for cost saving
+                $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_GPU) !!}+' THB');
+                $('#Cost_saving_table thead').html(Cost_save_thead_GPU);
+                $('#Cost_saving_table tbody').html(GPU_table_cost_save);
             });
 
             $("#TPU").click(function() {
@@ -332,6 +373,7 @@
                 $("#TPU_to_GPU").removeClass("invisible");
                 $("#GPU").addClass("invisible");
                 $("#Overall_Drug_Perf").removeClass("invisible");
+                $("#CostSave_Hos").removeClass("invisible");
 
                 document.getElementById("change-level").innerHTML = "Change Level : ";
                 //Donut chart
@@ -354,6 +396,10 @@
                 //perf stack chart
                 var myChart_pc = $("#perfChart").get(0).getContext("2d");
                 $.myChart_pc2 = new Chart(myChart_pc, optionTPU);
+                //table for cost saving
+                $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_TPU) !!}+' THB');
+                $('#Cost_saving_table thead').html(Cost_save_thead_TPU);
+                $('#Cost_saving_table tbody').html(TPU_table_cost_save);
             });
 
             $("#GPU_to_TPU").click(function() { 
@@ -381,6 +427,10 @@
                 $.myChart_pc2.destroy();
                 var myChart_pc = $("#perfChart").get(0).getContext("2d");
                 $.myChart_pc2 = new Chart(myChart_pc, optionTPU);
+                //table for cost saving
+                $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_TPU) !!}+' THB');
+                $('#Cost_saving_table thead').html(Cost_save_thead_TPU);
+                $('#Cost_saving_table tbody').html(TPU_table_cost_save);
             });
             $("#TPU_to_GPU").click(function() { 
                 $(this).toggleClass("invisible");
@@ -408,6 +458,10 @@
                 $.myChart_pc2.destroy();
                 var myChart_pc = $("#perfChart").get(0).getContext("2d");
                 $.myChart_pc2 = new Chart(myChart_pc, optionGPU);
+                //table for cost saving
+                $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_GPU) !!}+' THB');
+                $('#Cost_saving_table thead').html(Cost_save_thead_GPU);
+                $('#Cost_saving_table tbody').html(GPU_table_cost_save);
             });
 
         }else if(top5_GPU_name_1 == '' || top5_GPU_name_1 == NULL){
