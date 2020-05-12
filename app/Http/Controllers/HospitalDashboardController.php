@@ -9,13 +9,19 @@ class HospitalDashboardController extends Controller
 {
     public function index($year, $Hid){
 
-        [$Hname, $donut_hos_drug_GPU, $donut_hos_drug_TPU, $top5_GPU_name, $top5_GPU_amount, $top5_TPU_name, $top5_TPU_amount] = $this->Donut_Hospital($year,$Hid);
+        [$Hname, $donut_hos_drug_GPU, $donut_hos_drug_TPU, $top5_GPU_name, $top5_GPU_amount, $top5_TPU_name, $top5_TPU_amount, $total_drug] = $this->Donut_Hospital($year,$Hid);
+        
+        $GPU_table_Donut = $this->table_GPU_Donut_Hospital($donut_hos_drug_GPU);
+        $TPU_table_Donut = $this->table_TPU_Donut_Hospital($donut_hos_drug_TPU);
+
         $sendData = array(
             'Hname'=>$Hname,
             'donut_hos_drug_GPU'=>$donut_hos_drug_GPU,
             'donut_hos_drug_TPU'=>$donut_hos_drug_TPU,
             'top5_GPU_name'=>$top5_GPU_name, 'top5_GPU_amount'=>$top5_GPU_amount,
-            'top5_TPU_name'=>$top5_TPU_name, 'top5_TPU_amount'=>$top5_TPU_amount
+            'top5_TPU_name'=>$top5_TPU_name, 'top5_TPU_amount'=>$top5_TPU_amount,
+            'total_drug'=>$total_drug,
+            'GPU_table_Donut'=>$GPU_table_Donut, 'TPU_table_Donut'=>$TPU_table_Donut
         );
         return view('HospitalDashboardPage', $sendData );
     }
@@ -60,7 +66,38 @@ class HospitalDashboardController extends Controller
         }
         array_push($top5_GPU_amount, $other_GPU);
         array_push($top5_TPU_amount, $other_TPU);
+        
+        $total_drug = $query_total_drug_result[0]->Total_Amount;
+        
+        return [$Hname, $GPU_result, $TPU_result, $top5_GPU_name, $top5_GPU_amount, $top5_TPU_name, $top5_TPU_amount, $total_drug];
+    }
 
-        return [$Hname, $GPU_result, $TPU_result, $top5_GPU_name, $top5_GPU_amount, $top5_TPU_name, $top5_TPU_amount];
+    function table_GPU_Donut_Hospital($result){
+        $content = '';
+        // $color = [["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]];
+        for ($i = 0; $i < Count($result) ; $i++) {
+            $content .= '<tr>';
+            // $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$color[$i].';"></td>';
+            $content .= '<td style="text-align:left;">'.$result[$i]->GPU_ID.'</td>';
+            $content .= '<td style="text-align:left;">'.$result[$i]->GPU_NAME.'</td>';
+            $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+            $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+            $content .= '</tr>';
+        }
+        return $content;
+    }
+    function table_TPU_Donut_Hospital($result){
+        $content = '';
+        // $color = [["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]];
+        for ($i = 0; $i < Count($result) ; $i++) {
+            $content .= '<tr>';
+            // $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$color[$i].';"></td>';
+            $content .= '<td style="text-align:left;">'.$result[$i]->TPU_ID.'</td>';
+            $content .= '<td style="text-align:left;">'.$result[$i]->TPU_NAME.'</td>';
+            $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
+            $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+            $content .= '</tr>';
+        }
+        return $content;
     }
 }

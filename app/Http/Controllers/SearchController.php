@@ -1014,7 +1014,7 @@ class SearchController extends Controller
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
-                dump($cor_table_result3);
+                // dump($cor_table_result3);
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
