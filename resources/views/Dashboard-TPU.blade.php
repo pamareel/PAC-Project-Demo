@@ -84,7 +84,24 @@
 
 <div id="TA" value = {{ $TA }} style="display:none;">hello</div>
 
-
+<style>
+    #TPU_to_GPU{
+        border-radius: 4px;
+        padding: 8px;
+        border: none;
+        font-size: 16px;
+        background-color: beige;
+        color: grey;
+        position: inline;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    .center {
+        margin: auto;
+        padding: 10px;
+    }
+</style>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
@@ -110,17 +127,21 @@
                 </select>
                 <br>
                 <!-- switch -->
-                <a class="customize-input float-right" href="/policy/GPU">
-                    TPU -> GPU
+                <!-- <a class="customize-input float-right" href="/policy/GPU">
+                    TPU -> GPU -->
                     <!-- ข้างล่างยังหาทางทำไม่ได้ ใช้อันบนไปก่อน-->
-                    <div class="onoffswitch">
+                    <!-- <div class="onoffswitch">
                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                         <label class="onoffswitch-label" for="myonoffswitch">                   
                             <span class="onoffswitch-inner"></span>
                             <span class="onoffswitch-switch"></span>
                         </label>
                     </div>
-                </a>
+                </a> -->
+                <div class="card-body float-right" style="padding-top:10px; padding-bottom:10px;">
+                        <span id="change-level">Change level :</span>
+                        <input type=button id="TPU_to_GPU" onClick="location='/policy/GPU'" value='TPU > GPU'>
+                </div>
                 <!-- end switch -->
             </div>
         </div>
