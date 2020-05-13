@@ -27,7 +27,6 @@
                         <select name="year" id="year">
                             <option value="2562">2562</option>
                             <option value="2561">2561</option>
-                            <option value="2560">2560</option>
                         </select>
                         <p></p>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,7 +51,16 @@
                         Province&nbsp;
                         <select name="province" id="province">
                             <option value="All">All</option>
-                            <option value="Saraburi">Saraburi</option>
+                            <?php
+                            for($i=0 ; $i<count($Province_name) ; $i++){
+                            ?>
+                                <option value={{ $Province_name[$i] }}>
+                                    {{ $Province_name[$i] }}
+                                </option>
+
+                            <?php
+                            }
+                            ?>
                         </select>
                         <p></p>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

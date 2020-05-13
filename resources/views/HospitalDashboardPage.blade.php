@@ -182,34 +182,12 @@
 <script>
    
     content_1 = {!! json_encode($donut_hos_drug_GPU) !!};
-
-    top5_GPU_name_1 = {!! json_encode($top5_GPU_name[0]) !!};
-    top5_GPU_name_2 = {!! json_encode($top5_GPU_name[1]) !!};
-    top5_GPU_name_3 = {!! json_encode($top5_GPU_name[2]) !!};
-    top5_GPU_name_4 = {!! json_encode($top5_GPU_name[3]) !!};
-    top5_GPU_name_5 = {!! json_encode($top5_GPU_name[4]) !!};
-
-    top5_GPU_amount_1 = {{ $top5_GPU_amount[0] }};
-    top5_GPU_amount_2 = {{ $top5_GPU_amount[1] }};
-    top5_GPU_amount_3 = {{ $top5_GPU_amount[2] }};
-    top5_GPU_amount_4 = {{ $top5_GPU_amount[3] }};
-    top5_GPU_amount_5 = {{ $top5_GPU_amount[4] }};
-    top5_GPU_amount_other = {{ $top5_GPU_amount[5] }};
+    
+    var Top5Donut_GPU = {!! json_encode($top5_GPU) !!};
+    var Top5Donut_TPU = {!! json_encode($top5_TPU) !!};
+    
     total = {!! json_encode($total_drug) !!};
-
-    top5_TPU_name_1 = {!! json_encode($top5_TPU_name[0]) !!};
-    top5_TPU_name_2 = {!! json_encode($top5_TPU_name[1]) !!};
-    top5_TPU_name_3 = {!! json_encode($top5_TPU_name[2]) !!};
-    top5_TPU_name_4 = {!! json_encode($top5_TPU_name[3]) !!};
-    top5_TPU_name_5 = {!! json_encode($top5_TPU_name[4]) !!};
-
-    top5_TPU_amount_1 = {{ $top5_TPU_amount[0] }};
-    top5_TPU_amount_2 = {{ $top5_TPU_amount[1] }};
-    top5_TPU_amount_3 = {{ $top5_TPU_amount[2] }};
-    top5_TPU_amount_4 = {{ $top5_TPU_amount[3] }};
-    top5_TPU_amount_5 = {{ $top5_TPU_amount[4] }};
-    top5_TPU_amount_other = {{ $top5_TPU_amount[5] }};
-
+    
     GPU_table_Donut = {!! json_encode($GPU_table_Donut) !!};
     TPU_table_Donut = {!! json_encode($TPU_table_Donut) !!};
 
@@ -372,7 +350,7 @@
 
     $(document).ready(function() {
         google.charts.load('current', {'packages':['corechart']});
-        if(top5_GPU_name_1 != null && top5_GPU_name_1 != ''){
+        if(content_1 != null && content_1 != ''){
             $("#GPU").click(function() {
                 $(this).toggleClass("invisible");
                 $("#Donut_hoss").removeClass("invisible");
@@ -386,9 +364,7 @@
                 //Donut chart
                 $.chartX = c3.generate({ 
                     bindto:"#hos_drug_donut",
-                    data:{columns:[[top5_GPU_name_1, top5_GPU_amount_1], [top5_GPU_name_2, top5_GPU_amount_2],
-                                    [top5_GPU_name_3, top5_GPU_amount_3], [top5_GPU_name_4, top5_GPU_amount_4],
-                                    [top5_GPU_name_5, top5_GPU_amount_5], ['Others', top5_GPU_amount_other]],
+                    data:{columns:Top5Donut_GPU,
                         type:"donut",
                         tooltip:{show:!0}
                     },
@@ -441,9 +417,7 @@
                 //Donut chart
                 $.chartXL = c3.generate({ 
                     bindto:"#hos_drug_donut",
-                    data:{columns:[[top5_TPU_name_1, top5_TPU_amount_1], [top5_TPU_name_2, top5_TPU_amount_2],
-                                    [top5_TPU_name_3, top5_TPU_amount_3], [top5_TPU_name_4, top5_TPU_amount_4],
-                                    [top5_TPU_name_5, top5_TPU_amount_5], ['Others', top5_TPU_amount_other]],
+                    data:{columns:Top5Donut_TPU,
                         type:"donut",
                         tooltip:{show:!0}
                     },
@@ -490,9 +464,7 @@
                 $.chartX.destroy();
                 $.chartXL = c3.generate({ 
                     bindto:"#hos_drug_donut",
-                    data:{columns:[[top5_TPU_name_1, top5_TPU_amount_1], [top5_TPU_name_2, top5_TPU_amount_2],
-                                    [top5_TPU_name_3, top5_TPU_amount_3], [top5_TPU_name_4, top5_TPU_amount_4],
-                                    [top5_TPU_name_5, top5_TPU_amount_5], ['Others', top5_TPU_amount_other]],
+                    data:{columns:Top5Donut_TPU,
                         type:"donut",
                         tooltip:{show:!0}
                     },
@@ -540,9 +512,7 @@
                 
                 $.chartX = c3.generate({ 
                     bindto:"#hos_drug_donut",
-                    data:{columns:[[top5_GPU_name_1, top5_GPU_amount_1], [top5_GPU_name_2, top5_GPU_amount_2],
-                                    [top5_GPU_name_3, top5_GPU_amount_3], [top5_GPU_name_4, top5_GPU_amount_4],
-                                    [top5_GPU_name_5, top5_GPU_amount_5], ['Others', top5_GPU_amount_other]],
+                    data:{columns:Top5Donut_GPU,
                         type:"donut",
                         tooltip:{show:!0}
                     },
