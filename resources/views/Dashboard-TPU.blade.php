@@ -76,9 +76,9 @@
 
     // Drug Purchasing Amount
     //TPU
-    //2561
-    $top5Amount = DB::select('EXEC findTop5TPU61');
-    $totalAmount = DB::select('select sum(Total_Real_Amount) as total FROM TPU WHERE BUDGET_YEAR=2561;');
+    //2562
+    $top5Amount = DB::select("select TOP 5 BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Total_Real_Amount as To_Total_Real_Amount, FORMAT(Total_Real_Amount, N'N0') as Total_Real_Amount, cast(Wavg_Unit_Price as decimal(10,2)) as Wavg_Unit_Price from TPU where BUDGET_YEAR = 2562 order by To_Total_Real_Amount DESC;");
+    $totalAmount = DB::select("select FORMAT(sum(Total_Real_Amount), N'N0') as total FROM TPU WHERE BUDGET_YEAR=2562;");
     // set parameter
     $n1 = $top5Amount[0]->TPU_NAME;
     $n2 = $top5Amount[1]->TPU_NAME;
@@ -98,12 +98,18 @@
     $w4 = $top5Amount[3]->Wavg_Unit_Price;
     $w5 = $top5Amount[4]->Wavg_Unit_Price;
     // set parameter   
-    $a1 = $top5Amount[0]->Total_Real_Amount;
-    $a2 = $top5Amount[1]->Total_Real_Amount;
-    $a3 = $top5Amount[2]->Total_Real_Amount;
-    $a4 = $top5Amount[3]->Total_Real_Amount;
-    $a5 = $top5Amount[4]->Total_Real_Amount;
+    $a1 = $top5Amount[0]->To_Total_Real_Amount;
+    $a2 = $top5Amount[1]->To_Total_Real_Amount;
+    $a3 = $top5Amount[2]->To_Total_Real_Amount;
+    $a4 = $top5Amount[3]->To_Total_Real_Amount;
+    $a5 = $top5Amount[4]->To_Total_Real_Amount;
     $TA = $totalAmount[0]->total;
+    // set parameter
+    $a11 = $top5Amount[0]->Total_Real_Amount;
+    $a22 = $top5Amount[1]->Total_Real_Amount;
+    $a33 = $top5Amount[2]->Total_Real_Amount;
+    $a44 = $top5Amount[3]->Total_Real_Amount;
+    $a55 = $top5Amount[4]->Total_Real_Amount;
 ?>
 
 <!-- to send parameter to js file -->
@@ -225,9 +231,9 @@
                                 <tbody>   
                                     <?php
                                         $query = DB::select('select TPU_NAME, TPU_ID, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_TPU
-                                                                where BUDGET_YEAR = 2561
+                                                                where BUDGET_YEAR = 2562
                                                                 order by Gini DESC;');
-                                        $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_TPU WHERE BUDGET_YEAR=2561;');
+                                        $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_TPU WHERE BUDGET_YEAR=2562;');
                                         for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
                                             // echo "The number is: $i <br>";s
                                     ?>
@@ -267,17 +273,17 @@
                             <table class="table-striped table-bordered" id="datatable2" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
-                                            <th>Name</th>
-                                            <th>TPU</th>
-                                            <th>Avg Unit Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>   
+                                        <th>Name</th>
+                                        <th>TPU</th>
+                                        <th>Avg Unit Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>   
                                     <?php
                                         $query = DB::select('select TPU_NAME, TPU_ID, cast(Wavg_Unit_Price as decimal(18,2)) as Wavg_Unit_Price from TPU
-                                                                where BUDGET_YEAR = 2561
+                                                                where BUDGET_YEAR = 2562
                                                                 order by Wavg_Unit_Price DESC;');
-                                        $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU where BUDGET_YEAR = 2561;');
+                                        $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU where BUDGET_YEAR = 2562;');
                                         for ($i = 0; $i < 131; $i+=1) {
                                                 // echo "The number is: $i <br>";
                                         ?>
@@ -323,56 +329,60 @@
     <!-- Drug Purchasing Amount -->
     <div class="row">
         <!-- Drug Purchasing Amount -->
-        <div class="col-lg-6 col-md-12">
+        <div class="col-lg-7 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Drug Purchasing Amount</h4>
+                    <h4 class="card-title" style="text-align:center;">Drug Purchasing Amount</h4>
 
-                    <div id="campaign-v2" class="mt-2" style="height:283px; width:100%;">
-                    </div>
-                    <ul class="list-style-none mb-0">
-                        <li>
-                            <span class="text-dark font-weight-medium" >Name</span>
-                            <span class="text-dark font-weight-medium" >TPU</span>
-                            <span class="text-dark font-weight-medium" >Avg Unit Price</span>
-                            <span class="text-dark float-right font-weight-medium">Amount</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-circle text-primary font-10 mr-2"></i>
-                            <span class="text-muted" >{{ $n1 }}</span>
-                            <span class="text-dark font-weight-medium">{{ $id1 }}</span>
-                            <span class="text-dark font-weight-medium">{{ $w1 }}</span>
-                            <span class="text-dark float-right font-weight-medium">{{ $a1 }}</span>
-                        </li>
-                        <li class="mt-3">
-                            <i class="fas fa-circle text-danger font-10 mr-2"></i>
-                            <span class="text-muted">{{ $n2 }}</span>
-                            <span class="text-darkfont-weight-medium">{{ $id2 }}</span>
-                            <span class="text-dark font-weight-medium">{{ $w2 }}</span>
-                            <span class="text-dark float-right font-weight-medium">{{ $a2 }}</span>
-                        </li>
-                        <li class="mt-3">
-                            <i class="fas fa-circle text-cyan font-10 mr-2"></i>
-                            <span class="text-muted">{{ $n3 }}</span>
-                            <span class="text-dark font-weight-medium">{{ $id3 }}</span>
-                            <span class="text-dark font-weight-medium">{{ $w3 }}</span>
-                            <span class="text-dark float-right font-weight-medium">{{ $a3 }}</span>
-                        </li>
-                        <li class="mt-3">
-                            <i class="fas fa-circle text-danger font-10 mr-2"></i>
-                            <span class="text-muted">{{ $n4 }}</span>
-                            <span class="text-dark font-weight-medium">{{ $id4 }}</span>
-                            <span class="text-dark font-weight-medium">{{ $w4 }}</span>
-                            <span class="text-dark float-right font-weight-medium">{{ $a4 }}</span>
-                        </li>
-                        <li class="mt-3">
-                            <i class="fas fa-circle text-cyan font-10 mr-2"></i>
-                            <span class="text-muted">{{ $n5 }}</span>
-                            <span class="text-dark font-weight-medium">{{ $id5 }}</span>
-                            <span class="text-dark font-weight-medium">{{ $w5 }}</span>
-                            <span class="text-dark float-right font-weight-medium">{{ $a5 }}</span>
-                        </li>
-                    </ul>
+                    <div id="campaign-v2" class="mt-2" style="height:283px; width:100%;"></div>
+                    <table>
+                        <thead>
+                            <tr role="row">
+                                <th style="text-align:center;"></th>
+                                <th style="text-align:center;">TPU</th>
+                                <th style="text-align:center;">Name</th>
+                                <th style="text-align:center;">Avg Unit Price</th>
+                                <th style="text-align:center;">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-primary font-10 mr-2"></i></td>
+                                <td width="10%">{{ $id1 }}</td>
+                                <td width="50%" class="ellipsis">{{ $n1 }}</td>
+                                <td width="15%" style="text-align:center;">{{ $w1 }}</td>
+                                <td width="20%" style="text-align:right; padding-right:8px;">{{ $a11 }}</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-danger font-10 mr-2"></i></td>
+                                <td width="10%">{{ $id2 }}</td>
+                                <td width="50%" class="ellipsis">{{ $n2 }}</td>
+                                <td width="15%" style="text-align:center;">{{ $w2 }}</td>
+                                <td width="20%" style="text-align:right; padding-right:8px;">{{ $a22 }}</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-cyan font-10 mr-2"></i></td>
+                                <td width="10%">{{ $id3 }}</td>
+                                <td width="50%" class="ellipsis">{{ $n3 }}</td>
+                                <td width="15%" style="text-align:center;">{{ $w3 }}</td>
+                                <td width="20%" style="text-align:right; padding-right:8px;">{{ $a33 }}</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-danger font-10 mr-2"></i></td>
+                                <td width="10%">{{ $id4 }}</td>
+                                <td width="50%" class="ellipsis">{{ $n4 }}</td>
+                                <td width="15%" style="text-align:center;">{{ $w4 }}</td>
+                                <td width="20%" style="text-align:right; padding-right:8px;">{{ $a44 }}</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-cyan font-10 mr-2"></i></td>
+                                <td width="10%">{{ $id5 }}</td>
+                                <td width="50%" class="ellipsis">{{ $n5 }}</td>
+                                <td width="15%" style="text-align:center;">{{ $w5 }}</td>
+                                <td width="20%" style="text-align:right; padding-right:8px;">{{ $a55 }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
