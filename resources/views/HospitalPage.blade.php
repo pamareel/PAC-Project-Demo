@@ -3,6 +3,27 @@
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
 @endsection
 @section('content')
+<style>
+    #sub {
+        border-radius: 4px;
+        padding: 5px;
+        border: none;
+        font-size: 14px;
+        background-color: #eae374;
+        color: black;
+        position: inline;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    .invisible {
+        display: none;
+    }
+    .center {
+        margin: auto;
+        padding: 10px;
+    }
+</style>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
@@ -80,7 +101,8 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <label for="drugname">Name</label>
                         <input type="text" name="Hname" values="" id="Hname">
-                        <button type="submit">Submit</button>
+                        &nbsp;
+                        <button type="submit" id="sub";>&nbsp;Search&nbsp;</button>
                         <br>
                         <br>
                     </form>
@@ -110,30 +132,32 @@
                 <?php
                 if($resultSearch != 'No value'){
                 ?>
-                    <div class="card-body">
-                    <div>
-                        Result : {{ $resultState }}
+                    <div class="card-body" style="text-align:center;">
+                        <div style="text-align:left;">
+                            Result : {{ $resultState }}
+                            <br/>
+                            Found result : {{ count($resultSearch) }} values
+                        </div>
+                        <b style="text-align:center; font-size:22px; color:#243447;">List of Hospital</b>
                         <br/>
-                        Found result : {{ count($resultSearch) }} values
-                    </div>
-                    <h4 style="text-align:center;">List of Hospital</h4>
-                    <table id="tableSearch" style="width: 100%;">
-                        <thead>
-                        <tr role="row">
-                            <th style="text-align:center;">ID</th>
-                            <th style="text-align:center;">NAME</th>
-                            <th style="text-align:center;">Type</th>
-                            <th style="text-align:center;">Province</th>
-                            <th style="text-align:center;">Region</th>
-                            <th style="text-align:center;">IP</th>
-                            <th style="text-align:center;">OP</th>
-                            <th style="text-align:center;">Total Spend</th>
-                            <th style="text-align:center;">Dashboard</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                        <br/>
+                        <table id="tableSearch" class="table-striped" style="width: 100%;">
+                            <thead>
+                            <tr role="row">
+                                <th style="text-align:center;">ID</th>
+                                <th style="text-align:center;">NAME</th>
+                                <th style="text-align:center;">Type</th>
+                                <th style="text-align:center;">Province</th>
+                                <th style="text-align:center;">Region</th>
+                                <th style="text-align:center;">IP</th>
+                                <th style="text-align:center;">OP</th>
+                                <th style="text-align:center;">Total Spend</th>
+                                <th style="text-align:center;">Dashboard</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 <?php
                 }else{

@@ -14,6 +14,20 @@
 @endsection
 
 @section('content')
+<style>
+    #sub {
+        border-radius: 4px;
+        padding: 5px;
+        border: none;
+        font-size: 14px;
+        background-color: #eae374;
+        color: black;
+        position: inline;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+</style>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
@@ -58,7 +72,8 @@
                         &nbsp;&nbsp;
                         <label for="drugname">Name</label>
                         <input type="text" name="Dname" values="" id="Dname">
-                        <button type="submit">Submit</button>
+                        &nbsp;
+                        <button type="submit" id="sub">&nbsp;Search&nbsp;</button>
                         <br>
                         <br>
                     </form>

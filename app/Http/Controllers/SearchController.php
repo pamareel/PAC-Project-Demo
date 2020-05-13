@@ -28,19 +28,23 @@ class SearchController extends Controller
             $GT = $_GET['GT'];
             $Dname= $_GET['Dname'];
             $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$Dname."";
+
+            if($GT == 'GPU'){
+                $Dname = $Dname.'%';
+            }else if($GT == 'TPU'){
+                $Dname = '%'.$Dname.'%';
+            }
             
-            // dump($_GET);
-            // echo "<p>Your drug name is <b>" . $Dname . "</b>.</p>";
             ////////////////////////////////////////////////////////////////////
             ///// count each region ////////////////////////////////////////////
             if($method == 'All'){
                 ////// table show //////////////////////////////////////////////////////////////////////
-                $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME = '".$Dname."';";
+                $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
                 $resultSearch = DB::select($statement);   
                 
             }else{
                 ////// table show //////////////////////////////////////////////////////////////////////
-                $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME = '".$Dname."';";
+                $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
                 $resultSearch = DB::select($statement);
             }
             $r1 = $this->find_Stack_Data(1,$year,$GT,$Dname,$method);
@@ -292,9 +296,9 @@ class SearchController extends Controller
 
     function find_Stack_Data($r,$year,$GT,$Dname,$method){
         if($method == 'All'){
-            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '".$r."'";
+            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and Region = '".$r."'";
         }else{
-            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '".$r."' and Method ='".$method."'";
+            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and Region = '".$r."' and Method ='".$method."'";
         }
         $find_Stack_Data_result = DB::select($countquery_r);
         return $find_Stack_Data_result;
@@ -309,9 +313,9 @@ class SearchController extends Controller
     }
     function find_Stack_Data_Reg($r,$year,$GT,$Dname,$method){
         if($method == 'All'){
-            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '".$r."'";
+            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and Region = '".$r."'";
         }else{
-            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Region = '".$r."' and Method ='".$method."'";
+            $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and Region = '".$r."' and Method ='".$method."'";
         }
         $find_Stack_Data_result = DB::select($countquery_r);
         return $find_Stack_Data_result;
@@ -323,7 +327,7 @@ class SearchController extends Controller
         $chartLowPercent = array();
         $chartMedPercent = array();
         $chartHighPercent = array();
-        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."'"; 
         $AVG = DB::select($query_AVG);
         $avg = $AVG[0]->avg;
         ///// create array for stack bar chart ////////////////////////////////////////////////
@@ -331,13 +335,13 @@ class SearchController extends Controller
 
             array_push($chartRegion,$t);
             if($method == 'All'){
-                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and Region ='".$t."' group by Region";
-                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and Region ='".$t."' group by Region";
-                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and Region ='".$t."' group by Region";
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value < '".$avg."' and Region ='".$t."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value = '".$avg."' and Region ='".$t."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value > '".$avg."' and Region ='".$t."' group by Region";
             }else{
-                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and Region ='".$t."' and Method ='".$method."' group by Region";
-                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and Region ='".$t."' and Method ='".$method."' group by Region";
-                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_low = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value < '".$avg."' and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_med = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value = '".$avg."' and Region ='".$t."' and Method ='".$method."' group by Region";
+                $query_high = "select Region, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value > '".$avg."' and Region ='".$t."' and Method ='".$method."' group by Region";
             }
             
             /////// for Low PAC ////////////////////////////////////////////////
@@ -375,9 +379,9 @@ class SearchController extends Controller
     function chart_Low_Med_High($countHosRegion,$r,$Region_name,$year,$GT,$Dname,$method){
         foreach($Region_name as $Pcode => $Province){
             if($method == 'All'){
-                $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PROVINCE_EN = '".$Province."'";
+                $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PROVINCE_EN = '".$Province."'";
             }else{
-                $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PROVINCE_EN = '".$Province."' and Method ='".$method."'";
+                $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PROVINCE_EN = '".$Province."' and Method ='".$method."'";
             }
             $p_count_query = DB::select($countquery_r);
             if($p_count_query != null){
@@ -392,20 +396,20 @@ class SearchController extends Controller
         $chartLowPercent = array();
         $chartMedPercent = array();
         $chartHighPercent = array();
-        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."'"; 
         $AVG = DB::select($query_AVG);
         $avg = $AVG[0]->avg;
         ///// create array for stack bar chart ////////////////////////////////////////////////
         foreach($Region_name as $Pcode => $Province) {
             array_push($chartProvince,$Province);
             if($method == 'All'){
-                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
-                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
-                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
+                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
+                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
+                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."' group by PROVINCE_EN";
             }else{
-                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
-                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
-                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
+                $query_low = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
+                $query_med = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
+                $query_high = "select PROVINCE_EN, Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."' group by PROVINCE_EN";
             }
             /////// for Low PAC ////////////////////////////////////////////////
             $lowPac = DB::select($query_low);
@@ -439,16 +443,16 @@ class SearchController extends Controller
         if($r == 'All'){
             if($m == 'All'){
                 ////// Thai map //////////////////////////////////////////////////////////////////////
-                $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' group by Region";
+                $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' group by Region";
             }else{
                 ////// Thai map //////////////////////////////////////////////////////////////////////
-                $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' group by Region";
+                $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' group by Region";
             }
         }else{
             if($m == 'All'){
-                $query_rd = "select Region, PROVINCE_EN, Pcode, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME ='".$na."' and Region = ".$r." group by Region, PROVINCE_EN, Pcode";
+                $query_rd = "select Region, PROVINCE_EN, Pcode, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." group by Region, PROVINCE_EN, Pcode";
             }else{
-                $query_rd = "select Region, PROVINCE_EN, Pcode, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME ='".$na."' and Region = ".$r." and Method = '".$m."' group by Region, PROVINCE_EN, Pcode";
+                $query_rd = "select Region, PROVINCE_EN, Pcode, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." and Method = '".$m."' group by Region, PROVINCE_EN, Pcode";
             }
         }
         $find_Map_Data_result = DB::select($query_rd);
@@ -924,18 +928,18 @@ class SearchController extends Controller
         $result_med = [];
         $dataDonut_Region_high_result = [];
         $result_high = [];
-        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."'"; 
         $AVG = DB::select($query_AVG);
         $avg = $AVG[0]->avg;
         foreach($Region_name as $Pcode => $Province){
             if($method == 'All'){
-                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."'";
-                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."'";
-                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."'";
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."'";
             }else{
-                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
-                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
-                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value < '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value = '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value > '".$avg."' and PROVINCE_EN ='".$Province."' and Method ='".$method."'";
             }
 
             /////// for Low PAC ////////////////////////////////////////////////
@@ -1032,7 +1036,7 @@ class SearchController extends Controller
         if($m == 'All'){
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1082,7 +1086,7 @@ class SearchController extends Controller
                 }
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1131,7 +1135,7 @@ class SearchController extends Controller
                 }
             }else if($r == 3){
                 foreach($Region_3_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1181,7 +1185,7 @@ class SearchController extends Controller
                 }
             }else if($r == 4){
                 foreach($Region_4_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1231,7 +1235,7 @@ class SearchController extends Controller
                 }
             }else if($r == 5){
                 foreach($Region_5_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1281,7 +1285,7 @@ class SearchController extends Controller
                 }
             }else if($r == 6){
                 foreach($Region_6_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1331,7 +1335,7 @@ class SearchController extends Controller
                 }
             }else if($r == 7){
                 foreach($Region_7_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1381,7 +1385,7 @@ class SearchController extends Controller
                 }
             }else if($r == 8){
                 foreach($Region_8_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1431,7 +1435,7 @@ class SearchController extends Controller
                 }
             }else if($r == 9){
                 foreach($Region_9_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1481,7 +1485,7 @@ class SearchController extends Controller
                 }
             }else if($r == 10){
                 foreach($Region_10_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1531,7 +1535,7 @@ class SearchController extends Controller
                 }
             }else if($r == 11){
                 foreach($Region_11_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1581,7 +1585,7 @@ class SearchController extends Controller
                 }
             }else if($r == 12){
                 foreach($Region_12_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1631,7 +1635,7 @@ class SearchController extends Controller
                 }
             }else if($r == 13){
                 foreach($Region_13_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -1654,7 +1658,7 @@ class SearchController extends Controller
         }else{
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1704,7 +1708,7 @@ class SearchController extends Controller
                 }
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1754,7 +1758,7 @@ class SearchController extends Controller
                 }
             }else if($r == 3){
                 foreach($Region_3_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1804,7 +1808,7 @@ class SearchController extends Controller
                 }
             }else if($r == 4){
                 foreach($Region_4_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1854,7 +1858,7 @@ class SearchController extends Controller
                 }
             }else if($r == 5){
                 foreach($Region_5_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1904,7 +1908,7 @@ class SearchController extends Controller
                 }
             }else if($r == 6){
                 foreach($Region_6_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1954,7 +1958,7 @@ class SearchController extends Controller
                 }
             }else if($r == 7){
                 foreach($Region_7_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2004,7 +2008,7 @@ class SearchController extends Controller
                 }
             }else if($r == 8){
                 foreach($Region_8_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2054,7 +2058,7 @@ class SearchController extends Controller
                 }
             }else if($r == 9){
                 foreach($Region_9_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2104,7 +2108,7 @@ class SearchController extends Controller
                 }
             }else if($r == 10){
                 foreach($Region_10_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2154,7 +2158,7 @@ class SearchController extends Controller
                 }
             }else if($r == 11){
                 foreach($Region_11_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2204,7 +2208,7 @@ class SearchController extends Controller
                 }
             }else if($r == 12){
                 foreach($Region_12_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2254,7 +2258,7 @@ class SearchController extends Controller
                 }
             }else if($r == 13){
                 foreach($Region_13_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -2286,9 +2290,9 @@ class SearchController extends Controller
         $countAllHos = 0;
         foreach($size_hospital_name as $s){
             if($method == 'All'){
-                $countquery_r = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."';";
+                $countquery_r = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."';";
             }else{
-                $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."'";
+                $countquery_r = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."'";
             }
             $result_count = DB::select($countquery_r);
             if($s == 'NULL'){
@@ -2308,18 +2312,18 @@ class SearchController extends Controller
         $chartLowPercent = array();
         $chartMedPercent = array();
         $chartHighPercent = array();
-        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."'"; 
         $AVG = DB::select($query_AVG);
         $avg = $AVG[0]->avg;
         foreach($size_hospital_name as $s){
             if($method == 'All'){
-                $low_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value < '".$avg."';";
-                $med_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value = '".$avg."';";
-                $high_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and PAC_value > '".$avg."';";
+                $low_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and PAC_value < '".$avg."';";
+                $med_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and PAC_value = '".$avg."';";
+                $high_query = "select Count(ServicePlanType) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and PAC_value > '".$avg."';";
             }else{
-                $low_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value < '".$avg."';";
-                $med_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value = '".$avg."';";
-                $high_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value > '".$avg."';";
+                $low_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value < '".$avg."';";
+                $med_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value = '".$avg."';";
+                $high_query = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."' and PAC_value > '".$avg."';";
             }
 
             if($s == 'NULL'){
@@ -2362,9 +2366,9 @@ class SearchController extends Controller
         $total = 0;
         foreach($size_hospital_name as $s){
             if($method == 'All'){
-                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."';";
+                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."';";
             }else{
-                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."';";
+                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."';";
             }
             $result_count = DB::select($countquery_r);
             if($s == 'NULL'){
@@ -2375,9 +2379,9 @@ class SearchController extends Controller
             
         }
         if($method == 'All'){
-            $q = "select FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."';";
+            $q = "select FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."';";
         }else{
-            $q = "select FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and Method ='".$method."';";
+            $q = "select FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and Method ='".$method."';";
         }
         $result_q = DB::select($q);
         if($result_q != NULL){
@@ -2425,21 +2429,21 @@ class SearchController extends Controller
         $result_count2 = 0;
         $total_type = [];
         $total = 0;
-        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."'"; 
+        $query_AVG = "select AVG(PAC_value) as avg from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."'"; 
         $AVG = DB::select($query_AVG);
         $avg = $AVG[0]->avg;
         ///// create array for stack bar chart ////////////////////////////////////////////////
         foreach($chartType as $s) {
             if($method == 'All'){
-                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and ServicePlanType ='".$s."'";
-                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and ServicePlanType ='".$s."'";
-                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and ServicePlanType ='".$s."'";
-                $q = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType ='".$s."';";
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value < '".$avg."' and ServicePlanType ='".$s."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value = '".$avg."' and ServicePlanType ='".$s."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value > '".$avg."' and ServicePlanType ='".$s."'";
+                $q = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType ='".$s."';";
             }else{
-                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value < '".$avg."' and ServicePlanType ='".$s."' and Method ='".$method."'";
-                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value = '".$avg."' and ServicePlanType ='".$s."' and Method ='".$method."'";
-                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and PAC_value > '".$avg."' and ServicePlanType ='".$s."' and Method ='".$method."'";
-                $q = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME ='".$Dname."' and ServicePlanType ='".$s."' and Method ='".$method."';";
+                $query_low = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value < '".$avg."' and ServicePlanType ='".$s."' and Method ='".$method."'";
+                $query_med = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value = '".$avg."' and ServicePlanType ='".$s."' and Method ='".$method."'";
+                $query_high = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and PAC_value > '".$avg."' and ServicePlanType ='".$s."' and Method ='".$method."'";
+                $q = "select Count(DEPT_ID) as n from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType ='".$s."' and Method ='".$method."';";
             }
 
             if($s == 'NULL'){
@@ -2492,7 +2496,7 @@ class SearchController extends Controller
         $chartType = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'NULL'];
         $tableForRegion_result = [];
         foreach($chartType as $s){
-            $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, FORMAT(IP, N'N0') as IP, FORMAT(OP, N'N0') as OP, FORMAT(Total_Amount, N'N0') as Total_Amount, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend, cast(PAC_value as decimal(18,3)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and ServicePlanType = '".$s."' order by PAC_value;";
+            $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, FORMAT(IP, N'N0') as IP, FORMAT(OP, N'N0') as OP, FORMAT(Total_Amount, N'N0') as Total_Amount, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend, cast(PAC_value as decimal(18,3)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and ServicePlanType = '".$s."' order by PAC_value;";
             $result = DB::select($query_rd);
             $content = '';
             for ($i = 0; $i < Count($result) ; $i++) {
