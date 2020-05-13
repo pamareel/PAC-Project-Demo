@@ -153,14 +153,21 @@
             </div>
         </div>        
     </div>
+
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="card" style="background-color:#e5e6eb; height:10px;" >
+            </div>
+        </div>
+    </div>
     
     <div class="row">
         <div class="col-md-12 invisible" id="CostSave_Hos">
             <div class="card">
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Cost Saving</h4>
-                    <div class="card col-md-5 center" style="background-color:pink;">
-                        <span id="total_sc" style="text-align:center;"></span>
+                    <div class="card col-md-5 center" style="background-color:#74d680;">
+                        <span id="total_sc" style="text-align:center; color:black;"></span>
                     </div>
                     <!-- Cost Saving table -->
                     <div class="center" style="width: 100%;">
@@ -349,6 +356,7 @@
     };
 
     $(document).ready(function() {
+        Chart.defaults.global.defaultFontFamily = '"Rubik", sans-serif';
         google.charts.load('current', {'packages':['corechart']});
         if(content_1 != null && content_1 != ''){
             $("#GPU").click(function() {
