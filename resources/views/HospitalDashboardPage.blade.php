@@ -16,7 +16,7 @@
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <style>
-    #To_2561, #GPU, #TPU, #GPU_to_TPU, #TPU_to_GPU {
+    #To_2560, #To_2561, #GPU, #TPU, #GPU_to_TPU, #TPU_to_GPU {
         border-radius: 4px;
         padding: 8px;
         border: none;
@@ -39,7 +39,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-md-12">
-            <h3>{{ $Hname }} (2562)</h3>
+            <h3>{{ $Hname }} ({{ $Year }})</h3>
         </div>
         
     </div>
@@ -47,10 +47,11 @@
 <!-- ============================================================== -->
 <!-- End Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
+<!-- for to_2561 button -->
+
 <!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
-
 <div class="container-fluid">
     <div class="row">
         <!-- <div class="col-md-6"> -->
@@ -69,11 +70,44 @@
             <div class="card">
                 <div class="card-body center" style="padding-top:10px; padding-bottom:10px;">
                     Change year? : 
-                    <button class="btn" id="To_2561">To 2561</button>
+                    <!-- <button class="btn" id="To_2561">To 2561</button> -->
+                    <input class="invisible" type=button id="To_2560" value='To 2560'>
+                    <input class="invisible" type=button id="To_2561" value='To 2561'>
+                    <input class="invisible" type=button id="To_2562" value='To 2562'>
                 </div>
             </div>
         <!-- </div> -->
     </div>
+    <script>
+        var btn0 = document.getElementById('To_2560');
+        var link_to_2560 = '/hospitalDashboard/2560/' + {{ $HID }};
+        btn0.addEventListener('click', function() {
+            document.location.href = link_to_2560;
+        });
+        var btn = document.getElementById('To_2561');
+        var link_to_2561 = '/hospitalDashboard/2561/' + {{ $HID }};
+        btn.addEventListener('click', function() {
+            document.location.href = link_to_2561;
+        });
+        var btn2 = document.getElementById('To_2562');
+        var link_to_2562 = '/hospitalDashboard/2562/' + {{ $HID }};
+        btn2.addEventListener('click', function() {
+            document.location.href = link_to_2562;
+        });
+        if({{ $Year }} == 2560){
+            $("#To_2561").toggleClass("invisible");
+            $("#To_2562").toggleClass("invisible");
+        }
+        if({{ $Year }} == 2561){
+            $("#To_2560").toggleClass("invisible");
+            $("#To_2562").toggleClass("invisible");
+        }
+        if({{ $Year }} == 2562){
+            $("#To_2560").toggleClass("invisible");
+            $("#To_2561").toggleClass("invisible");
+        }
+    </script>
+
     <div class="row">
         <div class="col-md-6 invisible" id="Donut_hoss">
             <div class="card">

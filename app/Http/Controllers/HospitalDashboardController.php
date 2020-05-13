@@ -8,7 +8,8 @@ use DB;
 class HospitalDashboardController extends Controller
 {
     public function index($year, $Hid){
-
+        $Year = $year;
+        $HID = $Hid;
         [$Hname, $donut_hos_drug_GPU, $donut_hos_drug_TPU, $top5_GPU_name, $top5_GPU_amount, $top5_TPU_name, $top5_TPU_amount, $total_drug] = $this->Donut_Hospital($year,$Hid);
         
         $GPU_table_Donut = $this->table_GPU_Donut_Hospital($donut_hos_drug_GPU);
@@ -25,6 +26,8 @@ class HospitalDashboardController extends Controller
         [$totalSpend_62, $totalSpend_label_62] = $this->total_spend_hos($Hid, '2562');
         
         $sendData = array(
+            'Year'=>$Year,
+            'HID'=>$HID,
             'Hname'=>$Hname,
             'donut_hos_drug_GPU'=>$donut_hos_drug_GPU,
             'donut_hos_drug_TPU'=>$donut_hos_drug_TPU,
