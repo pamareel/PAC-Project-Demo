@@ -33,7 +33,13 @@
     $(document).ready( function () {
         $('#datatable').DataTable({
             "sScrollX": "100%",
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+            "rowCallback": function(row, data, index) {
+                if(data[2]> 0.5){
+                    $(row).find('td:eq(2)').css('color', 'red');
+                }
+            },
+            "order": [[ 2, "desc" ]]
         });
     });
 </script>
@@ -41,7 +47,8 @@
     $(document).ready( function () {
         $('#datatable2').DataTable({
             "sScrollX": "100%",
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+            "order": [[ 2, "desc" ]]
         });
     });
 </script>
@@ -51,7 +58,8 @@
         $('#datatable3 tbody').html(TPU_table_cost_save);
         $('#datatable3').DataTable({
             "sScrollX": "100%",
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+            "order": [[ 6, "desc" ]]
         });
     });
 </script>
@@ -211,7 +219,8 @@
         <div class="col-lg-12 font-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Top 10 drug price dispersion</h4>
+                    <h4 class="card-title">Top 5 drug price dispersion</h4>
+                    <h6 style="color:gray;">* Gini Coefficient higher than 0.5 indicates high inequality</h6>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
@@ -219,7 +228,7 @@
                                     <tr role="row">
                                                 <th>Name</th>
                                                 <th>GPU</th>
-                                                <th>Price dis</th>
+                                                <th>Gini coeff</th>
                                     </tr>
                                 </thead>
                                 <tbody>   
@@ -261,7 +270,7 @@
         <div class="col-lg-12 font-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Top 10 Unit Price</h4>
+                    <h4 class="card-title">Top 5 Unit Price</h4>
                     <div class="row">
                     <div class="col-md-12">
                             <table class="table-striped table-bordered" id="datatable2" style="width: 100%;" role="grid" aria-describedby="default_order_info">
@@ -285,7 +294,7 @@
                                         <?php
                                                 foreach($query[$i] as $x => $val) {
                                         ?>
-                                                    <td width="40%" class="ellipsis">{{ $val }}</td>
+                                                    <td width="40%">{{ $val }}</td>
                                                     <!-- echo "$x = $val<br>"; -->
                                         <?php
                                                 };
