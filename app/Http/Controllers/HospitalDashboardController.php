@@ -166,7 +166,7 @@ class HospitalDashboardController extends Controller
     }
     function table_GPU_cost_saving_Hospital($Hid, $year){
         $query_gpu = "SELECT GPU_ID, GPU_NAME, FORMAT(Count_TPU, N'N0') as Count_TPU, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
-        $query_gpu .= "FROM CostSaving_hos where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by Percent_saving DESC;";
+        $query_gpu .= "FROM CostSaving_hos where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by PS_Percent_saving DESC;";
         $GPU_result = DB::select($query_gpu);
         
         $content = '';
@@ -207,7 +207,7 @@ class HospitalDashboardController extends Controller
     }
     function table_TPU_cost_saving_Hospital($Hid, $year){
         $query_tpu = "SELECT GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
-        $query_tpu .= "FROM CostSaving_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by Percent_saving DESC;";
+        $query_tpu .= "FROM CostSaving_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by PS_Percent_saving DESC;";
         $TPU_result = DB::select($query_tpu);
         
         $content = '';
