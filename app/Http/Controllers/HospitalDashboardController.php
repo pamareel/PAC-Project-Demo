@@ -17,8 +17,13 @@ class HospitalDashboardController extends Controller
         [$perfLowPercent_GPU, $perfHighPercent_GPU] = $this->GPU_perf_Chart_Hospital($Hid, 'GPU', $year, $donut_hos_drug_GPU);
         [$perfLowPercent_TPU, $perfHighPercent_TPU] = $this->TPU_perf_Chart_Hospital($Hid, 'TPU', $year, $donut_hos_drug_TPU);
 
-        [$GPU_Cost_saving_table_hos, $totalPotentialSave_GPU, $totalSpend_GPU, $totalSuggestSpend_GPU] = $this->table_GPU_cost_saving_Hospital($Hid, $year);
-        [$TPU_Cost_saving_table_hos, $totalPotentialSave_TPU, $totalSpend_TPU, $totalSuggestSpend_TPU] = $this->table_TPU_cost_saving_Hospital($Hid, $year);
+        [$GPU_Cost_saving_table_hos, $totalPotentialSave_GPU, $totalSpend_GPU, $totalSuggestSpend_GPU, $totalSpend_GPU_label, $totalSuggestSpend_GPU_label] = $this->table_GPU_cost_saving_Hospital($Hid, $year);
+        [$TPU_Cost_saving_table_hos, $totalPotentialSave_TPU, $totalSpend_TPU, $totalSuggestSpend_TPU, $totalSpend_TPU_label, $totalSuggestSpend_TPU_label] = $this->table_TPU_cost_saving_Hospital($Hid, $year);
+        
+        [$totalSpend_60, $totalSpend_label_60] = $this->total_spend_hos($Hid, '2560');
+        [$totalSpend_61, $totalSpend_label_61] = $this->total_spend_hos($Hid, '2561');
+        [$totalSpend_62, $totalSpend_label_62] = $this->total_spend_hos($Hid, '2562');
+        
         $sendData = array(
             'Hname'=>$Hname,
             'donut_hos_drug_GPU'=>$donut_hos_drug_GPU,
@@ -32,9 +37,15 @@ class HospitalDashboardController extends Controller
             'GPU_Cost_saving_table_hos'=>$GPU_Cost_saving_table_hos,
             'totalPotentialSave_GPU'=>$totalPotentialSave_GPU,
             'totalSpend_GPU'=>$totalSpend_GPU, 'totalSuggestSpend_GPU'=>$totalSuggestSpend_GPU,
+            'totalSpend_GPU_label'=>$totalSpend_GPU_label, 'totalSuggestSpend_GPU_label'=>$totalSuggestSpend_GPU_label,
             'TPU_Cost_saving_table_hos'=>$TPU_Cost_saving_table_hos,
             'totalPotentialSave_TPU'=>$totalPotentialSave_TPU,
-            'totalSpend_TPU'=>$totalSpend_TPU, 'totalSuggestSpend_TPU'=>$totalSuggestSpend_TPU
+            'totalSpend_TPU'=>$totalSpend_TPU, 'totalSuggestSpend_TPU'=>$totalSuggestSpend_TPU,
+            'totalSpend_TPU_label'=>$totalSpend_TPU_label, 'totalSuggestSpend_TPU_label'=>$totalSuggestSpend_TPU_label,
+            'totalSpend_60'=>$totalSpend_60, 'totalSpend_label_60'=>$totalSpend_label_60,
+            'totalSpend_61'=>$totalSpend_61, 'totalSpend_label_61'=>$totalSpend_label_61,
+            'totalSpend_62'=>$totalSpend_62, 'totalSpend_label_62'=>$totalSpend_label_62,
+
         );
         return view('HospitalDashboardPage', $sendData );
     }
@@ -159,7 +170,6 @@ class HospitalDashboardController extends Controller
         $GPU_result = DB::select($query_gpu);
         
         $content = '';
-        $totalSuggestSpend = 0;
 
         for ($i = 0; $i < Count($GPU_result) ; $i++) {
 
@@ -169,7 +179,6 @@ class HospitalDashboardController extends Controller
                 $Potential_Saving_Cost = '-';
                 $Percent_saving = '-';
             }
-            $totalSuggestSpend = $totalSuggestSpend + $GPU_result[$i]->suggested_spending;
 
             $content .= '<tr>';
             $content .= '<td style="text-align:left;">'.$GPU_result[$i]->GPU_ID.'</td>';
@@ -181,17 +190,20 @@ class HospitalDashboardController extends Controller
             $content .= '</tr>';
         }
 
-        $totalSpend_query = "SELECT FORMAT(sum(Real_Total_Spend), N'N0') as s ";
+        $totalSpend_query = "SELECT FORMAT(sum(Real_Total_Spend), N'N0') as s, sum(Real_Total_Spend) as Real_Total_Spend ";
         $totalSpend_query .= "FROM CostSaving_hos where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."';";
         $totalSpend_result = DB::select($totalSpend_query);
-        $totalSpend = $totalSpend_result[0]->s;
+        $totalSpend = $totalSpend_result[0]->Real_Total_Spend;
+        $totalSpend_label = $totalSpend_result[0]->s;
 
-        $totalPotentialSave_query = "SELECT FORMAT(sum(Potential_Saving_Cost), N'N0') as sc ";
+        $totalPotentialSave_query = "SELECT FORMAT(sum(Potential_Saving_Cost), N'N0') as sc, cast(sum(suggested_spending) as decimal(10,2)) as s_suggested_spending, CONVERT(varchar, CAST(sum(suggested_spending) as money), 1) as sp ";
         $totalPotentialSave_query .= "FROM CostSaving_hos where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' and Potential_Saving_Cost >=0;";
         $totalPotentialSave_result = DB::select($totalPotentialSave_query);
         $totalPotentialSave = $totalPotentialSave_result[0]->sc;
+        $totalSuggestSpend = $totalPotentialSave_result[0]->s_suggested_spending;
+        $totalSuggestSpend_label = $totalPotentialSave_result[0]->sp;
 
-        return [$content, $totalPotentialSave, $totalSpend, $totalSuggestSpend];
+        return [$content, $totalPotentialSave, $totalSpend, $totalSuggestSpend, $totalSpend_label, $totalSuggestSpend_label];
     }
     function table_TPU_cost_saving_Hospital($Hid, $year){
         $query_tpu = "SELECT GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
@@ -199,7 +211,6 @@ class HospitalDashboardController extends Controller
         $TPU_result = DB::select($query_tpu);
         
         $content = '';
-        $totalSuggestSpend = 0;
 
         for ($i = 0; $i < Count($TPU_result) ; $i++) {
 
@@ -209,7 +220,6 @@ class HospitalDashboardController extends Controller
                 $Potential_Saving_Cost = '-';
                 $Percent_saving = '-';
             }
-            $totalSuggestSpend = $totalSuggestSpend + $TPU_result[$i]->suggested_spending;
 
             $content .= '<tr>';
             $content .= '<td style="text-align:left;">'.$TPU_result[$i]->GPU_ID.'</td>';
@@ -222,16 +232,28 @@ class HospitalDashboardController extends Controller
             $content .= '</tr>';
         }
 
-        $totalSpend_query = "SELECT FORMAT(sum(Real_Total_Spend), N'N0') as s ";
+        $totalSpend_query = "SELECT FORMAT(sum(Real_Total_Spend), N'N0') as s, sum(Real_Total_Spend) as Real_Total_Spend ";
         $totalSpend_query .= "FROM CostSaving_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."';";
         $totalSpend_result = DB::select($totalSpend_query);
-        $totalSpend = $totalSpend_result[0]->s;
+        $totalSpend = $totalSpend_result[0]->Real_Total_Spend;
+        $totalSpend_label = $totalSpend_result[0]->s;
 
-        $totalPotentialSave_query = "SELECT FORMAT(sum(Potential_Saving_Cost), N'N0') as sc ";
+        $totalPotentialSave_query = "SELECT FORMAT(sum(Potential_Saving_Cost), N'N0') as sc, cast(sum(suggested_spending) as decimal(10,2)) as s_suggested_spending, CONVERT(varchar, CAST(sum(suggested_spending) as money), 1) as sp ";
         $totalPotentialSave_query .= "FROM CostSaving_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' and Potential_Saving_Cost >=0;";
         $totalPotentialSave_result = DB::select($totalPotentialSave_query);
         $totalPotentialSave = $totalPotentialSave_result[0]->sc;
+        $totalSuggestSpend = $totalPotentialSave_result[0]->s_suggested_spending;
+        $totalSuggestSpend_label = $totalPotentialSave_result[0]->sp;
 
-        return [$content, $totalPotentialSave, $totalSpend, $totalSuggestSpend];
+        return [$content, $totalPotentialSave, $totalSpend, $totalSuggestSpend, $totalSpend_label, $totalSuggestSpend_label];
+    }
+
+    function total_spend_hos($Hid, $year){
+        $totalSpend_query = "SELECT FORMAT(sum(Real_Total_Spend), N'N0') as s, sum(Real_Total_Spend) as Real_Total_Spend ";
+        $totalSpend_query .= "FROM CostSaving_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."';";
+        $totalSpend_result = DB::select($totalSpend_query);
+        $totalSpend = $totalSpend_result[0]->Real_Total_Spend;
+        $totalSpend_label = $totalSpend_result[0]->s;
+        return [$totalSpend, $totalSpend_label];
     }
 }
