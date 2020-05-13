@@ -41,6 +41,17 @@ class HospitalController extends Controller
             array_push($Province_name,$province_q[$i]->PROVINCE_EN);
         }
 
+        //in case cannot serch name in Thai
+        $query_hh = "SELECT DISTINCT [DEPT_ID] ,[DEPT_NAME] FROM PAC_hos_TPU;";
+        $hos_hh = DB::select($query_hh);
+        $dept_name_id = [];
+        for($i=0 ; $i<Count($hos_hh) ; $i++){
+            $hn = $hos_hh[$i]->DEPT_NAME;
+            $hi = $hos_hh[$i]->DEPT_ID;
+            $dept_name_ = array($hn => $hi);
+            $dept_name_id = array_merge($dept_name_id, $dept_name_);
+        }
+
         if (!empty($_GET)){
             $year = $_GET['year'];
             $region = $_GET['region'];
@@ -63,7 +74,8 @@ class HospitalController extends Controller
                 $statement .= "and ServicePlanType = '".$type."' ";
             }
             if($Hname != null){
-                $statement .= "and DEPT_NAME = '".$Hname."'";
+                // $statement .= "and DEPT_NAME = '".$Hname."'";
+                $statement .= "and DEPT_ID = '".$dept_name_id[$Hname]."'";
             }
             $resultSearch = DB::select($statement);
             $table_resultSearch = $this->resultSearch_table($resultSearch, $year);
