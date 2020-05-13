@@ -228,14 +228,14 @@
                             <table class="table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
-                                                <th>Name</th>
-                                                <th>GPU</th>
-                                                <th>Gini coeff</th>
+                                        <th width="5%">GPU</th>
+                                        <th width="80%">Name</th>
+                                        <th width="15%">Gini coeff</th>
                                     </tr>
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select('select GPU_NAME, GPU_ID, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_GPU
+                                        $query = DB::select('select GPU_ID, GPU_NAME, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_GPU
                                                             where BUDGET_YEAR = 2562
                                                             order by Gini DESC;');
                                         $GPU_count = DB::select('select count(distinct GPU_ID) as Gcount from Gini_drugs_GPU where BUDGET_YEAR = 2562;');
@@ -246,7 +246,7 @@
                                     <?php
                                             foreach($query[$i] as $x => $val) {
                                     ?>
-                                                <td width="40%">{{ $val }}</td>
+                                                <td >{{ $val }}</td>
                                                 <!-- echo "$x = $val<br>"; -->
                                     <?php
                                             };
@@ -277,36 +277,36 @@
                             <table class="table-striped table-bordered" id="datatable2" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
-                                                <th>Name</th>
-                                                <th>GPU</th>
-                                                <th>Avg Unit Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>   
-                                        <?php
-                                            $query = DB::select('select GPU_NAME, GPU_ID, cast(Wavg_Unit_Price as decimal(18,2)) as Wavg_Unit_Price from GPU
-                                                                    where BUDGET_YEAR = 2562
-                                                                    order by Wavg_Unit_Price DESC;');
-                                            $GPU_count = DB::select('select count(distinct GPU_NAME) as Gcount from GPU where BUDGET_YEAR = 2562;');
-                                            for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
-                                                // echo "The number is: $i <br>";
-                                        ?>
-                                                <tr>      
-                                        <?php
-                                                foreach($query[$i] as $x => $val) {
-                                        ?>
-                                                    <td width="40%">{{ $val }}</td>
-                                                    <!-- echo "$x = $val<br>"; -->
-                                        <?php
-                                                };
-                                        ?>
-                                                </tr>
-                                        <?php
-                                            };
-                                        ?>
-                                        </tbody>
-                                </table>
-                                </div>
+                                        <th width="5%" >GPU</th>
+                                        <th width="65%">Name</th> 
+                                        <th width="30%" >Avg Unit Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                <?php
+                                    $query = DB::select('select GPU_ID, GPU_NAME, cast(Wavg_Unit_Price as decimal(18,2)) as Wavg_Unit_Price from GPU
+                                                            where BUDGET_YEAR = 2562
+                                                            order by Wavg_Unit_Price DESC;');
+                                    $GPU_count = DB::select('select count(distinct GPU_NAME) as Gcount from GPU where BUDGET_YEAR = 2562;');
+                                    for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
+                                        // echo "The number is: $i <br>";
+                                ?>
+                                        <tr>      
+                                <?php
+                                        foreach($query[$i] as $x => $val) {
+                                ?>
+                                            <td>{{ $val }}</td>
+                                            <!-- echo "$x = $val<br>"; -->
+                                <?php
+                                        };
+                                ?>
+                                        </tr>
+                                <?php
+                                    };
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     
                 </div>
@@ -325,19 +325,19 @@
                 <div id="curve_chart" style="width: 100%; height: 400px"></div>
             </div>
         </div>     
-    </div>    
+       
         <!-- *************************************************************** -->
         <!-- End Google line chart -->
         <!-- *************************************************************** -->
 
-    <div class="row">
+    
         <!-- *************************************************************** -->
         <!-- Start Drug Purchasing Amount -->
         <!-- *************************************************************** -->
-        <div class="col-lg-7 col-md-12">
+        <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title" style="text-align:center;">Drug Purchasing Amount</h4>
+                    <h4 class="card-title" style="text-align:center;">Drug Purchasing Quantity</h4>
 
                     <div id="campaign-v2" class="mt-2" style="height:283px; width:100%;">
                     </div>
@@ -395,6 +395,12 @@
         <!-- End Drug Purchasing Amount -->
     </div>
 
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="card" style="background-color:#e5e6eb; height:10px;" >
+            </div>
+        </div>
+    </div>
     <!-- ============================================================== -->
     <!-- Cost Saving -->
     <div class="row">
@@ -402,8 +408,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Cost Saving</h4>
-                    <div class="card col-md-5 center" style="background-color:pink;">
-                        <span id="total_sc" style="text-align:center;">Total potential cost saving = {{ $totalPotentialSave_GPU }} THB</span>
+                    <div class="card col-md-5 center" style="background-color:#74d680;">
+                        <span id="total_sc" style="text-align:center; color:black;">Total potential cost saving = {{ $totalPotentialSave_GPU }} THB</span>
                     </div>
                     <!-- Cost Saving table -->
                     <div class="center" style="width: 100%;">
