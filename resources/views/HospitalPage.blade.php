@@ -132,30 +132,32 @@
                 <?php
                 if($resultSearch != 'No value'){
                 ?>
-                    <div class="card-body">
-                    <div>
-                        Result : {{ $resultState }}
+                    <div class="card-body" style="text-align:center;">
+                        <div style="text-align:left;">
+                            Result : {{ $resultState }}
+                            <br/>
+                            Found result : {{ count($resultSearch) }} values
+                        </div>
+                        <b style="text-align:center; font-size:22px; color:#243447;">List of Hospital</b>
                         <br/>
-                        Found result : {{ count($resultSearch) }} values
-                    </div>
-                    <h4 style="text-align:center;">List of Hospital</h4>
-                    <table id="tableSearch" style="width: 100%;">
-                        <thead>
-                        <tr role="row">
-                            <th style="text-align:center;">ID</th>
-                            <th style="text-align:center;">NAME</th>
-                            <th style="text-align:center;">Type</th>
-                            <th style="text-align:center;">Province</th>
-                            <th style="text-align:center;">Region</th>
-                            <th style="text-align:center;">IP</th>
-                            <th style="text-align:center;">OP</th>
-                            <th style="text-align:center;">Total Spend</th>
-                            <th style="text-align:center;">Dashboard</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                        <br/>
+                        <table id="tableSearch" class="table-striped" style="width: 100%;">
+                            <thead>
+                            <tr role="row">
+                                <th style="text-align:center;">ID</th>
+                                <th style="text-align:center;">NAME</th>
+                                <th style="text-align:center;">Type</th>
+                                <th style="text-align:center;">Province</th>
+                                <th style="text-align:center;">Region</th>
+                                <th style="text-align:center;">IP</th>
+                                <th style="text-align:center;">OP</th>
+                                <th style="text-align:center;">Total Spend</th>
+                                <th style="text-align:center;">Dashboard</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 <?php
                 }else{
