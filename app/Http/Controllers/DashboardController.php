@@ -58,7 +58,6 @@ class DashboardController extends Controller
 
         ];
         $annualSpendingChart = new UserChart;
-        $correlation = new UserChart;
         // $annualSpendingChart->minimalist(true);
         $annualSpendingChart->labels([$y1, $y2, $y3, $y4, $y5]);
         $annualSpendingChart->dataset('Annual Spending', 'line', [$s1, $s2, $s3, $s4, $s5])->color($borderColors);
@@ -67,7 +66,6 @@ class DashboardController extends Controller
 
         $send_data = array(
             'annualSpendingChart' => $annualSpendingChart,
-            'corr' => $corr,
             'y1' => $y1,
             'y2' => $y2,
             'y3' => $y3,
