@@ -63,9 +63,6 @@ class DashboardController extends Controller
         $annualSpendingChart->labels([$y1, $y2, $y3, $y4, $y5]);
         $annualSpendingChart->dataset('Annual Spending', 'line', [$s1, $s2, $s3, $s4, $s5])->color($borderColors);
         // $annualSpendingChart->dataset('Annual Spending (invert)', 'line', [$t1, $t2, $t3, $t4, $t5]);
-        $x = array("30", "6", "23");
-        $y = array("45", "2", "9");
-        $corr = $this->Corr($x,$y);
             // ->backgroundcolor($fillColors);
 
         $send_data = array(
@@ -88,33 +85,6 @@ class DashboardController extends Controller
             return view('Dashboard-GPU', $send_data );
         }
     }
-
-    public function Corr($x, $y){
-
-        $length= count($x);
-        $mean1=array_sum($x) / $length;
-        $mean2=array_sum($y) / $length;
-        
-        $a=0;
-        $b=0;
-        $axb=0;
-        $a2=0;
-        $b2=0;
-        
-        for($i=0;$i<$length;$i++)
-        {
-        $a=$x[$i]-$mean1;
-        $b=$y[$i]-$mean2;
-        $axb=$axb+($a*$b);
-        $a2=$a2+ pow($a,2);
-        $b2=$b2+ pow($b,2);
-        }
-        
-        $corr= $axb / sqrt($a2*$b2);
-        
-        return $corr;
-    }
-
 
     public function getTOP5GPU()
     {

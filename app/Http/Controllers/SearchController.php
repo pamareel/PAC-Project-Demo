@@ -136,19 +136,19 @@ class SearchController extends Controller
             //////// END Donut ///////////
             
             //// Table Hospital ////////
-            [$cor_r1, $tableD_r1] = $this->tableForRegion(1,$year,$GT,$Dname,$method);
-            [$cor_r2, $tableD_r2] = $this->tableForRegion(2,$year,$GT,$Dname,$method);
-            [$cor_r3, $tableD_r3] = $this->tableForRegion(3,$year,$GT,$Dname,$method);
-            [$cor_r4, $tableD_r4] = $this->tableForRegion(4,$year,$GT,$Dname,$method);
-            [$cor_r5, $tableD_r5] = $this->tableForRegion(5,$year,$GT,$Dname,$method);
-            [$cor_r6, $tableD_r6] = $this->tableForRegion(6,$year,$GT,$Dname,$method);
-            [$cor_r7, $tableD_r7] = $this->tableForRegion(7,$year,$GT,$Dname,$method);
-            [$cor_r8, $tableD_r8] = $this->tableForRegion(8,$year,$GT,$Dname,$method);
-            [$cor_r9, $tableD_r9] = $this->tableForRegion(9,$year,$GT,$Dname,$method);
-            [$cor_r10, $tableD_r10] = $this->tableForRegion(10,$year,$GT,$Dname,$method);
-            [$cor_r11, $tableD_r11] = $this->tableForRegion(11,$year,$GT,$Dname,$method);
-            [$cor_r12, $tableD_r12] = $this->tableForRegion(12,$year,$GT,$Dname,$method);
-            [$cor_r13, $tableD_r13] = $this->tableForRegion(13,$year,$GT,$Dname,$method);
+            [$cor_r1, $tableD_r1, $cor_r1_value] = $this->tableForRegion(1,$year,$GT,$Dname,$method);
+            [$cor_r2, $tableD_r2, $cor_r2_value] = $this->tableForRegion(2,$year,$GT,$Dname,$method);
+            [$cor_r3, $tableD_r3, $cor_r3_value] = $this->tableForRegion(3,$year,$GT,$Dname,$method);
+            [$cor_r4, $tableD_r4, $cor_r4_value] = $this->tableForRegion(4,$year,$GT,$Dname,$method);
+            [$cor_r5, $tableD_r5, $cor_r5_value] = $this->tableForRegion(5,$year,$GT,$Dname,$method);
+            [$cor_r6, $tableD_r6, $cor_r6_value] = $this->tableForRegion(6,$year,$GT,$Dname,$method);
+            [$cor_r7, $tableD_r7, $cor_r7_value] = $this->tableForRegion(7,$year,$GT,$Dname,$method);
+            [$cor_r8, $tableD_r8, $cor_r8_value] = $this->tableForRegion(8,$year,$GT,$Dname,$method);
+            [$cor_r9, $tableD_r9, $cor_r9_value] = $this->tableForRegion(9,$year,$GT,$Dname,$method);
+            [$cor_r10, $tableD_r10, $cor_r10_value] = $this->tableForRegion(10,$year,$GT,$Dname,$method);
+            [$cor_r11, $tableD_r11, $cor_r11_value] = $this->tableForRegion(11,$year,$GT,$Dname,$method);
+            [$cor_r12, $tableD_r12, $cor_r12_value] = $this->tableForRegion(12,$year,$GT,$Dname,$method);
+            [$cor_r13, $tableD_r13, $cor_r13_value] = $this->tableForRegion(13,$year,$GT,$Dname,$method);
             ///// END Table Hospital ///////
 
             //// Size of Hospital Level
@@ -280,7 +280,12 @@ class SearchController extends Controller
             'total_type'=>$total_type, 'chartType'=>$chartType, 'chartOver_type'=>$chartOver_type, 'chartAvg_type'=>$chartAvg_type, 'chartUnder_type'=>$chartUnder_type,
             'table_type_drill'=>$table_type_drill,
 
-            'cor_r1'=>$cor_r1
+            'cor_r1'=>$cor_r1, 'cor_r2'=>$cor_r2, 'cor_r3'=>$cor_r3, 'cor_r4'=>$cor_r4, 'cor_r5'=>$cor_r5, 'cor_r6'=>$cor_r6, 'cor_r7'=>$cor_r7,
+            'cor_r8'=>$cor_r8, 'cor_r9'=>$cor_r9, 'cor_r10'=>$cor_r10, 'cor_r11'=>$cor_r11, 'cor_r12'=>$cor_r12, 'cor_r13'=>$cor_r13,
+
+            'cor_r1_value'=>$cor_r1_value, 'cor_r2_value'=>$cor_r2_value, 'cor_r3_value'=>$cor_r3_value, 'cor_r4_value'=>$cor_r4_value, 'cor_r5_value'=>$cor_r5_value,
+            'cor_r6_value'=>$cor_r6_value, 'cor_r7_value'=>$cor_r7_value, 'cor_r8_value'=>$cor_r8_value, 'cor_r9_value'=>$cor_r9_value, 'cor_r10_value'=>$cor_r10_value,
+            'cor_r11_value'=>$cor_r11_value, 'cor_r12_value'=>$cor_r12_value, 'cor_r13_value'=>$cor_r13_value
         );
         return view('DrugPage', $send_data);
     }
@@ -965,6 +970,46 @@ class SearchController extends Controller
         }
         return [$dataDonut_Region_low_result, $dataDonut_Region_med_result, $dataDonut_Region_high_result];
     }
+    public function Corr($x, $y){
+
+        $length= count($x);
+        $mean1=array_sum($x) / $length;
+        $mean2=array_sum($y) / $length;
+        
+        $a=0;
+        $b=0;
+        $axb=0;
+        $a2=0;
+        $b2=0;
+        
+        for($i=0;$i<$length;$i++)
+        {
+        $a=$x[$i]-$mean1;
+        $b=$y[$i]-$mean2;
+        $axb=$axb+($a*$b);
+        $a2=$a2+ pow($a,2);
+        $b2=$b2+ pow($b,2);
+        }
+        
+        $corr= $axb / sqrt($a2*$b2);
+        
+        return $corr;
+    }
+    function array_flatten($array) { 
+        if (!is_array($array)) { 
+          return FALSE; 
+        } 
+        $result = array(); 
+        foreach ($array as $key => $value) { 
+          if (is_array($value)) { 
+            $result = array_merge($result, $this->array_flatten($value)); 
+          } 
+          else { 
+            $result[$key] = $value; 
+          } 
+        } 
+        return $result; 
+    } 
     function tableForRegion($r,$y,$g,$na,$m){
         $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
         $Region_2_name = ['TH-65'=>'Phitsanulok','TH-67'=>'Phetchabun','TH-53'=>'Uttaradit','TH-63'=>'Tak','TH-64'=>'Sukhothai'];
@@ -983,14 +1028,16 @@ class SearchController extends Controller
         $tableForRegion_result = [];
         $content = '';
         $cor_table_result3 = [];
+        $cor_result2 = [];
         if($m == 'All'){
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
-
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1005,21 +1052,42 @@ class SearchController extends Controller
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
-                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $result[$i]->Total_Amount]];
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
                         $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
 
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
-                dump($cor_table_result3);
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1032,7 +1100,32 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+                    
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1041,6 +1134,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1053,7 +1149,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1062,6 +1184,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1074,7 +1199,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1083,6 +1234,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1095,7 +1249,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1104,6 +1284,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1116,7 +1299,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1125,6 +1334,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1137,7 +1349,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1146,6 +1384,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1158,7 +1399,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1167,6 +1434,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1179,7 +1449,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1188,6 +1484,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1200,7 +1499,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1209,6 +1534,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1221,7 +1549,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1230,6 +1584,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1242,7 +1599,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1274,6 +1657,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1286,7 +1672,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1295,6 +1707,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1307,7 +1722,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1316,6 +1757,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1328,7 +1772,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1337,6 +1807,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1349,7 +1822,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1358,6 +1857,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1370,7 +1872,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1379,6 +1907,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1391,7 +1922,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1400,6 +1957,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1412,7 +1972,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1421,6 +2007,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1433,7 +2022,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1442,6 +2057,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1454,7 +2072,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1463,6 +2107,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1475,7 +2122,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1484,6 +2157,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1496,7 +2172,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1505,6 +2207,9 @@ class SearchController extends Controller
                     $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME ='".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
+                    $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
+                    $cor_table_patient_result = [['Total_Patient']];
+                    $cor_table_amount_result = [['Total_Amount']];
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
@@ -1517,7 +2222,33 @@ class SearchController extends Controller
                         $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
+
+                        $Total_Patient = $result[$i]->IP + $result[$i]->OP;
+                        $Total_Amount = $result[$i]->Total_Amount;
+                        $cor_table = [[$result[$i]->DEPT_NAME, $Total_Patient, $Total_Amount]];
+                        $cor_table_patient = [[$Total_Patient]];
+                        $cor_table_amount = [[$Total_Amount]];
+                        $cor_table_result = array_merge($cor_table_result, $cor_table);
+                        $cor_table_patient_result = array_merge($cor_table_patient_result, $cor_table_patient);
+                        $cor_table_amount_result = array_merge($cor_table_amount_result, $cor_table_amount);
                     }
+
+                    $patient_result = $this->array_flatten($cor_table_patient_result);
+                    $remove = array_shift($patient_result); 
+                    $amount_result = $this->array_flatten($cor_table_amount_result);
+                    $remove = array_shift($amount_result); 
+                    $cor_table_result2 = array($Pcode => $cor_table_result);
+                    $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
+                    If(Count($patient_result)>1){
+                        $cor_value = $this->Corr($patient_result,$amount_result);
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }else{
+                        $cor_value = "Cannot be defined";
+                        $cor_result = array($Pcode => $cor_value);
+                        $cor_result2 = array_merge($cor_result2, $cor_result);
+                    }
+                    
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }
@@ -1545,7 +2276,7 @@ class SearchController extends Controller
             }
         }
 
-        return [$cor_table_result3, $tableForRegion_result];
+        return [$cor_table_result3, $tableForRegion_result, $cor_result2];
     }
     function stack_size_hospital($year,$GT,$Dname,$method){
         $size_hospital_name = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'NULL'];
