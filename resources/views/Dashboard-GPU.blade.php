@@ -65,6 +65,20 @@
         });
     });
 </script>
+<style>
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: none;
+    border: none;
+    color: black!important;
+    /*change the hover text color*/
+}
+/*below block of css for change style when active*/
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  border: none;
+  color: black!important;
+}
+</style>
 @endsection
 
 @section('content')
@@ -322,7 +336,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
-                <div id="curve_chart" style="width: 100%; height: 400px"></div>
+                <div id="curve_chart" style="width: 500px; height: 400px"></div>
             </div>
         </div>     
     </div>    
