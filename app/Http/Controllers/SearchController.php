@@ -1067,7 +1067,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1116,7 +1116,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1166,7 +1166,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1216,7 +1216,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1266,7 +1266,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1316,7 +1316,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1366,7 +1366,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1416,7 +1416,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1466,7 +1466,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1516,7 +1516,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1566,7 +1566,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1616,7 +1616,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1689,7 +1689,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1739,7 +1739,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1789,7 +1789,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1839,7 +1839,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1889,7 +1889,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1939,7 +1939,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -1989,7 +1989,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -2039,7 +2039,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -2089,7 +2089,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -2139,7 +2139,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -2189,7 +2189,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -2239,7 +2239,7 @@ class SearchController extends Controller
                     $remove = array_shift($amount_result); 
                     $cor_table_result2 = array($Pcode => $cor_table_result);
                     $cor_table_result3 = array_merge($cor_table_result3, $cor_table_result2);
-                    If(Count($patient_result)>1){
+                    If(Count($amount_result)>1 && count(array_unique($amount_result)) !== 1 && count(array_unique($patient_result)) !== 1){
                         $cor_value = $this->Corr($patient_result,$amount_result);
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
@@ -2248,7 +2248,7 @@ class SearchController extends Controller
                         $cor_result = array($Pcode => $cor_value);
                         $cor_result2 = array_merge($cor_result2, $cor_result);
                     }
-                    
+
                     $result2 = array($Pcode => $content);
                     $tableForRegion_result = array_merge($tableForRegion_result, $result2);
                 }

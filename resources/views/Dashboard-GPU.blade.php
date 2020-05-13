@@ -1,11 +1,20 @@
 @extends('layouts/admin')
 
 @section('styles')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
 <!-- <script src="{{ asset('js/Chart.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script> -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#datatable').DataTable({
+            "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+        });
+    });
+</script>
 <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -161,7 +170,7 @@
                     <h4 class="card-title">Top 10 drug price dispersion</h4>
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                            <table class="table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
                                                 <th>Name</th>
@@ -691,15 +700,14 @@
 @endsection
 
 @section('javascripts')
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-<script>
+<!-- <script>
     $(document).ready( function () {
         $('#datatable').DataTable({
             "sScrollX": "100%",
             "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
         });
     });
-</script>
+</script> -->
 
 @endsection
 
