@@ -8,11 +8,11 @@ use DB;
 class HospitalController extends Controller
 {
     public function filter(){
-        $query = "select PROVINCE_EN from [Region-Province] order by PROVINCE_EN;";
+        $query = "select PROVINCE_NAME from [Region-Province] order by PROVINCE_EN;";
         $province_q = DB::select($query);
         $Province_name = [];
         for($i=0 ; $i<count($province_q) ; $i++){
-            array_push($Province_name,$province_q[$i]->PROVINCE_EN);
+            array_push($Province_name,$province_q[$i]->PROVINCE_NAME);
         }
         $send_data = array(
             'Province_name'=>$Province_name
@@ -34,11 +34,14 @@ class HospitalController extends Controller
         $Region_12_name = ['TH-96'=>'Narathiwat','TH-94'=>'Pattani','TH-95'=>'Yala','TH-90'=>'Songkhla','TH-91'=>'Satun','TH-93'=>'Phatthalung','TH-92'=>'Trang'];
         $Region_13_name = ['TH-10'=>'Bangkok Metropolis'];
 
-        $query = "select PROVINCE_EN from [Region-Province] order by PROVINCE_EN;";
+        $query = "select PROVINCE_EN, PROVINCE_NAME from [Region-Province] order by PROVINCE_NAME;";
         $province_q = DB::select($query);
         $Province_name = [];
+        $pro_name_en = [];
         for($i=0 ; $i<count($province_q) ; $i++){
-            array_push($Province_name,$province_q[$i]->PROVINCE_EN);
+            array_push($Province_name,$province_q[$i]->PROVINCE_NAME);
+            $pro_name_ = array($province_q[$i]->PROVINCE_NAME => $province_q[$i]->PROVINCE_EN);
+            $pro_name_en = array_merge($pro_name_en, $pro_name_);
         }
 
         //in case cannot serch name in Thai
@@ -68,7 +71,7 @@ class HospitalController extends Controller
                 $statement .= "select DEPT_ID, DEPT_NAME, ServicePlanType, PROVINCE_EN, Region, FORMAT(IP, N'N0') as IP, FORMAT(OP, N'N0') as OP, CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend from Hos_detail where BUDGET_YEAR = ".$year." and Region = '".$region."' ";
             }
             if($province != 'All'){
-                $statement .= "and PROVINCE_EN ='".$province."' ";
+                $statement .= "and PROVINCE_EN ='".$pro_name_en[$province]."' ";
             }
             if($type != 'All'){
                 $statement .= "and ServicePlanType = '".$type."' ";
@@ -109,9 +112,9 @@ class HospitalController extends Controller
                 // $content .= '<td style="text-align:center;"><a style="background-color:beige;"';
                 // $Hname = $result[$i]->DEPT_NAME;
                 // $content .= 'href=\'/hospitalDashboard/'.$Hname.'\'>Dashboard</a></td>';
-                $content .= '<td style="text-align:center;"><button class="btn" style="background-color:beige;"';
+                $content .= '<td style="text-align:center;"><button class="btn" ';
                 $Hid = $result[$i]->DEPT_ID;
-                $content .= 'onclick = "location=\'/hospitalDashboard/'.$year.'/'.$Hid.'\'">Dashboard</a></td>';
+                $content .= 'onclick = "location=\'/hospitalDashboard/'.$year.'/'.$Hid.'\'"><img width=30px; src="plugins/images/data-analysis.png"></button></td>';
                 $content .= '</tr>';
             }
         }
