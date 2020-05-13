@@ -1934,11 +1934,6 @@
         $Region_13_name = {'TH-10':'Bangkok Metropolis'};
         
         $(document).ready(function() {
-            var cor_options = {
-                title: 'Total Annual Spending',
-                //   curveType: 'function',
-                legend: { position: 'bottom' }
-            };
             google.charts.load('current', {'packages':['corechart']});
             $Reg1_map_pri = {
                 map: ['thai_en'],
@@ -1964,9 +1959,12 @@
                         //table
                         content = {!! json_encode($tableD_r1) !!};
                         content_1 = content[code];
+                        corr_region = {!! json_encode($cor_r1_value) !!};
+                        corr_code = corr_region[code];
                         if(content_1 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -1994,8 +1992,13 @@
                             //correlation
                             cor_data = {!! json_encode($cor_r1) !!};
                             function drawChart(){
-                                $.coChart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2030,9 +2033,12 @@
                         //table
                         content = {!! json_encode($tableD_r2) !!};
                         content_2 = content[code];
+                        corr_region = {!! json_encode($cor_r2_value) !!};
+                        corr_code = corr_region[code];
                         if(content_2 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2057,6 +2063,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_2);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r2) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_2 == '' || content_2 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2087,9 +2108,12 @@
                         //table
                         content = {!! json_encode($tableD_r3) !!};
                         content_3 = content[code];
+                        corr_region = {!! json_encode($cor_r3_value) !!};
+                        corr_code = corr_region[code];
                         if(content_3 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2114,6 +2138,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_3);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r3) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_3 == '' || content_3 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2144,9 +2183,12 @@
                         //table
                         content = {!! json_encode($tableD_r4) !!};
                         content_4 = content[code];
+                        corr_region = {!! json_encode($cor_r4_value) !!};
+                        corr_code = corr_region[code];
                         if(content_4 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2171,6 +2213,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_4);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r4) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_4 == '' || content_4 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2201,9 +2258,12 @@
                         //table
                         content = {!! json_encode($tableD_r5) !!};
                         content_5 = content[code];
+                        corr_region = {!! json_encode($cor_r5_value) !!};
+                        corr_code = corr_region[code];
                         if(content_5 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2228,6 +2288,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_5);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r5) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_5 == '' || content_5 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2258,9 +2333,12 @@
                         //table
                         content = {!! json_encode($tableD_r6) !!};
                         content_6 = content[code];
+                        corr_region = {!! json_encode($cor_r6_value) !!};
+                        corr_code = corr_region[code];
                         if(content_6 != ''){
                             $("#Province_Donut").removeClass('invisible');  
-                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible'); 
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2285,6 +2363,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_6);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r6) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_6 == '' || content_6 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2315,9 +2408,12 @@
                         //table
                         content = {!! json_encode($tableD_r7) !!};
                         content_7 = content[code];
+                        corr_region = {!! json_encode($cor_r7_value) !!};
+                        corr_code = corr_region[code];
                         if(content_7 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2342,6 +2438,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_7);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r7) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_7 == '' || content_7 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2372,9 +2483,12 @@
                         //table
                         content = {!! json_encode($tableD_r8) !!};
                         content_8 = content[code];
+                        corr_region = {!! json_encode($cor_r8_value) !!};
+                        corr_code = corr_region[code];
                         if(content_8 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2399,6 +2513,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_8);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r8) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_8 == '' || content_8 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2429,9 +2558,12 @@
                         //table
                         content = {!! json_encode($tableD_r9) !!};
                         content_9 = content[code];
+                        corr_region = {!! json_encode($cor_r9_value) !!};
+                        corr_code = corr_region[code];
                         if(content_9 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2456,6 +2588,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_9);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r9) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_9 == '' || content_9 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2486,9 +2633,12 @@
                         //table
                         content = {!! json_encode($tableD_r10) !!};
                         content_10 = content[code];
+                        corr_region = {!! json_encode($cor_r10_value) !!};
+                        corr_code = corr_region[code];
                         if(content_10 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2513,6 +2663,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_10);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r10) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_10 == '' || content_10 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2543,9 +2708,12 @@
                         //table
                         content = {!! json_encode($tableD_r11) !!};
                         content_11 = content[code];
+                        corr_region = {!! json_encode($cor_r11_value) !!};
+                        corr_code = corr_region[code];
                         if(content_11 != ''){
                             $("#Province_Donut").removeClass('invisible');  
-                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible'); 
+                            $('#corr_chart').removeClass('invisible');   
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2570,6 +2738,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_11);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r11) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_11 == '' || content_11 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2600,9 +2783,12 @@
                         //table
                         content = {!! json_encode($tableD_r12) !!};
                         content_12 = content[code];
+                        corr_region = {!! json_encode($cor_r12_value) !!};
+                        corr_code = corr_region[code];
                         if(content_12 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');   
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2627,6 +2813,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_12);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r12) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_12 == '' || content_12 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2684,6 +2885,7 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_13);
+
                         }else if(content_13 == '' || content_13 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2843,9 +3045,12 @@
                         //table
                         content = {!! json_encode($tableD_r1) !!};
                         content_1 = content[code];
+                        corr_region = {!! json_encode($cor_r1_value) !!};
+                        corr_code = corr_region[code];
                         if(content_1 != ''){
                             $("#Province_Donut").removeClass('invisible');  
-                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible'); 
+                            $('#corr_chart').removeClass('invisible');    
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2870,6 +3075,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_1);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r1) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_1 == '' || content_1 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2900,9 +3120,12 @@
                         //table
                         content = {!! json_encode($tableD_r2) !!};
                         content_2 = content[code];
+                        corr_region = {!! json_encode($cor_r2_value) !!};
+                        corr_code = corr_region[code];
                         if(content_2 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');   
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2927,6 +3150,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_2);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r2) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_2 == '' || content_2 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -2957,9 +3195,12 @@
                         //table
                         content = {!! json_encode($tableD_r3) !!};
                         content_3 = content[code];
+                        corr_region = {!! json_encode($cor_r3_value) !!};
+                        corr_code = corr_region[code];
                         if(content_3 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible'); 
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -2984,6 +3225,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_3);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r3) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_3 == '' || content_3 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3014,9 +3270,12 @@
                         //table
                         content = {!! json_encode($tableD_r4) !!};
                         content_4 = content[code];
+                        corr_region = {!! json_encode($cor_r4_value) !!};
+                        corr_code = corr_region[code];
                         if(content_4 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible'); 
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -3041,6 +3300,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_4);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r4) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_4 == '' || content_4 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3071,9 +3345,12 @@
                         //table
                         content = {!! json_encode($tableD_r5) !!};
                         content_5 = content[code];
+                        corr_region = {!! json_encode($cor_r5_value) !!};
+                        corr_code = corr_region[code];
                         if(content_5 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible'); 
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -3098,6 +3375,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_5);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r5) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_5 == '' || content_5 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3128,9 +3420,12 @@
                         //table
                         content = {!! json_encode($tableD_r6) !!};
                         content_6 = content[code];
+                        corr_region = {!! json_encode($cor_r6_value) !!};
+                        corr_code = corr_region[code];
                         if(content_6 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible'); 
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -3155,6 +3450,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_6);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r6) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_6 == '' || content_6 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3185,9 +3495,12 @@
                         //table
                         content = {!! json_encode($tableD_r7) !!};
                         content_7 = content[code];
+                        corr_region = {!! json_encode($cor_r7_value) !!};
+                        corr_code = corr_region[code];
                         if(content_7 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible'); 
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -3212,6 +3525,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_7);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r7) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_7 == '' || content_7 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3242,9 +3570,12 @@
                         //table
                         content = {!! json_encode($tableD_r8) !!};
                         content_8 = content[code];
+                        corr_region = {!! json_encode($cor_r8_value) !!};
+                        corr_code = corr_region[code];
                         if(content_8 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible'); 
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -3269,6 +3600,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_8);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r8) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_8 == '' || content_8 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3299,9 +3645,12 @@
                         //table
                         content = {!! json_encode($tableD_r9) !!};
                         content_9 = content[code];
+                        corr_region = {!! json_encode($cor_r9_value) !!};
+                        corr_code = corr_region[code];
                         if(content_9 != ''){
                             $("#Province_Donut").removeClass('invisible');  
-                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible'); 
+                            $('#corr_chart').removeClass('invisible');  
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -3326,6 +3675,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_9);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r9) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_9 == '' || content_9 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3356,9 +3720,12 @@
                         //table
                         content = {!! json_encode($tableD_r10) !!};
                         content_10 = content[code];
+                        corr_region = {!! json_encode($cor_r10_value) !!};
+                        corr_code = corr_region[code];
                         if(content_10 != ''){
                             $("#Province_Donut").removeClass('invisible');  
-                            $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#Table_Hos_by_Province').removeClass('invisible');
+                            $('#corr_chart').removeClass('invisible');   
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -3383,6 +3750,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_10);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r10) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_10 == '' || content_10 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3413,9 +3795,12 @@
                         //table
                         content = {!! json_encode($tableD_r11) !!};
                         content_11 = content[code];
+                        corr_region = {!! json_encode($cor_r11_value) !!};
+                        corr_code = corr_region[code];
                         if(content_11 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');   
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -3440,6 +3825,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_11);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r11) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_11 == '' || content_11 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3470,9 +3870,12 @@
                         //table
                         content = {!! json_encode($tableD_r12) !!};
                         content_12 = content[code];
+                        corr_region = {!! json_encode($cor_r12_value) !!};
+                        corr_code = corr_region[code];
                         if(content_12 != ''){
                             $("#Province_Donut").removeClass('invisible');  
                             $('#Table_Hos_by_Province').removeClass('invisible');  
+                            $('#corr_chart').removeClass('invisible');   
                             $('#Price_by_Region').addClass('invisible');   
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
@@ -3497,6 +3900,21 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_12);
+
+                            //correlation
+                            cor_data = {!! json_encode($cor_r12) !!};
+                            function drawChart(){
+                                $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
+                                var data = google.visualization.arrayToDataTable(cor_data[code]);
+                                var cor_options = {
+                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
+                                    //   curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                $.coChart.draw(data, cor_options);
+                            }
+                            google.charts.setOnLoadCallBack(drawChart());
+
                         }else if(content_12 == '' || content_12 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -3802,6 +4220,7 @@
             $("#backButton2").click(function() { 
                 $('#Province_Donut').addClass('invisible');  
                 $('#Table_Hos_by_Province').addClass('invisible');  
+                $('#corr_chart').addClass('invisible');  
                 $('#Price_by_Region').removeClass('invisible');   
                 $("#Quantity_by_Region").removeClass('invisible');  
                 $("#Quantity_by_Region").removeClass('invisible');  
@@ -4825,10 +5244,17 @@
                 </div>
             </div>
         </div>
-
-        <div id="curve_chart" style="width: 500px; height: 400px"></div>
-
-
+        <div class="col-md-7 col-lg-7 invisible" id = 'corr_chart'>
+            <div class="card">
+                <div class="card-body">
+                    <div id = 'corr'style="width: 100%; height: 400px"></div>
+                    <br>
+                    <h6 style="text-align:center; color:black;">* Correlation >= 0.7 = Strong correlation</h6>
+                    <h6 style="text-align:center; color:black;">* 0.4 &lt Correlation &lt 0.7 = Moderate correlation</h6>
+                    <h6 style="text-align:center; color:black;">* Correlation <= 0.4 = Weak correlation</h6>
+                </div>
+            </div>
+        </div>
 
     </div>
     <?php
