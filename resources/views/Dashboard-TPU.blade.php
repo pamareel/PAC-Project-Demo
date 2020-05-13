@@ -4,23 +4,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-<script>
-    $(document).ready( function () {
-        $('#datatable').DataTable({
-            "sScrollX": "100%",
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
-        });
-    });
-</script>
-<script>
-    $(document).ready( function () {
-        $('#datatable2').DataTable({
-            "sScrollX": "100%",
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
-        });
-    });
-</script>
 <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -44,6 +27,33 @@
 
         chart.draw(data, options);
       }
+</script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#datatable').DataTable({
+            "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+        });
+    });
+</script>
+<script>
+    $(document).ready( function () {
+        $('#datatable2').DataTable({
+            "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+        });
+    });
+</script>
+<script>
+    $(document).ready( function () {
+        TPU_table_cost_save = {!! json_encode($cs_table_TPU) !!};
+        $('#datatable3 tbody').html(TPU_table_cost_save);
+        $('#datatable3').DataTable({
+            "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+        });
+    });
 </script>
 @endsection
 
@@ -298,11 +308,13 @@
     <!-- *************************************************************** -->
     <!-- Start Google line chart -->
     <!-- *************************************************************** -->
-    <div class="col-lg-6">
-        <div class="card">
-            <div id="curve_chart" style="width: 500px; height: 400px"></div>
-        </div>
-    </div>     
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div id="curve_chart" style="width: 100%; height: 400px"></div>
+            </div>
+        </div>     
+    </div>    
     <!-- *************************************************************** -->
     <!-- End Google line chart -->
     <!-- *************************************************************** -->
@@ -381,7 +393,7 @@
                     </div>
                     <!-- Cost Saving table -->
                     <div class="center" style="width: 100%;">
-                            <table id="Cost_saving_table" style="width: 100%;" role="grid">
+                    <table class="table-striped table-bordered" id="datatable3" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                 <tr role="row">
                                     <th style="text-align:center;">GPU</th>
@@ -403,12 +415,6 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            TPU_table_cost_save = {!! json_encode($cs_table_TPU) !!};
-            $('#Cost_saving_table tbody').html(TPU_table_cost_save);
-        });
-    </script>
     <!-- End Cost Saving -->
     <!-- ============================================================== -->
 </div>
