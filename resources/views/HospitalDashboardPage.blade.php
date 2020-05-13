@@ -134,7 +134,7 @@
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Overall Drug Performance</h4>
                     <?php
-                    if(isset($perfHighPercent_GPU) || isset($perfLowPercent_GPU) || isset($perfHighPercent_TPU) || isset($perfLowPercent_TPU)){
+                    if(isset($perfHighPercent) || isset($perfLowPercent)){
                     ?>
                         <canvas id="perfChart" style="margin: auto;"></canvas>
                     <?php
@@ -146,41 +146,14 @@
                     ?>
                 </div>
             </div>
-        </div>       
-    </div>
-    <div class="row">
-        <div class="col-md-8 invisible" id="PotenSave_Hos">
+        </div>  
+        <div class="col-lg-6 invisible" id="Total_spend_chart">
             <div class="card">
-                <div class="card-body" >
-                    <h4 style="color:black; text-align:center;">Potential Saving Cost</h4>
-                    <!-- Bar chart -->
-                    <div class="row">
-                        <div style="margin: auto; width: 60%;">
-                            <?php
-                            if(isset($totalSpend_GPU) || isset($totalSpend_TPU) || isset($totalSuggestSpend_GPU) || isset($totalSuggestSpend_TPU)){
-                            ?>
-                                <div id="total_save_donut_t" class="center" style="height:200px; width:100%; display:inline-block;"></div>
-                                <!-- <canvas id="potenChart" style="margin: auto;"></canvas> -->
-                            <?php
-                            }else{
-                            ?>
-                                <div id="total_save_donut_t" class="center" style="height:200px; width:100%; display:inline-block;">No data</div>
-                                <!-- <canvas id="potenChart">No Data</canvas> -->
-                            <?php
-                            }
-                            ?>
-                        </div>
-                        <!-- Donut -->
-                        <div style="margin: auto; width: 30%;">
-                            <!-- donut chart -->
-                            <div id="total_save_donut" class="center" style="height:200px; width:100%; display:inline-block;"></div>
-                            <h5 id="total_save_label" style="text-align:center;">Saving (%)</h5>
-                        </div>
-                    </div>
-                </div>
+                <div id="line_chart" style="width: 500px; height: 400px"></div>
             </div>
-        </div>
+        </div>        
     </div>
+    
     <div class="row">
         <div class="col-md-12 invisible" id="CostSave_Hos">
             <div class="card">
@@ -261,6 +234,7 @@
     TPU_table_cost_save = {!! json_encode($TPU_Cost_saving_table_hos) !!};
 
     //for performance chart
+    //PerformanceChart
     var optionGPU = {
         name: HosName,
         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -395,160 +369,9 @@
             },
         }
     };
-    //for Potential cost saving bar (may not used)
-    var optionGPU_pt = {
-        name: HosName,
-        type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-        data:{
-            labels:['Real Total Spend','Suggested Total Spend'],
-            datasets:[
-            {
-                label: 'Real Total Spend',
-                name: {!! json_encode($totalSpend_GPU_label) !!}, 
-                data: [{{ $totalSpend_GPU }}],
-                backgroundColor:'blue',
-                borderWidth:1,
-                borderColor:'#777',
-                hoverBorderWidth:3,
-                hoverBorderColor:'#000',
-            },{
-                label: 'Suggested Total Spend',
-                name:{!! json_encode($totalSuggestSpend_GPU_label) !!},
-                data:[{{ $totalSuggestSpend_GPU }}],
-                backgroundColor:'green',
-                borderWidth:1,
-                borderColor:'#777',
-                hoverBorderWidth:3,
-                hoverBorderColor:'#000',
-            }],
-        },
-        options:{
-            scales: {
-                xAxes: [{   maxBarThickness: 40,
-                            scaleLabel: {
-                                display: true,
-                                labelString: '2562'
-                            }
-                        }],
-                yAxes: [{   
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'THB'
-                            }
-                        }]
-            },
-            legend:{
-                display:true,
-                position:'bottom',
-                labels:{
-                    fontColor:'#000',
-                } 
-            },
-            layout:{
-                padding:{
-                    left:0,
-                    right:0,
-                    bottom:0,
-                    top:0
-                }
-            },
-            tooltips:{
-                enabled:true,
-                callbacks:{
-                    title: function(tooltipItems, data) {
-                        return null;
-                    },
-                    label: function(tooltipItem, data){
-                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
-                        var name = data.datasets[tooltipItem.datasetIndex].name || '';
-                        var re = label + ' : ' + name + ' THB';
-                        return re;
-                    }
-                }
-            },
-        }
-    };
-    var optionTPU_pt = {
-        name: HosName,
-        type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-        data:{
-            labels:['Real Total Spend','Suggested Total Spend'],
-            datasets:[
-            {
-                label: 'Real Total Spend',
-                name: {!! json_encode($totalSpend_TPU_label) !!},
-                data: [{{ $totalSpend_TPU }}],
-                backgroundColor:'blue',
-                borderWidth:1,
-                borderColor:'#777',
-                hoverBorderWidth:3,
-                hoverBorderColor:'#000'
-            },{
-                label: 'Suggested Total Spend',
-                name:{!! json_encode($totalSuggestSpend_TPU_label) !!},
-                data:[{{ $totalSuggestSpend_TPU }}],
-                backgroundColor:'green',
-                borderWidth:1,
-                borderColor:'#777',
-                hoverBorderWidth:3,
-                hoverBorderColor:'#000'
-            }],
-        },
-        options:{
-            scales: {
-                xAxes: [{   maxBarThickness: 40,
-                            scaleLabel: {
-                                display: true,
-                                labelString: '2562'
-                            }
-                        }],
-                yAxes: [{ 
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'THB'
-                            }
-                        }]
-            },
-            legend:{
-                display:true,
-                position:'bottom',
-                labels:{
-                    fontColor:'#000',
-                } 
-            },
-            layout:{
-                padding:{
-                    left:0,
-                    right:0,
-                    bottom:0,
-                    top:0
-                }
-            },
-            tooltips:{
-                enabled:true,
-                callbacks:{
-                    title: function(tooltipItems, data) {
-                        return null;
-                    },
-                    label: function(tooltipItem, data){
-                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
-                        var name = data.datasets[tooltipItem.datasetIndex].name || '';
-                        var re = label + ' : ' + name + ' THB';
-                        return re;
-                    }
-                }
-            },
-        }
-    };
-    //for Potential cost saving donut
-    $.percent_ps_GPU = 100*({{ $totalSpend_GPU }}-{{ $totalSuggestSpend_GPU }})/{{ $totalSpend_GPU }};
-    $.percent_ps_GPU = Math.round(($.percent_ps_GPU + Number.EPSILON) * 100) / 100;
-    $.value_ps_GPU = ({{ $totalSpend_GPU }}-{{ $totalSuggestSpend_GPU }}).toLocaleString('en');
-    $.percent_ps_TPU = 100*({{ $totalSpend_TPU }}-{{ $totalSuggestSpend_TPU }})/{{ $totalSpend_TPU }};
-    $.percent_ps_TPU = Math.round(($.percent_ps_TPU + Number.EPSILON) * 100) / 100;
-    $.value_ps_TPU = ({{ $totalSpend_TPU }}-{{ $totalSuggestSpend_TPU }}).toLocaleString('en');
 
     $(document).ready(function() {
+        google.charts.load('current', {'packages':['corechart']});
         if(top5_GPU_name_1 != null && top5_GPU_name_1 != ''){
             $("#GPU").click(function() {
                 $(this).toggleClass("invisible");
@@ -556,8 +379,8 @@
                 $("#GPU_to_TPU").removeClass("invisible");
                 $("#TPU").addClass("invisible");
                 $("#Overall_Drug_Perf").removeClass("invisible");
+                $("#Total_spend_chart").removeClass("invisible");
                 $("#CostSave_Hos").removeClass("invisible");
-                $("#PotenSave_Hos").removeClass("invisible");
 
                 document.getElementById("change-level").innerHTML = "Change Level : ";
                 //Donut chart
@@ -580,53 +403,25 @@
                 //perf stack chart
                 var myChart_pc = $("#perfChart").get(0).getContext("2d");
                 $.myChart_pc2 = new Chart(myChart_pc, optionGPU);
-                //potential save bar chart
-                // var myChart_pt = $("#potenChart").get(0).getContext("2d");
-                // $.myChart_pt2 = new Chart(myChart_pt, optionGPU_pt);
-                $.chartPS_donut = c3.generate({ 
-                    bindto:"#total_save_donut_t",
-                    data:{columns:[
-                        ['Real Total Spend', {{ $totalSpend_GPU }}],['Suggested Total Spend', {{ $totalSuggestSpend_GPU }}]],
-                        type:"bar",
-                        tooltip:{show:!0}
-                    },
-                    axis: {
-                        x: {
-                            type: 'category',
-                            categories: ['2562'],
-                            tick: {
-                                centered: true
-                            }
-                        },
-                        y: {
-                            label: {
-                                text: 'THB',
-                                position: 'outer-middle'
-                            },
-                            min: 0.8*{{ $totalSuggestSpend_GPU }},
-                            padding: {
-                            top: 0,
-                            bottom: 0
-                            }
-                        }
-                    },
-                    legend: {
-                        show: true,
-                    },
-                    color:{pattern:["#ff4f70","#5f76e8"]}
-                });
-                //potential save donut
-                $.chartPS = c3.generate({ 
-                    bindto:"#total_save_donut",
-                    data:{columns:[['Suggested Total Spend', {{ $totalSuggestSpend_GPU }}], ['How much can save', {{ $totalSpend_GPU }}-{{ $totalSuggestSpend_GPU }}]],
-                        type:"donut",
-                        tooltip:{show:!0}
-                    },
-                    donut:{label:{show:!1},
-                    title: $.percent_ps_GPU + "% " + $.value_ps_GPU + " THB",width:20},
-                    legend:{hide:!0},
-                    color:{pattern:["#5f76e8","beige"]}
-                });
+                //Total spend
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                    ['Year', 'Annual spending'],
+                    ['2560',  {!! json_encode($totalSpend_60) !!}],
+                    ['2561',  {!! json_encode($totalSpend_61) !!}],
+                    ['2562',  {!! json_encode($totalSpend_62) !!}]
+                    ]);
+                    var options = {
+                    title: 'Total Annual Spending',
+                    //   curveType: 'function',
+                    legend: { position: 'bottom' }
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+
+                    chart.draw(data, options);
+                }
                 //table for cost saving
                 $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_GPU) !!}+' THB');
                 $('#Cost_saving_table thead').html(Cost_save_thead_GPU);
@@ -639,8 +434,8 @@
                 $("#TPU_to_GPU").removeClass("invisible");
                 $("#GPU").addClass("invisible");
                 $("#Overall_Drug_Perf").removeClass("invisible");
+                $("#Total_spend_chart").removeClass("invisible");
                 $("#CostSave_Hos").removeClass("invisible");
-                $("#PotenSave_Hos").removeClass("invisible");
 
                 document.getElementById("change-level").innerHTML = "Change Level : ";
                 //Donut chart
@@ -663,53 +458,25 @@
                 //perf stack chart
                 var myChart_pc = $("#perfChart").get(0).getContext("2d");
                 $.myChart_pc2 = new Chart(myChart_pc, optionTPU);
-                //potential save bar chart
-                // var myChart_pt = $("#potenChart").get(0).getContext("2d");
-                // $.myChart_pt2 = new Chart(myChart_pt, optionTPU_pt);
-                $.chartPS_donut = c3.generate({ 
-                    bindto:"#total_save_donut_t",
-                    data:{columns:[
-                        ['Real Total Spend', {{ $totalSpend_TPU }}],['Suggested Total Spend', {{ $totalSuggestSpend_TPU }}]],
-                        type:"bar",
-                        tooltip:{show:!0}
-                    },
-                    axis: {
-                        x: {
-                            type: 'category',
-                            categories: ['2562'],
-                            tick: {
-                                centered: true
-                            }
-                        },
-                        y: {
-                            label: {
-                                text: 'THB',
-                                position: 'outer-middle'
-                            },
-                            min: 0.8*{{ $totalSuggestSpend_TPU }},
-                            padding: {
-                            top: 0,
-                            bottom: 0
-                            }
-                        }
-                    },
-                    legend: {
-                        show: true,
-                    },
-                    color:{pattern:["#ff4f70","#5f76e8"]}
-                });
-                //potential save donut
-                $.chartPS = c3.generate({ 
-                    bindto:"#total_save_donut",
-                    data:{columns:[['Suggested Total Spend', {{ $totalSuggestSpend_TPU }}], ['How much can save', {{ $totalSpend_TPU }}-{{ $totalSuggestSpend_TPU }}]],
-                        type:"donut",
-                        tooltip:{show:!0}
-                    },
-                    donut:{label:{show:!1},
-                    title: $.percent_ps_TPU + "% " + $.value_ps_TPU + " THB",width:20},
-                    legend:{hide:!0},
-                    color:{pattern:["#5f76e8","beige"]}
-                });
+                //Total spend
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                    ['Year', 'Annual spending'],
+                    ['2560',  {!! json_encode($totalSpend_60) !!}],
+                    ['2561',  {!! json_encode($totalSpend_61) !!}],
+                    ['2562',  {!! json_encode($totalSpend_62) !!}]
+                    ]);
+                    var options = {
+                    title: 'Total Annual Spending',
+                    //   curveType: 'function',
+                    legend: { position: 'bottom' }
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+
+                    chart.draw(data, options);
+                }
                 //table for cost saving
                 $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_TPU) !!}+' THB');
                 $('#Cost_saving_table thead').html(Cost_save_thead_TPU);
@@ -741,54 +508,25 @@
                 $.myChart_pc2.destroy();
                 var myChart_pc = $("#perfChart").get(0).getContext("2d");
                 $.myChart_pc2 = new Chart(myChart_pc, optionTPU);
-                //potential save bar chart
-                // $.myChart_pt2.destroy();
-                // var myChart_pt = $("#potenChart").get(0).getContext("2d");
-                // $.myChart_pt2 = new Chart(myChart_pt, optionTPU_pt);
-                $.chartPS_donut = c3.generate({ 
-                    bindto:"#total_save_donut_t",
-                    data:{columns:[
-                        ['Real Total Spend', {{ $totalSpend_TPU }}],['Suggested Total Spend', {{ $totalSuggestSpend_TPU }}]],
-                        type:"bar",
-                        tooltip:{show:!0}
-                    },
-                    axis: {
-                        x: {
-                            type: 'category',
-                            categories: ['2562'],
-                            tick: {
-                                centered: true
-                            }
-                        },
-                        y: {
-                            label: {
-                                text: 'THB',
-                                position: 'outer-middle'
-                            },
-                            min: 0.8*{{ $totalSuggestSpend_TPU }},
-                            padding: {
-                            top: 0,
-                            bottom: 0
-                            }
-                        }
-                    },
-                    legend: {
-                        show: true,
-                    },
-                    color:{pattern:["#ff4f70","#5f76e8"]}
-                });
-                //potential save donut
-                $.chartPS = c3.generate({ 
-                    bindto:"#total_save_donut",
-                    data:{columns:[['Suggested Total Spend', {{ $totalSuggestSpend_TPU }}], ['How much can save', {{ $totalSpend_TPU }}-{{ $totalSuggestSpend_TPU }}]],
-                        type:"donut",
-                        tooltip:{show:!0}
-                    },
-                    donut:{label:{show:!1},
-                    title: $.percent_ps_TPU + "% " + $.value_ps_TPU + " THB",width:20},
-                    legend:{hide:!0},
-                    color:{pattern:["#5f76e8","beige"]}
-                });
+                //Total spend
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                    ['Year', 'Annual spending'],
+                    ['2560',  {!! json_encode($totalSpend_60) !!}],
+                    ['2561',  {!! json_encode($totalSpend_61) !!}],
+                    ['2562',  {!! json_encode($totalSpend_62) !!}]
+                    ]);
+                    var options = {
+                    title: 'Total Annual Spending',
+                    //   curveType: 'function',
+                    legend: { position: 'bottom' }
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+
+                    chart.draw(data, options);
+                }
                 //table for cost saving
                 $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_TPU) !!}+' THB');
                 $('#Cost_saving_table thead').html(Cost_save_thead_TPU);
@@ -820,54 +558,25 @@
                 $.myChart_pc2.destroy();
                 var myChart_pc = $("#perfChart").get(0).getContext("2d");
                 $.myChart_pc2 = new Chart(myChart_pc, optionGPU);
-                //potential save bar chart
-                // $.myChart_pt2.destroy();
-                // var myChart_pt = $("#potenChart").get(0).getContext("2d");
-                // $.myChart_pt2 = new Chart(myChart_pt, optionGPU_pt);
-                $.chartPS_donut = c3.generate({ 
-                    bindto:"#total_save_donut_t",
-                    data:{columns:[
-                        ['Real Total Spend', {{ $totalSpend_GPU }}],['Suggested Total Spend', {{ $totalSuggestSpend_GPU }}]],
-                        type:"bar",
-                        tooltip:{show:!0}
-                    },
-                    axis: {
-                        x: {
-                            type: 'category',
-                            categories: ['2562'],
-                            tick: {
-                                centered: true
-                            }
-                        },
-                        y: {
-                            label: {
-                                text: 'THB',
-                                position: 'outer-middle'
-                            },
-                            min: 0.8*{{ $totalSuggestSpend_GPU }},
-                            padding: {
-                            top: 0,
-                            bottom: 0
-                            }
-                        }
-                    },
-                    legend: {
-                        show: true,
-                    },
-                    color:{pattern:["#ff4f70","#5f76e8"]}
-                });
-                //potential save donut
-                $.chartPS = c3.generate({ 
-                    bindto:"#total_save_donut",
-                    data:{columns:[['Suggested Total Spend', {{ $totalSuggestSpend_GPU }}], ['How much can save', {{ $totalSpend_GPU }}-{{ $totalSuggestSpend_GPU }}]],
-                        type:"donut",
-                        tooltip:{show:!0}
-                    },
-                    donut:{label:{show:!1},
-                    title: $.percent_ps_GPU + "% " + $.value_ps_GPU +  " THB",width:20},
-                    legend:{hide:!0},
-                    color:{pattern:["#5f76e8","beige"]}
-                });
+                //Total spend
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                    ['Year', 'Annual spending'],
+                    ['2560',  {!! json_encode($totalSpend_60) !!}],
+                    ['2561',  {!! json_encode($totalSpend_61) !!}],
+                    ['2562',  {!! json_encode($totalSpend_62) !!}]
+                    ]);
+                    var options = {
+                    title: 'Total Annual Spending',
+                    //   curveType: 'function',
+                    legend: { position: 'bottom' }
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+
+                    chart.draw(data, options);
+                }
                 //table for cost saving
                 $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_GPU) !!}+' THB');
                 $('#Cost_saving_table thead').html(Cost_save_thead_GPU);
