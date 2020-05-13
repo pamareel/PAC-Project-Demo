@@ -10,6 +10,7 @@ class HospitalDashboardController extends Controller
     public function index($year, $Hid){
         $Year = $year;
         $HID = $Hid;
+        [$Htype, $Hprovince, $Hregion, $Hip, $Hop, $Htpu] = $this->hospital_info($Hid, $year);
         [$Hname, $donut_hos_drug_GPU, $donut_hos_drug_TPU, $top5_GPU_name, $top5_GPU_amount, $top5_TPU_name, $top5_TPU_amount, $total_drug] = $this->Donut_Hospital($year,$Hid);
         if($donut_hos_drug_GPU != null){
             $GPU_table_Donut = $this->table_GPU_Donut_Hospital($donut_hos_drug_GPU);
@@ -39,6 +40,7 @@ class HospitalDashboardController extends Controller
             [$totalSpend_62, $totalSpend_label_62] = [null, null];
         }
         $sendData = array(
+            'Htype'=>$Htype, 'Hprovince'=>$Hprovince, 'Hregion'=>$Hregion, 'Hip'=>$Hip, 'Hop'=>$Hop, 'Htpu'=>$Htpu,
             'Year'=>$Year,
             'HID'=>$HID,
             'Hname'=>$Hname,
@@ -186,7 +188,7 @@ class HospitalDashboardController extends Controller
         return [$perfLowPercent, $perfHighPercent];
     }
     function table_GPU_cost_saving_Hospital($Hid, $year){
-        $query_gpu = "SELECT GPU_ID, GPU_NAME, FORMAT(Count_TPU, N'N0') as Count_TPU, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
+        $query_gpu = "SELECT GPU_ID, GPU_NAME, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
         $query_gpu .= "FROM CostSaving_hos where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by PS_Percent_saving DESC;";
         $GPU_result = DB::select($query_gpu);
         
@@ -201,10 +203,15 @@ class HospitalDashboardController extends Controller
                 $Percent_saving = '-';
             }
 
+            $query_count = "SELECT FORMAT(count(TPU_ID), N'N0') as Count_TPU ";
+            $query_count .= "FROM CostSaving_hos_TPU where BUDGET_YEAR = '".$year."' and GPU_ID = '".$GPU_result[$i]->GPU_ID."' and DEPT_ID = '".$Hid."';";
+            $count_result = DB::select($query_count);
+            $Htpu = $count_result[0]->Count_TPU;
+
             $content .= '<tr>';
             $content .= '<td style="text-align:left;">'.$GPU_result[$i]->GPU_ID.'</td>';
             $content .= '<td style="text-align:left;">'.$GPU_result[$i]->GPU_NAME.'</td>';
-            $content .= '<td style="text-align:center;">'.$GPU_result[$i]->Count_TPU.'</td>';
+            $content .= '<td style="text-align:center;">'.$Htpu.'</td>';
             $content .= '<td style="text-align:right; padding-right:12px;">'.$GPU_result[$i]->Real_Total_Spend.'</td>';
             $content .= '<td style="text-align:right; padding-right:15px;">'.$Potential_Saving_Cost.'</td>';
             $content .= '<td style="text-align:center;">'.$Percent_saving .'</td>';
@@ -268,7 +275,6 @@ class HospitalDashboardController extends Controller
 
         return [$content, $totalPotentialSave, $totalSpend, $totalSuggestSpend, $totalSpend_label, $totalSuggestSpend_label];
     }
-
     function total_spend_hos($Hid, $year){
         $totalSpend_query = "SELECT FORMAT(sum(Real_Total_Spend), N'N0') as s, sum(Real_Total_Spend) as Real_Total_Spend ";
         $totalSpend_query .= "FROM CostSaving_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."';";
@@ -276,5 +282,21 @@ class HospitalDashboardController extends Controller
         $totalSpend = $totalSpend_result[0]->Real_Total_Spend;
         $totalSpend_label = $totalSpend_result[0]->s;
         return [$totalSpend, $totalSpend_label];
+    }
+    function hospital_info($Hid, $year){
+        $query_hos = "select DISTINCT DEPT_NAME, ServicePlanType, PROVINCE_EN, Region,IP,OP from PAC_hos_GPU where DEPT_ID = '".$Hid."';";
+        $hos_result = DB::select($query_hos);
+        $Htype = $hos_result[0]->ServicePlanType;
+        $Hprovince = $hos_result[0]->PROVINCE_EN;
+        $Hregion = $hos_result[0]->Region;
+        $Hip = $hos_result[0]->IP;
+        $Hop = $hos_result[0]->OP;
+
+        $query_count = "SELECT FORMAT(count(TPU_ID), N'N0') as Count_TPU ";
+        $query_count .= "FROM CostSaving_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."';";
+        $count_result = DB::select($query_count);
+        $Htpu = $count_result[0]->Count_TPU;
+
+        return [$Htype, $Hprovince, $Hregion, $Hip, $Hop, $Htpu];
     }
 }

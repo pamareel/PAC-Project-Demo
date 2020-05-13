@@ -41,7 +41,19 @@
         <div class="col-md-12">
             <h3>{{ $Hname }} ({{ $Year }})</h3>
         </div>
-        
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Hospital Information</h5>
+                    <p>Type<span> {{ $Htype }} </span></p>
+                    <p>Province<span> {{ $Hprovince }} </span></p>
+                    <p>Region<span> {{ $Hregion }} </span></p>
+                    <p>IP<span> {{ $Hip }} </span></p>
+                    <p>OP<span> {{ $Hop }} </span></p>
+                    <p>Number of purchasing drug (TPU unit)<span> {{ $Htpu }} </span></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- ============================================================== -->
