@@ -340,6 +340,49 @@
     </div>
     <!-- End Drug Purchasing Amount -->
     <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- Cost Saving -->
+    <div class="row">
+        <div class="col-md-12" id="CostSave_Hos">
+            <div class="card">
+                <div class="card-body">
+                    <h4 style="color:black; text-align:center;">Cost Saving</h4>
+                    <div class="card col-md-5 center" style="background-color:pink;">
+                        <span id="total_sc" style="text-align:center;">Total potential cost saving = {{ $totalPotentialSave_TPU }} THB</span>
+                    </div>
+                    <!-- Cost Saving table -->
+                    <div class="center" style="width: 100%;">
+                            <table id="Cost_saving_table" style="width: 100%;" role="grid">
+                                <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">GPU</th>
+                                    <th style="text-align:center;">Name</th>
+                                    <th style="text-align:center;">TPU</th>
+                                    <th style="text-align:center;">Name</th>
+                                    <th style="text-align:center;">Real Total Spending</th>
+                                    <th style="text-align:center;">Potential Saving Cost</th>
+                                    <th style="text-align:center;">Saving (%)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            TPU_table_cost_save = {!! json_encode($cs_table_TPU) !!};
+            $('#Cost_saving_table tbody').html(TPU_table_cost_save);
+        });
+    </script>
+    <!-- End Cost Saving -->
+    <!-- ============================================================== -->
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->

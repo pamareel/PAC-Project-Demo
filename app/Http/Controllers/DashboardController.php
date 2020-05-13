@@ -64,6 +64,10 @@ class DashboardController extends Controller
         // $annualSpendingChart->dataset('Annual Spending (invert)', 'line', [$t1, $t2, $t3, $t4, $t5]);
             // ->backgroundcolor($fillColors);
 
+        //cost saving table
+        [$cs_table_GPU, $totalPotentialSave_GPU] = $this->table_GPU_cost_saving('GPU','2562');
+        [$cs_table_TPU, $totalPotentialSave_TPU] = $this->table_TPU_cost_saving('TPU','2562');
+
         $send_data = array(
             'annualSpendingChart' => $annualSpendingChart,
             'y1' => $y1,
@@ -75,7 +79,11 @@ class DashboardController extends Controller
             's2' => $s2,
             's3' => $s3,
             's4' => $s4,
-            's5' => $s5
+            's5' => $s5,
+            'cs_table_GPU'=>$cs_table_GPU,
+            'totalPotentialSave_GPU'=>$totalPotentialSave_GPU,
+            'cs_table_TPU'=>$cs_table_TPU,
+            'totalPotentialSave_TPU'=>$totalPotentialSave_TPU
         );
         if($TGX == "TPU"){
             return view('Dashboard-TPU', $send_data );
@@ -84,22 +92,81 @@ class DashboardController extends Controller
         }
     }
 
+    public function table_GPU_cost_saving($TGX,$year){
+        $query_gpu = "SELECT GPU_ID, GPU_NAME, FORMAT(Count_TPU, N'N0') as Count_TPU, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving ";
+        $query_gpu .= "FROM CostSaving_GPU where BUDGET_YEAR = '".$year."' order by PS_Percent_saving DESC;";
+        $GPU_result = DB::select($query_gpu);
+        
+        $content = '';
+
+        for ($i = 0; $i < Count($GPU_result) ; $i++) {
+
+            $Potential_Saving_Cost = $GPU_result[$i]->Potential_Saving_Cost;
+            $Percent_saving = $GPU_result[$i]->Percent_saving;
+            if($GPU_result[$i]->Poten_Potential_Saving_Cost < 0 && $GPU_result[$i]->PS_Percent_saving <0){
+                $Potential_Saving_Cost = '-';
+                $Percent_saving = '-';
+            }
+
+            $content .= '<tr>';
+            $content .= '<td style="text-align:left;">'.$GPU_result[$i]->GPU_ID.'</td>';
+            $content .= '<td style="text-align:left;">'.$GPU_result[$i]->GPU_NAME.'</td>';
+            $content .= '<td style="text-align:center;">'.$GPU_result[$i]->Count_TPU.'</td>';
+            $content .= '<td style="text-align:right; padding-right:12px;">'.$GPU_result[$i]->Real_Total_Spend.'</td>';
+            $content .= '<td style="text-align:right; padding-right:15px;">'.$Potential_Saving_Cost.'</td>';
+            $content .= '<td style="text-align:center;">'.$Percent_saving .'</td>';
+            $content .= '</tr>';
+        }
+
+        $totalPotentialSave_query = "SELECT FORMAT(sum(Potential_Saving_Cost), N'N0') as sc ";
+        $totalPotentialSave_query .= "FROM CostSaving_GPU where BUDGET_YEAR = '".$year."' and Potential_Saving_Cost >=0;";
+        $totalPotentialSave_result = DB::select($totalPotentialSave_query);
+        $totalPotentialSave = $totalPotentialSave_result[0]->sc;
+       
+        return [$content, $totalPotentialSave];
+    }
+
+    public function table_TPU_cost_saving($TGX,$year){
+        $query_tpu = "SELECT GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving ";
+        $query_tpu .= "FROM CostSaving_TPU where BUDGET_YEAR = '".$year."' order by PS_Percent_saving DESC;";
+        $TPU_result = DB::select($query_tpu);
+        
+        $content = '';
+
+        for ($i = 0; $i < Count($TPU_result) ; $i++) {
+
+            $Potential_Saving_Cost = $TPU_result[$i]->Potential_Saving_Cost;
+            $Percent_saving = $TPU_result[$i]->Percent_saving;
+            if($TPU_result[$i]->Poten_Potential_Saving_Cost < 0 && $TPU_result[$i]->PS_Percent_saving <0){
+                $Potential_Saving_Cost = '-';
+                $Percent_saving = '-';
+            }
+
+            $content .= '<tr>';
+            $content .= '<td style="text-align:left;">'.$TPU_result[$i]->GPU_ID.'</td>';
+            $content .= '<td style="text-align:left;">'.$TPU_result[$i]->GPU_NAME.'</td>';
+            $content .= '<td style="text-align:left;">'.$TPU_result[$i]->TPU_ID.'</td>';
+            $content .= '<td style="text-align:left;">'.$TPU_result[$i]->TPU_NAME.'</td>';
+            $content .= '<td style="text-align:right; padding-right:12px;">'.$TPU_result[$i]->Real_Total_Spend.'</td>';
+            $content .= '<td style="text-align:right; padding-right:15px;">'.$Potential_Saving_Cost.'</td>';
+            $content .= '<td style="text-align:center;">'.$Percent_saving .'</td>';
+            $content .= '</tr>';
+        }
+
+        $totalPotentialSave_query = "SELECT FORMAT(sum(Potential_Saving_Cost), N'N0') as sc ";
+        $totalPotentialSave_query .= "FROM CostSaving_TPU where BUDGET_YEAR = '".$year."' and Potential_Saving_Cost >=0;";
+        $totalPotentialSave_result = DB::select($totalPotentialSave_query);
+        $totalPotentialSave = $totalPotentialSave_result[0]->sc;
+       
+        return [$content, $totalPotentialSave];
+    }
+
     public function getTOP5GPU()
     {
         #import code in SQL server
         $data = DB::table('GPU61_Top5')->get();
         $bool = DB::select('EXEC findTop5GPU61');
-
-        //$data3[] = $row;
-
         dump($data);
-        //dump($data['BUDGET_YEAR']);
-        //show data in website
-        //$GPU1 = $data['GPU_NAME'];
-        //$data['Total_Real_Amount'];
-        //dump($GPU1);
-        //foreach $data
-        //$bool = arry($data->);
     }
 
     #not used
