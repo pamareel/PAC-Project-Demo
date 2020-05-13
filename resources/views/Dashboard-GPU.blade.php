@@ -220,7 +220,7 @@
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select('select GPU_NAME, GPU_ID, Gini from Gini_drugs_GPU
+                                        $query = DB::select('select GPU_NAME, GPU_ID, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_GPU
                                                             where BUDGET_YEAR = 2561
                                                             order by Gini DESC;');
                                         $GPU_count = DB::select('select count(distinct GPU_ID) as Gcount from Gini_drugs_GPU where BUDGET_YEAR = 2561;');
@@ -269,7 +269,7 @@
                                         </thead>
                                         <tbody>   
                                         <?php
-                                            $query = DB::select('select GPU_NAME, GPU_ID, Wavg_Unit_Price from GPU
+                                            $query = DB::select('select GPU_NAME, GPU_ID, cast(Wavg_Unit_Price as decimal(18,2)) as Wavg_Unit_Price from GPU
                                                                     where BUDGET_YEAR = 2561
                                                                     order by Wavg_Unit_Price DESC;');
                                             $GPU_count = DB::select('select count(distinct GPU_NAME) as Gcount from GPU where BUDGET_YEAR = 2561;');

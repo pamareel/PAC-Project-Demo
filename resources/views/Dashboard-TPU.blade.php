@@ -224,7 +224,7 @@
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select('select TPU_NAME, TPU_ID, Gini from Gini_drugs_TPU
+                                        $query = DB::select('select TPU_NAME, TPU_ID, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_TPU
                                                                 where BUDGET_YEAR = 2561
                                                                 order by Gini DESC;');
                                         $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_TPU WHERE BUDGET_YEAR=2561;');
@@ -274,7 +274,7 @@
                                     </thead>
                                     <tbody>   
                                     <?php
-                                        $query = DB::select('select TPU_NAME, TPU_ID, Wavg_Unit_Price from TPU
+                                        $query = DB::select('select TPU_NAME, TPU_ID, cast(Wavg_Unit_Price as decimal(18,2)) as Wavg_Unit_Price from TPU
                                                                 where BUDGET_YEAR = 2561
                                                                 order by Wavg_Unit_Price DESC;');
                                         $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU where BUDGET_YEAR = 2561;');
