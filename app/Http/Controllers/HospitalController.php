@@ -7,6 +7,18 @@ use DB;
 
 class HospitalController extends Controller
 {
+    public function filter(){
+        $query = "select PROVINCE_EN from [Region-Province] order by PROVINCE_EN;";
+        $province_q = DB::select($query);
+        $Province_name = [];
+        for($i=0 ; $i<count($province_q) ; $i++){
+            array_push($Province_name,$province_q[$i]->PROVINCE_EN);
+        }
+        $send_data = array(
+            'Province_name'=>$Province_name
+        );
+        return view('HospitalPage', $send_data);
+    }
     public function index(){
         $Region_1_name = ["TH-50"=>"Chiang Mai","TH-57"=>"Chiang Rai","TH-51"=>"Lamphun","TH-52"=>"Lampang","TH-54"=>"Phrae","TH-55"=>"Nan","TH-56"=>"Phayao","TH-58"=>"Mae Hong Son"];
         $Region_2_name = ['TH-65'=>'Phitsanulok','TH-67'=>'Phetchabun','TH-53'=>'Uttaradit','TH-63'=>'Tak','TH-64'=>'Sukhothai'];
@@ -21,6 +33,13 @@ class HospitalController extends Controller
         $Region_11_name = ['TH-86'=>'Chumphon','TH-85'=>'Ranong','TH-84'=>'Surat Thani','TH-80'=>'Nakhon Si Thammarat','TH-82'=>'Phangnga','TH-81'=>'Krabi','TH-83'=>'Phuket'];
         $Region_12_name = ['TH-96'=>'Narathiwat','TH-94'=>'Pattani','TH-95'=>'Yala','TH-90'=>'Songkhla','TH-91'=>'Satun','TH-93'=>'Phatthalung','TH-92'=>'Trang'];
         $Region_13_name = ['TH-10'=>'Bangkok Metropolis'];
+
+        $query = "select PROVINCE_EN from [Region-Province] order by PROVINCE_EN;";
+        $province_q = DB::select($query);
+        $Province_name = [];
+        for($i=0 ; $i<count($province_q) ; $i++){
+            array_push($Province_name,$province_q[$i]->PROVINCE_EN);
+        }
 
         if (!empty($_GET)){
             $year = $_GET['year'];
@@ -55,6 +74,7 @@ class HospitalController extends Controller
             $table_resultSearch = NULL;
         }
         $send_data = array(
+            'Province_name'=>$Province_name,
             'resultSearch'=>$resultSearch, 'resultState'=>$resultState, 'table_resultSearch'=>$table_resultSearch
         );
         return view('HospitalPage', $send_data);

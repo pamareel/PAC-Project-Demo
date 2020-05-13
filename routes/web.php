@@ -26,13 +26,15 @@ Route::get('/DrugPage', function () {
     return view('drugpage');
 })->name('drugpage');
 //Search Filter in DrugPage 
-Route::get('/searchHos', 'HospitalController@index');
-
-Route::get('/HospitalPage', function () {
-    return view('hospitalpage');
-})->name('hospitalpage');
-//Search Filter in HospitalPage 
 Route::get('/search', 'SearchController@index');
+
+
+// Route::get('/HospitalPage', function () {
+//     return view('hospitalpage');
+// })->name('hospitalpage');
+Route::get('/HospitalPage', 'HospitalController@filter')->name('hospitalpage');
+//Search Filter in HospitalPage 
+Route::get('/searchHos', 'HospitalController@index');
 
 // Hospital Dashboard Page
 Route::get('/HospitalDashboardPage', function () {
