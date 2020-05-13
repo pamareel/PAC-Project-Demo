@@ -14,15 +14,12 @@ use App\Charts\SampleChart;
 |
 */
 
-Route::get('/', function () {
-    return view('Dashboard-GPU');
-});
+Route::get('/', 'DashboardController@dashboard_default');
+Route::get('/DashboardPage', 'DashboardController@dashboard_default')->name('dashboardpage');
 
-// Route::get('/testChart', 'UserChartController@index');
-
-Route::get('/DashboardPage', function () {
-    return view('dashboardpage');
-})->name('dashboardpage');
+// Route::get('/DashboardPage', function () {
+//     return view('Dashboard-GPU');
+// })->name('dashboardpage');
 
 // DrugPage
 Route::get('/DrugPage', function () {
@@ -42,9 +39,6 @@ Route::get('/HospitalDashboardPage', function () {
     return view('HospitalDashboardPage');
 })->name('HospitalDashboardPage');
 Route::get('/hospitalDashboard/{year}/{Hname}', 'HospitalDashboardController@index');
-
-Route::get('/testDB', 'EbiddingController@testDB');
-Route::get('/testDB2', 'DashboardController@getTOP5GPU');
 
 // Dashboard
 Route::get('/policy/{TGX}', 'DashboardController@index');
