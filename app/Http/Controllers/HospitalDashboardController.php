@@ -11,7 +11,7 @@ class HospitalDashboardController extends Controller
         $Year = $year;
         $HID = $Hid;
         [$Htype, $Hprovince, $Hregion, $Hip, $Hop, $Htpu] = $this->hospital_info($Hid, $year);
-        [$Hname, $donut_hos_drug_GPU, $donut_hos_drug_TPU, $top5_GPU_name, $top5_GPU_amount, $top5_TPU_name, $top5_TPU_amount, $total_drug] = $this->Donut_Hospital($year,$Hid);
+        [$top5_GPU, $top5_TPU, $Hname, $donut_hos_drug_GPU, $donut_hos_drug_TPU, $total_drug] = $this->Donut_Hospital($year,$Hid);
         if($donut_hos_drug_GPU != null){
             $GPU_table_Donut = $this->table_GPU_Donut_Hospital($donut_hos_drug_GPU);
             $TPU_table_Donut = $this->table_TPU_Donut_Hospital($donut_hos_drug_TPU);
@@ -40,14 +40,14 @@ class HospitalDashboardController extends Controller
             [$totalSpend_62, $totalSpend_label_62] = [null, null];
         }
         $sendData = array(
+            'top5_GPU'=>$top5_GPU,
+            'top5_TPU'=>$top5_TPU,
             'Htype'=>$Htype, 'Hprovince'=>$Hprovince, 'Hregion'=>$Hregion, 'Hip'=>$Hip, 'Hop'=>$Hop, 'Htpu'=>$Htpu,
             'Year'=>$Year,
             'HID'=>$HID,
             'Hname'=>$Hname,
             'donut_hos_drug_GPU'=>$donut_hos_drug_GPU,
             'donut_hos_drug_TPU'=>$donut_hos_drug_TPU,
-            'top5_GPU_name'=>$top5_GPU_name, 'top5_GPU_amount'=>$top5_GPU_amount,
-            'top5_TPU_name'=>$top5_TPU_name, 'top5_TPU_amount'=>$top5_TPU_amount,
             'total_drug'=>$total_drug,
             'GPU_table_Donut'=>$GPU_table_Donut, 'TPU_table_Donut'=>$TPU_table_Donut,
             'perfLowPercent_GPU'=>$perfLowPercent_GPU, 'perfHighPercent_GPU'=>$perfHighPercent_GPU,
@@ -88,35 +88,48 @@ class HospitalDashboardController extends Controller
             $query_total_drug_result = DB::select($query_total_drug);
             $total_drug = $query_total_drug_result[0]->Total_Total_Amount;
 
-            $top5_GPU_name = [];
-            $top5_GPU_amount = [];
-            $top5_TPU_name = [];
-            $top5_TPU_amount = [];
             $other_GPU = $total_drug;
             $other_TPU = $total_drug;
-            for($i=0 ; $i<5 ; $i++){
+            $top5_GPU_b = [];
+            $top5_GPU_aa = [];
+            $top5_GPU_d = [];
+            $top5_GPU_aaa = [];
+            if(count($GPU_result)>=5){
+                $cr = 5;
+            }else{
+                $cr = count($GPU_result);
+            }
+            for($i=0 ; $i<$cr ; $i++){
                 $GPU_name = $GPU_result[$i]->GPU_NAME;
                 $GPU_amount = $GPU_result[$i]->Total_Total_Amount;
-                array_push($top5_GPU_name, $GPU_name);
-                array_push($top5_GPU_amount, $GPU_amount);
+
+                $top5_GPU_a = [];
+                array_push($top5_GPU_a, $GPU_name, $GPU_amount);
+                array_push($top5_GPU_b, $top5_GPU_a);
                 $other_GPU = $other_GPU-$GPU_amount;
 
                 $TPU_name = $TPU_result[$i]->TPU_NAME;
                 $TPU_amount = $TPU_result[$i]->Total_Total_Amount;
-                array_push($top5_TPU_name, $TPU_name);
-                array_push($top5_TPU_amount, $TPU_amount);
+
+                $top5_GPU_c = [];
+                array_push($top5_GPU_c, $TPU_name, $TPU_amount);
+                array_push($top5_GPU_d, $top5_GPU_c);
+
                 $other_TPU = $other_TPU-$TPU_amount;
             }
-            array_push($top5_GPU_amount, $other_GPU);
-            array_push($top5_TPU_amount, $other_TPU);
+            array_push($top5_GPU_aa, 'Others', $other_GPU);
+            array_push($top5_GPU_b, $top5_GPU_aa);
+
+            array_push($top5_GPU_aaa, 'Others', $other_TPU);
+            array_push($top5_GPU_d, $top5_GPU_aaa);
             
             $total_drug = $query_total_drug_result[0]->Total_Amount;
         }else{
-            $Hname = null; $GPU_result=[]; $TPU_result=[]; $top5_GPU_name=[];
-            $top5_GPU_amount= []; $top5_TPU_name= []; $top5_TPU_amount= []; $total_drug= null;
+            $Hname = null; $GPU_result=[]; $TPU_result=[];
+            $top5_TPU_name= []; $top5_TPU_amount= []; $total_drug= null;
         }
         
-        return [$Hname, $GPU_result, $TPU_result, $top5_GPU_name, $top5_GPU_amount, $top5_TPU_name, $top5_TPU_amount, $total_drug];
+        return [$top5_GPU_b, $top5_GPU_d, $Hname, $GPU_result, $TPU_result, $total_drug];
     }
 
     function table_GPU_Donut_Hospital($result){
