@@ -1,6 +1,6 @@
 @extends('layouts/admin')
 
-@section('styles')
+@section('styles') 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
 <!-- <script src="{{ asset('js/Chart.min.js') }}"></script>
@@ -10,6 +10,14 @@
 <script>
     $(document).ready( function () {
         $('#datatable').DataTable({
+            "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+        });
+    });
+</script>
+<script>
+    $(document).ready( function () {
+        $('#datatable2').DataTable({
             "sScrollX": "100%",
             "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
         });
@@ -186,7 +194,7 @@
     <div class="row">
         <!-- ============================================================== -->
         <!-- Top10 drug price dispersion -->
-        <div class="col-lg-8 font-12">
+        <div class="col-lg-12 font-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Top 10 drug price dispersion</h4>
@@ -235,13 +243,13 @@
 
         <!-- ============================================================== -->
         <!-- Top10 drug unit price -->
-        <div class="col-lg-4 font-12">
+        <div class="col-lg-12 font-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Top 10 Unit Price</h4>
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                            <table class="table-striped table-bordered" id="datatable2" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
                                                 <th>Name</th>
@@ -402,15 +410,4 @@
 <!-- ============================================================== -->
 @endsection
 
-@section('javascripts')
-<!-- <script>
-    $(document).ready( function () {
-        $('#datatable').DataTable({
-            "sScrollX": "100%",
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
-        });
-    });
-</script> -->
-
-@endsection
 

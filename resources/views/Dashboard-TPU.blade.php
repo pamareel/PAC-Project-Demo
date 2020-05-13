@@ -3,6 +3,48 @@
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#datatable').DataTable({
+            "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+        });
+    });
+</script>
+<script>
+    $(document).ready( function () {
+        $('#datatable2').DataTable({
+            "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+        });
+    });
+</script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Annual spending'],
+          ['{{$y1 ?? ''}}',  {{$s1 ?? ''}}],
+          ['{{$y2 ?? ''}}',  {{$s2 ?? ''}}],
+          ['{{$y3 ?? ''}}',  {{$s3 ?? ''}}],
+          ['{{$y4 ?? ''}}',  {{$s4 ?? ''}}],
+          ['{{$y5 ?? ''}}',  {{$s5 ?? ''}}]
+        ]);
+
+        var options = {
+          title: 'Total Annual Spending',
+        //   curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+</script>
 @endsection
 
 @section('content')
@@ -156,13 +198,13 @@
         <!-- ============================================================== -->
         <!-- Top10 drug price dispersion  -->
         <!-- ============================================================== -->
-        <div class="col-lg-8 font-12">
+        <div class="col-lg-12 font-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Top 10 drug price dispersion</h4>
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table-cyan table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                            <table class="table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
                                                 <th>Name</th>
@@ -206,13 +248,13 @@
         <!-- ============================================================== -->
         <!-- Top10 drug price dispersion  -->
     
-        <div class="col-lg-4 font-12">
+        <div class="col-lg-12 font-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Top 10 Unit Price</h4>
                     <div class="row">
                     <div class="col-md-12">
-                            <table class="table table-striped table-bordered" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                            <table class="table-striped table-bordered" id="datatable2" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
                                             <th>Name</th>
@@ -251,33 +293,19 @@
         </div>
         <!-- End Top10 drug price dispersion -->
         <!-- ============================================================== -->
-        
-        <!-- ============================================================== -->
-        <!-- Total Annual Spending -->
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Total Annual Spending</h4>
-                    <ul class="list-inline text-right">
-                        <li class="list-inline-item">
-                            <h5><i class="fa fa-circle mr-1 text-info"></i>Annaul Spending</h5>
-                        </li>
-                    </ul>
-                    <div class="card-body py-3 px-3">
-                        <?php
-                        if(isset($annualSpendingChart)){
-                        ?>
-                            {!! $annualSpendingChart->container() !!}
-                        <?php
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Total Annual Spending -->
-        <!-- ============================================================== -->
     </div>
+
+    <!-- *************************************************************** -->
+    <!-- Start Google line chart -->
+    <!-- *************************************************************** -->
+    <div class="col-lg-6">
+        <div class="card">
+            <div id="curve_chart" style="width: 500px; height: 400px"></div>
+        </div>
+    </div>     
+    <!-- *************************************************************** -->
+    <!-- End Google line chart -->
+    <!-- *************************************************************** -->
 
     <!-- ============================================================== -->
     <!-- Drug Purchasing Amount -->
