@@ -655,20 +655,20 @@
                 <div class="card-body" style="padding-top: 10px; padding-bottom: 3px; margin:auto;">
                     <h4>Drill Down&nbsp;&nbsp;
                     <button class="btn" id="to_A" style="background-color:#c44085; color:white;">To A</button>
-                    <button class="btn" id="to_S">To S</button>
-                    <button class="btn" id="to_M1">To M1</button>
-                    <button class="btn" id="to_M2">To M2</button>
-                    <button class="btn" id="to_F1">To F1</button>
-                    <button class="btn" id="to_F2">To F2</button>
-                    <button class="btn" id="to_F3">To F3</button>
-                    <button class="btn" id="to_undefined">To Undefined</button>
+                    <button class="btn" id="to_S" style="background-color:#e08fc6; color:white;">To S</button>
+                    <button class="btn" id="to_M1" style="background-color:#ffcd74; color:white;">To M1</button>
+                    <button class="btn" id="to_M2" style="background-color:#f0882f; color:white;">To M2</button>
+                    <button class="btn" id="to_F1" style="background-color:#3d8b3d; color:white;">To F1</button>
+                    <button class="btn" id="to_F2" style="background-color:#73d15c; color:white;">To F2</button>
+                    <button class="btn" id="to_F3" style="background-color:#769eda; color:white;">To F3</button>
+                    <button class="btn" id="to_undefined" style="background-color:#4763bd; color:white;">To Undefined</button>
                     </h4>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body">
                     <button class="btn" id="Region_To_Size" style="background-color:#777fca; color:white;">Region > Type of hospital</button>
-                    <button class="btn invisible" id="Size_To_Region">Type of hospital > Region</button>
+                    <button class="btn invisible" id="Size_To_Region" style="background-color:#777fca; color:white;">Type of hospital > Region</button>
                     <br/>
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                         <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
