@@ -15,7 +15,7 @@
             "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
             "rowCallback": function(row, data, index) {
                 if(data[2]> 0.5){
-                    $(row).find('td:eq(2)').css('color', 'red');
+                    $(row).find('td:eq(2)').css('color', '#E46074');
                 }
             },
             "order": [[ 2, "desc" ]]
@@ -139,7 +139,7 @@
         padding: 8px;
         border: none;
         font-size: 16px;
-        background-color: beige;
+        background-color: #EAEFF3;
         color: grey;
         position: inline;
         top: 10px;
@@ -158,7 +158,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-7 align-self-center">
-            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning cutie TY!</h3>
+            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Welcome!</h3>
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb m-0 p-0">
@@ -314,6 +314,7 @@
             <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-body">
+                        <h4 class="card-title" style="text-align:center;">Total Annual Spending</h4>
                         <div id="curve_chart"></div>
                     </div>
                 </div>
@@ -333,11 +334,17 @@
                 ]);
 
                 var options = {
-                title: 'Total Annual Spending',
                 //   curveType: 'function',
+                titleTextStyle: {
+                    color: 'black',
+                    fontName: 'Rubik', 
+                    fontSize: 15
+                },
+                fontName:'Rubik',
                 legend: { position: 'none' },
-                width:400,
+                width:430,
                 height:300,
+                colors: ['#5f76e8'],
                 vAxis: {gridlines: { count: 5 }}
                 };
                 window.onload = resize;
@@ -431,7 +438,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Cost Saving</h4>
-                    <div class="card col-md-5 center" style="background-color:#74d680;">
+                    <div class="card col-md-5 center" style="background-color:#8CDFAC;">
                         <span id="total_sc" style="text-align:center; color:black;">Total potential cost saving = {{ $totalPotentialSave_GPU }} THB</span>
                     </div>
                     <!-- Cost Saving table -->
