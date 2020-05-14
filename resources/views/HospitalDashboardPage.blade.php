@@ -1,7 +1,7 @@
 @extends('layouts/admin')
 @section('styles')
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @endsection
 @section('script')
@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <!--<script src="{{ asset('dist/js/chartStacked.js') }}"></script>-->
+
 @endsection
 
 @section('content')
@@ -183,14 +184,39 @@
                         <span id="total_sc" style="text-align:center; color:black; font-size:16px;"></span>
                     </div>
                     <!-- Cost Saving table -->
-                    <div class="center" style="width: 100%;">
-                            <table id="Cost_saving_table" class="table-striped" style="width: 100%;" role="grid">
+                    <div id="table_GPU" class="center invisible" style="width: 100%;">
+                    <table class="table-striped table-bordered" id="Cost_saving_table_GPU" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead style="font-size:13px">
+                                <tr role="row">
+                                    <th style="text-align:center;">GPU</th>
+                                    <th style="text-align:center;">Name</th>
+                                    <th style="text-align:center;">Number of TPU</th>
+                                    <th style="text-align:center;">Real Total Spending</th>
+                                    <th style="text-align:center;">Potential Saving Cost</th>
+                                    <th style="text-align:center;">Saving (%)</th>
+                                </tr>
                                 </thead>
                                 <tbody style="font-size:13px">
                                 </tbody>
                             </table>
-                        </div>
+                    </div>    
+                    <div id="table_TPU" class="center invisible" style="width: 100%;">
+                            <table class="table-striped table-bordered" id="Cost_saving_table_TPU" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                                <thead style="font-size:13px">
+                                <tr role="row">
+                                    <th style="text-align:center;">GPU</th>
+                                    <th style="text-align:center;">GPU Name</th>
+                                    <th style="text-align:center;">TPU</th>
+                                    <th style="text-align:center;">TPU Name</th>
+                                    <th style="text-align:center;">Real Total Spending</th>
+                                    <th style="text-align:center;">Potential Saving Cost</th>
+                                    <th style="text-align:center;">Saving (%)</th>
+                                </tr>
+                                </thead>
+                                <tbody style="font-size:13px">
+                                </tbody>
+                            </table>
+                    </div>
 
                     <div>
                 </div>
@@ -367,7 +393,6 @@
             },
         }
     };
-
     $(document).ready(function() {
         Chart.defaults.global.defaultFontFamily = '"Rubik", sans-serif';
         google.charts.load('current', {'packages':['corechart']});
@@ -380,6 +405,7 @@
                 $("#Overall_Drug_Perf_Total_spend_chart").removeClass("invisible");
                 $("#CostSave_Hos").removeClass("invisible");
                 $("#divide").removeClass("invisible");
+                $("#table_GPU").removeClass("invisible");
 
                 document.getElementById("change-level").innerHTML = "Change Level : ";
                 //Donut chart
@@ -420,8 +446,6 @@
                 }
                 //table for cost saving
                 $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_GPU) !!}+' THB');
-                $('#Cost_saving_table thead').html(Cost_save_thead_GPU);
-                $('#Cost_saving_table tbody').html(GPU_table_cost_save);
             });
 
             $("#TPU").click(function() {
@@ -432,6 +456,7 @@
                 $("#Overall_Drug_Perf_Total_spend_chart").removeClass("invisible");
                 $("#CostSave_Hos").removeClass("invisible");
                 $("#divide").removeClass("invisible");
+                $("#table_TPU").removeClass("invisible");
 
                 document.getElementById("change-level").innerHTML = "Change Level : ";
                 //Donut chart
@@ -473,13 +498,13 @@
                 }
                 //table for cost saving
                 $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_TPU) !!}+' THB');
-                $('#Cost_saving_table thead').html(Cost_save_thead_TPU);
-                $('#Cost_saving_table tbody').html(TPU_table_cost_save);
             });
 
             $("#GPU_to_TPU").click(function() { 
                 $(this).toggleClass("invisible");
                 $("#TPU_to_GPU").toggleClass("invisible");
+                $("#table_TPU").removeClass("invisible");
+                $("#table_GPU").addClass("invisible");
                 //Donut chart
                 $.chartX.destroy();
                 $.chartXL = c3.generate({ 
@@ -521,12 +546,13 @@
                 }
                 //table for cost saving
                 $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_TPU) !!}+' THB');
-                $('#Cost_saving_table thead').html(Cost_save_thead_TPU);
-                $('#Cost_saving_table tbody').html(TPU_table_cost_save);
+
             });
             $("#TPU_to_GPU").click(function() { 
                 $(this).toggleClass("invisible");
                 $("#GPU_to_TPU").toggleClass("invisible");
+                $("#table_GPU").removeClass("invisible");
+                $("#table_TPU").addClass("invisible");
                 //Donut chart
                 $.chartXL.destroy();
                 
@@ -569,8 +595,7 @@
                 }
                 //table for cost saving
                 $('#total_sc').text('Total potential cost saving = '+{!! json_encode($totalPotentialSave_GPU) !!}+' THB');
-                $('#Cost_saving_table thead').html(Cost_save_thead_GPU);
-                $('#Cost_saving_table tbody').html(GPU_table_cost_save);
+
             });
 
         }else{
@@ -578,6 +603,44 @@
         }
     });
 </script>
+<script>
+//table for cost saving GPU
+    // $('#Cost_saving_table_GPU thead').html(Cost_save_thead_GPU);
+    $('#Cost_saving_table_GPU tbody').html(GPU_table_cost_save);
+    $(document).ready( function () {
+        $('#Cost_saving_table_GPU').DataTable({
+            // "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+            "order": [[ 5, "desc" ]]
+        });
+    });
+</script>
+<script>
+    //table for cost saving TPU
+    // $('#Cost_saving_table_TPU thead').html(Cost_save_thead_TPU);
+    $('#Cost_saving_table_TPU tbody').html(TPU_table_cost_save);
+    $(document).ready( function () {
+        $('#Cost_saving_table_TPU').DataTable({
+            // "sScrollX": "100%",
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+            "order": [[ 5, "desc" ]]
+        });
+    });
+</script>
+<style>
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: none;
+        border: none;
+        color: black!important;
+        /*change the hover text color*/
+    }
+    /*below block of css for change style when active*/
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: none;
+        border: none;
+        color: black!important;
+    }
+</style>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->

@@ -450,9 +450,9 @@
                                 <thead>
                                 <tr role="row">
                                     <th style="text-align:center;">GPU</th>
-                                    <th style="text-align:center;">Name</th>
+                                    <th style="text-align:center;">GPU Name</th>
                                     <th style="text-align:center;">TPU</th>
-                                    <th style="text-align:center;">Name</th>
+                                    <th style="text-align:center;">TPU Name</th>
                                     <th style="text-align:center;">Real Total Spending</th>
                                     <th style="text-align:center;">Potential Saving Cost</th>
                                     <th style="text-align:center;">Saving (%)</th>
