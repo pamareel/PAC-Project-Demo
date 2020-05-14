@@ -73,13 +73,13 @@ class HospitalDashboardController extends Controller
         // $query_rd .= "CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend FROM Hos_detail ";
         // $query_rd .= "where BUDGET_YEAR = '".$year."' and DEPT_ID ='".$Hid."';";
 
-        $query_gpu = "SELECT DEPT_ID, DEPT_NAME, GPU_ID, GPU_NAME, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
+        $query_gpu = "SELECT DEPT_ID, DEPT_NAME, GPU_ID, GPU_NAME, cast(wavg_unit_price as decimal(18,2)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
         $query_gpu .= "FROM PAC_hos_GPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by Total_Total_Amount DESC;";
         $GPU_result = DB::select($query_gpu);
         if(count($GPU_result)>0){
             $Hname = $GPU_result[0]->DEPT_NAME;
 
-            $query_tpu = "SELECT DEPT_ID, DEPT_NAME, TPU_ID, TPU_NAME, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
+            $query_tpu = "SELECT DEPT_ID, DEPT_NAME, TPU_ID, TPU_NAME, cast(wavg_unit_price as decimal(18,2)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
             $query_tpu .= "FROM PAC_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by Total_Total_Amount DESC;";
             $TPU_result = DB::select($query_tpu);
 
@@ -134,28 +134,39 @@ class HospitalDashboardController extends Controller
 
     function table_GPU_Donut_Hospital($result){
         $content = '';
-        // $color = [["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]];
+        $color = ["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"];
         for ($i = 0; $i < Count($result) ; $i++) {
+            
+            if($i>=6){
+                $col = "#ffffff00";
+            }else{
+                $col = $color[$i];
+            }
             $content .= '<tr>';
-            // $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$color[$i].';"></td>';
+            $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$col.';"></td>';
             $content .= '<td style="text-align:left;">'.$result[$i]->GPU_ID.'</td>';
             $content .= '<td style="text-align:left;">'.$result[$i]->GPU_NAME.'</td>';
-            $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-            $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+            $content .= '<td style="text-align:right; padding-right:3px;">'.$result[$i]->wavg_unit_price.'</td>';
+            $content .= '<td style="text-align:right;">'.$result[$i]->Total_Amount.'</td>';
             $content .= '</tr>';
         }
         return $content;
     }
     function table_TPU_Donut_Hospital($result){
         $content = '';
-        // $color = [["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]];
+        $color = ["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"];
         for ($i = 0; $i < Count($result) ; $i++) {
+            if($i>=6){
+                $col = "#ffffff00";
+            }else{
+                $col = $color[$i];
+            }
             $content .= '<tr>';
-            // $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$color[$i].';"></td>';
+            $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$col.';"></td>';
             $content .= '<td style="text-align:left;">'.$result[$i]->TPU_ID.'</td>';
             $content .= '<td style="text-align:left;">'.$result[$i]->TPU_NAME.'</td>';
-            $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-            $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
+            $content .= '<td style="text-align:right; padding-right:3px;">'.$result[$i]->wavg_unit_price.'</td>';
+            $content .= '<td style="text-align:right;">'.$result[$i]->Total_Amount.'</td>';
             $content .= '</tr>';
         }
         return $content;
@@ -223,7 +234,7 @@ class HospitalDashboardController extends Controller
 
             $content .= '<tr>';
             $content .= '<td style="text-align:left;">'.$GPU_result[$i]->GPU_ID.'</td>';
-            $content .= '<td style="text-align:left;">'.$GPU_result[$i]->GPU_NAME.'</td>';
+            $content .= '<td style="text-align:left; padding-left:10px">'.$GPU_result[$i]->GPU_NAME.'</td>';
             $content .= '<td style="text-align:center;">'.$Htpu.'</td>';
             $content .= '<td style="text-align:right; padding-right:12px;">'.$GPU_result[$i]->Real_Total_Spend.'</td>';
             $content .= '<td style="text-align:right; padding-right:15px;">'.$Potential_Saving_Cost.'</td>';
@@ -266,7 +277,7 @@ class HospitalDashboardController extends Controller
             $content .= '<td style="text-align:left;">'.$TPU_result[$i]->GPU_ID.'</td>';
             $content .= '<td style="text-align:left;">'.$TPU_result[$i]->GPU_NAME.'</td>';
             $content .= '<td style="text-align:left;">'.$TPU_result[$i]->TPU_ID.'</td>';
-            $content .= '<td style="text-align:left;">'.$TPU_result[$i]->TPU_NAME.'</td>';
+            $content .= '<td style="text-align:left; padding-left:10px">'.$TPU_result[$i]->TPU_NAME.'</td>';
             $content .= '<td style="text-align:right; padding-right:12px;">'.$TPU_result[$i]->Real_Total_Spend.'</td>';
             $content .= '<td style="text-align:right; padding-right:15px;">'.$Potential_Saving_Cost.'</td>';
             $content .= '<td style="text-align:center;">'.$Percent_saving .'</td>';
@@ -297,7 +308,7 @@ class HospitalDashboardController extends Controller
         return [$totalSpend, $totalSpend_label];
     }
     function hospital_info($Hid, $year){
-        $query_hos = "select DISTINCT DEPT_NAME, ServicePlanType, PROVINCE_EN, Region,IP,OP from PAC_hos_GPU where DEPT_ID = '".$Hid."';";
+        $query_hos = "select DISTINCT DEPT_NAME, ServicePlanType, PROVINCE_EN, Region, FORMAT(IP, N'N0') as IP, FORMAT(OP, N'N0') as OP from PAC_hos_GPU where DEPT_ID = '".$Hid."';";
         $hos_result = DB::select($query_hos);
         $Htype = $hos_result[0]->ServicePlanType;
         $Hprovince = $hos_result[0]->PROVINCE_EN;

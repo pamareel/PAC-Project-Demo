@@ -39,55 +39,47 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-md-12">
-            <h3>{{ $Hname }} ({{ $Year }})</h3>
+            <h3 style="color:#090b17;">{{ $Hname }} ({{ $Year }})</h3>
         </div>
-        <div class="col-md-12">
+    </div>
+    <div class="row col-lg-12">
+        <div class="col-md-12 col-lg-5">
             <div class="card">
-                <div class="card-body">
-                    <h5>Hospital Information</h5>
-                    <p>Type<span> {{ $Htype }} </span></p>
-                    <p>Province<span> {{ $Hprovince }} </span></p>
-                    <p>Region<span> {{ $Hregion }} </span></p>
-                    <p>IP<span> {{ $Hip }} </span></p>
-                    <p>OP<span> {{ $Hop }} </span></p>
-                    <p>Number of purchasing drug (TPU unit)<span> {{ $Htpu }} </span></p>
+                <div class="card-body" style="font-size:15px;">
+                    <p><b style="color:#1c2345;">Hospital Information</b></p>
+                    <p><b>Type</b><span style="padding-left:10px;"> {{ $Htype }} </span></p>
+                    <p><b>Province</b><span style="padding-left:10px;"> {{ $Hprovince }} </span></p>
+                    <p><b>Region</b><span style="padding-left:10px;"> {{ $Hregion }} </span></p>
+                    <p><b>IP</b><span style="padding-left:16px;"> {{ $Hip }} </span></p>
+                    <p><b>OP</b><span style="padding-left:10px;"> {{ $Hop }} </span></p>
+                    <p><b>Number of purchasing drug</b><span style="padding-left:10px;"> {{ $Htpu }} </span> (TPU unit)</p>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- ============================================================== -->
-<!-- End Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
-<!-- for to_2561 button -->
-
-<!-- ============================================================== -->
-<!-- Container fluid  -->
-<!-- ============================================================== -->
-<div class="container-fluid">
-    <div class="row">
-        <!-- <div class="col-md-6"> -->
+    <!-- </div> -->
+        <div>
+        <!-- <div class="col-lg-6"> -->
             <div class="card">
                 <div class="card-body" style="padding-top:10px; padding-bottom:10px;">
                         <span id="change-level">Please Choose level :</span>
-                        <button class="btn invisible" id="GPU_to_TPU">GPU > TPU</button>
-                        <button class="btn invisible" id="TPU_to_GPU">TPU > GPU</button>
-                        <button class="btn" id="GPU">GPU</button>
-                        <button class="btn" id="TPU">TPU</button>
+                        <button class="btn invisible" id="GPU_to_TPU" style="background-color:#337ab7; color:white;">GPU > TPU</button>
+                        <button class="btn invisible" id="TPU_to_GPU" style="background-color:#5cb85c; color:white;">TPU > GPU</button>
+                        <button class="btn" id="GPU" style="background-color:#5cb85c; color:white;">GPU</button>
+                        <button class="btn" id="TPU" style="background-color:#5c5cb8; color:white;">TPU</button>
                 </div>
             </div>
-        <!-- </div> -->
-        <!-- <div class="col-md-5">    -->
-            &nbsp;&nbsp;&nbsp;
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <div>   
             <div class="card">
                 <div class="card-body center" style="padding-top:10px; padding-bottom:10px;">
                     Change year? : 
                     <!-- <button class="btn" id="To_2561">To 2561</button> -->
-                    <input class="invisible" type=button id="To_2561" value='To 2561'>
-                    <input class="invisible" type=button id="To_2562" value='To 2562'>
+                    <input class="invisible" type=button id="To_2561" style="background-color:#f0ad4e; color:white;" value='To 2561'>
+                    <input class="invisible" type=button id="To_2562" style="background-color:#f0ad4e; color:white;" value='To 2562'>
                 </div>
             </div>
-        <!-- </div> -->
+        </div>
     </div>
     <script>
         var btn = document.getElementById('To_2561');
@@ -107,18 +99,34 @@
             $("#To_2561").toggleClass("invisible");
         }
     </script>
+    <div class="row invisible" id="divide">
+        <div class="col-md-12" >
+            <div class="card" style="background-color:#e5e6eb; height:10px;" >
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- for to_2561 button -->
 
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 invisible" id="Donut_hoss">
+        <div class="col-md-5 invisible" id="Donut_hoss">
             <div class="card">
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Drug Purchasing Quantity</h4>
                     <div class='row center'>
                         <!-- donut chart -->
-                        <div id="hos_drug_donut" class="mt-2 center" style="height:283px; width:100%; display:inline-block;"></div>
+                        <div id="hos_drug_donut" class="mt-2 center" style="height:210px; width:100%; display:inline-block;"></div>
                         <!-- table for donut -->
                         <div class="center" style="width: 100%;">
-                            <table id="Table_quan_donut" style="width: 100%;" role="grid">
+                        
+                            <table id="Table_quan_donut" class="table-striped" style="width: 100%; font-size:13px" role="grid">
                                 <thead>
                                 </thead>
                                 <tbody>
@@ -129,29 +137,34 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 invisible" id="Overall_Drug_Perf">
-            <div class="card">
-                <div class="card-body">
-                    <h4 style="color:black; text-align:center;">Overall Drug Performance</h4>
-                    <?php
-                    if(isset($perfHighPercent) || isset($perfLowPercent)){
-                    ?>
-                        <canvas id="perfChart" style="margin: auto;"></canvas>
-                    <?php
-                    }else{
-                    ?>
-                        <canvas id="perfChart">No Data</canvas>
-                    <?php
-                    }
-                    ?>
+        <div class="row col-lg-5">
+            <div class="col-lg-12 invisible" id="Overall_Drug_Perf_Total_spend_chart">
+                <div class="card">
+                    <div class="card-body" style="width: 100%;">
+                        <h4 style="color:black; text-align:center;">Total Annual Spending</h4>
+                        <div id="line_chart" style="width: 100%; font-size:15px"></div>
+                    </div>
                 </div>
-            </div>
-        </div>  
-        <div class="col-lg-6 invisible" id="Total_spend_chart">
-            <div class="card">
-                <div id="line_chart" style="width: 500px; height: 400px"></div>
-            </div>
-        </div>        
+            
+                <div class="card">
+                    <div class="card-body">
+                        <h4 style="color:black; text-align:center;">Overall Drug Performance</h4>
+                        <?php
+                        if(isset($perfHighPercent) || isset($perfLowPercent)){
+                        ?>
+                            <canvas id="perfChart" style="margin: auto;"></canvas>
+                        <?php
+                        }else{
+                        ?>
+                            <canvas id="perfChart">No Data</canvas>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>  
+        </div> 
+             
     </div>
 
     <div class="row">
@@ -167,14 +180,14 @@
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Cost Saving</h4>
                     <div class="card col-md-5 center" style="background-color:#74d680;">
-                        <span id="total_sc" style="text-align:center; color:black;"></span>
+                        <span id="total_sc" style="text-align:center; color:black; font-size:16px;"></span>
                     </div>
                     <!-- Cost Saving table -->
                     <div class="center" style="width: 100%;">
-                            <table id="Cost_saving_table" style="width: 100%;" role="grid">
-                                <thead>
+                            <table id="Cost_saving_table" class="table-striped" style="width: 100%;" role="grid">
+                                <thead style="font-size:13px">
                                 </thead>
-                                <tbody>
+                                <tbody style="font-size:13px">
                                 </tbody>
                             </table>
                         </div>
@@ -198,10 +211,10 @@
     GPU_table_Donut = {!! json_encode($GPU_table_Donut) !!};
     TPU_table_Donut = {!! json_encode($TPU_table_Donut) !!};
 
-    Donut_thead_GPU = '<tr role="row"><th style="text-align:center;">GPU</th><th style="text-align:center; padding:5px;">Name</th>';
+    Donut_thead_GPU = '<tr role="row"><th style="text-align:center;"></th><th style="text-align:center;">GPU</th><th style="text-align:center; padding:5px;">Name</th>';
     Donut_thead_GPU += '<th style="text-align:center;">Unit Price</th><th style="text-align:center;">Quantity</th></tr>';
 
-    Donut_thead_TPU = '<tr role="row"><th style="text-align:center;">TPU</th><th style="text-align:center; padding:5px;">Name</th>';
+    Donut_thead_TPU = '<tr role="row"><th style="text-align:center;"></th><th style="text-align:center;">TPU</th><th style="text-align:center; padding:5px;">Name</th>';
     Donut_thead_TPU += '<th style="text-align:center;">Unit Price</th><th style="text-align:center;">Quantity</th></tr>';
 
     HosName = {!! json_encode($Hname) !!};
@@ -229,17 +242,17 @@
             {
                 label:'Below Average',
                 data: [{{ $perfLowPercent_GPU }}],
-                backgroundColor:'red',
+                backgroundColor:'#D73737',
                 borderWidth:1,
-                borderColor:'#777',
+                borderColor:'#B5B5B5',
                 hoverBorderWidth:3,
                 hoverBorderColor:'#000'
             },{
                 label:'Above Average',
                 data:[{{ $perfHighPercent_GPU }}],
-                backgroundColor:'green',
+                backgroundColor:'#45CA76',
                 borderWidth:1,
-                borderColor:'#777',
+                borderColor:'#B5B5B5',
                 hoverBorderWidth:3,
                 hoverBorderColor:'#000'
             }],
@@ -296,17 +309,17 @@
             {
                 label:'Below Average',
                 data: [{{ $perfLowPercent_TPU }}],
-                backgroundColor:'red',
+                backgroundColor:'#D73737',
                 borderWidth:1,
-                borderColor:'#777',
+                borderColor:'#B5B5B5',
                 hoverBorderWidth:3,
                 hoverBorderColor:'#000'
             },{
                 label:'Above Average',
                 data:[{{ $perfHighPercent_TPU }}],
-                backgroundColor:'green',
+                backgroundColor:'#45CA76',
                 borderWidth:1,
-                borderColor:'#777',
+                borderColor:'#B5B5B5',
                 hoverBorderWidth:3,
                 hoverBorderColor:'#000'
             }],
@@ -364,9 +377,9 @@
                 $("#Donut_hoss").removeClass("invisible");
                 $("#GPU_to_TPU").removeClass("invisible");
                 $("#TPU").addClass("invisible");
-                $("#Overall_Drug_Perf").removeClass("invisible");
-                $("#Total_spend_chart").removeClass("invisible");
+                $("#Overall_Drug_Perf_Total_spend_chart").removeClass("invisible");
                 $("#CostSave_Hos").removeClass("invisible");
+                $("#divide").removeClass("invisible");
 
                 document.getElementById("change-level").innerHTML = "Change Level : ";
                 //Donut chart
@@ -377,9 +390,9 @@
                         tooltip:{show:!0}
                     },
                     donut:{label:{show:!1},
-                    title: "Total "+total,width:40},
+                    title: "Total "+total,width:20},
                     legend:{hide:!0},
-                    color:{pattern:["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]}
+                    color:{pattern:["#77aaff","#74d680","#f9d62e","#ffdfba","#ff7878","#B1B2B3"]}
                 });
                 //table for Donut
                 $('#Table_quan_donut thead').html(Donut_thead_GPU);
@@ -397,11 +410,9 @@
                     ['2562',  {!! json_encode($totalSpend_62) !!}]
                     ]);
                     var options = {
-                    title: 'Total Annual Spending',
-                    //   curveType: 'function',
+                    fontName:'Rubik',
                     legend: { position: 'bottom' }
                     };
-
                     var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
 
                     chart.draw(data, options);
@@ -417,9 +428,9 @@
                 $("#Donut_hoss").removeClass("invisible");
                 $("#TPU_to_GPU").removeClass("invisible");
                 $("#GPU").addClass("invisible");
-                $("#Overall_Drug_Perf").removeClass("invisible");
-                $("#Total_spend_chart").removeClass("invisible");
+                $("#Overall_Drug_Perf_Total_spend_chart").removeClass("invisible");
                 $("#CostSave_Hos").removeClass("invisible");
+                $("#divide").removeClass("invisible");
 
                 document.getElementById("change-level").innerHTML = "Change Level : ";
                 //Donut chart
@@ -430,9 +441,9 @@
                         tooltip:{show:!0}
                     },
                     donut:{label:{show:!1},
-                    title: "Total "+total,width:40},
+                    title: "Total "+total,width:30},
                     legend:{hide:!0},
-                    color:{pattern:["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]}
+                    color:{pattern:["#5f76e8","#ffa376","#74d680","#ffc2cd","#ff4f70","#edf2f6"]}
                 });
                 //table for Donut
                 $('#Table_quan_donut thead').html(Donut_thead_TPU);
@@ -450,8 +461,7 @@
                     ['2562',  {!! json_encode($totalSpend_62) !!}]
                     ]);
                     var options = {
-                    title: 'Total Annual Spending',
-                    //   curveType: 'function',
+                    fontName:'Rubik',
                     legend: { position: 'bottom' }
                     };
 
@@ -477,7 +487,7 @@
                         tooltip:{show:!0}
                     },
                     donut:{label:{show:!1},
-                    title: "Total "+total,width:40},
+                    title: "Total "+total,width:20},
                     legend:{hide:!0},
                     color:{pattern:["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]}
                 });
@@ -498,8 +508,7 @@
                     ['2562',  {!! json_encode($totalSpend_62) !!}]
                     ]);
                     var options = {
-                    title: 'Total Annual Spending',
-                    //   curveType: 'function',
+                    fontName:'Rubik',
                     legend: { position: 'bottom' }
                     };
 
@@ -525,7 +534,7 @@
                         tooltip:{show:!0}
                     },
                     donut:{label:{show:!1},
-                    title: "Total ",width:40},
+                    title: "Total "+total,width:20},
                     legend:{hide:!0},
                     color:{pattern:["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]}
                 });
@@ -546,8 +555,7 @@
                     ['2562',  {!! json_encode($totalSpend_62) !!}]
                     ]);
                     var options = {
-                    title: 'Total Annual Spending',
-                    //   curveType: 'function',
+                    fontName:'Rubik',
                     legend: { position: 'bottom' }
                     };
 
@@ -561,7 +569,7 @@
                 $('#Cost_saving_table tbody').html(GPU_table_cost_save);
             });
 
-        }else if(top5_GPU_name_1 == '' || top5_GPU_name_1 == NULL){
+        }else{
             alert('No data');
         }
     });
