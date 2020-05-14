@@ -108,28 +108,28 @@
         if($resultSearch != 'No value'){
         ?>
             <div class="card-body">
-
+            <div>
+                Result : {{ $resultState }}
+                <br/>
+                Found result : {{ count($resultSearch) }} values
+            </div>
             <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                 <thead>
-                <tr role="row">
-                    <!-- <th>BUDGET YEAR</th> -->
-                    <!-- <th>Method</th> -->
-                    <th>GPU ID</th>
-                    <th>GPU NAME</th>
-                    <th>TPU ID</th>
-                    <th>TPU NAME</th>
-                    <th>Total Amount</th>
-                    <th>wavg unit price</th>
-                    <th>Total Spend</th>
-                    <th>Gini</th>
-                </tr>
+                    <tr role="row">
+                        <!-- <th>BUDGET YEAR</th> -->
+                        <!-- <th>Method</th> -->
+                        <th width="5%">GPU ID</th>
+                        <th width="35%">GPU NAME</th>
+                        <th width="5%">TPU ID</th>
+                        <th width="35%">TPU NAME</th>
+                        <th width="10%">Total Amount</th>
+                        <th width="5%">wavg unit price</th>
+                        <th width="10%">Total Spend</th>
+                        <th width="5%">Gini</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <div>
-                    Result : {{ $resultState }}
-                    <br/>
-                    Found result : {{ count($resultSearch) }} values
-                </div>
+                
                     <?php
                     for($i = 0; $i < count($resultSearch); $i++){
                     ?>
@@ -140,9 +140,9 @@
                         <td style="text-align:center;">{{ $resultSearch[$i]->GPU_NAME }}</td>
                         <td style="text-align:center;">{{ $resultSearch[$i]->TPU_ID }}</td>  
                         <td style="text-align:center;">{{ $resultSearch[$i]->TPU_NAME }}</td>
-                        <td style="text-align:center;">{{ $resultSearch[$i]->Total_Amount }}</td>  
+                        <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Amount }}</td>  
                         <td style="text-align:center;">{{ $resultSearch[$i]->wavg_unit_price }}</td>
-                        <td style="text-align:center;">{{ $resultSearch[$i]->Total_Spend }}</td>
+                        <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Spend }}</td>
                         <?php
                         if ($resultSearch[$i]->Gini != NULL){
                         ?>
@@ -256,7 +256,7 @@
                 title:{
                     display:true,
                     text:'Purchasing Power in Thailand',
-                    fontSize:25,
+                    fontSize:25
                 },
                 scales: {
                     xAxes: [{ stacked: true }],
@@ -293,6 +293,7 @@
         };
         var color_d = {'A':'purple', 'S':'blue', 'M1':'green', 'M2':'yellow', 'F1':'orange', 'F2':'red', 'F3':'pink', 'Undefined':'black'};
         $(document).ready(function() {
+            Chart.defaults.global.defaultFontFamily = '"Rubik", sans-serif';
             // Start Size of Hospital ///////
             $("#Region_To_Size").click(function() { 
                 $(this).toggleClass("invisible");
@@ -2925,12 +2926,6 @@
                 normalizeFunction: 'polynomial',
                 //if want specific point to change color use "colors:"
                 // colors: color_sets,
-                onRegionOver: function (event, code, region) {
-                    //sample to interact with map
-                    if (code == 'TH-50') {
-                        document.getElementById("your_h1_id").innerHTML = "your new text here"    
-                    }
-                },
                 onRegionClick: function (element, code, region) {
                     $("#backButton").toggleClass("invisible");
                     $('#vmapTH_quan').toggleClass("invisible");
@@ -4306,7 +4301,6 @@
                     <h1>Price by region</h1>
                     <button class="btn invisible" id="backButton">&lt; Drill Up</button>
                     <button class="btn invisible" id="backButton2">&lt; Drill Up</button>
-                    test if click at any Region chart will drill down
                     <div class='row'>
                         <div id="vmapTH_pri" style="width: 200px; height: 300px;"></div>
                         <div class = "invisible" id="vmapTH_pri_r1" style="width: 200px; height: 300px;"></div>
@@ -4758,8 +4752,6 @@
                             </table>
                         </div>
                     </div>
-                    test if hover at Chaing new text will show up
-                    <div><h1 id="your_h1_id"></h1></div>
                 </div>
             </div>
         </div>
@@ -5241,15 +5233,15 @@
                     <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                         <thead>
                         <tr role="row">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>IP</th>
-                            <th>OP</th>
-                            <th>Wavg Unit Price</th>
-                            <th>Quantity</th>
-                            <th>Total Spend</th>
-                            <th>PAC</th>
+                            <th style="text-align:center;">ID</th>
+                            <th style="text-align:center;">Name</th>
+                            <th style="text-align:center;">Type</th>
+                            <th style="text-align:center;">IP</th>
+                            <th style="text-align:center;">OP</th>
+                            <th style="text-align:center;">Wavg Unit Price</th>
+                            <th style="text-align:center;">Quantity</th>
+                            <th style="text-align:center;">Total Spend</th>
+                            <th style="text-align:center;">PAC</th>
                         </tr>
                         </thead>
                         <tbody>

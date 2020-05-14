@@ -358,12 +358,12 @@
 
     <!-- ============================================================== -->
     <!-- Drug Purchasing Amount -->
-    <div class="row">
+    
         <!-- Drug Purchasing Amount -->
-        <div class="col-lg-7 col-md-12">
+        <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title" style="text-align:center;">Drug Purchasing Amount</h4>
+                    <h4 class="card-title" style="text-align:center;">Drug Purchasing Quantity</h4>
 
                     <div id="campaign-v2" class="mt-2" style="height:283px; width:100%;"></div>
                     <table>
@@ -421,7 +421,12 @@
     </div>
     <!-- End Drug Purchasing Amount -->
     <!-- ============================================================== -->
-
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="card" style="background-color:#e5e6eb; height:10px;" >
+            </div>
+        </div>
+    </div>
     <!-- ============================================================== -->
     <!-- Cost Saving -->
     <div class="row">
@@ -429,8 +434,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Cost Saving</h4>
-                    <div class="card col-md-5 center" style="background-color:pink;">
-                        <span id="total_sc" style="text-align:center;">Total potential cost saving = {{ $totalPotentialSave_TPU }} THB</span>
+                    <div class="card col-md-5 center" style="background-color:#74d680;">
+                        <span id="total_sc" style="text-align:center; color:black;">Total potential cost saving = {{ $totalPotentialSave_TPU }} THB</span>
                     </div>
                     <!-- Cost Saving table -->
                     <div class="center" style="width: 100%;">
