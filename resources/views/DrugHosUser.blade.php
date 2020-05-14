@@ -27,6 +27,25 @@
         right: 10px;
         cursor: pointer;
     }
+    #hide, #show {
+        border-radius: 4px;
+        padding: 8px;
+        border: none;
+        font-size: 16px;
+        background-color: beige;
+        color: grey;
+        position: inline;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    .invisible {
+        display: none;
+    }
+    .center {
+        margin: auto;
+        padding: 10px;
+    }
 </style>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
@@ -103,66 +122,127 @@
     ?>
     <div class="row">
         <div class="col-md-12">
-        <div class="card">
-        <?php
-        if($resultSearch != 'No value'){
-        ?>
-            <div class="card-body">
-            <div>
-                Result : {{ $resultState }}
-                <br/>
-                Found result : {{ count($resultSearch) }} values
+            <div class="card">
+                <?php
+                if($resultSearch != 'No value'){
+                ?>
+                    <div class="card-body">
+                        <div>
+                            Result : {{ $resultState }}
+                            <br/>
+                            Found result : {{ count($resultSearch) }} values
+                        </div>
+                        <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
+                            <thead>
+                                <tr role="row">
+                                    <!-- <th>BUDGET YEAR</th> -->
+                                    <!-- <th>Method</th> -->
+                                    <th width="5%" style="text-align:center;">GPU ID</th>
+                                    <th width="20%" style="text-align:center;">GPU NAME</th>
+                                    <th width="5%" style="text-align:center;">TPU ID</th>
+                                    <th width="40%" style="text-align:center;">TPU NAME</th>
+                                    <th width="10%" style="text-align:center;">Total Amount</th>
+                                    <th width="10%" style="text-align:center;">Avg unit price</th>
+                                    <th width="15%" style="text-align:center;">Total Spend</th>
+                                    <th width="5%" style="text-align:center;">PAC</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                <?php
+                                for($i = 0; $i < count($resultSearch); $i++){
+                                ?>
+                                    <tr>
+                                        <!-- <td style="text-align:center;">{{ $resultSearch[$i]->BUDGET_YEAR }}</td> -->
+                                        <!-- <td style="text-align:center;">{{ $resultSearch[$i]->Method }}</td>   -->
+                                        <td style="text-align:center;">{{ $resultSearch[$i]->GPU_ID }}</td>  
+                                        <td style="text-align:center;">{{ $resultSearch[$i]->GPU_NAME }}</td>
+                                        <td style="text-align:center;">{{ $resultSearch[$i]->TPU_ID }}</td>  
+                                        <td style="text-align:center;">{{ $resultSearch[$i]->TPU_NAME }}</td>
+                                        <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Amount }}</td>  
+                                        <td style="text-align:center;">{{ $resultSearch[$i]->wavg_unit_price }}</td>
+                                        <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Spend }}</td>
+                                        <td style="text-align:center;">{{ $resultSearch[$i]->PAC_value }}</td>
+                                    </tr>
+                                <?php 
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php
+                }else{
+                ?>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <th>No data</th>
+                    <script>alert('No Data, Please select again');</script>
+                <?php
+                }
+                ?>
             </div>
-            <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
-                <thead>
-                    <tr role="row">
-                        <!-- <th>BUDGET YEAR</th> -->
-                        <!-- <th>Method</th> -->
-                        <th width="5%" style="text-align:center;">GPU ID</th>
-                        <th width="20%" style="text-align:center;">GPU NAME</th>
-                        <th width="5%" style="text-align:center;">TPU ID</th>
-                        <th width="40%" style="text-align:center;">TPU NAME</th>
-                        <th width="10%" style="text-align:center;">Total Amount</th>
-                        <th width="10%" style="text-align:center;">Avg unit price</th>
-                        <th width="15%" style="text-align:center;">Total Spend</th>
-                        <th width="5%" style="text-align:center;">PAC</th>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    <?php
-                    for($i = 0; $i < count($resultSearch); $i++){
-                    ?>
-                        <tr>
-                            <!-- <td style="text-align:center;">{{ $resultSearch[$i]->BUDGET_YEAR }}</td> -->
-                            <!-- <td style="text-align:center;">{{ $resultSearch[$i]->Method }}</td>   -->
-                            <td style="text-align:center;">{{ $resultSearch[$i]->GPU_ID }}</td>  
-                            <td style="text-align:center;">{{ $resultSearch[$i]->GPU_NAME }}</td>
-                            <td style="text-align:center;">{{ $resultSearch[$i]->TPU_ID }}</td>  
-                            <td style="text-align:center;">{{ $resultSearch[$i]->TPU_NAME }}</td>
-                            <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Amount }}</td>  
-                            <td style="text-align:center;">{{ $resultSearch[$i]->wavg_unit_price }}</td>
-                            <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Spend }}</td>
-                            <td style="text-align:center;">{{ $resultSearch[$i]->PAC_value }}</td>
-                        </tr>
-                    <?php 
-                    }
-                    ?>
-                </tbody>
-            </table>
-            </div>
-        <?php
-        }else{
-        ?>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <th>No data</th>
-            <script>alert('No Data, Please select again');</script>
-        <?php
-        }
-        ?>
-        </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <button class="btn" id="show" style="background-color:#5c5cb8; color:white;">Show Save Cost</button>
+                <button class="btn invisible" id="hide" style="background-color:#5c5cb8; color:white;">Hide Save Cost</button>
+
+                <div id="save_cost" class="invisible">
+                    <div class="row col-lg-12 col-md-12" style="margin:auto;">
+                        <div class="card-body" style="margin:auto;">
+                            <p class="card-title">Original Unit Price</p>
+                            <p>{{ $resultCostSave[0]->wavg_unit_price }} THB</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title">Suggested Unit Price</p>
+                            <p>{{ $resultCostSave[0]->suggested_unit_price }} THB</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title">Purchasing Quantity</p>
+                            <p>{{ $resultCostSave[0]->T_Total_Amount }} units</p>
+                        </div>
+                    </div>
+                        <!-- donut chart -->
+                    <div class="col-lg-12 center">
+                        <div class="card-body">
+                            <div id="hos_donut" class="mt-2 center" style="height:283px; width:100%;"></div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        Save_col = [['suggested spending',{{ $resultCostSave[0]->suggested_spending }}],['Potential Saving Cost', {{ $resultCostSave[0]->Potential_Saving_Cost }} ]];
+        $(document).ready(function() {
+            //button
+            $("#show").click(function() {
+                $(this).toggleClass("invisible");
+                $("#hide").toggleClass("invisible");
+                $("#save_cost").removeClass("invisible");
+            });
+            $("#hide").click(function() {
+                $(this).toggleClass("invisible");
+                $("#show").toggleClass("invisible");
+                $("#save_cost").addClass("invisible");
+            });
+
+            //Donut chart
+            $.chartX = c3.generate({ 
+                bindto:"#hos_donut",
+                data:{columns:Save_col,
+                    type:"donut",
+                    tooltip:{show:!0}
+                },
+                donut:{label:{show:!1},
+                title: {{ $resultCostSave[0]->Percent_saving }}+'% ('+ {!! json_encode($resultCostSave[0]->P_Potential_Saving_Cost) !!} + ' THB)' ,width:30},
+                legend:{hide:!0},
+                color:{pattern:["#5f76e8","#01caf1"]}
+            });
+        });
+    </script>
     <?php
     }
     ?>
