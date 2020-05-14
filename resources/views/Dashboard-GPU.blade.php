@@ -342,7 +342,7 @@
             <div class="col-lg-7 col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="hidden" id="curve_chart"></div>
+                        <div id="curve_chart"></div>
                     </div>
                 </div>
             </div>     

@@ -344,12 +344,14 @@
     <!-- Start Google line chart -->
     <!-- *************************************************************** -->
     <div class="row">
-        <div class="col-lg-6">
-            <div class="card">
-                <div id="curve_chart" style="width: 500px; height: 400px"></div>
-            </div>
-        </div>     
-      
+            <div class="col-lg-7 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="curve_chart"></div>
+                    </div>
+                </div>
+            </div>     
+        </div>    
     <!-- *************************************************************** -->
     <!-- End Google line chart -->
     <!-- *************************************************************** -->
