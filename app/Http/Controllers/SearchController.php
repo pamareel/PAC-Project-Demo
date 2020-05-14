@@ -39,8 +39,12 @@ class SearchController extends Controller
             ///// count each region ////////////////////////////////////////////
             if($method == 'All'){
                 ////// table show //////////////////////////////////////////////////////////////////////
-                $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
-                $resultSearch = DB::select($statement);   
+                $statement = "select BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, ";
+                $statement .= "Total_Amount, FORMAT(Total_Amount, N'N0') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
+                $statement .= "from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
+
+                // $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
+                $resultSearch = DB::select($statement); 
                 
             }else{
                 ////// table show //////////////////////////////////////////////////////////////////////
@@ -349,7 +353,7 @@ class SearchController extends Controller
             $ttt = $t-1;
 
             if($lowPac != null && $countHosAll[$ttt] != 0){
-                $Low_dataPercent = 100*($lowPac[0]->n)/$countHosAll[$ttt];
+                $Low_dataPercent = round(100*($lowPac[0]->n)/$countHosAll[$ttt], 2);
             }else{
                 $Low_dataPercent = 0;
             }
@@ -358,7 +362,7 @@ class SearchController extends Controller
             /////// for Medium PAC ////////////////////////////////////////////////
             $medPac = DB::select($query_med);
             if($medPac != null && $countHosAll[$ttt] != 0){
-                $Med_dataPercent = 100*($medPac[0]->n)/$countHosAll[$ttt];
+                $Med_dataPercent = round(100*($medPac[0]->n)/$countHosAll[$ttt], 2);
             }else{
                 $Med_dataPercent = 0;
             }
@@ -367,7 +371,7 @@ class SearchController extends Controller
             /////// for High PAC ////////////////////////////////////////////////
             $highPac = DB::select($query_high);
             if($highPac != null && $countHosAll[$ttt] != 0){
-                $High_dataPercent = 100*($highPac[0]->n)/$countHosAll[$ttt];
+                $High_dataPercent = round(100*($highPac[0]->n)/$countHosAll[$ttt], 2);
             }else{
                 $High_dataPercent = 0;
             }
@@ -414,7 +418,7 @@ class SearchController extends Controller
             /////// for Low PAC ////////////////////////////////////////////////
             $lowPac = DB::select($query_low);
             if($lowPac != null && $countHosRegion != 0){
-                $Low_dataPercent = 100*($lowPac[0]->n)/$p_count[$Province];
+                $Low_dataPercent = round(100*($lowPac[0]->n)/$p_count[$Province], 2);
             }else{
                 $Low_dataPercent = 0;
             }
@@ -423,7 +427,7 @@ class SearchController extends Controller
             /////// for Medium PAC ////////////////////////////////////////////////
             $medPac = DB::select($query_med);
             if($medPac != null && $countHosRegion != 0){
-                $Med_dataPercent = 100*($medPac[0]->n)/$p_count[$Province];
+                $Med_dataPercent = round(100*($medPac[0]->n)/$p_count[$Province], 2);
             }else{
                 $Med_dataPercent = 0;
             }
@@ -431,7 +435,7 @@ class SearchController extends Controller
             /////// for High PAC ////////////////////////////////////////////////
             $highPac = DB::select($query_high);
             if($highPac != null && $countHosRegion != 0){
-                $High_dataPercent = 100*($highPac[0]->n)/$p_count[$Province];
+                $High_dataPercent = round(100*($highPac[0]->n)/$p_count[$Province], 2);
             }else{
                 $High_dataPercent = 0;
             }
@@ -1036,7 +1040,7 @@ class SearchController extends Controller
         if($m == 'All'){
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1046,13 +1050,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1086,7 +1090,7 @@ class SearchController extends Controller
                 }
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1096,13 +1100,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1135,7 +1139,7 @@ class SearchController extends Controller
                 }
             }else if($r == 3){
                 foreach($Region_3_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1145,13 +1149,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1185,7 +1189,7 @@ class SearchController extends Controller
                 }
             }else if($r == 4){
                 foreach($Region_4_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1195,13 +1199,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1235,7 +1239,7 @@ class SearchController extends Controller
                 }
             }else if($r == 5){
                 foreach($Region_5_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1245,13 +1249,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1285,7 +1289,7 @@ class SearchController extends Controller
                 }
             }else if($r == 6){
                 foreach($Region_6_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1295,13 +1299,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1335,7 +1339,7 @@ class SearchController extends Controller
                 }
             }else if($r == 7){
                 foreach($Region_7_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1345,13 +1349,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1385,7 +1389,7 @@ class SearchController extends Controller
                 }
             }else if($r == 8){
                 foreach($Region_8_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1395,13 +1399,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1435,7 +1439,7 @@ class SearchController extends Controller
                 }
             }else if($r == 9){
                 foreach($Region_9_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1445,13 +1449,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1485,7 +1489,7 @@ class SearchController extends Controller
                 }
             }else if($r == 10){
                 foreach($Region_10_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1495,13 +1499,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1535,7 +1539,7 @@ class SearchController extends Controller
                 }
             }else if($r == 11){
                 foreach($Region_11_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1545,13 +1549,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1585,7 +1589,7 @@ class SearchController extends Controller
                 }
             }else if($r == 12){
                 foreach($Region_12_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1595,13 +1599,13 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
                         $Total_Patient = $result[$i]->IP + $result[$i]->OP;
@@ -1635,20 +1639,21 @@ class SearchController extends Controller
                 }
             }else if($r == 13){
                 foreach($Region_13_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    // $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->T_Total_Spend.'</td>';
+                        $content .= '<td style="text-align:right;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
                     }
                     $result2 = array($Pcode => $content);
@@ -1658,7 +1663,7 @@ class SearchController extends Controller
         }else{
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1668,12 +1673,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -1708,7 +1713,7 @@ class SearchController extends Controller
                 }
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1718,12 +1723,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -1758,7 +1763,7 @@ class SearchController extends Controller
                 }
             }else if($r == 3){
                 foreach($Region_3_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1768,12 +1773,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -1808,7 +1813,7 @@ class SearchController extends Controller
                 }
             }else if($r == 4){
                 foreach($Region_4_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1818,12 +1823,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -1858,7 +1863,7 @@ class SearchController extends Controller
                 }
             }else if($r == 5){
                 foreach($Region_5_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1868,12 +1873,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -1908,7 +1913,7 @@ class SearchController extends Controller
                 }
             }else if($r == 6){
                 foreach($Region_6_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1918,12 +1923,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -1958,7 +1963,7 @@ class SearchController extends Controller
                 }
             }else if($r == 7){
                 foreach($Region_7_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1968,12 +1973,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -2008,7 +2013,7 @@ class SearchController extends Controller
                 }
             }else if($r == 8){
                 foreach($Region_8_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2018,12 +2023,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -2058,7 +2063,7 @@ class SearchController extends Controller
                 }
             }else if($r == 9){
                 foreach($Region_9_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2068,12 +2073,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -2108,7 +2113,7 @@ class SearchController extends Controller
                 }
             }else if($r == 10){
                 foreach($Region_10_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2118,12 +2123,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -2158,7 +2163,7 @@ class SearchController extends Controller
                 }
             }else if($r == 11){
                 foreach($Region_11_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2168,12 +2173,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -2208,7 +2213,7 @@ class SearchController extends Controller
                 }
             }else if($r == 12){
                 foreach($Region_12_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2218,12 +2223,12 @@ class SearchController extends Controller
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
 
@@ -2258,19 +2263,19 @@ class SearchController extends Controller
                 }
             }else if($r == 13){
                 foreach($Region_13_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
                         $content .= '<tr>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_ID.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->DEPT_NAME.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->ServicePlanType.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->IP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->OP.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->wavg_unit_price.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Amount.'</td>';
-                        $content .= '<td style="text-align:left;">'.$result[$i]->Total_Spend.'</td>';
+                        $content .= '<td style="text-align:center;">'.$result[$i]->ServicePlanType.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->I_IP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->O_OP.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->w_wavg_unit_price.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Amount.'</td>';
+                        $content .= '<td style="text-align:left;">'.$result[$i]->T_Total_Spend.'</td>';
                         $content .= '<td style="text-align:left;">'.$result[$i]->PAC_value.'</td>';
                         $content .= '</tr>';
                     }
@@ -2333,7 +2338,7 @@ class SearchController extends Controller
             /////// for Low PAC ////////////////////////////////////////////////
             $lowPac = DB::select($low_query);
             if($lowPac != null && $result_count3[$s] != 0){
-                $Low_dataPercent = 100*($lowPac[0]->n)/$result_count3[$s];
+                $Low_dataPercent = round(100*($lowPac[0]->n)/$result_count3[$s], 2);
             }else{
                 $Low_dataPercent = 0;
             }
@@ -2342,7 +2347,7 @@ class SearchController extends Controller
             /////// for Med PAC ////////////////////////////////////////////////
             $medPac = DB::select($med_query);
             if($medPac != null && $result_count3[$s] != 0){
-                $Med_dataPercent = 100*($medPac[0]->n)/$result_count3[$s];
+                $Med_dataPercent = round(100*($medPac[0]->n)/$result_count3[$s], 2);
             }else{
                 $Med_dataPercent = 0;
             }
@@ -2351,7 +2356,7 @@ class SearchController extends Controller
             /////// for Med PAC ////////////////////////////////////////////////
             $highPac = DB::select($high_query);
             if($highPac != null && $result_count3[$s] != 0){
-                $High_dataPercent = 100*($highPac[0]->n)/$result_count3[$s];
+                $High_dataPercent = round(100*($highPac[0]->n)/$result_count3[$s], 2);
             }else{
                 $High_dataPercent = 0;
             }
