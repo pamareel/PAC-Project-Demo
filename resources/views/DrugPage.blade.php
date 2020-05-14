@@ -3015,7 +3015,7 @@
             }
             $Thai_map_pri = {
                 map: ['thai_en'],
-                backgroundColor:'#ffffff00',
+                backgroundColor:'#EAEFF3',
                 hoverOpacity: 0.5,
                 //color when hover on to the map (if use with hoverOpacity, มันจะมองไม่ค่อยออกว่าสีไร จะแค่แบบจางๆ แบบลดopacity ของสีแมป)
                 // hoverColor: 'black',
@@ -4276,7 +4276,7 @@
             }
             $Thai_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: '#ffffff00',
+                backgroundColor: '#EAEFF3',
                 hoverOpacity: 0.5,
                 enableZoom: false,
                 showTooltip: true,
