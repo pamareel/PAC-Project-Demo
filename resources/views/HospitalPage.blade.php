@@ -9,7 +9,7 @@
         padding: 5px;
         border: none;
         font-size: 14px;
-        background-color: #eae374;
+        background-color: #EAEFF3;
         color: black;
         position: inline;
         top: 10px;
