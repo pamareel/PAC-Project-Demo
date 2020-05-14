@@ -2012,10 +2012,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2087,10 +2101,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2162,10 +2190,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2237,10 +2279,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2312,10 +2368,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2387,10 +2457,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2462,10 +2546,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2537,10 +2635,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2612,10 +2724,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2687,10 +2813,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2762,10 +2902,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -2837,10 +2991,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3093,10 +3261,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3168,10 +3350,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3243,10 +3439,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3318,10 +3528,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3393,10 +3617,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3468,10 +3706,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3543,10 +3795,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3618,10 +3884,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3693,10 +3973,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3768,10 +4062,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3843,10 +4151,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -3918,10 +4240,24 @@
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
                                 var cor_options = {
-                                    title: 'Total number of patient VS Purchasing quantity (Correlation = '+corr_code+')',
-                                    //   curveType: 'function',
-                                    legend: { position: 'bottom' }
+                                    fontName:'Rubik',
+                                    legend: { position: 'bottom' },
+                                    colors: ['#5f76e8', '#ff4f70']
                                 };
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                if(corr_code.toFixed(3)>=0.7){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#60C687';
+                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#F5C378';
+                                }else if(corr_code.toFixed(3)<=0.4){
+                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                }
                                 $.coChart.draw(data, cor_options);
                             }
                             google.charts.setOnLoadCallBack(drawChart());
@@ -5282,14 +5618,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7 col-lg-7 invisible" id = 'corr_chart'>
-            <div class="card">
+        <div class="col-md-12 col-lg-8 invisible" id ='corr_chart'>
+            <div class="card col-lg-12">
                 <div class="card-body">
-                    <div id = 'corr'style="width: 100%; height: 400px"></div>
+                    <div style="margin:auto;">
+                        <h3 style="text-align:center; color:black;">Purchasing Quantity VS Number of Patient</h3>
+                        <div id='corr' style="width: 100%; height: 350px;"></div>
+                    </div>
                     <br>
-                    <h6 style="text-align:center; color:black;">* Correlation >= 0.7 = Strong correlation</h6>
-                    <h6 style="text-align:center; color:black;">* 0.4 &lt Correlation &lt 0.7 = Moderate correlation</h6>
-                    <h6 style="text-align:center; color:black;">* Correlation <= 0.4 = Weak correlation</h6>
+                    <div class="row col-md-12" style="margin:auto;">
+                        <span style="color:black; font-size:16px; margin:auto; padding-left:20px;">Correlation</span>
+                        <div class="card" id="total_corr_bg" style="margin:auto; padding-left:10px; padding-right:10px; background-color:#74d680;">
+                            <span id="total_corr" style="color:black; font-size:16px;"></span>
+                        </div>
+                        <span id="total_corr_label" style="margin:auto; padding-right:20px; color:black; font-size:16px;"></span>
+                    </div>
+                    
+                   
                 </div>
             </div>
         </div>
