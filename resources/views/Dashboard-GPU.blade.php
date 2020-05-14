@@ -6,35 +6,7 @@
 <!-- <script src="{{ asset('js/Chart.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script> -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-        ['Year', 'Annual spending'],
-        ['{{$y1 ?? ''}}',  {{$s1 ?? ''}}],
-        ['{{$y2 ?? ''}}',  {{$s2 ?? ''}}],
-        ['{{$y3 ?? ''}}',  {{$s3 ?? ''}}],
-        ['{{$y4 ?? ''}}',  {{$s4 ?? ''}}],
-        ['{{$y5 ?? ''}}',  {{$s5 ?? ''}}]
-        ]);
 
-        var options = {
-        title: 'Total Annual Spending',
-        //   curveType: 'function',
-        legend: { position: 'none' },
-        width:500,
-        height:400,
-        vAxis: {gridlines: { count: 5 }}
-        };
-        window.onload = resize;
-        window.onresize = resize;
-        function resize () {
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-            chart.draw(data, options);
-        };
-    }
-</script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 <script>
     $(document).ready( function () {
@@ -347,6 +319,36 @@
                 </div>
             </div>     
         </div>    
+
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                ['Year', 'Annual spending'],
+                ['{{$y1 ?? ''}}',  {{$s1 ?? ''}}],
+                ['{{$y2 ?? ''}}',  {{$s2 ?? ''}}],
+                ['{{$y3 ?? ''}}',  {{$s3 ?? ''}}],
+                ['{{$y4 ?? ''}}',  {{$s4 ?? ''}}],
+                ['{{$y5 ?? ''}}',  {{$s5 ?? ''}}]
+                ]);
+
+                var options = {
+                title: 'Total Annual Spending',
+                //   curveType: 'function',
+                legend: { position: 'none' },
+                width:500,
+                height:400,
+                vAxis: {gridlines: { count: 5 }}
+                };
+                window.onload = resize;
+                window.onresize = resize;
+                function resize () {
+                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                    chart.draw(data, options);
+                };
+            }
+        </script>
         <!-- *************************************************************** -->
         <!-- End Google line chart -->
         <!-- *************************************************************** -->
