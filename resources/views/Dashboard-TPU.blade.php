@@ -379,35 +379,35 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-primary font-10 mr-2"></i></td>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#5f76e8;"></i></td>
                                 <td width="10%">{{ $id1 }}</td>
                                 <td width="50%" class="ellipsis">{{ $n1 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w1 }}</td>
                                 <td width="20%" style="text-align:right; padding-right:8px;">{{ $a11 }}</td>
                             </tr>
                             <tr>
-                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-danger font-10 mr-2"></i></td>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#01caf1;"></i></td>
                                 <td width="10%">{{ $id2 }}</td>
                                 <td width="50%" class="ellipsis">{{ $n2 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w2 }}</td>
                                 <td width="20%" style="text-align:right; padding-right:8px;">{{ $a22 }}</td>
                             </tr>
                             <tr>
-                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-cyan font-10 mr-2"></i></td>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#60C687;"></i></td>
                                 <td width="10%">{{ $id3 }}</td>
                                 <td width="50%" class="ellipsis">{{ $n3 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w3 }}</td>
                                 <td width="20%" style="text-align:right; padding-right:8px;">{{ $a33 }}</td>
                             </tr>
                             <tr>
-                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-danger font-10 mr-2"></i></td>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#F5C378;"></i></td>
                                 <td width="10%">{{ $id4 }}</td>
                                 <td width="50%" class="ellipsis">{{ $n4 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w4 }}</td>
                                 <td width="20%" style="text-align:right; padding-right:8px;">{{ $a44 }}</td>
                             </tr>
                             <tr>
-                                <td width="5%" class="ellipsis"><i class="fas fa-circle text-cyan font-10 mr-2"></i></td>
+                                <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#ff4f70;"></i></td>
                                 <td width="10%">{{ $id5 }}</td>
                                 <td width="50%" class="ellipsis">{{ $n5 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w5 }}</td>

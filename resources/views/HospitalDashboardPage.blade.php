@@ -116,7 +116,7 @@
 <!-- ============================================================== -->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-5 invisible" id="Donut_hoss">
+        <div class="col-md-7 invisible" id="Donut_hoss">
             <div class="card">
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Drug Purchasing Quantity</h4>
