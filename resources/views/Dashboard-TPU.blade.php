@@ -178,9 +178,9 @@
         <div class="col-5 align-self-center">
             <div class="customize-input float-right">
                 <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                    <option selected>Mar 20</option>
-                    <option value="1">Feb 20</option>
-                    <option value="2">Jan 20</option>
+                    <option selected>2562</option>
+                    <!-- <option value="1">Feb 20</option> -->
+                    <!-- <option value="2">Jan 20</option> -->
                 </select>
                 <br>
                 <!-- switch -->
