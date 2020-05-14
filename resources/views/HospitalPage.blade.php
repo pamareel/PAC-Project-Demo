@@ -1,6 +1,7 @@
 @extends('layouts/admin')
 @section('styles')
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 @endsection
 @section('content')
 <style>
@@ -141,7 +142,7 @@
                         <b style="text-align:center; font-size:22px; color:#243447;">List of Hospital</b>
                         <br/>
                         <br/>
-                        <table id="tableSearch" class="table-striped" style="width: 100%;">
+                        <table class="table-striped table-bordered" id="tableSearch" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                             <thead>
                             <tr role="row">
                                 <th style="text-align:center;">ID</th>
@@ -174,9 +175,30 @@
     <script>
         var content_1 = {!! json_encode($table_resultSearch) !!};
         if(content_1 != null || content_1 != ''){
-            $('#tableSearch tbody').html(content_1);
+            $(document).ready( function () {
+                $('#tableSearch tbody').html(content_1);
+                $('#tableSearch').DataTable({
+                    "sScrollX": "100%",
+                    "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+                    "order": [[ 5, "desc" ]]
+                });
+            });
         }
     </script>
+    <style>
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: none;
+            border: none;
+            color: black!important;
+            /*change the hover text color*/
+        }
+        /*below block of css for change style when active*/
+        .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: none;
+        border: none;
+        color: black!important;
+        }
+    </style>
     
     <?php
     }
