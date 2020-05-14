@@ -62,7 +62,7 @@
             <div class="card">
                 <div class="card-body" style="padding-top:10px; padding-bottom:10px;">
                         <span id="change-level">Please Choose level :</span>
-                        <button class="btn invisible" id="GPU_to_TPU" style="background-color:#337ab7; color:white;">GPU > TPU</button>
+                        <button class="btn invisible" id="GPU_to_TPU" style="background-color:#5c5cb8; color:white;">GPU > TPU</button>
                         <button class="btn invisible" id="TPU_to_GPU" style="background-color:#5cb85c; color:white;">TPU > GPU</button>
                         <button class="btn" id="GPU" style="background-color:#5cb85c; color:white;">GPU</button>
                         <button class="btn" id="TPU" style="background-color:#5c5cb8; color:white;">TPU</button>
@@ -179,7 +179,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Cost Saving</h4>
-                    <div class="card col-md-5 center" style="background-color:#74d680;">
+                    <div class="card col-md-5 center" style="background-color:#8CDFAC;">
                         <span id="total_sc" style="text-align:center; color:black; font-size:16px;"></span>
                     </div>
                     <!-- Cost Saving table -->
@@ -392,7 +392,7 @@
                     donut:{label:{show:!1},
                     title: "Total "+total,width:20},
                     legend:{hide:!0},
-                    color:{pattern:["#77aaff","#74d680","#f9d62e","#ffdfba","#ff7878","#B1B2B3"]}
+                    color:{pattern:["#5f76e8","#01caf1","#60C687","#F5C378","#ff4f70","#edf2f6"]}
                 });
                 //table for Donut
                 $('#Table_quan_donut thead').html(Donut_thead_GPU);
@@ -411,7 +411,8 @@
                     ]);
                     var options = {
                     fontName:'Rubik',
-                    legend: { position: 'bottom' }
+                    legend: { position: 'bottom' },
+                    colors: ['#5f76e8', '#ff4f70']
                     };
                     var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
 
@@ -441,9 +442,9 @@
                         tooltip:{show:!0}
                     },
                     donut:{label:{show:!1},
-                    title: "Total "+total,width:30},
+                    title: "Total "+total,width:20},
                     legend:{hide:!0},
-                    color:{pattern:["#5f76e8","#ffa376","#74d680","#ffc2cd","#ff4f70","#edf2f6"]}
+                    color:{pattern:["#5f76e8","#01caf1","#60C687","#F5C378","#ff4f70","#edf2f6"]}
                 });
                 //table for Donut
                 $('#Table_quan_donut thead').html(Donut_thead_TPU);
@@ -462,7 +463,8 @@
                     ]);
                     var options = {
                     fontName:'Rubik',
-                    legend: { position: 'bottom' }
+                    legend: { position: 'bottom' },
+                    colors: ['#5f76e8', '#ff4f70']
                     };
 
                     var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
@@ -489,7 +491,7 @@
                     donut:{label:{show:!1},
                     title: "Total "+total,width:20},
                     legend:{hide:!0},
-                    color:{pattern:["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]}
+                    color:{pattern:["#5f76e8","#01caf1","#60C687","#F5C378","#ff4f70","#edf2f6"]}
                 });
                 //table for Donut
                 $('#Table_quan_donut thead').html(Donut_thead_TPU);
@@ -509,7 +511,8 @@
                     ]);
                     var options = {
                     fontName:'Rubik',
-                    legend: { position: 'bottom' }
+                    legend: { position: 'bottom' },
+                    colors: ['#5f76e8', '#ff4f70']
                     };
 
                     var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
@@ -536,7 +539,7 @@
                     donut:{label:{show:!1},
                     title: "Total "+total,width:20},
                     legend:{hide:!0},
-                    color:{pattern:["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"]}
+                    color:{pattern:["#5f76e8","#01caf1","#60C687","#F5C378","#ff4f70","#edf2f6"]}
                 });
                 //table for Donut
                 $('#Table_quan_donut thead').html(Donut_thead_GPU);
@@ -556,7 +559,8 @@
                     ]);
                     var options = {
                     fontName:'Rubik',
-                    legend: { position: 'bottom' }
+                    legend: { position: 'bottom' },
+                    colors: ['#5f76e8', '#ff4f70']
                     };
 
                     var chart = new google.visualization.LineChart(document.getElementById('line_chart'));

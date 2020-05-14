@@ -134,12 +134,13 @@ class HospitalDashboardController extends Controller
 
     function table_GPU_Donut_Hospital($result){
         $content = '';
-        $color = ["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"];
+        $color = ["#5f76e8","#01caf1","#60C687","#F5C378","#ff4f70"];
+
         for ($i = 0; $i < Count($result) ; $i++) {
             
-            if($i>=6){
-                $col = "#ffffff00";
-            }else{
+            if($i>=5){
+                $col = "#edf2f6";
+            }else if($i<=4){
                 $col = $color[$i];
             }
             $content .= '<tr>';
@@ -154,11 +155,11 @@ class HospitalDashboardController extends Controller
     }
     function table_TPU_Donut_Hospital($result){
         $content = '';
-        $color = ["#edf2f6","#5f76e8","#ff4f70","#01caf1","yellow","pink"];
+        $color = ["#5f76e8","#01caf1","#60C687","#F5C378","#ff4f70"];
         for ($i = 0; $i < Count($result) ; $i++) {
-            if($i>=6){
-                $col = "#ffffff00";
-            }else{
+            if($i>=5){
+                $col = "#edf2f6";
+            }else if($i<=4){
                 $col = $color[$i];
             }
             $content .= '<tr>';
