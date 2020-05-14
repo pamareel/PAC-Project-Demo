@@ -48,7 +48,11 @@ class SearchController extends Controller
                 
             }else{
                 ////// table show //////////////////////////////////////////////////////////////////////
-                $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
+                $statement = "select BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, ";
+                $statement .= "Total_Amount, FORMAT(Total_Amount, N'N0') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
+                $statement .= "from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
+
+                // $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
                 $resultSearch = DB::select($statement);
             }
             $r1 = $this->find_Stack_Data(1,$year,$GT,$Dname,$method);
@@ -2400,7 +2404,7 @@ class SearchController extends Controller
     }
     function tableForTypeHos($query){
         $size_hospital_name = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'Undefined'];
-        $color = ['A'=>'purple', 'S'=>'blue', 'M1'=>'green', 'M2'=>'yellow', 'F1'=>'orange', 'F2'=>'red', 'F3'=>'pink', 'Undefined'=>'black'];
+        $color = ['A'=>'#c44085', 'S'=>'#e08fc6', 'M1'=>'#ffcd74', 'M2'=>'#f0882f', 'F1'=>'#3d8b3d', 'F2'=>'#73d15c', 'F3'=>'#769eda', 'Undefined'=>'#4763bd'];
         $tableForTypeHos_result = [];
         $content = '';
         foreach($size_hospital_name as $s){
