@@ -27,7 +27,7 @@ class SearchController extends Controller
             $method = $_GET['method'];
             $GT = $_GET['GT'];
             $Dname= $_GET['Dname'];
-            $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$Dname."";
+            
 
             if($GT == 'GPU'){
                 $Dname = $Dname.'%';
@@ -55,6 +55,12 @@ class SearchController extends Controller
                 // $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
                 $resultSearch = DB::select($statement);
             }
+            if($GT == 'GPU'){
+                $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$resultSearch[0]->GPU_NAME."";
+            }else if($GT == 'TPU'){
+                $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$resultSearch[0]->TPU_NAME."";
+            }
+
             $r1 = $this->find_Stack_Data(1,$year,$GT,$Dname,$method);
             $r1_count = $this->r_count($r1);
             $r2 = $this->find_Stack_Data(2,$year,$GT,$Dname,$method);

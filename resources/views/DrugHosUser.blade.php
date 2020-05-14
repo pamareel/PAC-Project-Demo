@@ -244,6 +244,10 @@
         });
     </script>
     <?php
+    }else{
+    ?>
+        <script>alert('No Data, Please select again');</script>
+    <?php
     }
     ?>
     <!-- *************************************************************** -->
