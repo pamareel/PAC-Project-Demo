@@ -16,6 +16,8 @@ use App\Charts\SampleChart;
 
 Route::get('/', 'DashboardController@dashboard_default');
 Route::get('/DashboardPage', 'DashboardController@dashboard_default')->name('dashboardpage');
+// Dashboard
+Route::get('/policy/{TGX}', 'DashboardController@index');
 
 // Route::get('/DashboardPage', function () {
 //     return view('Dashboard-GPU');
@@ -28,22 +30,25 @@ Route::get('/DrugPage', function () {
 //Search Filter in DrugPage 
 Route::get('/search', 'SearchController@index');
 
-
 // Route::get('/HospitalPage', function () {
 //     return view('hospitalpage');
 // })->name('hospitalpage');
+
 Route::get('/HospitalPage', 'HospitalController@filter')->name('hospitalpage');
 //Search Filter in HospitalPage 
 Route::get('/searchHos', 'HospitalController@index');
-
 // Hospital Dashboard Page
 Route::get('/HospitalDashboardPage', function () {
     return view('HospitalDashboardPage');
 })->name('HospitalDashboardPage');
 Route::get('/hospitalDashboard/{year}/{Hname}', 'HospitalDashboardController@index');
 
-// Dashboard
-Route::get('/policy/{TGX}', 'DashboardController@index');
+//Hospital User Drug Page
+Route::get('/DrugPageHosUser', function () {
+    return view('DrugHosUser');
+})->name('DrugPageHosUser');
+//Search Filter in DrugPage 
+Route::get('/searchDrugHosUser', 'HosUserDrugController@index');
 
 Route::get('/policy', 'DashboardController@policy')->name('policy_dashboard');
 Route::get('/ebidding', 'EbiddingController@getEbiddingInfo');
