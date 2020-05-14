@@ -5111,7 +5111,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
                                                 <?php
-                                                if ($resultThaiMap[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap[$i]->T_Total_Amount }}</td>
 
@@ -5142,7 +5142,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg1[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg1[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->T_Total_Amount }}</td>
 
@@ -5236,7 +5236,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg4[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg4[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg4[$i]->T_Total_Amount }}</td>
 
@@ -5268,7 +5268,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg5[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg5[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg5[$i]->T_Total_Amount }}</td>
 
@@ -5300,7 +5300,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg6[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg6[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg6[$i]->T_Total_Amount }}</td>
 
@@ -5332,7 +5332,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg7[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg7[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg7[$i]->T_Total_Amount }}</td>
 
@@ -5372,7 +5372,7 @@
                                                     <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
                                                 <?php
                                                 }
-                                                if ($resultThaiMap_Reg8[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg8[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg8[$i]->T_Total_Amount }}</td>
 
@@ -5404,7 +5404,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg9[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg9[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg9[$i]->T_Total_Amount }}</td>
 
@@ -5436,7 +5436,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg10[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg10[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg10[$i]->T_Total_Amount }}</td>
 
@@ -5468,7 +5468,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg11[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg11[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg11[$i]->T_Total_Amount }}</td>
 
@@ -5500,7 +5500,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg12[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg12[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg12[$i]->T_Total_Amount }}</td>
 
@@ -5532,7 +5532,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
                                                 <?php
-                                                if ($resultThaiMap_Reg13[$i]->T_Total_Amount != NULL){
+                                                if ($resultThaiMap_Reg13[$i]->Total_Amount != NULL){
                                                 ?>
                                                     <td style="text-align:right;">{{ $resultThaiMap_Reg13[$i]->T_Total_Amount }}</td>
 
