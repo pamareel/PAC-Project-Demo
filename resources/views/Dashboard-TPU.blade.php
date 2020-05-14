@@ -440,7 +440,7 @@
         <div class="col-md-12" id="CostSave_Hos">
             <div class="card">
                 <div class="card-body">
-                    <h4 style="color:black; text-align:center;">Cost Saving</h4>
+                    <h4 class="card-title" style="color:black; text-align:center;">Cost Saving</h4>
                     <div class="card col-md-5 center" style="background-color:#8CDFAC;">
                         <span id="total_sc" style="text-align:center; color:black;">Total potential cost saving = {{ $totalPotentialSave_TPU }} THB</span>
                     </div>

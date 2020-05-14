@@ -226,7 +226,7 @@
                         {{ $chartLow_Size[6] }}, {{ $chartLow_Size[7] }}],
                     backgroundColor:'#cf2620',
                     borderWidth:1,
-                    borderColor:'#777',
+                    borderColor:'#ffffff00',
                     hoverBorderWidth:3,
                     hoverBorderColor:'#000'
                 },
@@ -237,7 +237,7 @@
                         {{ $chartMed_Size[6] }}, {{ $chartMed_Size[7] }}],
                     backgroundColor:'#ff8f1d',
                     borderWidth:1,
-                    borderColor:'#777',
+                    borderColor:'#ffffff00',
                     hoverBorderWidth:3,
                     hoverBorderColor:'#000'
                 },{
@@ -247,17 +247,12 @@
                         {{ $chartHigh_Size[6] }}, {{ $chartHigh_Size[7] }}],
                     backgroundColor:'#4aab57',
                     borderWidth:1,
-                    borderColor:'#777',
+                    borderColor:'#ffffff00',
                     hoverBorderWidth:3,
                     hoverBorderColor:'#000'
                 }],
             },
             options:{
-                title:{
-                    display:true,
-                    text:'Purchasing Power in Thailand',
-                    fontSize:25
-                },
                 scales: {
                     xAxes: [{ stacked: true }],
                     yAxes: [{ stacked: true, 
@@ -291,7 +286,7 @@
                 },
             }
         };
-        var color_d = {'A':'purple', 'S':'blue', 'M1':'#4aab57', 'M2':'yellow', 'F1':'orange', 'F2':'red', 'F3':'pink', 'Undefined':'black'};
+        var color_d = {'A':'#c44085', 'S':'#e08fc6', 'M1':'#ffcd74', 'M2':'#f0882f', 'F1':'#3d8b3d', 'F2':'#73d15c', 'F3':'#769eda', 'Undefined':'#4763bd'};
         $(document).ready(function() {
             Chart.defaults.global.defaultFontFamily = '"Rubik", sans-serif';
             // Start Size of Hospital ///////
@@ -672,6 +667,7 @@
                     <br/>
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                         <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
+                            <h3 class="card-title" id="pp_region" style="color:black; text-align:center;">Purchasing Power in Thailand</h3>
                             <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                                 <?php
                                 if(isset($chartHighPercent) || isset($chartMedPercent) || isset($chartLowPercent)){
@@ -695,8 +691,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <button class="btn" id="backButton_Type" style="backgound-color:#d9534f;">&lt; Drill Up</button>
-                    <h4 id="Size_Donut_title" style="color:black; text-align:center;"></h4>
+                    <button class="btn" id="backButton_Type" style="background-color:#00aaee; color:white;">&lt; Drill Up</button>
+                    <h4 class="card-title" id="Size_Donut_title" style="color:black; text-align:center;"></h4>
                     <div class='row center'>
                         <div id="size_quan_donut_all" class="mt-2 col-md-7 center" style="height:283px; width:60%;"></div>
                         <div class="col-md-5 center">
@@ -716,7 +712,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 style="color:black; text-align:center;">List of Hospital</h4>
+                    <h4 class="card-title" style="color:black; text-align:center;">List of Hospital</h4>
                     <div class='row center'>
                         <table id="drill_down_table_type" style="width: 100%;" role="grid">
                             <thead>
@@ -744,7 +740,7 @@
         <div class="col-md-7">
             <div class="card">
                 <div class="card-body">
-                    <h4 id="Size_Donut" style="color:black; text-align:center;">Purchasing Quantity</h4>
+                    <h4 class="card-title" id="Size_Donut" style="color:black; text-align:center;">Purchasing Quantity</h4>
                     <div class='row center'>
                         <div id="size_quan_donut" class="mt-2 col-md-7 center" style="height:283px; width:60%;"></div>
                         <div class="center" style="width: 100%;">
@@ -818,12 +814,6 @@
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Thailand',
-                        fontSize:25,
-                        fontColor:'#4c4c4c',
-                    },
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -877,7 +867,7 @@
                             {{ $chartLowPercent_1[6] }}, {{ $chartLowPercent_1[7] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -888,7 +878,7 @@
                             {{ $chartMedPercent_1[6] }}, {{ $chartMedPercent_1[7] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -898,17 +888,12 @@
                             {{ $chartHighPercent_1[6] }}, {{ $chartHighPercent_1[7] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 1',
-                        fontSize:25,
-                    },
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -955,7 +940,7 @@
                             {{ $chartLowPercent_2[3] }}, {{ $chartLowPercent_2[4] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -965,7 +950,7 @@
                             {{ $chartMedPercent_2[3] }}, {{ $chartMedPercent_2[4] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -974,17 +959,13 @@
                             {{ $chartHighPercent_2[3] }}, {{ $chartHighPercent_2[4] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 2',
-                        fontSize:25,
-                    },
+                    
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1031,7 +1012,7 @@
                             {{ $chartLowPercent_3[3] }}, {{ $chartLowPercent_3[4] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1041,7 +1022,7 @@
                             {{ $chartMedPercent_3[3] }}, {{ $chartMedPercent_3[4] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1050,17 +1031,13 @@
                             {{ $chartHighPercent_3[3] }}, {{ $chartHighPercent_3[4] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 3',
-                        fontSize:25,
-                    },
+                    
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1109,7 +1086,7 @@
                             {{ $chartLowPercent_4[6] }}, {{ $chartLowPercent_4[7] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1120,7 +1097,7 @@
                             {{ $chartMedPercent_4[6] }}, {{ $chartMedPercent_4[7] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1130,17 +1107,13 @@
                             {{ $chartHighPercent_4[6] }}, {{ $chartHighPercent_4[7] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 4',
-                        fontSize:25,
-                    },
+                   
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1189,7 +1162,7 @@
                             {{ $chartLowPercent_5[6] }}, {{ $chartLowPercent_5[7] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1200,7 +1173,7 @@
                             {{ $chartMedPercent_5[6] }}, {{ $chartMedPercent_5[7] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1210,17 +1183,13 @@
                             {{ $chartHighPercent_5[6] }}, {{ $chartHighPercent_5[7] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 5',
-                        fontSize:25,
-                    },
+                    
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1269,7 +1238,7 @@
                             {{ $chartLowPercent_6[6] }}, {{ $chartLowPercent_6[7] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1280,7 +1249,7 @@
                             {{ $chartMedPercent_6[6] }}, {{ $chartMedPercent_6[7] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1290,17 +1259,13 @@
                             {{ $chartHighPercent_6[6] }}, {{ $chartHighPercent_6[7] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 6',
-                        fontSize:25,
-                    },
+                   
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1347,7 +1312,7 @@
                             {{ $chartLowPercent_7[3] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1357,7 +1322,7 @@
                             {{ $chartMedPercent_7[3] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1366,17 +1331,13 @@
                             {{ $chartHighPercent_7[3] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 7',
-                        fontSize:25,
-                    },
+                    
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1424,7 +1385,7 @@
                             {{ $chartLowPercent_8[3] }}, {{ $chartLowPercent_8[4] }}, {{ $chartLowPercent_8[5] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1434,7 +1395,7 @@
                             {{ $chartMedPercent_8[3] }}, {{ $chartMedPercent_8[4] }}, {{ $chartMedPercent_8[5] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1443,17 +1404,13 @@
                             {{ $chartHighPercent_8[3] }}, {{ $chartHighPercent_8[4] }}, {{ $chartHighPercent_8[5] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 8',
-                        fontSize:25,
-                    },
+                    
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1500,7 +1457,7 @@
                             {{ $chartLowPercent_9[3] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1510,7 +1467,7 @@
                             {{ $chartMedPercent_9[3] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1519,17 +1476,13 @@
                             {{ $chartHighPercent_9[3] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 9',
-                        fontSize:25,
-                    },
+                    
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1576,7 +1529,7 @@
                             {{ $chartLowPercent_10[3] }}, {{ $chartLowPercent_10[4] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1586,7 +1539,7 @@
                             {{ $chartMedPercent_10[3] }}, {{ $chartMedPercent_10[4] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1595,17 +1548,13 @@
                             {{ $chartHighPercent_10[3] }}, {{ $chartHighPercent_10[4] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 10',
-                        fontSize:25,
-                    },
+                    
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1654,7 +1603,7 @@
                             {{ $chartLowPercent_11[6] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1665,7 +1614,7 @@
                             {{ $chartMedPercent_11[6] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1675,17 +1624,13 @@
                             {{ $chartHighPercent_11[6] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 11',
-                        fontSize:25,
-                    },
+                    
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1734,7 +1679,7 @@
                             {{ $chartLowPercent_12[6] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1745,7 +1690,7 @@
                             {{ $chartMedPercent_12[6] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1755,17 +1700,13 @@
                             {{ $chartHighPercent_12[6] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 12',
-                        fontSize:25,
-                    },
+                    
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -1811,7 +1752,7 @@
                         data: [{{ $chartLowPercent_13[0] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -1820,7 +1761,7 @@
                         data: [{{ $chartMedPercent_13[0] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -1828,17 +1769,12 @@
                         data:[{{ $chartHighPercent_13[0] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
                 },
                 options:{
-                    title:{
-                        display:true,
-                        text:'Purchasing Power in Region 13',
-                        fontSize:25,
-                    },
                     scales: {
                         xAxes: [{ stacked: true }],
                         yAxes: [{ stacked: true, 
@@ -3108,6 +3044,7 @@
                         $("#Map_Quan_Region_1").removeClass('invisible');   
                         $('#vmapTH_pri_r1').removeClass('invisible');   
                         $("#Map_Pri_Region_1").removeClass('invisible');   
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 1";
                         var myChart_1 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_1 = new Chart(myChart_1, optionData_Region1);
                     }else if(Region_2.includes(code)) {
@@ -3115,6 +3052,7 @@
                         $("#Map_Quan_Region_2").removeClass('invisible');  
                         $('#vmapTH_pri_r2').removeClass('invisible');  
                         $("#Map_Pri_Region_2").removeClass('invisible'); 
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 2";
                         var myChart_2 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_2 = new Chart(myChart_2, optionData_Region2); 
                     }else if(Region_3.includes(code)) {
@@ -3122,6 +3060,7 @@
                         $("#Map_Quan_Region_3").removeClass('invisible');   
                         $('#vmapTH_pri_r3').removeClass('invisible');   
                         $("#Map_Pri_Region_3").removeClass('invisible');
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 3";
                         var myChart_3 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_3 = new Chart(myChart_3, optionData_Region3);
                     }else if(Region_4.includes(code)) {
@@ -3129,6 +3068,7 @@
                         $("#Map_Quan_Region_4").removeClass('invisible');  
                         $('#vmapTH_pri_r4').removeClass('invisible');  
                         $("#Map_Pri_Region_4").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 4";
                         var myChart_4 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_4 = new Chart(myChart_4, optionData_Region4);
                     }else if(Region_5.includes(code)) {
@@ -3136,6 +3076,7 @@
                         $("#Map_Quan_Region_5").removeClass('invisible');  
                         $('#vmapTH_pri_r5').removeClass('invisible');  
                         $("#Map_Pri_Region_5").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 5";
                         var myChart_5 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_5 = new Chart(myChart_5, optionData_Region5);
                     }else if(Region_6.includes(code)) {
@@ -3143,13 +3084,15 @@
                         $("#Map_Quan_Region_6").removeClass('invisible'); 
                         $('#vmapTH_pri_r6').removeClass('invisible');  
                         $("#Map_Pri_Region_6").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 6";
                         var myChart_6 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_6 = new Chart(myChart_6, optionData_Region6);
                     }else if(Region_7.includes(code)) {
                         $('#vmapTH_quan_r7').removeClass('invisible');   
                         $("#Map_Quan_Region_7").removeClass('invisible');   
                         $('#vmapTH_pri_r7').removeClass('invisible');   
-                        $("#Map_Pri_Region_7").removeClass('invisible');   
+                        $("#Map_Pri_Region_7").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 7";
                         var myChart_7 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_7 = new Chart(myChart_7, optionData_Region7);
                     }else if(Region_8.includes(code)) {
@@ -3157,6 +3100,7 @@
                         $("#Map_Quan_Region_8").removeClass('invisible');  
                         $('#vmapTH_pri_r8').removeClass('invisible');  
                         $("#Map_Pri_Region_8").removeClass('invisible'); 
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 8";
                         var myChart_8 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_8 = new Chart(myChart_8, optionData_Region8); 
                     }else if(Region_9.includes(code)) {
@@ -3164,6 +3108,7 @@
                         $("#Map_Quan_Region_9").removeClass('invisible');  
                         $('#vmapTH_pri_r9').removeClass('invisible');  
                         $("#Map_Pri_Region_9").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 9";
                         var myChart_9 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_9 = new Chart(myChart_9, optionData_Region9);
                     }else if(Region_10.includes(code)) {
@@ -3171,13 +3116,15 @@
                         $("#Map_Quan_Region_10").removeClass('invisible');  
                         $('#vmapTH_pri_r10').removeClass('invisible');  
                         $("#Map_Pri_Region_10").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 10";
                         var myChart_10 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_10 = new Chart(myChart_10, optionData_Region10);
                     }else if(Region_11.includes(code)) {
                         $('#vmapTH_quan_r11').removeClass('invisible');   
                         $("#Map_Quan_Region_11").removeClass('invisible');   
                         $('#vmapTH_pri_r11').removeClass('invisible');   
-                        $("#Map_Pri_Region_11").removeClass('invisible');   
+                        $("#Map_Pri_Region_11").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 11";
                         var myChart_11 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_11 = new Chart(myChart_11, optionData_Region11);
                     }else if(Region_12.includes(code)) {
@@ -3185,6 +3132,7 @@
                         $("#Map_Quan_Region_12").removeClass('invisible');  
                         $('#vmapTH_pri_r12').removeClass('invisible');  
                         $("#Map_Pri_Region_12").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 12";
                         var myChart_12 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_12 = new Chart(myChart_12, optionData_Region12);
                     }else if(Region_13.includes(code)) {
@@ -3192,6 +3140,7 @@
                         $("#Map_Quan_Region_13").removeClass('invisible');  
                         $('#vmapTH_pri_r13').removeClass('invisible');  
                         $("#Map_Pri_Region_13").removeClass('invisible');   
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 13";
                         var myChart_13 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_13 = new Chart(myChart_13, optionData_Region13);
                     }
@@ -4349,6 +4298,7 @@
                         $("#Map_Quan_Region_1").removeClass('invisible');   
                         $('#vmapTH_pri_r1').removeClass('invisible');   
                         $("#Map_Pri_Region_1").removeClass('invisible');   
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 1";
                         var myChart_1 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_1 = new Chart(myChart_1, optionData_Region1);
                     }else if(Region_2.includes(code)) {
@@ -4356,6 +4306,7 @@
                         $("#Map_Quan_Region_2").removeClass('invisible');  
                         $('#vmapTH_pri_r2').removeClass('invisible');  
                         $("#Map_Pri_Region_2").removeClass('invisible'); 
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 2";
                         var myChart_2 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_2 = new Chart(myChart_2, optionData_Region2); 
                     }else if(Region_3.includes(code)) {
@@ -4363,6 +4314,7 @@
                         $("#Map_Quan_Region_3").removeClass('invisible');   
                         $('#vmapTH_pri_r3').removeClass('invisible');   
                         $("#Map_Pri_Region_3").removeClass('invisible');
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 3";
                         var myChart_3 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_3 = new Chart(myChart_3, optionData_Region3);
                     }else if(Region_4.includes(code)) {
@@ -4370,6 +4322,7 @@
                         $("#Map_Quan_Region_4").removeClass('invisible');  
                         $('#vmapTH_pri_r4').removeClass('invisible');  
                         $("#Map_Pri_Region_4").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 4";
                         var myChart_4 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_4 = new Chart(myChart_4, optionData_Region4);
                     }else if(Region_5.includes(code)) {
@@ -4377,6 +4330,7 @@
                         $("#Map_Quan_Region_5").removeClass('invisible');  
                         $('#vmapTH_pri_r5').removeClass('invisible');  
                         $("#Map_Pri_Region_5").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 5";
                         var myChart_5 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_5 = new Chart(myChart_5, optionData_Region5);
                     }else if(Region_6.includes(code)) {
@@ -4384,6 +4338,7 @@
                         $("#Map_Quan_Region_6").removeClass('invisible'); 
                         $('#vmapTH_pri_r6').removeClass('invisible');  
                         $("#Map_Pri_Region_6").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 6";
                         var myChart_6 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_6 = new Chart(myChart_6, optionData_Region6);
                     }else if(Region_7.includes(code)) {
@@ -4391,6 +4346,7 @@
                         $("#Map_Quan_Region_7").removeClass('invisible');   
                         $('#vmapTH_pri_r7').removeClass('invisible');   
                         $("#Map_Pri_Region_7").removeClass('invisible');   
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 7";
                         var myChart_7 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_7 = new Chart(myChart_7, optionData_Region7);
                     }else if(Region_8.includes(code)) {
@@ -4398,6 +4354,7 @@
                         $("#Map_Quan_Region_8").removeClass('invisible');  
                         $('#vmapTH_pri_r8').removeClass('invisible');  
                         $("#Map_Pri_Region_8").removeClass('invisible'); 
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 8";
                         var myChart_8 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_8 = new Chart(myChart_8, optionData_Region8); 
                     }else if(Region_9.includes(code)) {
@@ -4405,6 +4362,7 @@
                         $("#Map_Quan_Region_9").removeClass('invisible');  
                         $('#vmapTH_pri_r9').removeClass('invisible');  
                         $("#Map_Pri_Region_9").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 9";
                         var myChart_9 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_9 = new Chart(myChart_9, optionData_Region9);
                     }else if(Region_10.includes(code)) {
@@ -4412,13 +4370,15 @@
                         $("#Map_Quan_Region_10").removeClass('invisible');  
                         $('#vmapTH_pri_r10').removeClass('invisible');  
                         $("#Map_Pri_Region_10").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 10";
                         var myChart_10 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_10 = new Chart(myChart_10, optionData_Region10);
                     }else if(Region_11.includes(code)) {
                         $('#vmapTH_quan_r11').removeClass('invisible');   
                         $("#Map_Quan_Region_11").removeClass('invisible');   
                         $('#vmapTH_pri_r11').removeClass('invisible');   
-                        $("#Map_Pri_Region_11").removeClass('invisible');   
+                        $("#Map_Pri_Region_11").removeClass('invisible');
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 11";   
                         var myChart_11 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_11 = new Chart(myChart_11, optionData_Region11);
                     }else if(Region_12.includes(code)) {
@@ -4426,13 +4386,15 @@
                         $("#Map_Quan_Region_12").removeClass('invisible');  
                         $('#vmapTH_pri_r12').removeClass('invisible');  
                         $("#Map_Pri_Region_12").removeClass('invisible');  
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 12";
                         var myChart_12 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_12 = new Chart(myChart_12, optionData_Region12);
                     }else if(Region_13.includes(code)) {
                         $('#vmapTH_quan_r13').removeClass('invisible');  
                         $("#Map_Quan_Region_13").removeClass('invisible');  
                         $('#vmapTH_pri_r13').removeClass('invisible');  
-                        $("#Map_Pri_Region_13").removeClass('invisible');   
+                        $("#Map_Pri_Region_13").removeClass('invisible'); 
+                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 13";  
                         var myChart_13 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_13 = new Chart(myChart_13, optionData_Region13);
                     }
@@ -4482,6 +4444,7 @@
                 $('#vmapTH_pri').toggleClass("invisible");
                 $("#Map_Pri_TH").toggleClass("invisible");
                 $("#Region_To_Size").removeClass("invisible");
+                document.getElementById("pp_region").innerHTML = "Purchasing Power in Thailand";
                 if(!document.getElementById('vmapTH_quan_r1').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r1').classList.contains('invisible')){
                     $('#vmapTH_quan_r1').addClass('invisible');   
                     $('#Map_Quan_Region_1').addClass('invisible');   
@@ -4614,7 +4577,7 @@
             <div class="card">
                 <div class="card-body">
                     <button class="btn" id="backButton2" style="background-color:#00aaee; color:white;">&lt; Drill Up</button>
-                    <h4 id="Title_Donut" style="color:black; text-align:center;"></h4>
+                    <h4 class="card-title" id="Title_Donut" style="color:black; text-align:center;"></h4>
                     <div class='row center' >
                         <div id="purchasing_power_donut" class="mt-2 col-md-6 center" style="height:283px; width:60%;"></div>
                         <div class="col-md-5 center">
@@ -4634,7 +4597,7 @@
         <div class="col-md-7 col-lg-6" id = 'Price_by_Region'>
             <div class="card">
                 <div class="card-body">
-                    <h3 style="text-align:center;">Price by region</h3>
+                    <h3 class="card-title" style="text-align:center;">Price by region</h3>
                     <button class="btn invisible" id="backButton" style="background-color:#00aaee;">&lt; Drill Up</button>
                     <div class="row col-lg-12" style="margin:auto; align:center;">
                         <div class="row col-lg-7" style="margin:auto;">
@@ -5109,7 +5072,7 @@
         <div class="col-md-7 col-lg-6" id = 'Quantity_by_Region'>
             <div class="card">
                 <div class="card-body">
-                    <h3 style="text-align:center;">Quantity by region</h3>
+                    <h3 class="card-title" style="text-align:center;">Quantity by region</h3>
                     <div class="row col-lg-12" style="margin:auto; align:center;">
                         <div class="row col-lg-7" style="margin:auto;">
                             <div id="vmapTH_quan" style="width: 180px; height: 280px; border-radius: 10px;"></div>
@@ -5595,7 +5558,7 @@
         <div class="col-md-12 col-lg-12 invisible" id = 'Table_Hos_by_Province'>
             <div class="card">
                 <div class="card-body">
-                    <h3 style="text-align:center; color:black;">List of Hospital</h3>
+                    <h3 class="card-title" style="text-align:center; color:black;">List of Hospital</h3>
                     <br/>
                     <table class="table-white table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                         <thead>
@@ -5622,7 +5585,7 @@
             <div class="card col-lg-12">
                 <div class="card-body">
                     <div style="margin:auto;">
-                        <h3 style="text-align:center; color:black;">Purchasing Quantity VS Number of Patient</h3>
+                        <h3 class="card-title" style="text-align:center; color:black;">Purchasing Quantity VS Number of Patient</h3>
                         <div id='corr' style="width: 100%; height: 350px;"></div>
                     </div>
                     <br>

@@ -2400,7 +2400,7 @@ class SearchController extends Controller
     }
     function tableForTypeHos($query){
         $size_hospital_name = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'Undefined'];
-        $color = ['A'=>'purple', 'S'=>'blue', 'M1'=>'green', 'M2'=>'yellow', 'F1'=>'orange', 'F2'=>'red', 'F3'=>'pink', 'Undefined'=>'black'];
+        $color = ['A'=>'#c44085', 'S'=>'#e08fc6', 'M1'=>'#ffcd74', 'M2'=>'#f0882f', 'F1'=>'#3d8b3d', 'F2'=>'#73d15c', 'F3'=>'#769eda', 'Undefined'=>'#4763bd'];
         $tableForTypeHos_result = [];
         $content = '';
         foreach($size_hospital_name as $s){

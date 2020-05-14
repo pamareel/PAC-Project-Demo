@@ -39,7 +39,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-md-12">
-            <h3 style="color:#090b17;">{{ $Hname }} ({{ $Year }})</h3>
+            <h3 class="card-title"  style="color:#090b17;">{{ $Hname }} ({{ $Year }})</h3>
         </div>
     </div>
     <div class="row col-lg-12">
@@ -119,7 +119,7 @@
         <div class="col-md-7 invisible" id="Donut_hoss">
             <div class="card">
                 <div class="card-body">
-                    <h4 style="color:black; text-align:center;">Drug Purchasing Quantity</h4>
+                    <h4 class="card-title" style="color:black; text-align:center;">Drug Purchasing Quantity</h4>
                     <div class='row center'>
                         <!-- donut chart -->
                         <div id="hos_drug_donut" class="mt-2 center" style="height:210px; width:100%; display:inline-block;"></div>
@@ -141,14 +141,14 @@
             <div class="col-lg-12 invisible" id="Overall_Drug_Perf_Total_spend_chart">
                 <div class="card">
                     <div class="card-body" style="width: 100%;">
-                        <h4 style="color:black; text-align:center;">Total Annual Spending</h4>
+                        <h4 class="card-title" style="color:black; text-align:center;">Total Annual Spending</h4>
                         <div id="line_chart" style="width: 100%; font-size:15px"></div>
                     </div>
                 </div>
             
                 <div class="card">
                     <div class="card-body">
-                        <h4 style="color:black; text-align:center;">Overall Drug Performance</h4>
+                        <h4 class="card-title" style="color:black; text-align:center;">Overall Drug Performance</h4>
                         <?php
                         if(isset($perfHighPercent) || isset($perfLowPercent)){
                         ?>
@@ -178,7 +178,7 @@
         <div class="col-md-12 invisible" id="CostSave_Hos">
             <div class="card">
                 <div class="card-body">
-                    <h4 style="color:black; text-align:center;">Cost Saving</h4>
+                    <h4 class="card-title" style="color:black; text-align:center;">Cost Saving</h4>
                     <div class="card col-md-5 center" style="background-color:#8CDFAC;">
                         <span id="total_sc" style="text-align:center; color:black; font-size:16px;"></span>
                     </div>
