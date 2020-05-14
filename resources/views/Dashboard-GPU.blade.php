@@ -269,8 +269,8 @@
                                 <thead>
                                     <tr role="row">
                                         <th width="5%" >GPU</th>
-                                        <th width="65%">Name</th> 
-                                        <th width="30%" >Avg Unit Price</th>
+                                        <th width="80%">Name</th> 
+                                        <th width="15%">Avg Unit Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>   
@@ -317,9 +317,8 @@
                         <div id="curve_chart"></div>
                     </div>
                 </div>
-            </div>     
-        </div>    
-
+            </div>        
+        
         <script type="text/javascript">
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawChart);
@@ -337,8 +336,8 @@
                 title: 'Total Annual Spending',
                 //   curveType: 'function',
                 legend: { position: 'none' },
-                width:500,
-                height:400,
+                width:400,
+                height:300,
                 vAxis: {gridlines: { count: 5 }}
                 };
                 window.onload = resize;

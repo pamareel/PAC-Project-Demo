@@ -223,14 +223,14 @@
                             <table class="table-striped table-bordered" id="datatable" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
-                                                <th>Name</th>
-                                                <th>GPU</th>
-                                                <th>Gini coeff</th>
+                                        <th width="5%">TPU</th>
+                                        <th width="80%">Name</th>
+                                        <th width="15%">Gini coeff</th>
                                     </tr>
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select('select TPU_NAME, TPU_ID, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_TPU
+                                        $query = DB::select('select TPU_ID, TPU_NAME, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_TPU
                                                                 where BUDGET_YEAR = 2562
                                                                 order by Gini DESC;');
                                         $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_TPU WHERE BUDGET_YEAR=2562;');
@@ -241,7 +241,7 @@
                                     <?php
                                             foreach($query[$i] as $x => $val) {
                                     ?>
-                                                <td width="40%">{{ $val }}</td>
+                                                <td>{{ $val }}</td>
                                                 <!-- echo "$x = $val<br>"; -->
                                     <?php
                                             };
@@ -273,14 +273,14 @@
                             <table class="table-striped table-bordered" id="datatable2" style="width: 100%;" role="grid" aria-describedby="default_order_info">
                                 <thead>
                                     <tr role="row">
-                                        <th>Name</th>
-                                        <th>TPU</th>
-                                        <th>Avg Unit Price</th>
+                                        <th width="5%" >TPU</th>
+                                        <th width="80%">Name</th> 
+                                        <th width="15%" >Avg Unit Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select('select TPU_NAME, TPU_ID, cast(Wavg_Unit_Price as decimal(18,2)) as Wavg_Unit_Price from TPU
+                                        $query = DB::select('select TPU_ID, TPU_NAME, cast(Wavg_Unit_Price as decimal(18,2)) as Wavg_Unit_Price from TPU
                                                                 where BUDGET_YEAR = 2562
                                                                 order by Wavg_Unit_Price DESC;');
                                         $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU where BUDGET_YEAR = 2562;');
@@ -291,7 +291,7 @@
                                         <?php
                                                 foreach($query[$i] as $x => $val) {
                                         ?>
-                                                    <td width="40%">{{ $val }}</td>
+                                                    <td>{{ $val }}</td>
                                                     <!-- echo "$x = $val<br>"; -->
                                         <?php
                                                 };
@@ -315,14 +315,13 @@
     <!-- Start Google line chart -->
     <!-- *************************************************************** -->
     <div class="row">
-            <div class="col-lg-7 col-md-12">
+            <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div id="curve_chart"></div>
                     </div>
                 </div>
-            </div>     
-        </div>    
+            </div>        
 
         <script type="text/javascript">
             google.charts.load('current', {'packages':['corechart']});
@@ -341,8 +340,8 @@
                 title: 'Total Annual Spending',
                 //   curveType: 'function',
                 legend: { position: 'none' },
-                width:500,
-                height:400,
+                width:400,
+                height:300,
                 vAxis: {gridlines: { count: 5 }}
                 };
 
@@ -419,6 +418,7 @@
                 </div>
             </div>
         </div>
+        </div> 
         <!-- End Drug Purchasing Amount -->
     </div>
     <!-- End Drug Purchasing Amount -->
