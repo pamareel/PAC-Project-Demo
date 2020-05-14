@@ -118,14 +118,14 @@
                     <tr role="row">
                         <!-- <th>BUDGET YEAR</th> -->
                         <!-- <th>Method</th> -->
-                        <th width="5%">GPU ID</th>
-                        <th width="35%">GPU NAME</th>
-                        <th width="5%">TPU ID</th>
-                        <th width="35%">TPU NAME</th>
-                        <th width="10%">Total Amount</th>
-                        <th width="5%">wavg unit price</th>
-                        <th width="10%">Total Spend</th>
-                        <th width="5%">Gini</th>
+                        <th width="5%" style="text-align:center;">GPU ID</th>
+                        <th width="35%" style="text-align:center;">GPU NAME</th>
+                        <th width="5%" style="text-align:center;">TPU ID</th>
+                        <th width="35%" style="text-align:center;">TPU NAME</th>
+                        <th width="10%" style="text-align:center;">Total Amount</th>
+                        <th width="5%" style="text-align:center;">wavg unit price</th>
+                        <th width="10%" style="text-align:center;">Total Spend</th>
+                        <th width="5%" style="text-align:center;">Gini</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -224,7 +224,7 @@
                     data: [{{ $chartLow_Size[0] }}, {{ $chartLow_Size[1] }}, {{ $chartLow_Size[2] }},
                         {{ $chartLow_Size[3] }}, {{ $chartLow_Size[4] }}, {{ $chartLow_Size[5] }},
                         {{ $chartLow_Size[6] }}, {{ $chartLow_Size[7] }}],
-                    backgroundColor:'red',
+                    backgroundColor:'#cf2620',
                     borderWidth:1,
                     borderColor:'#777',
                     hoverBorderWidth:3,
@@ -235,7 +235,7 @@
                     data: [ {{ $chartMed_Size[0] }} , {{ $chartMed_Size[1] }}, {{ $chartMed_Size[2] }},
                         {{ $chartMed_Size[3] }}, {{ $chartMed_Size[4] }}, {{ $chartMed_Size[5] }},
                         {{ $chartMed_Size[6] }}, {{ $chartMed_Size[7] }}],
-                    backgroundColor:'yellow',
+                    backgroundColor:'#ff8f1d',
                     borderWidth:1,
                     borderColor:'#777',
                     hoverBorderWidth:3,
@@ -245,7 +245,7 @@
                     data:[{{ $chartHigh_Size[0] }}, {{ $chartHigh_Size[1] }}, {{ $chartHigh_Size[2] }},
                         {{ $chartHigh_Size[3] }}, {{ $chartHigh_Size[4] }}, {{ $chartHigh_Size[5] }},
                         {{ $chartHigh_Size[6] }}, {{ $chartHigh_Size[7] }}],
-                    backgroundColor:'green',
+                    backgroundColor:'#4aab57',
                     borderWidth:1,
                     borderColor:'#777',
                     hoverBorderWidth:3,
@@ -291,7 +291,7 @@
                 },
             }
         };
-        var color_d = {'A':'purple', 'S':'blue', 'M1':'green', 'M2':'yellow', 'F1':'orange', 'F2':'red', 'F3':'pink', 'Undefined':'black'};
+        var color_d = {'A':'purple', 'S':'blue', 'M1':'#4aab57', 'M2':'yellow', 'F1':'orange', 'F2':'red', 'F3':'pink', 'Undefined':'black'};
         $(document).ready(function() {
             Chart.defaults.global.defaultFontFamily = '"Rubik", sans-serif';
             // Start Size of Hospital ///////
@@ -372,7 +372,7 @@
                         donut:{label:{show:!1},
                         title: total_1 + " Hospitals",width:50},
                         legend:{hide:!0},
-                        color:{pattern:["green","yellow","red"]},
+                        color:{pattern:["#4aab57","#ff8f1d","#cf2620"]},
                     });
                     //table
                     $('#drill_down_table_type tbody').html(content_1);
@@ -409,7 +409,7 @@
                         donut:{label:{show:!1},
                         title: total_1 + " Hospitals",width:50},
                         legend:{hide:!0},
-                        color:{pattern:["green","yellow","red"]},
+                        color:{pattern:["#4aab57","#ff8f1d","#cf2620"]},
                     });
                     //table
                     $('#drill_down_table_type tbody').html(content_1);
@@ -446,7 +446,7 @@
                         donut:{label:{show:!1},
                         title: total_1 + " Hospitals",width:50},
                         legend:{hide:!0},
-                        color:{pattern:["green","yellow","red"]},
+                        color:{pattern:["#4aab57","#ff8f1d","#cf2620"]},
                     });
                     //table
                     $('#drill_down_table_type tbody').html(content_1);
@@ -483,7 +483,7 @@
                         donut:{label:{show:!1},
                         title: total_1 + " Hospitals",width:50},
                         legend:{hide:!0},
-                        color:{pattern:["green","yellow","red"]},
+                        color:{pattern:["#4aab57","#ff8f1d","#cf2620"]},
                     });
                     //table
                     $('#drill_down_table_type tbody').html(content_1);
@@ -520,7 +520,7 @@
                         donut:{label:{show:!1},
                         title: total_1 + " Hospitals",width:50},
                         legend:{hide:!0},
-                        color:{pattern:["green","yellow","red"]},
+                        color:{pattern:["#4aab57","#ff8f1d","#cf2620"]},
                     });
                     //table
                     $('#drill_down_table_type tbody').html(content_1);
@@ -557,7 +557,7 @@
                         donut:{label:{show:!1},
                         title: total_1 + " Hospitals",width:50},
                         legend:{hide:!0},
-                        color:{pattern:["green","yellow","red"]},
+                        color:{pattern:["#4aab57","#ff8f1d","#cf2620"]},
                     });
                     //table
                     $('#drill_down_table_type tbody').html(content_1);
@@ -594,7 +594,7 @@
                         donut:{label:{show:!1},
                         title: total_1 + " Hospitals",width:50},
                         legend:{hide:!0},
-                        color:{pattern:["green","yellow","red"]},
+                        color:{pattern:["#4aab57","#ff8f1d","#cf2620"]},
                     });
                     //table
                     $('#drill_down_table_type tbody').html(content_1);
@@ -631,7 +631,7 @@
                         donut:{label:{show:!1},
                         title: total_1 + " Hospitals",width:50},
                         legend:{hide:!0},
-                        color:{pattern:["green","yellow","red"]},
+                        color:{pattern:["#4aab57","#ff8f1d","#cf2620"]},
                     });
                     //table
                     $('#drill_down_table_type tbody').html(content_1);
@@ -654,7 +654,7 @@
             <div class="card invisible" id="drill_down_type_button">
                 <div class="card-body" style="padding-top: 10px; padding-bottom: 3px; margin:auto;">
                     <h4>Drill Down&nbsp;&nbsp;
-                    <button class="btn" id="to_A">To A</button>
+                    <button class="btn" id="to_A" style="background-color:#c44085; color:white;">To A</button>
                     <button class="btn" id="to_S">To S</button>
                     <button class="btn" id="to_M1">To M1</button>
                     <button class="btn" id="to_M2">To M2</button>
@@ -667,7 +667,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <button class="btn" id="Region_To_Size">Region > Type of hospital</button>
+                    <button class="btn" id="Region_To_Size" style="background-color:#777fca; color:white;">Region > Type of hospital</button>
                     <button class="btn invisible" id="Size_To_Region">Type of hospital > Region</button>
                     <br/>
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
@@ -695,18 +695,18 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <button class="btn" id="backButton_Type">&lt; Drill Up</button>
+                    <button class="btn" id="backButton_Type" style="backgound-color:#d9534f;">&lt; Drill Up</button>
                     <h4 id="Size_Donut_title" style="color:black; text-align:center;"></h4>
                     <div class='row center'>
                         <div id="size_quan_donut_all" class="mt-2 col-md-7 center" style="height:283px; width:60%;"></div>
                         <div class="col-md-5 center">
-                            <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#4aab57;"></i>
                             <span class="text-muted" >Above Average</span>
                             <br/>
-                            <i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#ff8f1d;"></i>
                             <span class="text-muted" >Average = {{ $avg }} </span>
                             <br/>
-                            <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#cf2620;"></i>
                             <span class="text-muted" >Below Average</span>
                         </div>
                     </div>
@@ -785,9 +785,9 @@
                             {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}, {{ $chartLowPercent[8] }},
                             {{ $chartLowPercent[9] }}, {{ $chartLowPercent[10] }}, {{ $chartLowPercent[11] }},
                             {{ $chartLowPercent[12] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },
@@ -798,9 +798,9 @@
                             {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}, {{ $chartMedPercent[8] }},
                             {{ $chartMedPercent[9] }}, {{ $chartMedPercent[10] }}, {{ $chartMedPercent[11] }},
                             {{ $chartMedPercent[12] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
@@ -810,9 +810,9 @@
                             {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}, {{ $chartHighPercent[8] }},
                             {{ $chartHighPercent[9] }}, {{ $chartHighPercent[10] }}, {{ $chartHighPercent[11] }},
                             {{ $chartHighPercent[12] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
-                        borderColor:'#777',
+                        borderColor:'#ffffff00',
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     }],
@@ -822,6 +822,7 @@
                         display:true,
                         text:'Purchasing Power in Thailand',
                         fontSize:25,
+                        fontColor:'#4c4c4c',
                     },
                     scales: {
                         xAxes: [{ stacked: true }],
@@ -874,7 +875,7 @@
                         data: [{{ $chartLowPercent_1[0] }}, {{ $chartLowPercent_1[1] }}, {{ $chartLowPercent_1[2] }},
                             {{ $chartLowPercent_1[3] }}, {{ $chartLowPercent_1[4] }}, {{ $chartLowPercent_1[5] }},
                             {{ $chartLowPercent_1[6] }}, {{ $chartLowPercent_1[7] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -885,7 +886,7 @@
                         data: [{{ $chartMedPercent_1[0] }} , {{ $chartMedPercent_1[1] }}, {{ $chartMedPercent_1[2] }},
                             {{ $chartMedPercent_1[3] }}, {{ $chartMedPercent_1[4] }}, {{ $chartMedPercent_1[5] }},
                             {{ $chartMedPercent_1[6] }}, {{ $chartMedPercent_1[7] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -895,7 +896,7 @@
                         data:[{{ $chartHighPercent_1[0] }}, {{ $chartHighPercent_1[1] }}, {{ $chartHighPercent_1[2] }},
                             {{ $chartHighPercent_1[3] }}, {{ $chartHighPercent_1[4] }}, {{ $chartHighPercent_1[5] }},
                             {{ $chartHighPercent_1[6] }}, {{ $chartHighPercent_1[7] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -952,7 +953,7 @@
                         label:'Below Average',
                         data: [{{ $chartLowPercent_2[0] }}, {{ $chartLowPercent_2[1] }}, {{ $chartLowPercent_2[2] }},
                             {{ $chartLowPercent_2[3] }}, {{ $chartLowPercent_2[4] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -962,7 +963,7 @@
                         label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_2[0] }} , {{ $chartMedPercent_2[1] }}, {{ $chartMedPercent_2[2] }},
                             {{ $chartMedPercent_2[3] }}, {{ $chartMedPercent_2[4] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -971,7 +972,7 @@
                         label:'Above Average',
                         data:[{{ $chartHighPercent_2[0] }}, {{ $chartHighPercent_2[1] }}, {{ $chartHighPercent_2[2] }},
                             {{ $chartHighPercent_2[3] }}, {{ $chartHighPercent_2[4] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1028,7 +1029,7 @@
                         label:'Below Average',
                         data: [{{ $chartLowPercent_3[0] }}, {{ $chartLowPercent_3[1] }}, {{ $chartLowPercent_3[2] }},
                             {{ $chartLowPercent_3[3] }}, {{ $chartLowPercent_3[4] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1038,7 +1039,7 @@
                         label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_3[0] }} , {{ $chartMedPercent_3[1] }}, {{ $chartMedPercent_3[2] }},
                             {{ $chartMedPercent_3[3] }}, {{ $chartMedPercent_3[4] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1047,7 +1048,7 @@
                         label:'Above Average',
                         data:[{{ $chartHighPercent_3[0] }}, {{ $chartHighPercent_3[1] }}, {{ $chartHighPercent_3[2] }},
                             {{ $chartHighPercent_3[3] }}, {{ $chartHighPercent_3[4] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1106,7 +1107,7 @@
                         data: [{{ $chartLowPercent_4[0] }}, {{ $chartLowPercent_4[1] }}, {{ $chartLowPercent_4[2] }},
                             {{ $chartLowPercent_4[3] }}, {{ $chartLowPercent_4[4] }}, {{ $chartLowPercent_4[5] }},
                             {{ $chartLowPercent_4[6] }}, {{ $chartLowPercent_4[7] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1117,7 +1118,7 @@
                         data: [{{ $chartMedPercent_4[0] }} , {{ $chartMedPercent_4[1] }}, {{ $chartMedPercent_4[2] }},
                             {{ $chartMedPercent_4[3] }}, {{ $chartMedPercent_4[4] }}, {{ $chartMedPercent_4[5] }},
                             {{ $chartMedPercent_4[6] }}, {{ $chartMedPercent_4[7] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1127,7 +1128,7 @@
                         data:[{{ $chartHighPercent_4[0] }}, {{ $chartHighPercent_4[1] }}, {{ $chartHighPercent_4[2] }},
                             {{ $chartHighPercent_4[3] }}, {{ $chartHighPercent_4[4] }}, {{ $chartHighPercent_4[5] }},
                             {{ $chartHighPercent_4[6] }}, {{ $chartHighPercent_4[7] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1186,7 +1187,7 @@
                         data: [{{ $chartLowPercent_5[0] }}, {{ $chartLowPercent_5[1] }}, {{ $chartLowPercent_5[2] }},
                             {{ $chartLowPercent_5[3] }}, {{ $chartLowPercent_5[4] }}, {{ $chartLowPercent_5[5] }},
                             {{ $chartLowPercent_5[6] }}, {{ $chartLowPercent_5[7] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1197,7 +1198,7 @@
                         data: [{{ $chartMedPercent_5[0] }} , {{ $chartMedPercent_5[1] }}, {{ $chartMedPercent_5[2] }},
                             {{ $chartMedPercent_5[3] }}, {{ $chartMedPercent_5[4] }}, {{ $chartMedPercent_5[5] }},
                             {{ $chartMedPercent_5[6] }}, {{ $chartMedPercent_5[7] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1207,7 +1208,7 @@
                         data:[{{ $chartHighPercent_5[0] }}, {{ $chartHighPercent_5[1] }}, {{ $chartHighPercent_5[2] }},
                             {{ $chartHighPercent_5[3] }}, {{ $chartHighPercent_5[4] }}, {{ $chartHighPercent_5[5] }},
                             {{ $chartHighPercent_5[6] }}, {{ $chartHighPercent_5[7] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1266,7 +1267,7 @@
                         data: [{{ $chartLowPercent_6[0] }}, {{ $chartLowPercent_6[1] }}, {{ $chartLowPercent_6[2] }},
                             {{ $chartLowPercent_6[3] }}, {{ $chartLowPercent_6[4] }}, {{ $chartLowPercent_6[5] }},
                             {{ $chartLowPercent_6[6] }}, {{ $chartLowPercent_6[7] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1277,7 +1278,7 @@
                         data: [{{ $chartMedPercent_6[0] }} , {{ $chartMedPercent_6[1] }}, {{ $chartMedPercent_6[2] }},
                             {{ $chartMedPercent_6[3] }}, {{ $chartMedPercent_6[4] }}, {{ $chartMedPercent_6[5] }},
                             {{ $chartMedPercent_6[6] }}, {{ $chartMedPercent_6[7] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1287,7 +1288,7 @@
                         data:[{{ $chartHighPercent_6[0] }}, {{ $chartHighPercent_6[1] }}, {{ $chartHighPercent_6[2] }},
                             {{ $chartHighPercent_6[3] }}, {{ $chartHighPercent_6[4] }}, {{ $chartHighPercent_6[5] }},
                             {{ $chartHighPercent_6[6] }}, {{ $chartHighPercent_6[7] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1344,7 +1345,7 @@
                         label:'Below Average',
                         data: [{{ $chartLowPercent_7[0] }}, {{ $chartLowPercent_7[1] }}, {{ $chartLowPercent_7[2] }},
                             {{ $chartLowPercent_7[3] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1354,7 +1355,7 @@
                         label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_7[0] }} , {{ $chartMedPercent_7[1] }}, {{ $chartMedPercent_7[2] }},
                             {{ $chartMedPercent_7[3] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1363,7 +1364,7 @@
                         label:'Above Average',
                         data:[{{ $chartHighPercent_7[0] }}, {{ $chartHighPercent_7[1] }}, {{ $chartHighPercent_7[2] }},
                             {{ $chartHighPercent_7[3] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1421,7 +1422,7 @@
                         label:'Below Average',
                         data: [{{ $chartLowPercent_8[0] }}, {{ $chartLowPercent_8[1] }}, {{ $chartLowPercent_8[2] }},
                             {{ $chartLowPercent_8[3] }}, {{ $chartLowPercent_8[4] }}, {{ $chartLowPercent_8[5] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1431,7 +1432,7 @@
                         label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_8[0] }} , {{ $chartMedPercent_8[1] }}, {{ $chartMedPercent_8[2] }},
                             {{ $chartMedPercent_8[3] }}, {{ $chartMedPercent_8[4] }}, {{ $chartMedPercent_8[5] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1440,7 +1441,7 @@
                         label:'Above Average',
                         data:[{{ $chartHighPercent_8[0] }}, {{ $chartHighPercent_8[1] }}, {{ $chartHighPercent_8[2] }},
                             {{ $chartHighPercent_8[3] }}, {{ $chartHighPercent_8[4] }}, {{ $chartHighPercent_8[5] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1497,7 +1498,7 @@
                         label:'Below Average',
                         data: [{{ $chartLowPercent_9[0] }}, {{ $chartLowPercent_9[1] }}, {{ $chartLowPercent_9[2] }},
                             {{ $chartLowPercent_9[3] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1507,7 +1508,7 @@
                         label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_9[0] }} , {{ $chartMedPercent_9[1] }}, {{ $chartMedPercent_9[2] }},
                             {{ $chartMedPercent_9[3] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1516,7 +1517,7 @@
                         label:'Above Average',
                         data:[{{ $chartHighPercent_9[0] }}, {{ $chartHighPercent_9[1] }}, {{ $chartHighPercent_9[2] }},
                             {{ $chartHighPercent_9[3] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1573,7 +1574,7 @@
                         label:'Below Average',
                         data: [{{ $chartLowPercent_10[0] }}, {{ $chartLowPercent_10[1] }}, {{ $chartLowPercent_10[2] }},
                             {{ $chartLowPercent_10[3] }}, {{ $chartLowPercent_10[4] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1583,7 +1584,7 @@
                         label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_10[0] }} , {{ $chartMedPercent_10[1] }}, {{ $chartMedPercent_10[2] }},
                             {{ $chartMedPercent_10[3] }}, {{ $chartMedPercent_10[4] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1592,7 +1593,7 @@
                         label:'Above Average',
                         data:[{{ $chartHighPercent_10[0] }}, {{ $chartHighPercent_10[1] }}, {{ $chartHighPercent_10[2] }},
                             {{ $chartHighPercent_10[3] }}, {{ $chartHighPercent_10[4] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1651,7 +1652,7 @@
                         data: [{{ $chartLowPercent_11[0] }}, {{ $chartLowPercent_11[1] }}, {{ $chartLowPercent_11[2] }},
                             {{ $chartLowPercent_11[3] }}, {{ $chartLowPercent_11[4] }}, {{ $chartLowPercent_11[5] }},
                             {{ $chartLowPercent_11[6] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1662,7 +1663,7 @@
                         data: [{{ $chartMedPercent_11[0] }} , {{ $chartMedPercent_11[1] }}, {{ $chartMedPercent_11[2] }},
                             {{ $chartMedPercent_11[3] }}, {{ $chartMedPercent_11[4] }}, {{ $chartMedPercent_11[5] }},
                             {{ $chartMedPercent_11[6] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1672,7 +1673,7 @@
                         data:[{{ $chartHighPercent_11[0] }}, {{ $chartHighPercent_11[1] }}, {{ $chartHighPercent_11[2] }},
                             {{ $chartHighPercent_11[3] }}, {{ $chartHighPercent_11[4] }}, {{ $chartHighPercent_11[5] }},
                             {{ $chartHighPercent_11[6] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1731,7 +1732,7 @@
                         data: [{{ $chartLowPercent_12[0] }}, {{ $chartLowPercent_12[1] }}, {{ $chartLowPercent_12[2] }},
                             {{ $chartLowPercent_12[3] }}, {{ $chartLowPercent_12[4] }}, {{ $chartLowPercent_12[5] }},
                             {{ $chartLowPercent_12[6] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1742,7 +1743,7 @@
                         data: [{{ $chartMedPercent_12[0] }} , {{ $chartMedPercent_12[1] }}, {{ $chartMedPercent_12[2] }},
                             {{ $chartMedPercent_12[3] }}, {{ $chartMedPercent_12[4] }}, {{ $chartMedPercent_12[5] }},
                             {{ $chartMedPercent_12[6] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1752,7 +1753,7 @@
                         data:[{{ $chartHighPercent_12[0] }}, {{ $chartHighPercent_12[1] }}, {{ $chartHighPercent_12[2] }},
                             {{ $chartHighPercent_12[3] }}, {{ $chartHighPercent_12[4] }}, {{ $chartHighPercent_12[5] }},
                             {{ $chartHighPercent_12[6] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1808,7 +1809,7 @@
                     {
                         label:'Below Average',
                         data: [{{ $chartLowPercent_13[0] }}],
-                        backgroundColor:'red',
+                        backgroundColor:'#cf2620',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1817,7 +1818,7 @@
                     {
                         label:'Average = {{$avg}}',
                         data: [{{ $chartMedPercent_13[0] }}],
-                        backgroundColor:'yellow',
+                        backgroundColor:'#ff8f1d',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1825,7 +1826,7 @@
                     },{
                         label:'Above Average',
                         data:[{{ $chartHighPercent_13[0] }}],
-                        backgroundColor:'green',
+                        backgroundColor:'#4aab57',
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:3,
@@ -1891,7 +1892,7 @@
         var Region_11 = ['TH-86','TH-85','TH-84','TH-80','TH-82','TH-81','TH-83'];
         var Region_12 = ['TH-96','TH-94','TH-95','TH-90','TH-91','TH-93','TH-92'];
         var Region_13 = ['TH-10'];
-        // var coll = {"TH-30":"purple","TH-20":"yellow"};
+        // var coll = {"TH-30":"purple","TH-20":"#ff8f1d"};
         ////////////// TH ////////////////////
         var data_sets_pri = {!! json_encode($pri_array_all) !!};
         var data_sets_quan = {!! json_encode($quan_array_all) !!};
@@ -1953,9 +1954,9 @@
             google.charts.load('current', {'packages':['corechart']});
             $Reg1_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg1_pri,
@@ -2001,7 +2002,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]},
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]},
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_1);
@@ -2027,9 +2028,9 @@
             }
             $Reg2_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg2_pri,
@@ -2075,7 +2076,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_2);
@@ -2102,9 +2103,9 @@
             }
             $Reg3_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg3_pri,
@@ -2150,7 +2151,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_3);
@@ -2177,9 +2178,9 @@
             }
             $Reg4_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                hoverOpacity: 0.5,
+                backgroundColor: '#EAEFF3',
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg4_pri,
@@ -2225,7 +2226,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_4);
@@ -2252,9 +2253,9 @@
             }
             $Reg5_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg5_pri,
@@ -2300,7 +2301,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_5);
@@ -2327,9 +2328,9 @@
             }
             $Reg6_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg6_pri,
@@ -2375,7 +2376,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_6);
@@ -2402,9 +2403,9 @@
             }
             $Reg7_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                hoverOpacity: 0.5,
+                backgroundColor: '#EAEFF3',
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg7_pri,
@@ -2450,7 +2451,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_7);
@@ -2477,9 +2478,9 @@
             }
             $Reg8_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                hoverOpacity: 0.5,
+                backgroundColor: '#EAEFF3',
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg8_pri,
@@ -2525,7 +2526,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_8);
@@ -2552,9 +2553,9 @@
             }
             $Reg9_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                hoverOpacity: 0.5,
+                backgroundColor: '#EAEFF3',
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg9_pri,
@@ -2600,7 +2601,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_9);
@@ -2627,9 +2628,9 @@
             }
             $Reg10_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg10_pri,
@@ -2675,7 +2676,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_10);
@@ -2702,9 +2703,9 @@
             }
             $Reg11_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                hoverOpacity: 0.5,
+                backgroundColor: '#EAEFF3',
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg11_pri,
@@ -2750,7 +2751,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_11);
@@ -2777,9 +2778,9 @@
             }
             $Reg12_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg12_pri,
@@ -2825,7 +2826,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_12);
@@ -2852,9 +2853,9 @@
             }
             $Reg13_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverColor: 'black',
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg13_pri,
@@ -2897,7 +2898,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_13);
@@ -2910,10 +2911,10 @@
             }
             $Thai_map_pri = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                // hoverOpacity: 0.7,
+                backgroundColor:'#ffffff00',
+                hoverOpacity: 0.5,
                 //color when hover on to the map (if use with hoverOpacity, มันจะมองไม่ค่อยออกว่าสีไร จะแค่แบบจางๆ แบบลดopacity ของสีแมป)
-                hoverColor: 'black',
+                // hoverColor: 'black',
                 //if true, will enable to zoom in map
                 enableZoom: false,
                 showTooltip: true,
@@ -3033,9 +3034,9 @@
             ////////// for quantity /////////////////////////////////////////////////////////////
             $Reg1_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg1_quan,
@@ -3081,7 +3082,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_1);
@@ -3108,9 +3109,9 @@
             }
             $Reg2_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg2_quan,
@@ -3156,7 +3157,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_2);
@@ -3183,9 +3184,9 @@
             }
             $Reg3_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg3_quan,
@@ -3231,7 +3232,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_3);
@@ -3258,9 +3259,9 @@
             }
             $Reg4_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg4_quan,
@@ -3306,7 +3307,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_4);
@@ -3333,9 +3334,9 @@
             }
             $Reg5_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg5_quan,
@@ -3381,7 +3382,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_5);
@@ -3408,9 +3409,9 @@
             }
             $Reg6_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg6_quan,
@@ -3456,7 +3457,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_6);
@@ -3483,9 +3484,9 @@
             }
             $Reg7_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg7_quan,
@@ -3531,7 +3532,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_7);
@@ -3558,9 +3559,9 @@
             }
             $Reg8_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg8_quan,
@@ -3606,7 +3607,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_8);
@@ -3633,9 +3634,9 @@
             }
             $Reg9_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg9_quan,
@@ -3681,7 +3682,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_9);
@@ -3708,9 +3709,9 @@
             }
             $Reg10_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg10_quan,
@@ -3756,7 +3757,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_10);
@@ -3783,9 +3784,9 @@
             }
             $Reg11_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg11_quan,
@@ -3831,7 +3832,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_11);
@@ -3858,9 +3859,9 @@
             }
             $Reg12_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg12_quan,
@@ -3906,7 +3907,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_12);
@@ -3933,9 +3934,9 @@
             }
             $Reg13_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
-                enableZoom: true,
+                backgroundColor: '#EAEFF3',
+                hoverOpacity: 0.5,
+                enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
                 values: reg13_quan,
@@ -3978,7 +3979,7 @@
                                 donut:{label:{show:!1},
                                 title: total + " Hospitals",width:50},
                                 legend:{hide:!0},
-                                color:{pattern:["green","yellow","red"]}
+                                color:{pattern:["#4aab57","#ff8f1d","#cf2620"]}
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_13);
@@ -3988,11 +3989,10 @@
                     }
                 }
             }
-
             $Thai_map_quan = {
                 map: ['thai_en'],
-                backgroundColor: 'beige',
-                hoverOpacity: 0.7,
+                backgroundColor: '#ffffff00',
+                hoverOpacity: 0.5,
                 enableZoom: false,
                 showTooltip: true,
                 color: '#ffffff',
@@ -4135,9 +4135,9 @@
             // if(xx == 'High'){
             //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'red'});
             // }else if(xx == 'Medium'){
-            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'yellow'});
+            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': '#ff8f1d'});
             // }else if(xx == 'Low'){
-            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': 'green'});
+            //     $('#vmapTH').vectorMap('set', 'colors', {'TH-50': '#4aab57'});
             // }
             $("#backButton").click(function() { 
                 $(this).toggleClass("invisible");
@@ -4277,18 +4277,18 @@
         <div class="col-md-12 col-lg-12 invisible" id = 'Province_Donut'>
             <div class="card">
                 <div class="card-body">
-                    <button class="btn" id="backButton2">&lt; Drill Up</button>
+                    <button class="btn" id="backButton2" style="background-color:#00aaee; color:white;">&lt; Drill Up</button>
                     <h4 id="Title_Donut" style="color:black; text-align:center;"></h4>
                     <div class='row center' >
                         <div id="purchasing_power_donut" class="mt-2 col-md-6 center" style="height:283px; width:60%;"></div>
                         <div class="col-md-5 center">
-                            <i class="fas fa-circle font-10 mr-2" style="color:green;"></i>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#4aab57;"></i>
                             <span class="text-muted" >Above Average</span>
                             <br/>
-                            <i class="fas fa-circle font-10 mr-2" style="color:yellow;"></i>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#ff8f1d;"></i>
                             <span class="text-muted" >Average = {{ $avg }} </span>
                             <br/>
-                            <i class="fas fa-circle font-10 mr-2" style="color:red;"></i>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#cf2620;"></i>
                             <span class="text-muted" >Below Average</span>
                         </div>
                     </div>
@@ -4298,458 +4298,473 @@
         <div class="col-md-7 col-lg-6" id = 'Price_by_Region'>
             <div class="card">
                 <div class="card-body">
-                    <h1>Price by region</h1>
-                    <button class="btn invisible" id="backButton">&lt; Drill Up</button>
-                    <button class="btn invisible" id="backButton2">&lt; Drill Up</button>
-                    <div class='row'>
-                        <div id="vmapTH_pri" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r1" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r2" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r3" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r4" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r5" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r6" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r7" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r8" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r9" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r10" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r11" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r12" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_pri_r13" style="width: 200px; height: 300px;"></div>
-
-                        <div id="Map_Pri_TH">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Region</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
-                                            <?php
-                                            if ($resultThaiMap[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap[$i]->wavg_unit_price }}</td>
-
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                    <h3 style="text-align:center;">Price by region</h3>
+                    <button class="btn invisible" id="backButton" style="background-color:#00aaee;">&lt; Drill Up</button>
+                    <div class="row col-lg-12" style="margin:auto; align:center;">
+                        <div class="row col-lg-7" style="margin:auto;">
+                            <div id="vmapTH_pri" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r1" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r2" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r3" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r4" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r5" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r6" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r7" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r8" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r9" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r10" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r11" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r12" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r13" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#006491;"></i>highest<br/>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#C8EEFF;"></i>Lowest
+                            </div>
                         </div>
-                        <div class = "invisible" id="Map_Pri_Region_1">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg1[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_2">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg2[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg2[$i]->wavg_unit_price }}</td>
+                        <div class="row col-lg-5" style="margin-right:auto; font-size:14px;">
+                            <div id="Map_Pri_TH">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:5px;">Region</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
+                                                <?php
+                                                if ($resultThaiMap[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_3">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg3[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg3[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_1">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg1[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_4">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg4[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg4[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_2">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg2[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_5">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg5[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg5[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_3">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg3[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_6">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg6[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg6[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_4">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg4[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_7">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg7[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg7[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_5">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg5[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_8">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg8[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg8[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_6">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg6[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_9">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg9[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg9[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_7">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg7[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_10">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg10[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg10[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_8">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
+                                        ?>
+                                            <tr>
+                                                <?php
+                                                if($resultThaiMap_Reg8[$i]->PROVINCE_EN == 'NULL'){
+                                                ?>
+                                                    <td style="text-align:center;">Bueng Kan</td>  
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                }
+                                                if ($resultThaiMap_Reg8[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_11">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg11[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg11[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_9">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg9[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_12">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg12[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg12[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_10">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg10[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Pri_Region_13">
-                            <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">wavg unit price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg13[$i]->wavg_unit_price != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg13[$i]->wavg_unit_price }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_11">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg11[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->wavg_unit_price }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_12">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg12[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_13">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg13[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -4758,467 +4773,483 @@
         <div class="col-md-7 col-lg-6" id = 'Quantity_by_Region'>
             <div class="card">
                 <div class="card-body">
-                    <h1>Quantity by region</h1>
-                    <div class='row'>
-                        <div id="vmapTH_quan" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r1" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r2" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r3" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r4" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r5" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r6" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r7" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r8" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r9" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r10" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r11" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r12" style="width: 200px; height: 300px;"></div>
-                        <div class = "invisible" id="vmapTH_quan_r13" style="width: 200px; height: 300px;"></div>
-
-                        <div id="Map_Quan_TH">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Region</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
-                                            <?php
-                                            if ($resultThaiMap[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap[$i]->Total_Amount }}</td>
-
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                    <h3 style="text-align:center;">Quantity by region</h3>
+                    <div class="row col-lg-12" style="margin:auto; align:center;">
+                        <div class="row col-lg-7" style="margin:auto;">
+                            <div id="vmapTH_quan" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r1" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r2" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r3" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r4" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r5" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r6" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r7" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r8" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r9" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r10" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r11" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r12" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r13" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#006491;"></i>highest<br/>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#C8EEFF;"></i>Lowest
+                            </div>
                         </div>
-                        <div class = "invisible" id="Map_Quan_Region_1">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg1[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_2">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg2[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg2[$i]->Total_Amount }}</td>
+                        <div class="row col-lg-5" style="margin-right:auto; font-size:14px;">
+                            <div id="Map_Quan_TH">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:5px;">Region</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
+                                                <?php
+                                                if ($resultThaiMap[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_3">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg3[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg3[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_1">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg1[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_4">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg4[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg4[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_2">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg2[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg2[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_5">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg5[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg5[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_3">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg3[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg3[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_6">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg6[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg6[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_4">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg4[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg4[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_7">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg7[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg7[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_5">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg5[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg5[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_8">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg8[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg8[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_6">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg6[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg6[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_9">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg9[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg9[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_7">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg7[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg7[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_10">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg10[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg10[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_8">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
+                                        ?>
+                                            <tr>
+                                                <?php
+                                                if($resultThaiMap_Reg8[$i]->PROVINCE_EN == 'NULL'){
+                                                ?>
+                                                    <td style="text-align:center;">Bueng Kan</td>  
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                }
+                                                if ($resultThaiMap_Reg8[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg8[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_11">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg11[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg11[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_9">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg9[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg9[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_12">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg12[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg12[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_10">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg10[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg10[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class = "invisible" id="Map_Quan_Region_13">
-                            <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                <thead>
-                                <tr role="row">
-                                    <th style="text-align:center;">Province</th>
-                                    <th style="text-align:center;">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
-                                    ?>
-                                        <tr>
-                                            <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
-                                            <?php
-                                            if ($resultThaiMap_Reg13[$i]->Total_Amount != NULL){
-                                            ?>
-                                                <td style="text-align:right;">{{ $resultThaiMap_Reg13[$i]->Total_Amount }}</td>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_11">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg11[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg11[$i]->T_Total_Amount }}</td>
 
-                                            <?php
-                                            }else{
-                                                //Gini = NULL because PAC = 0
-                                            ?>
-                                                <td style="text-align:right;">0</td>
-                                        </tr>
-                                    <?php
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_12">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg12[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg12[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_13">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg13[$i]->T_Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg13[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
