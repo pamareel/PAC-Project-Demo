@@ -7,28 +7,33 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script> -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Annual spending'],
-          ['{{$y1 ?? ''}}',  {{$s1 ?? ''}}],
-          ['{{$y2 ?? ''}}',  {{$s2 ?? ''}}],
-          ['{{$y3 ?? ''}}',  {{$s3 ?? ''}}],
-          ['{{$y4 ?? ''}}',  {{$s4 ?? ''}}],
-          ['{{$y5 ?? ''}}',  {{$s5 ?? ''}}]
+        ['Year', 'Annual spending'],
+        ['{{$y1 ?? ''}}',  {{$s1 ?? ''}}],
+        ['{{$y2 ?? ''}}',  {{$s2 ?? ''}}],
+        ['{{$y3 ?? ''}}',  {{$s3 ?? ''}}],
+        ['{{$y4 ?? ''}}',  {{$s4 ?? ''}}],
+        ['{{$y5 ?? ''}}',  {{$s5 ?? ''}}]
         ]);
 
         var options = {
-          title: 'Total Annual Spending',
+        title: 'Total Annual Spending',
         //   curveType: 'function',
-          legend: { position: 'bottom' }
+        legend: { position: 'none' },
+        width:500,
+        height:400,
+        vAxis: {gridlines: { count: 5 }}
         };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
+        window.onload = resize;
+        window.onresize = resize;
+        function resize () {
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+        };
+    }
 </script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 <script>
@@ -322,7 +327,6 @@
                                 </table>
                                 </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -333,13 +337,15 @@
         <!-- *************************************************************** -->
         <!-- Start Google line chart -->
         <!-- *************************************************************** -->
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="card">
-                <div id="curve_chart" style="width: 500px; height: 400px"></div>
-            </div>
-        </div>     
-    </div>    
+        <div class="row">
+            <div class="col-lg-7 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="hidden" id="curve_chart"></div>
+                    </div>
+                </div>
+            </div>     
+        </div>    
         <!-- *************************************************************** -->
         <!-- End Google line chart -->
         <!-- *************************************************************** -->
@@ -449,5 +455,3 @@
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
 @endsection
-
-
