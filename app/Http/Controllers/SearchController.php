@@ -447,16 +447,16 @@ class SearchController extends Controller
         if($r == 'All'){
             if($m == 'All'){
                 ////// Thai map //////////////////////////////////////////////////////////////////////
-                $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' group by Region";
+                $query_rd = "select Region, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N0') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' group by Region order by Region";
             }else{
                 ////// Thai map //////////////////////////////////////////////////////////////////////
-                $query_rd = "select Region, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' group by Region";
+                $query_rd = "select Region, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N0') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' group by Region order by Region";
             }
         }else{
             if($m == 'All'){
-                $query_rd = "select Region, PROVINCE_EN, Pcode, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." group by Region, PROVINCE_EN, Pcode";
+                $query_rd = "select Region, PROVINCE_EN, Pcode, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N0') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." group by Region, PROVINCE_EN, Pcode order by Region";
             }else{
-                $query_rd = "select Region, PROVINCE_EN, Pcode, sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as wavg_unit_price, sum(Total_Amount) as Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." and Method = '".$m."' group by Region, PROVINCE_EN, Pcode";
+                $query_rd = "select Region, PROVINCE_EN, Pcode, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N0') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." and Method = '".$m."' group by Region, PROVINCE_EN, Pcode order by Region";
             }
         }
         $find_Map_Data_result = DB::select($query_rd);
