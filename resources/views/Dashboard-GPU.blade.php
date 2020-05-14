@@ -310,16 +310,16 @@
         <!-- Start Google line chart -->
         <!-- *************************************************************** -->
 
-        <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title" style="text-align:center;">Total Annual Spending</h4>
-                        <div id="curve_chart"></div>
-                    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align:center;">Total Annual Spending</h4>
+                    <div id="curve_chart"></div>
                 </div>
-            </div>        
-        
+            </div>
+        </div>        
+    
         <script type="text/javascript">
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawChart);
@@ -421,12 +421,12 @@
                 </div>
             </div>
         </div>
-        </div>
-        <!-- End Drug Purchasing Amount -->
     </div>
+        <!-- End Drug Purchasing Amount -->
+ 
 
     <div class="row">
-        <div class="col-md-12" >
+        <div class="col-lg-12" >
             <div class="card" style="background-color:#e5e6eb; height:10px;" >
             </div>
         </div>
@@ -434,7 +434,7 @@
     <!-- ============================================================== -->
     <!-- Cost Saving -->
     <div class="row">
-        <div class="col-md-12" id="CostSave_Hos">
+        <div class="col-lg-12" id="CostSave_Hos">
             <div class="card">
                 <div class="card-body">
                     <h4 style="color:black; text-align:center;">Cost Saving</h4>
