@@ -195,7 +195,7 @@
             font-size: 16px;
             background-color: beige;
             color: grey;
-            position: absolute;
+            position: inline;
             top: 10px;
             right: 10px;
             cursor: pointer;
@@ -291,8 +291,10 @@
             Chart.defaults.global.defaultFontFamily = '"Rubik", sans-serif';
             // Start Size of Hospital ///////
             $("#Region_To_Size").click(function() { 
-                $(this).toggleClass("invisible");
-                $("#Size_To_Region").toggleClass("invisible");
+                // $(this).toggleClass("invisible");
+                // $("#Size_To_Region").toggleClass("invisible");
+                document.getElementById("Size_To_Region").style.backgroundColor = '#EAEFF3';
+                document.getElementById("Region_To_Size").style.backgroundColor = '#777fca';
                 $("#Price_by_Region").addClass("invisible");
                 $("#Quantity_by_Region").addClass("invisible");
                 $.massPopChart.destroy();
@@ -328,8 +330,10 @@
                 }
             });
             $("#Size_To_Region").click(function() { 
-                $(this).toggleClass("invisible");
-                $("#Region_To_Size").toggleClass("invisible");
+                // $(this).toggleClass("invisible");
+                // $("#Region_To_Size").toggleClass("invisible");
+                document.getElementById("Region_To_Size").style.backgroundColor = '#EAEFF3';
+                document.getElementById("Size_To_Region").style.backgroundColor = '#777fca';
                 $("#Price_by_Region").removeClass("invisible");  
                 $("#Quantity_by_Region").removeClass("invisible");
                 $.massPopChart_s.destroy();
@@ -644,6 +648,968 @@
         });
         // END size of Hospital /////////
     </script>
+    <div class="row">
+        <div class="col-md-7 col-lg-6" id = 'Price_by_Region'>
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn invisible" id="backButton" style="background-color:#00aaee;">&lt; Drill Up</button>
+                    <h3 class="card-title" style="text-align:center;">Price by region</h3>
+                    <div class="row col-lg-12" style="margin:auto; align:center;">
+                        <div class="row col-lg-7" style="margin:auto;">
+                            <div id="vmapTH_pri" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r1" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r2" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r3" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r4" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r5" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r6" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r7" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r8" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r9" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r10" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r11" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r12" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_pri_r13" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#006491;"></i>highest<br/>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#C8EEFF;"></i>Lowest
+                            </div>
+                        </div>
+
+                        <div class="row col-lg-5" style="margin-right:auto; font-size:14px;">
+                            <div id="Map_Pri_TH">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:5px;">Region</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
+                                                <?php
+                                                if ($resultThaiMap[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_1">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg1[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_2">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg2[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_3">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg3[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_4">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg4[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_5">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg5[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_6">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg6[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_7">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg7[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_8">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
+                                        ?>
+                                            <tr>
+                                                <?php
+                                                if($resultThaiMap_Reg8[$i]->PROVINCE_EN == 'NULL'){
+                                                ?>
+                                                    <td style="text-align:center;">Bueng Kan</td>  
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                }
+                                                if ($resultThaiMap_Reg8[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_9">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg9[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_10">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg10[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_11">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg11[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_12">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg12[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Pri_Region_13">
+                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Unit Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg13[$i]->wavg_unit_price != NULL){
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->wavg_unit_price }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-lg-6" id = 'Quantity_by_Region'>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title" style="text-align:center;">Quantity by region</h3>
+                    <div class="row col-lg-12" style="margin:auto; align:center;">
+                        <div class="row col-lg-7" style="margin:auto;">
+                            <div id="vmapTH_quan" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r1" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r2" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r3" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r4" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r5" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r6" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r7" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r8" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r9" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r10" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r11" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r12" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div class = "invisible" id="vmapTH_quan_r13" style="width: 180px; height: 280px; border-radius: 10px;"></div>
+                            <div>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#006491;"></i>highest<br/>
+                            <i class="fas fa-circle font-10 mr-2" style="color:#C8EEFF;"></i>Lowest
+                            </div>
+                        </div>
+
+                        <div class="row col-lg-5" style="margin-right:auto; font-size:14px;">
+                            <div id="Map_Quan_TH">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:5px;">Region</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
+                                                <?php
+                                                if ($resultThaiMap[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_1">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg1[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_2">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg2[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg2[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_3">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg3[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg3[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_4">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg4[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg4[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_5">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg5[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg5[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_6">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg6[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg6[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_7">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg7[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg7[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_8">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
+                                        ?>
+                                            <tr>
+                                                <?php
+                                                if($resultThaiMap_Reg8[$i]->PROVINCE_EN == 'NULL'){
+                                                ?>
+                                                    <td style="text-align:center;">Bueng Kan</td>  
+                                                <?php
+                                                }else{
+                                                ?>
+                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                }
+                                                if ($resultThaiMap_Reg8[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg8[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_9">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg9[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg9[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_10">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg10[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg10[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_11">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg11[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg11[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_12">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg12[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg12[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class = "invisible" id="Map_Quan_Region_13">
+                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th style="text-align:center; padding:10px;">Province</th>
+                                        <th style="text-align:center; padding:5px;">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
+                                        ?>
+                                            <tr>
+                                                <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
+                                                <?php
+                                                if ($resultThaiMap_Reg13[$i]->Total_Amount != NULL){
+                                                ?>
+                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg13[$i]->T_Total_Amount }}</td>
+
+                                                <?php
+                                                }else{
+                                                    //Gini = NULL because PAC = 0
+                                                ?>
+                                                    <td style="text-align:right;">0</td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row" id = 'Stack_Bar'>
         <div class="col-md-12">
             <div class="card invisible" id="drill_down_type_button">
@@ -651,7 +1617,7 @@
                     <h4>Drill Down&nbsp;&nbsp;
                     <button class="btn" id="to_A" style="background-color:#c44085; color:white;">To A</button>
                     <button class="btn" id="to_S" style="background-color:#e08fc6; color:white;">To S</button>
-                    <button class="btn" id="to_M1" style="background-color:#ffcd74; color:white;">To M1</button>
+                    <button class="btn" id="to_M1" style="background-color:#e08fc6; color:white;">To M1</button>
                     <button class="btn" id="to_M2" style="background-color:#f0882f; color:white;">To M2</button>
                     <button class="btn" id="to_F1" style="background-color:#3d8b3d; color:white;">To F1</button>
                     <button class="btn" id="to_F2" style="background-color:#73d15c; color:white;">To F2</button>
@@ -662,8 +1628,8 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <button class="btn" id="Region_To_Size" style="background-color:#777fca; color:white;">Region > Type of hospital</button>
-                    <button class="btn invisible" id="Size_To_Region" style="background-color:#777fca; color:white;">Type of hospital > Region</button>
+                    <button class="btn" id="Size_To_Region" style="background-color:#777fca; color:white;">Region</button>
+                    <button class="btn" id="Region_To_Size" style="background-color:#EAEFF3; color:white;">Size of hospital</button>
                     <br/>
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                         <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
@@ -763,7 +1729,6 @@
             </div>
         </div>
     </div>
-    
     
     <script>
             // For WHole Country Chart Option ///////////////////////////////////////////
@@ -3038,6 +4003,7 @@
                     $('#vmapTH_pri').toggleClass("invisible");
                     $("#Map_Pri_TH").toggleClass("invisible");
                     $("#Region_To_Size").addClass("invisible");
+                    $("#Size_To_Region").addClass("invisible");
                     $.massPopChart.destroy();
                     if(Region_1.includes(code)) {
                         $('#vmapTH_quan_r1').removeClass('invisible');   
@@ -4292,6 +5258,7 @@
                     $('#vmapTH_pri').toggleClass("invisible");
                     $("#Map_Pri_TH").toggleClass("invisible");
                     $("#Region_To_Size").addClass("invisible");
+                    $("#Size_To_Region").addClass("invisible");
                     $.massPopChart.destroy();
                     if(Region_1.includes(code)) {
                         $('#vmapTH_quan_r1').removeClass('invisible');   
@@ -4444,6 +5411,7 @@
                 $('#vmapTH_pri').toggleClass("invisible");
                 $("#Map_Pri_TH").toggleClass("invisible");
                 $("#Region_To_Size").removeClass("invisible");
+                $("#Size_To_Region").removeClass("invisible");
                 document.getElementById("pp_region").innerHTML = "Purchasing Power in Thailand";
                 if(!document.getElementById('vmapTH_quan_r1').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r1').classList.contains('invisible')){
                     $('#vmapTH_quan_r1').addClass('invisible');   
@@ -4548,7 +5516,7 @@
             color: white;
             position: absolute;
             top: 10px;
-            right: 10px;
+            left: 10px;
             cursor: pointer;
         }
         #backButton2 {
@@ -4558,7 +5526,7 @@
             font-size: 16px;
             background-color: beige;
             color: grey;
-            position: absolute;
+            position: inline;
             top: 10px;
             right: 10px;
             cursor: pointer;
@@ -4573,6 +5541,7 @@
         }
     </style>
     <div class="row">
+        
         <div class="col-md-12 col-lg-12 invisible" id = 'Province_Donut'>
             <div class="card">
                 <div class="card-body">
@@ -4594,967 +5563,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7 col-lg-6" id = 'Price_by_Region'>
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title" style="text-align:center;">Price by region</h3>
-                    <button class="btn invisible" id="backButton" style="background-color:#00aaee;">&lt; Drill Up</button>
-                    <div class="row col-lg-12" style="margin:auto; align:center;">
-                        <div class="row col-lg-7" style="margin:auto;">
-                            <div id="vmapTH_pri" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r1" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r2" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r3" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r4" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r5" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r6" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r7" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r8" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r9" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r10" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r11" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r12" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_pri_r13" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div>
-                            <i class="fas fa-circle font-10 mr-2" style="color:#006491;"></i>highest<br/>
-                            <i class="fas fa-circle font-10 mr-2" style="color:#C8EEFF;"></i>Lowest
-                            </div>
-                        </div>
-
-                        <div class="row col-lg-5" style="margin-right:auto; font-size:14px;">
-                            <div id="Map_Pri_TH">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:5px;">Region</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
-                                                <?php
-                                                if ($resultThaiMap[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_1">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg1[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_2">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg2[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_3">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg3[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_4">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg4[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_5">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg5[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_6">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg6[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_7">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg7[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_8">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
-                                        ?>
-                                            <tr>
-                                                <?php
-                                                if($resultThaiMap_Reg8[$i]->PROVINCE_EN == 'NULL'){
-                                                ?>
-                                                    <td style="text-align:center;">Bueng Kan</td>  
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                }
-                                                if ($resultThaiMap_Reg8[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_9">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg9[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_10">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg10[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_11">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg11[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_12">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg12[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Pri_Region_13">
-                                <table class="table-white table-striped" role="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Unit Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg13[$i]->wavg_unit_price != NULL){
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->wavg_unit_price }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-7 col-lg-6" id = 'Quantity_by_Region'>
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title" style="text-align:center;">Quantity by region</h3>
-                    <div class="row col-lg-12" style="margin:auto; align:center;">
-                        <div class="row col-lg-7" style="margin:auto;">
-                            <div id="vmapTH_quan" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r1" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r2" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r3" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r4" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r5" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r6" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r7" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r8" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r9" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r10" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r11" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r12" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div class = "invisible" id="vmapTH_quan_r13" style="width: 180px; height: 280px; border-radius: 10px;"></div>
-                            <div>
-                            <i class="fas fa-circle font-10 mr-2" style="color:#006491;"></i>highest<br/>
-                            <i class="fas fa-circle font-10 mr-2" style="color:#C8EEFF;"></i>Lowest
-                            </div>
-                        </div>
-
-                        <div class="row col-lg-5" style="margin-right:auto; font-size:14px;">
-                            <div id="Map_Quan_TH">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:5px;">Region</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap[$i]->Region }}</td>  
-                                                <?php
-                                                if ($resultThaiMap[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_1">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg1); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg1[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg1[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg1[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_2">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg2); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg2[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg2[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg2[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_3">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg3); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg3[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg3[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg3[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_4">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg4); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg4[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg4[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg4[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_5">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg5); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg5[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg5[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg5[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_6">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg6); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg6[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg6[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg6[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_7">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg7); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg7[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg7[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg7[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_8">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg8); $i++){
-                                        ?>
-                                            <tr>
-                                                <?php
-                                                if($resultThaiMap_Reg8[$i]->PROVINCE_EN == 'NULL'){
-                                                ?>
-                                                    <td style="text-align:center;">Bueng Kan</td>  
-                                                <?php
-                                                }else{
-                                                ?>
-                                                    <td style="text-align:center;">{{ $resultThaiMap_Reg8[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                }
-                                                if ($resultThaiMap_Reg8[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg8[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_9">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg9); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg9[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg9[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg9[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_10">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg10); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg10[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg10[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg10[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_11">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg11); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg11[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg11[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg11[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_12">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg12); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg12[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg12[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg12[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class = "invisible" id="Map_Quan_Region_13">
-                                <table class="table-white table-striped" ole="grid" aria-describedby="default_order_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th style="text-align:center; padding:10px;">Province</th>
-                                        <th style="text-align:center; padding:5px;">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for($i = 0; $i < count($resultThaiMap_Reg13); $i++){
-                                        ?>
-                                            <tr>
-                                                <td style="text-align:center;">{{ $resultThaiMap_Reg13[$i]->PROVINCE_EN }}</td>  
-                                                <?php
-                                                if ($resultThaiMap_Reg13[$i]->Total_Amount != NULL){
-                                                ?>
-                                                    <td style="text-align:right;">{{ $resultThaiMap_Reg13[$i]->T_Total_Amount }}</td>
-
-                                                <?php
-                                                }else{
-                                                    //Gini = NULL because PAC = 0
-                                                ?>
-                                                    <td style="text-align:right;">0</td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <div class="col-md-12 col-lg-12 invisible" id = 'Table_Hos_by_Province'>
             <div class="card">
                 <div class="card-body">

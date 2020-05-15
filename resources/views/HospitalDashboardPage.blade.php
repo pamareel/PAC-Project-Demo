@@ -63,10 +63,10 @@
             <div class="card">
                 <div class="card-body" style="padding-top:10px; padding-bottom:10px;">
                         <span id="change-level">Please Choose level :</span>
-                        <button class="btn invisible" id="GPU_to_TPU" style="background-color:#5c5cb8; color:white;">GPU > TPU</button>
-                        <button class="btn invisible" id="TPU_to_GPU" style="background-color:#5cb85c; color:white;">TPU > GPU</button>
-                        <button class="btn" id="GPU" style="background-color:#5cb85c; color:white;">GPU</button>
-                        <button class="btn" id="TPU" style="background-color:#5c5cb8; color:white;">TPU</button>
+                        <button class="btn invisible" id="TPU_to_GPU" style="background-color:#5cb85c; color:white;">GPU</button>
+                        <button class="btn invisible" id="GPU_to_TPU" style="background-color:#5c5cb8; color:white;">TPU</button>
+                        <button class="btn" id="GPU" style="background-color:#CFDAE2; color:white;">GPU</button>
+                        <button class="btn" id="TPU" style="background-color:#CFDAE2; color:white;">TPU</button>
                 </div>
             </div>
         </div>
@@ -399,15 +399,18 @@
         if(content_1 != null && content_1 != ''){
             $("#GPU").click(function() {
                 $(this).toggleClass("invisible");
+                document.getElementById("GPU_to_TPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("TPU_to_GPU").style.backgroundColor = '#6179E1';
                 $("#Donut_hoss").removeClass("invisible");
                 $("#GPU_to_TPU").removeClass("invisible");
+                $("#TPU_to_GPU").removeClass("invisible");
                 $("#TPU").addClass("invisible");
                 $("#Overall_Drug_Perf_Total_spend_chart").removeClass("invisible");
                 $("#CostSave_Hos").removeClass("invisible");
                 $("#divide").removeClass("invisible");
                 $("#table_GPU").removeClass("invisible");
 
-                document.getElementById("change-level").innerHTML = "Change Level : ";
+                document.getElementById("change-level").innerHTML = "Level : ";
                 //Donut chart
                 $.chartX = c3.generate({ 
                     bindto:"#hos_drug_donut",
@@ -450,15 +453,18 @@
 
             $("#TPU").click(function() {
                 $(this).toggleClass("invisible");
+                document.getElementById("TPU_to_GPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("GPU_to_TPU").style.backgroundColor = '#6179E1';
                 $("#Donut_hoss").removeClass("invisible");
                 $("#TPU_to_GPU").removeClass("invisible");
+                $("#GPU_to_TPU").removeClass("invisible");
                 $("#GPU").addClass("invisible");
                 $("#Overall_Drug_Perf_Total_spend_chart").removeClass("invisible");
                 $("#CostSave_Hos").removeClass("invisible");
                 $("#divide").removeClass("invisible");
                 $("#table_TPU").removeClass("invisible");
 
-                document.getElementById("change-level").innerHTML = "Change Level : ";
+                document.getElementById("change-level").innerHTML = "Level : ";
                 //Donut chart
                 $.chartXL = c3.generate({ 
                     bindto:"#hos_drug_donut",
@@ -501,8 +507,8 @@
             });
 
             $("#GPU_to_TPU").click(function() { 
-                $(this).toggleClass("invisible");
-                $("#TPU_to_GPU").toggleClass("invisible");
+                document.getElementById("TPU_to_GPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("GPU_to_TPU").style.backgroundColor = '#6179E1';
                 $("#table_TPU").removeClass("invisible");
                 $("#table_GPU").addClass("invisible");
                 //Donut chart
@@ -549,10 +555,10 @@
 
             });
             $("#TPU_to_GPU").click(function() { 
-                $(this).toggleClass("invisible");
-                $("#GPU_to_TPU").toggleClass("invisible");
                 $("#table_GPU").removeClass("invisible");
                 $("#table_TPU").addClass("invisible");
+                document.getElementById("GPU_to_TPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("TPU_to_GPU").style.backgroundColor = '#6179E1';
                 //Donut chart
                 $.chartXL.destroy();
                 
