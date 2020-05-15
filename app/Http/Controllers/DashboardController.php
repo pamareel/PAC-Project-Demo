@@ -180,7 +180,7 @@ class DashboardController extends Controller
         $totalPotentialSave = $totalPotentialSave_result[0]->sc;
        
         return [$content, $totalPotentialSave];
-    }
+    } 
 
     public function table_TPU_cost_saving($TGX,$year){
         $query_tpu = "SELECT GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving ";

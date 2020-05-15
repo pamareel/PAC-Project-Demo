@@ -14,7 +14,7 @@ class HosUserDrugController extends Controller
             $GT = $_GET['GT'];
             $Dname= $_GET['Dname'];
 
-            $Hid = '1070200';
+            $Hid = '1074700';
 
             if($GT == 'GPU'){
                 $Dname = $Dname.'%';

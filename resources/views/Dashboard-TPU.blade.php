@@ -154,6 +154,18 @@
         right: 10px;
         cursor: pointer;
     }
+    #TPU{
+        border-radius: 4px;
+        padding: 8px;
+        border: none;
+        font-size: 16px;
+        background-color: #6179E1;
+        color: white;
+        position: inline;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
     .center {
         margin: auto;
         padding: 10px;
@@ -197,7 +209,8 @@
                 </a> -->
                 <div class="card-body float-right" style="padding-top:10px; padding-bottom:10px;">
                         <span id="change-level">Change level :</span>
-                        <input type=button id="TPU_to_GPU" onClick="location='/policy/GPU'" value='TPU > GPU'>
+                        <input type=button id="TPU_to_GPU" onClick="location='/policy/GPU'" value='GPU'>
+                        <input type=button id="TPU" value='TPU'>
                 </div>
                 <!-- end switch -->
             </div>
