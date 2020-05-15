@@ -294,7 +294,9 @@
                 // $(this).toggleClass("invisible");
                 // $("#Size_To_Region").toggleClass("invisible");
                 document.getElementById("Size_To_Region").style.backgroundColor = '#EAEFF3';
+                document.getElementById("Size_To_Region").style.color = 'grey';
                 document.getElementById("Region_To_Size").style.backgroundColor = '#777fca';
+                document.getElementById("Region_To_Size").style.color = 'white';
                 $("#Price_by_Region").addClass("invisible");
                 $("#Quantity_by_Region").addClass("invisible");
                 $.massPopChart.destroy();
@@ -333,7 +335,9 @@
                 // $(this).toggleClass("invisible");
                 // $("#Region_To_Size").toggleClass("invisible");
                 document.getElementById("Region_To_Size").style.backgroundColor = '#EAEFF3';
+                document.getElementById("Region_To_Size").style.color = 'grey';
                 document.getElementById("Size_To_Region").style.backgroundColor = '#777fca';
+                document.getElementById("Size_To_Region").style.color = 'white';
                 $("#Price_by_Region").removeClass("invisible");  
                 $("#Quantity_by_Region").removeClass("invisible");
                 $.massPopChart_s.destroy();
@@ -1629,7 +1633,7 @@
             <div class="card">
                 <div class="card-body">
                     <button class="btn" id="Size_To_Region" style="background-color:#777fca; color:white;">Region</button>
-                    <button class="btn" id="Region_To_Size" style="background-color:#EAEFF3; color:white;">Size of hospital</button>
+                    <button class="btn" id="Region_To_Size" style="background-color:#EAEFF3; color:grey;">Size of hospital</button>
                     <br/>
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                         <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">

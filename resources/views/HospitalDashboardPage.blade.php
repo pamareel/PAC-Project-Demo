@@ -400,7 +400,9 @@
             $("#GPU").click(function() {
                 $(this).toggleClass("invisible");
                 document.getElementById("GPU_to_TPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("GPU_to_TPU").style.color = 'grey';
                 document.getElementById("TPU_to_GPU").style.backgroundColor = '#6179E1';
+                document.getElementById("TPU_to_GPU").style.color = 'white';
                 $("#Donut_hoss").removeClass("invisible");
                 $("#GPU_to_TPU").removeClass("invisible");
                 $("#TPU_to_GPU").removeClass("invisible");
@@ -454,7 +456,9 @@
             $("#TPU").click(function() {
                 $(this).toggleClass("invisible");
                 document.getElementById("TPU_to_GPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("TPU_to_GPU").style.color = 'grey';
                 document.getElementById("GPU_to_TPU").style.backgroundColor = '#6179E1';
+                document.getElementById("GPU_to_TPU").style.color = 'white';
                 $("#Donut_hoss").removeClass("invisible");
                 $("#TPU_to_GPU").removeClass("invisible");
                 $("#GPU_to_TPU").removeClass("invisible");
@@ -508,7 +512,9 @@
 
             $("#GPU_to_TPU").click(function() { 
                 document.getElementById("TPU_to_GPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("TPU_to_GPU").style.color = 'grey';
                 document.getElementById("GPU_to_TPU").style.backgroundColor = '#6179E1';
+                document.getElementById("GPU_to_TPU").style.color = 'white';
                 $("#table_TPU").removeClass("invisible");
                 $("#table_GPU").addClass("invisible");
                 //Donut chart
@@ -558,7 +564,9 @@
                 $("#table_GPU").removeClass("invisible");
                 $("#table_TPU").addClass("invisible");
                 document.getElementById("GPU_to_TPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("GPU_to_TPU").style.color = 'grey';
                 document.getElementById("TPU_to_GPU").style.backgroundColor = '#6179E1';
+                document.getElementById("TPU_to_GPU").style.color = 'white';
                 //Donut chart
                 $.chartXL.destroy();
                 
