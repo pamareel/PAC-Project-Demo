@@ -65,8 +65,8 @@
                         <span id="change-level">Please Choose level :</span>
                         <button class="btn invisible" id="TPU_to_GPU" style="background-color:#5cb85c; color:white;">GPU</button>
                         <button class="btn invisible" id="GPU_to_TPU" style="background-color:#5c5cb8; color:white;">TPU</button>
-                        <button class="btn" id="GPU" style="background-color:#5cb85c; color:white;">GPU</button>
-                        <button class="btn" id="TPU" style="background-color:#5c5cb8; color:white;">TPU</button>
+                        <button class="btn" id="GPU" style="background-color:#CFDAE2; color:white;">GPU</button>
+                        <button class="btn" id="TPU" style="background-color:#CFDAE2; color:white;">TPU</button>
                 </div>
             </div>
         </div>
@@ -399,8 +399,8 @@
         if(content_1 != null && content_1 != ''){
             $("#GPU").click(function() {
                 $(this).toggleClass("invisible");
-                document.getElementById("GPU_to_TPU").style.backgroundColor = '#DCDCDC';
-                document.getElementById("TPU_to_GPU").style.backgroundColor = '#5cb85c';
+                document.getElementById("GPU_to_TPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("TPU_to_GPU").style.backgroundColor = '#6179E1';
                 $("#Donut_hoss").removeClass("invisible");
                 $("#GPU_to_TPU").removeClass("invisible");
                 $("#TPU_to_GPU").removeClass("invisible");
@@ -453,8 +453,8 @@
 
             $("#TPU").click(function() {
                 $(this).toggleClass("invisible");
-                document.getElementById("TPU_to_GPU").style.backgroundColor = '#DCDCDC';
-                document.getElementById("GPU_to_TPU").style.backgroundColor = '#5c5cb8';
+                document.getElementById("TPU_to_GPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("GPU_to_TPU").style.backgroundColor = '#6179E1';
                 $("#Donut_hoss").removeClass("invisible");
                 $("#TPU_to_GPU").removeClass("invisible");
                 $("#GPU_to_TPU").removeClass("invisible");
@@ -507,8 +507,8 @@
             });
 
             $("#GPU_to_TPU").click(function() { 
-                document.getElementById("TPU_to_GPU").style.backgroundColor = '#DCDCDC';
-                document.getElementById("GPU_to_TPU").style.backgroundColor = '#5c5cb8';
+                document.getElementById("TPU_to_GPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("GPU_to_TPU").style.backgroundColor = '#6179E1';
                 $("#table_TPU").removeClass("invisible");
                 $("#table_GPU").addClass("invisible");
                 //Donut chart
@@ -557,8 +557,8 @@
             $("#TPU_to_GPU").click(function() { 
                 $("#table_GPU").removeClass("invisible");
                 $("#table_TPU").addClass("invisible");
-                document.getElementById("GPU_to_TPU").style.backgroundColor = '#DCDCDC';
-                document.getElementById("TPU_to_GPU").style.backgroundColor = '#5cb85c';
+                document.getElementById("GPU_to_TPU").style.backgroundColor = '#EAEFF3';
+                document.getElementById("TPU_to_GPU").style.backgroundColor = '#6179E1';
                 //Donut chart
                 $.chartXL.destroy();
                 
