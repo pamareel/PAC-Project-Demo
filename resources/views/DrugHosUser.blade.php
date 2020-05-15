@@ -124,7 +124,7 @@
         <div class="col-md-12">
             <div class="card">
                 <?php
-                if($resultSearch != 'No value'){
+                if($resultSearch != 'No value' && $resultSearch != 'No Dname'){
                 ?>
                     <div class="card-body">
                         <div>
@@ -171,7 +171,11 @@
                         </table>
                     </div>
                 <?php
-                }else{
+                }else if($resultSearch == 'No Dname'){
+                ?>
+                    <script>alert('Please insert name');</script>
+                <?php
+                }else if($resultSearch == 'No value'){
                 ?>
                 <!-- if not found -->
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -183,6 +187,9 @@
             </div>
         </div>
     </div>
+    <?php
+    if($resultSearch != 'No Dname' && $resultSearch != 'No value'){
+    ?>
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -215,34 +222,50 @@
             </div>
         </div>
     </div>
+    <?php
+    }
+    ?>
     <script>
-        Save_col = [['suggested spending',{{ $resultCostSave[0]->suggested_spending }}],['Potential Saving Cost', {{ $resultCostSave[0]->Potential_Saving_Cost }} ]];
-        $(document).ready(function() {
-            //button
-            $("#show").click(function() {
-                $(this).toggleClass("invisible");
-                $("#hide").toggleClass("invisible");
-                $("#save_cost").removeClass("invisible");
-            });
-            $("#hide").click(function() {
-                $(this).toggleClass("invisible");
-                $("#show").toggleClass("invisible");
-                $("#save_cost").addClass("invisible");
-            });
+    $resultSearch = {!! json_encode($resultSearch) !!};
+    if($resultSearch != null){
+        if($resultSearch != 'No Dname' && $resultSearch != 'No value'){
+            $resultCostSave = {!! json_encode($resultCostSave) !!};
+            var a = $resultCostSave[0]['suggested_spending'];
+            var b = $resultCostSave[0]['Potential_Saving_Cost'];
 
-            //Donut chart
-            $.chartX = c3.generate({ 
-                bindto:"#hos_donut",
-                data:{columns:Save_col,
-                    type:"donut",
-                    tooltip:{show:!0}
-                },
-                donut:{label:{show:!1},
-                title: {{ $resultCostSave[0]->Percent_saving }}+'% ('+ {!! json_encode($resultCostSave[0]->P_Potential_Saving_Cost) !!} + ' THB)' ,width:30},
-                legend:{hide:!0},
-                color:{pattern:["#5f76e8","#01caf1"]}
+            $(document).ready(function() {
+                //button
+                $("#show").click(function() {
+                    $(this).addClass("invisible");
+                    $("#hide").removeClass("invisible");
+                    $("#save_cost").removeClass("invisible");
+                });
+                $("#hide").click(function() {
+                    $(this).toggleClass("invisible");
+                    $("#show").toggleClass("invisible");
+                    $("#save_cost").addClass("invisible");
+                });
+                //Donut chart
+                $.chartX = c3.generate({ 
+                    bindto:"#hos_donut",
+                    data:{columns:[['suggested spending', a],['Potential Saving Cost', b]],
+                        type:"donut",
+                        tooltip:{show:!0}
+                    },
+                    donut:{label:{show:!1},
+                    title: $resultCostSave[0]["Percent_saving"]+'% ('+ $resultCostSave[0]["P_Potential_Saving_Cost"] + ' THB)' ,width:30},
+                    legend:{hide:!0},
+                    color:{pattern:["#5f76e8","#01caf1"]}
+                });
             });
-        });
+        }else{
+            $(document).ready(function() {
+                //button
+                $("#show").toggleClass("invisible");
+            });
+        }
+    }
+        
     </script>
     <?php
     }
