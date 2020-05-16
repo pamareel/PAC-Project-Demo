@@ -37,12 +37,16 @@ Route::get('/search', 'SearchController@index');
 Route::get('/HospitalPage', 'HospitalController@filter')->name('hospitalpage');
 //Search Filter in HospitalPage 
 Route::get('/searchHos', 'HospitalController@index');
-// Hospital Dashboard Page
+//Hospital Dashboard Page
 Route::get('/HospitalDashboardPage', function () {
     return view('HospitalDashboardPage');
 })->name('HospitalDashboardPage');
 Route::get('/hospitalDashboard/{year}/{Hname}', 'HospitalDashboardController@index');
 
+//Hospital User Dashboard Page รอใส่
+Route::get('/DashboardHosUser', function () {
+    return view('DrugHosUser');
+})->name('DashboardHosUser');
 //Hospital User Drug Page
 Route::get('/DrugPageHosUser', function () {
     return view('DrugHosUser');
