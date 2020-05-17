@@ -12,11 +12,11 @@
             "sScrollX": "100%",
             "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
             "rowCallback": function(row, data, index) {
-                if(data[2]> 0.5){
-                    $(row).find('td:eq(2)').css('color', '#E46074');
+                if(data[3]> 0.5){
+                    $(row).find('td:eq(3)').css('color', '#E46074');
                 }
             },
-            "order": [[ 2, "desc" ]]
+            "order": [[ 3, "desc" ]]
         });
     });
 </script>

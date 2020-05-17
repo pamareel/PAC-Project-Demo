@@ -105,7 +105,7 @@
         <div class="col-md-12">
         <div class="card">
         <?php
-        if($resultSearch != 'No value'){
+        if($resultSearch != 'No value' && $resultSearch != 'No Dname'){
         ?>
             <div class="card-body">
             <div>
@@ -162,6 +162,10 @@
             </table>
             </div>
         <?php
+        }else if($resultSearch == 'No Dname'){
+        ?>
+            <script>alert('Please insert name');</script>
+        <?php
         }else{
         ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -185,7 +189,7 @@
     <!-- *************************************************************** -->
     <?php
     $i=0;
-    if(!empty($resultSearch) && $resultSearch != 'No value'){
+    if(!empty($resultSearch) && $resultSearch != 'No value' && $resultSearch != 'No Dname'){
     ?>
     <style>
         #Region_To_Size, #Size_To_Region, #backButton_Type {

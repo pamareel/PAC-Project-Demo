@@ -27,158 +27,166 @@ class SearchController extends Controller
             $method = $_GET['method'];
             $GT = $_GET['GT'];
             $Dname= $_GET['Dname'];
+            $Dnn = $Dname;
             
-
-            if($GT == 'GPU'){
-                $Dname = $Dname.'%';
-            }else if($GT == 'TPU'){
-                $Dname = '%'.$Dname.'%';
-            }
-            
-            ////////////////////////////////////////////////////////////////////
-            ///// count each region ////////////////////////////////////////////
-            if($method == 'All'){
-                ////// table show //////////////////////////////////////////////////////////////////////
-                $statement = "select BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, ";
-                $statement .= "Total_Amount, FORMAT(Total_Amount, N'N2') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N2') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
-                $statement .= "from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
-
-                // $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
-                $resultSearch = DB::select($statement); 
-                
-            }else{
-                ////// table show //////////////////////////////////////////////////////////////////////
-                $statement = "select BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, ";
-                $statement .= "Total_Amount, FORMAT(Total_Amount, N'N2') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N2') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
-                $statement .= "from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
-
-                // $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
-                $resultSearch = DB::select($statement);
-            }
-            if(!empty($resultSearch)){
-
+            // if($Dname != null){
                 if($GT == 'GPU'){
-                    $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$resultSearch[0]->GPU_NAME."";
+                    $Dname = $Dname.'%';
                 }else if($GT == 'TPU'){
-                    $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$resultSearch[0]->TPU_NAME."";
+                    $Dname = '%'.$Dname.'%';
                 }
-
-                $r1 = $this->find_Stack_Data(1,$year,$GT,$Dname,$method);
-                $r1_count = $this->r_count($r1);
-                $r2 = $this->find_Stack_Data(2,$year,$GT,$Dname,$method);
-                $r2_count = $this->r_count($r2);
-                $r3 = $this->find_Stack_Data(3,$year,$GT,$Dname,$method);
-                $r3_count = $this->r_count($r3);
-                $r4 = $this->find_Stack_Data(4,$year,$GT,$Dname,$method);
-                $r4_count = $this->r_count($r4);
-                $r5 = $this->find_Stack_Data(5,$year,$GT,$Dname,$method);
-                $r5_count = $this->r_count($r5);
-                $r6 = $this->find_Stack_Data(6,$year,$GT,$Dname,$method);
-                $r6_count = $this->r_count($r6);
-                $r7 = $this->find_Stack_Data(7,$year,$GT,$Dname,$method);
-                $r7_count = $this->r_count($r7);
-                $r8 = $this->find_Stack_Data(8,$year,$GT,$Dname,$method);
-                $r8_count = $this->r_count($r8);
-                $r9 = $this->find_Stack_Data(9,$year,$GT,$Dname,$method);
-                $r9_count = $this->r_count($r9);
-                $r10 = $this->find_Stack_Data(10,$year,$GT,$Dname,$method);
-                $r10_count = $this->r_count($r10);
-                $r11 = $this->find_Stack_Data(11,$year,$GT,$Dname,$method);
-                $r11_count = $this->r_count($r11);
-                $r12 = $this->find_Stack_Data(12,$year,$GT,$Dname,$method);
-                $r12_count = $this->r_count($r12);
-                $r13 = $this->find_Stack_Data(13,$year,$GT,$Dname,$method);
-                $r13_count = $this->r_count($r13);
-                $countHosAll = array();
-                array_push($countHosAll,$r1_count,$r2_count,$r3_count,$r4_count,$r5_count,$r6_count,$r7_count,$r8_count,$r9_count,$r10_count,$r11_count,$r12_count,$r13_count);
-                // TH
-                [$chartHighPercent, $chartMedPercent, $chartLowPercent, $avg] = $this->chart_Low_Med_High_All($countHosAll,$year,$GT,$Dname,$method);
-                // Region
-                [$chartRegion_1, $chartHighPercent_1, $chartMedPercent_1, $chartLowPercent_1] = $this->chart_Low_Med_High($r1_count,1,$Region_1_name,$year,$GT,$Dname,$method);
-                [$chartRegion_2, $chartHighPercent_2, $chartMedPercent_2, $chartLowPercent_2] = $this->chart_Low_Med_High($r2_count,2,$Region_2_name,$year,$GT,$Dname,$method);
-                [$chartRegion_3, $chartHighPercent_3, $chartMedPercent_3, $chartLowPercent_3] = $this->chart_Low_Med_High($r3_count,3,$Region_3_name,$year,$GT,$Dname,$method);
-                [$chartRegion_4, $chartHighPercent_4, $chartMedPercent_4, $chartLowPercent_4] = $this->chart_Low_Med_High($r4_count,4,$Region_4_name,$year,$GT,$Dname,$method);
-                [$chartRegion_5, $chartHighPercent_5, $chartMedPercent_5, $chartLowPercent_5] = $this->chart_Low_Med_High($r5_count,5,$Region_5_name,$year,$GT,$Dname,$method);
-                [$chartRegion_6, $chartHighPercent_6, $chartMedPercent_6, $chartLowPercent_6] = $this->chart_Low_Med_High($r6_count,6,$Region_6_name,$year,$GT,$Dname,$method);
-                [$chartRegion_7, $chartHighPercent_7, $chartMedPercent_7, $chartLowPercent_7] = $this->chart_Low_Med_High($r7_count,7,$Region_7_name,$year,$GT,$Dname,$method);
-                [$chartRegion_8, $chartHighPercent_8, $chartMedPercent_8, $chartLowPercent_8] = $this->chart_Low_Med_High($r8_count,8,$Region_8_name,$year,$GT,$Dname,$method);
-                [$chartRegion_9, $chartHighPercent_9, $chartMedPercent_9, $chartLowPercent_9] = $this->chart_Low_Med_High($r9_count,9,$Region_9_name,$year,$GT,$Dname,$method);
-                [$chartRegion_10, $chartHighPercent_10, $chartMedPercent_10, $chartLowPercent_10] = $this->chart_Low_Med_High($r10_count,10,$Region_10_name,$year,$GT,$Dname,$method);
-                [$chartRegion_11, $chartHighPercent_11, $chartMedPercent_11, $chartLowPercent_11] = $this->chart_Low_Med_High($r11_count,11,$Region_11_name,$year,$GT,$Dname,$method);
-                [$chartRegion_12, $chartHighPercent_12, $chartMedPercent_12, $chartLowPercent_12] = $this->chart_Low_Med_High($r12_count,12,$Region_12_name,$year,$GT,$Dname,$method);
-                [$chartRegion_13, $chartHighPercent_13, $chartMedPercent_13, $chartLowPercent_13] = $this->chart_Low_Med_High($r13_count,13,$Region_13_name,$year,$GT,$Dname,$method);
-
-                //////////////Start Thai Map///////////////////////////////////////////////////////////
-                $resultThaiMap = $this->find_Map_Data('All',$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg1 = $this->find_Map_Data(1,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg2 = $this->find_Map_Data(2,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg3 = $this->find_Map_Data(3,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg4 = $this->find_Map_Data(4,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg5 = $this->find_Map_Data(5,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg6 = $this->find_Map_Data(6,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg7 = $this->find_Map_Data(7,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg8 = $this->find_Map_Data(8,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg9 = $this->find_Map_Data(9,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg10 = $this->find_Map_Data(10,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg11 = $this->find_Map_Data(11,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg12 = $this->find_Map_Data(12,$year,$GT,$Dname,$method);
-                $resultThaiMap_Reg13 = $this->find_Map_Data(13,$year,$GT,$Dname,$method);
-
-                [$quan_array_all, $pri_array_all] = $this->FindQuan_Pri_All($resultThaiMap);
-                [$quan_array_r1, $pri_array_r1] = $this->FindQuan_Pri_Region($resultThaiMap_Reg1);
-                [$quan_array_r2, $pri_array_r2] = $this->FindQuan_Pri_Region($resultThaiMap_Reg2);
-                [$quan_array_r3, $pri_array_r3] = $this->FindQuan_Pri_Region($resultThaiMap_Reg3);
-                [$quan_array_r4, $pri_array_r4] = $this->FindQuan_Pri_Region($resultThaiMap_Reg4);
-                [$quan_array_r5, $pri_array_r5] = $this->FindQuan_Pri_Region($resultThaiMap_Reg5);
-                [$quan_array_r6, $pri_array_r6] = $this->FindQuan_Pri_Region($resultThaiMap_Reg6);
-                [$quan_array_r7, $pri_array_r7] = $this->FindQuan_Pri_Region($resultThaiMap_Reg7);
-                [$quan_array_r8, $pri_array_r8] = $this->FindQuan_Pri_Region($resultThaiMap_Reg8);
-                [$quan_array_r9, $pri_array_r9] = $this->FindQuan_Pri_Region($resultThaiMap_Reg9);
-                [$quan_array_r10, $pri_array_r10] = $this->FindQuan_Pri_Region($resultThaiMap_Reg10);
-                [$quan_array_r11, $pri_array_r11] = $this->FindQuan_Pri_Region($resultThaiMap_Reg11);
-                [$quan_array_r12, $pri_array_r12] = $this->FindQuan_Pri_Region($resultThaiMap_Reg12);
-                [$quan_array_r13, $pri_array_r13] = $this->FindQuan_Pri_Region($resultThaiMap_Reg13);
-
-                //////// Donut ///////
-                [$donutD_low_r1, $donutD_med_r1, $donutD_high_r1] = $this->dataDonut_Region(1,$Region_1_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r2, $donutD_med_r2, $donutD_high_r2] = $this->dataDonut_Region(2,$Region_2_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r3, $donutD_med_r3, $donutD_high_r3] = $this->dataDonut_Region(3,$Region_3_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r4, $donutD_med_r4, $donutD_high_r4] = $this->dataDonut_Region(4,$Region_4_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r5, $donutD_med_r5, $donutD_high_r5] = $this->dataDonut_Region(5,$Region_5_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r6, $donutD_med_r6, $donutD_high_r6] = $this->dataDonut_Region(6,$Region_6_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r7, $donutD_med_r7, $donutD_high_r7] = $this->dataDonut_Region(7,$Region_7_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r8, $donutD_med_r8, $donutD_high_r8] = $this->dataDonut_Region(8,$Region_8_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r9, $donutD_med_r9, $donutD_high_r9] = $this->dataDonut_Region(9,$Region_9_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r10, $donutD_med_r10, $donutD_high_r10] = $this->dataDonut_Region(10,$Region_10_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r11, $donutD_med_r11, $donutD_high_r11] = $this->dataDonut_Region(11,$Region_11_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r12, $donutD_med_r12, $donutD_high_r12] = $this->dataDonut_Region(12,$Region_12_name,$year,$GT,$Dname,$method);
-                [$donutD_low_r13, $donutD_med_r13, $donutD_high_r13] = $this->dataDonut_Region(13,$Region_13_name,$year,$GT,$Dname,$method);
-                //////// END Donut ///////////
                 
-                //// Table Hospital ////////
-                [$cor_r1, $tableD_r1, $cor_r1_value] = $this->tableForRegion(1,$year,$GT,$Dname,$method);
-                [$cor_r2, $tableD_r2, $cor_r2_value] = $this->tableForRegion(2,$year,$GT,$Dname,$method);
-                [$cor_r3, $tableD_r3, $cor_r3_value] = $this->tableForRegion(3,$year,$GT,$Dname,$method);
-                [$cor_r4, $tableD_r4, $cor_r4_value] = $this->tableForRegion(4,$year,$GT,$Dname,$method);
-                [$cor_r5, $tableD_r5, $cor_r5_value] = $this->tableForRegion(5,$year,$GT,$Dname,$method);
-                [$cor_r6, $tableD_r6, $cor_r6_value] = $this->tableForRegion(6,$year,$GT,$Dname,$method);
-                [$cor_r7, $tableD_r7, $cor_r7_value] = $this->tableForRegion(7,$year,$GT,$Dname,$method);
-                [$cor_r8, $tableD_r8, $cor_r8_value] = $this->tableForRegion(8,$year,$GT,$Dname,$method);
-                [$cor_r9, $tableD_r9, $cor_r9_value] = $this->tableForRegion(9,$year,$GT,$Dname,$method);
-                [$cor_r10, $tableD_r10, $cor_r10_value] = $this->tableForRegion(10,$year,$GT,$Dname,$method);
-                [$cor_r11, $tableD_r11, $cor_r11_value] = $this->tableForRegion(11,$year,$GT,$Dname,$method);
-                [$cor_r12, $tableD_r12, $cor_r12_value] = $this->tableForRegion(12,$year,$GT,$Dname,$method);
-                [$cor_r13, $tableD_r13, $cor_r13_value] = $this->tableForRegion(13,$year,$GT,$Dname,$method);
-                ///// END Table Hospital ///////
+                ////////////////////////////////////////////////////////////////////
+                ///// count each region ////////////////////////////////////////////
+                if($method == 'All'){
+                    ////// table show //////////////////////////////////////////////////////////////////////
+                    $statement = "select BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, ";
+                    $statement .= "Total_Amount, FORMAT(Total_Amount, N'N2') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N2') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
+                    $statement .= "from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
 
-                //// Size of Hospital Level
-                [$chart_Size, $chartLow_Size, $chartMed_Size, $chartHigh_Size] = $this->stack_size_hospital($year,$GT,$Dname,$method);
-                $Donut_Type_result = $this->Donut_Type_Hos($year,$GT,$Dname,$method);
-                $Type_Hos_table = $this->tableForTypeHos($Donut_Type_result);
+                    // $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
+                    $resultSearch = DB::select($statement); 
+                    
+                }else{
+                    ////// table show //////////////////////////////////////////////////////////////////////
+                    $statement = "select BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, ";
+                    $statement .= "Total_Amount, FORMAT(Total_Amount, N'N2') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N2') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
+                    $statement .= "from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
 
-                [$total_type, $chartType, $chartOver_type, $chartAvg_type, $chartUnder_type] = $this->donut_type_drill_down($year,$GT,$Dname,$method);
-                $table_type_drill = $this->tableForType_drill_down($year,$GT,$Dname,$method);
+                    // $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
+                    $resultSearch = DB::select($statement);
+                }
+                if(!empty($resultSearch)){
+
+                    if($GT == 'GPU'){
+                        $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$resultSearch[0]->GPU_NAME."";
+                    }else if($GT == 'TPU'){
+                        $resultState = "".$year.", ".$method." method, ".$GT."-level, ".$resultSearch[0]->TPU_NAME."";
+                    }
+
+                    $r1 = $this->find_Stack_Data(1,$year,$GT,$Dname,$method);
+                    $r1_count = $this->r_count($r1);
+                    $r2 = $this->find_Stack_Data(2,$year,$GT,$Dname,$method);
+                    $r2_count = $this->r_count($r2);
+                    $r3 = $this->find_Stack_Data(3,$year,$GT,$Dname,$method);
+                    $r3_count = $this->r_count($r3);
+                    $r4 = $this->find_Stack_Data(4,$year,$GT,$Dname,$method);
+                    $r4_count = $this->r_count($r4);
+                    $r5 = $this->find_Stack_Data(5,$year,$GT,$Dname,$method);
+                    $r5_count = $this->r_count($r5);
+                    $r6 = $this->find_Stack_Data(6,$year,$GT,$Dname,$method);
+                    $r6_count = $this->r_count($r6);
+                    $r7 = $this->find_Stack_Data(7,$year,$GT,$Dname,$method);
+                    $r7_count = $this->r_count($r7);
+                    $r8 = $this->find_Stack_Data(8,$year,$GT,$Dname,$method);
+                    $r8_count = $this->r_count($r8);
+                    $r9 = $this->find_Stack_Data(9,$year,$GT,$Dname,$method);
+                    $r9_count = $this->r_count($r9);
+                    $r10 = $this->find_Stack_Data(10,$year,$GT,$Dname,$method);
+                    $r10_count = $this->r_count($r10);
+                    $r11 = $this->find_Stack_Data(11,$year,$GT,$Dname,$method);
+                    $r11_count = $this->r_count($r11);
+                    $r12 = $this->find_Stack_Data(12,$year,$GT,$Dname,$method);
+                    $r12_count = $this->r_count($r12);
+                    $r13 = $this->find_Stack_Data(13,$year,$GT,$Dname,$method);
+                    $r13_count = $this->r_count($r13);
+                    $countHosAll = array();
+                    array_push($countHosAll,$r1_count,$r2_count,$r3_count,$r4_count,$r5_count,$r6_count,$r7_count,$r8_count,$r9_count,$r10_count,$r11_count,$r12_count,$r13_count);
+                    // TH
+                    [$chartHighPercent, $chartMedPercent, $chartLowPercent, $avg] = $this->chart_Low_Med_High_All($countHosAll,$year,$GT,$Dname,$method);
+                    // Region
+                    [$chartRegion_1, $chartHighPercent_1, $chartMedPercent_1, $chartLowPercent_1] = $this->chart_Low_Med_High($r1_count,1,$Region_1_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_2, $chartHighPercent_2, $chartMedPercent_2, $chartLowPercent_2] = $this->chart_Low_Med_High($r2_count,2,$Region_2_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_3, $chartHighPercent_3, $chartMedPercent_3, $chartLowPercent_3] = $this->chart_Low_Med_High($r3_count,3,$Region_3_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_4, $chartHighPercent_4, $chartMedPercent_4, $chartLowPercent_4] = $this->chart_Low_Med_High($r4_count,4,$Region_4_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_5, $chartHighPercent_5, $chartMedPercent_5, $chartLowPercent_5] = $this->chart_Low_Med_High($r5_count,5,$Region_5_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_6, $chartHighPercent_6, $chartMedPercent_6, $chartLowPercent_6] = $this->chart_Low_Med_High($r6_count,6,$Region_6_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_7, $chartHighPercent_7, $chartMedPercent_7, $chartLowPercent_7] = $this->chart_Low_Med_High($r7_count,7,$Region_7_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_8, $chartHighPercent_8, $chartMedPercent_8, $chartLowPercent_8] = $this->chart_Low_Med_High($r8_count,8,$Region_8_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_9, $chartHighPercent_9, $chartMedPercent_9, $chartLowPercent_9] = $this->chart_Low_Med_High($r9_count,9,$Region_9_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_10, $chartHighPercent_10, $chartMedPercent_10, $chartLowPercent_10] = $this->chart_Low_Med_High($r10_count,10,$Region_10_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_11, $chartHighPercent_11, $chartMedPercent_11, $chartLowPercent_11] = $this->chart_Low_Med_High($r11_count,11,$Region_11_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_12, $chartHighPercent_12, $chartMedPercent_12, $chartLowPercent_12] = $this->chart_Low_Med_High($r12_count,12,$Region_12_name,$year,$GT,$Dname,$method);
+                    [$chartRegion_13, $chartHighPercent_13, $chartMedPercent_13, $chartLowPercent_13] = $this->chart_Low_Med_High($r13_count,13,$Region_13_name,$year,$GT,$Dname,$method);
+
+                    //////////////Start Thai Map///////////////////////////////////////////////////////////
+                    $resultThaiMap = $this->find_Map_Data('All',$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg1 = $this->find_Map_Data(1,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg2 = $this->find_Map_Data(2,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg3 = $this->find_Map_Data(3,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg4 = $this->find_Map_Data(4,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg5 = $this->find_Map_Data(5,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg6 = $this->find_Map_Data(6,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg7 = $this->find_Map_Data(7,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg8 = $this->find_Map_Data(8,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg9 = $this->find_Map_Data(9,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg10 = $this->find_Map_Data(10,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg11 = $this->find_Map_Data(11,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg12 = $this->find_Map_Data(12,$year,$GT,$Dname,$method);
+                    $resultThaiMap_Reg13 = $this->find_Map_Data(13,$year,$GT,$Dname,$method);
+
+                    [$quan_array_all, $pri_array_all] = $this->FindQuan_Pri_All($resultThaiMap);
+                    [$quan_array_r1, $pri_array_r1] = $this->FindQuan_Pri_Region($resultThaiMap_Reg1);
+                    [$quan_array_r2, $pri_array_r2] = $this->FindQuan_Pri_Region($resultThaiMap_Reg2);
+                    [$quan_array_r3, $pri_array_r3] = $this->FindQuan_Pri_Region($resultThaiMap_Reg3);
+                    [$quan_array_r4, $pri_array_r4] = $this->FindQuan_Pri_Region($resultThaiMap_Reg4);
+                    [$quan_array_r5, $pri_array_r5] = $this->FindQuan_Pri_Region($resultThaiMap_Reg5);
+                    [$quan_array_r6, $pri_array_r6] = $this->FindQuan_Pri_Region($resultThaiMap_Reg6);
+                    [$quan_array_r7, $pri_array_r7] = $this->FindQuan_Pri_Region($resultThaiMap_Reg7);
+                    [$quan_array_r8, $pri_array_r8] = $this->FindQuan_Pri_Region($resultThaiMap_Reg8);
+                    [$quan_array_r9, $pri_array_r9] = $this->FindQuan_Pri_Region($resultThaiMap_Reg9);
+                    [$quan_array_r10, $pri_array_r10] = $this->FindQuan_Pri_Region($resultThaiMap_Reg10);
+                    [$quan_array_r11, $pri_array_r11] = $this->FindQuan_Pri_Region($resultThaiMap_Reg11);
+                    [$quan_array_r12, $pri_array_r12] = $this->FindQuan_Pri_Region($resultThaiMap_Reg12);
+                    [$quan_array_r13, $pri_array_r13] = $this->FindQuan_Pri_Region($resultThaiMap_Reg13);
+
+                    //////// Donut ///////
+                    [$donutD_low_r1, $donutD_med_r1, $donutD_high_r1] = $this->dataDonut_Region(1,$Region_1_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r2, $donutD_med_r2, $donutD_high_r2] = $this->dataDonut_Region(2,$Region_2_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r3, $donutD_med_r3, $donutD_high_r3] = $this->dataDonut_Region(3,$Region_3_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r4, $donutD_med_r4, $donutD_high_r4] = $this->dataDonut_Region(4,$Region_4_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r5, $donutD_med_r5, $donutD_high_r5] = $this->dataDonut_Region(5,$Region_5_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r6, $donutD_med_r6, $donutD_high_r6] = $this->dataDonut_Region(6,$Region_6_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r7, $donutD_med_r7, $donutD_high_r7] = $this->dataDonut_Region(7,$Region_7_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r8, $donutD_med_r8, $donutD_high_r8] = $this->dataDonut_Region(8,$Region_8_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r9, $donutD_med_r9, $donutD_high_r9] = $this->dataDonut_Region(9,$Region_9_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r10, $donutD_med_r10, $donutD_high_r10] = $this->dataDonut_Region(10,$Region_10_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r11, $donutD_med_r11, $donutD_high_r11] = $this->dataDonut_Region(11,$Region_11_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r12, $donutD_med_r12, $donutD_high_r12] = $this->dataDonut_Region(12,$Region_12_name,$year,$GT,$Dname,$method);
+                    [$donutD_low_r13, $donutD_med_r13, $donutD_high_r13] = $this->dataDonut_Region(13,$Region_13_name,$year,$GT,$Dname,$method);
+                    //////// END Donut ///////////
+                    
+                    //// Table Hospital ////////
+                    [$cor_r1, $tableD_r1, $cor_r1_value] = $this->tableForRegion(1,$year,$GT,$Dname,$method);
+                    [$cor_r2, $tableD_r2, $cor_r2_value] = $this->tableForRegion(2,$year,$GT,$Dname,$method);
+                    [$cor_r3, $tableD_r3, $cor_r3_value] = $this->tableForRegion(3,$year,$GT,$Dname,$method);
+                    [$cor_r4, $tableD_r4, $cor_r4_value] = $this->tableForRegion(4,$year,$GT,$Dname,$method);
+                    [$cor_r5, $tableD_r5, $cor_r5_value] = $this->tableForRegion(5,$year,$GT,$Dname,$method);
+                    [$cor_r6, $tableD_r6, $cor_r6_value] = $this->tableForRegion(6,$year,$GT,$Dname,$method);
+                    [$cor_r7, $tableD_r7, $cor_r7_value] = $this->tableForRegion(7,$year,$GT,$Dname,$method);
+                    [$cor_r8, $tableD_r8, $cor_r8_value] = $this->tableForRegion(8,$year,$GT,$Dname,$method);
+                    [$cor_r9, $tableD_r9, $cor_r9_value] = $this->tableForRegion(9,$year,$GT,$Dname,$method);
+                    [$cor_r10, $tableD_r10, $cor_r10_value] = $this->tableForRegion(10,$year,$GT,$Dname,$method);
+                    [$cor_r11, $tableD_r11, $cor_r11_value] = $this->tableForRegion(11,$year,$GT,$Dname,$method);
+                    [$cor_r12, $tableD_r12, $cor_r12_value] = $this->tableForRegion(12,$year,$GT,$Dname,$method);
+                    [$cor_r13, $tableD_r13, $cor_r13_value] = $this->tableForRegion(13,$year,$GT,$Dname,$method);
+                    ///// END Table Hospital ///////
+
+                    //// Size of Hospital Level
+                    [$chart_Size, $chartLow_Size, $chartMed_Size, $chartHigh_Size] = $this->stack_size_hospital($year,$GT,$Dname,$method);
+                    $Donut_Type_result = $this->Donut_Type_Hos($year,$GT,$Dname,$method);
+                    $Type_Hos_table = $this->tableForTypeHos($Donut_Type_result);
+
+                    [$total_type, $chartType, $chartOver_type, $chartAvg_type, $chartUnder_type] = $this->donut_type_drill_down($year,$GT,$Dname,$method);
+                    $table_type_drill = $this->tableForType_drill_down($year,$GT,$Dname,$method);
+                }  
+            if($Dnn == NULL){
+                $resultSearch = 'No Dname';
+                $resultState = 'Please select again';
             }
+            
+                
+            
         }
         // $mapp = (object) ['TH-30' => 'purple', 'TH-20' => 'yellow'];
         // $mapp = "{'TH-30':'purple', 'TH-20':'red'}";
