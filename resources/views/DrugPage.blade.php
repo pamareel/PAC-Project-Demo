@@ -220,7 +220,7 @@
                 labels: sizeAll,
                 datasets:[
                 {
-                    label:'Below Average',
+                    label:'Below Average PAC',
                     data: [{{ $chartLow_Size[0] }}, {{ $chartLow_Size[1] }}, {{ $chartLow_Size[2] }},
                         {{ $chartLow_Size[3] }}, {{ $chartLow_Size[4] }}, {{ $chartLow_Size[5] }},
                         {{ $chartLow_Size[6] }}, {{ $chartLow_Size[7] }}],
@@ -231,7 +231,7 @@
                     hoverBorderColor:'#000'
                 },
                 {
-                    label:'Average = {{$avg}}',
+                    label:'Average PAC = {{$avg}}',
                     data: [ {{ $chartMed_Size[0] }} , {{ $chartMed_Size[1] }}, {{ $chartMed_Size[2] }},
                         {{ $chartMed_Size[3] }}, {{ $chartMed_Size[4] }}, {{ $chartMed_Size[5] }},
                         {{ $chartMed_Size[6] }}, {{ $chartMed_Size[7] }}],
@@ -241,7 +241,7 @@
                     hoverBorderWidth:3,
                     hoverBorderColor:'#000'
                 },{
-                    label:'Above Average',
+                    label:'Above Average PAC',
                     data:[{{ $chartHigh_Size[0] }}, {{ $chartHigh_Size[1] }}, {{ $chartHigh_Size[2] }},
                         {{ $chartHigh_Size[3] }}, {{ $chartHigh_Size[4] }}, {{ $chartHigh_Size[5] }},
                         {{ $chartHigh_Size[6] }}, {{ $chartHigh_Size[7] }}],
@@ -369,7 +369,7 @@
                     high_1 = high['A'];
                     c3.generate({ 
                         bindto:"#size_quan_donut_all",
-                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                         type:"donut",
                         tooltip:{show:!0}},
                         donut:{label:{show:!1},
@@ -406,7 +406,7 @@
                     high_1 = high['S'];
                     c3.generate({ 
                         bindto:"#size_quan_donut_all",
-                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                         type:"donut",
                         tooltip:{show:!0}},
                         donut:{label:{show:!1},
@@ -443,7 +443,7 @@
                     high_1 = high['M1'];
                     c3.generate({ 
                         bindto:"#size_quan_donut_all",
-                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                         type:"donut",
                         tooltip:{show:!0}},
                         donut:{label:{show:!1},
@@ -480,7 +480,7 @@
                     high_1 = high['M2'];
                     c3.generate({ 
                         bindto:"#size_quan_donut_all",
-                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                         type:"donut",
                         tooltip:{show:!0}},
                         donut:{label:{show:!1},
@@ -517,7 +517,7 @@
                     high_1 = high['F1'];
                     c3.generate({ 
                         bindto:"#size_quan_donut_all",
-                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                         type:"donut",
                         tooltip:{show:!0}},
                         donut:{label:{show:!1},
@@ -554,7 +554,7 @@
                     high_1 = high['F2'];
                     c3.generate({ 
                         bindto:"#size_quan_donut_all",
-                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                         type:"donut",
                         tooltip:{show:!0}},
                         donut:{label:{show:!1},
@@ -591,7 +591,7 @@
                     high_1 = high['F3'];
                     c3.generate({ 
                         bindto:"#size_quan_donut_all",
-                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                         type:"donut",
                         tooltip:{show:!0}},
                         donut:{label:{show:!1},
@@ -628,7 +628,7 @@
                     high_1 = high['Undefined'];
                     c3.generate({ 
                         bindto:"#size_quan_donut_all",
-                        data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                        data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                         type:"donut",
                         tooltip:{show:!0}},
                         donut:{label:{show:!1},
@@ -1651,6 +1651,7 @@
                                 }
                                 ?>
                             </div>
+                            <p style="font-size:14px;">*Acquisition Capability is calculated from PAC value</p>
                         </div>
                     </div>
                 </div>
@@ -1667,15 +1668,16 @@
                         <div id="size_quan_donut_all" class="mt-2 col-md-7 center" style="height:283px; width:60%;"></div>
                         <div class="col-md-5 center">
                             <i class="fas fa-circle font-10 mr-2" style="color:#4aab57;"></i>
-                            <span class="text-muted" >Above Average</span>
+                            <span class="text-muted" >Above Average PAC</span>
                             <br/>
                             <i class="fas fa-circle font-10 mr-2" style="color:#ff8f1d;"></i>
-                            <span class="text-muted" >Average = {{ $avg }} </span>
+                            <span class="text-muted" >Average PAC = {{ $avg }} </span>
                             <br/>
                             <i class="fas fa-circle font-10 mr-2" style="color:#cf2620;"></i>
-                            <span class="text-muted" >Below Average</span>
+                            <span class="text-muted" >Below Average PAC</span>
                         </div>
                     </div>
+                    <p style="font-size:14px;">*Acquisition Capability is calculated from PAC value</p>
                 </div>
             </div>
         </div>
@@ -1744,7 +1746,7 @@
                         ,'Region7', 'Region8', 'Region9', 'Region10', 'Region11', 'Region12', 'Region13'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent[0] }}, {{ $chartLowPercent[1] }}, {{ $chartLowPercent[2] }},
                             {{ $chartLowPercent[3] }}, {{ $chartLowPercent[4] }}, {{ $chartLowPercent[5] }},
                             {{ $chartLowPercent[6] }}, {{ $chartLowPercent[7] }}, {{ $chartLowPercent[8] }},
@@ -1757,7 +1759,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [ {{ $chartMedPercent[0] }} , {{ $chartMedPercent[1] }}, {{ $chartMedPercent[2] }},
                             {{ $chartMedPercent[3] }}, {{ $chartMedPercent[4] }}, {{ $chartMedPercent[5] }},
                             {{ $chartMedPercent[6] }}, {{ $chartMedPercent[7] }}, {{ $chartMedPercent[8] }},
@@ -1769,7 +1771,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent[0] }}, {{ $chartHighPercent[1] }}, {{ $chartHighPercent[2] }},
                             {{ $chartHighPercent[3] }}, {{ $chartHighPercent[4] }}, {{ $chartHighPercent[5] }},
                             {{ $chartHighPercent[6] }}, {{ $chartHighPercent[7] }}, {{ $chartHighPercent[8] }},
@@ -1830,7 +1832,7 @@
                     '{{ $chartRegion_1[5] }}', '{{ $chartRegion_1[6] }}', '{{ $chartRegion_1[7] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_1[0] }}, {{ $chartLowPercent_1[1] }}, {{ $chartLowPercent_1[2] }},
                             {{ $chartLowPercent_1[3] }}, {{ $chartLowPercent_1[4] }}, {{ $chartLowPercent_1[5] }},
                             {{ $chartLowPercent_1[6] }}, {{ $chartLowPercent_1[7] }}],
@@ -1841,7 +1843,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_1[0] }} , {{ $chartMedPercent_1[1] }}, {{ $chartMedPercent_1[2] }},
                             {{ $chartMedPercent_1[3] }}, {{ $chartMedPercent_1[4] }}, {{ $chartMedPercent_1[5] }},
                             {{ $chartMedPercent_1[6] }}, {{ $chartMedPercent_1[7] }}],
@@ -1851,7 +1853,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_1[0] }}, {{ $chartHighPercent_1[1] }}, {{ $chartHighPercent_1[2] }},
                             {{ $chartHighPercent_1[3] }}, {{ $chartHighPercent_1[4] }}, {{ $chartHighPercent_1[5] }},
                             {{ $chartHighPercent_1[6] }}, {{ $chartHighPercent_1[7] }}],
@@ -1904,7 +1906,7 @@
                     labels:['{{ $chartRegion_2[0] }}', '{{ $chartRegion_2[1] }}', '{{ $chartRegion_2[2] }}', '{{ $chartRegion_2[3] }}', '{{ $chartRegion_2[4] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_2[0] }}, {{ $chartLowPercent_2[1] }}, {{ $chartLowPercent_2[2] }},
                             {{ $chartLowPercent_2[3] }}, {{ $chartLowPercent_2[4] }}],
                         backgroundColor:'#cf2620',
@@ -1914,7 +1916,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_2[0] }} , {{ $chartMedPercent_2[1] }}, {{ $chartMedPercent_2[2] }},
                             {{ $chartMedPercent_2[3] }}, {{ $chartMedPercent_2[4] }}],
                         backgroundColor:'#ff8f1d',
@@ -1923,7 +1925,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_2[0] }}, {{ $chartHighPercent_2[1] }}, {{ $chartHighPercent_2[2] }},
                             {{ $chartHighPercent_2[3] }}, {{ $chartHighPercent_2[4] }}],
                         backgroundColor:'#4aab57',
@@ -1976,7 +1978,7 @@
                     labels:['{{ $chartRegion_3[0] }}', '{{ $chartRegion_3[1] }}', '{{ $chartRegion_3[2] }}', '{{ $chartRegion_3[3] }}', '{{ $chartRegion_3[4] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_3[0] }}, {{ $chartLowPercent_3[1] }}, {{ $chartLowPercent_3[2] }},
                             {{ $chartLowPercent_3[3] }}, {{ $chartLowPercent_3[4] }}],
                         backgroundColor:'#cf2620',
@@ -1986,7 +1988,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_3[0] }} , {{ $chartMedPercent_3[1] }}, {{ $chartMedPercent_3[2] }},
                             {{ $chartMedPercent_3[3] }}, {{ $chartMedPercent_3[4] }}],
                         backgroundColor:'#ff8f1d',
@@ -1995,7 +1997,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_3[0] }}, {{ $chartHighPercent_3[1] }}, {{ $chartHighPercent_3[2] }},
                             {{ $chartHighPercent_3[3] }}, {{ $chartHighPercent_3[4] }}],
                         backgroundColor:'#4aab57',
@@ -2049,7 +2051,7 @@
                     '{{ $chartRegion_4[5] }}', '{{ $chartRegion_4[6] }}', '{{ $chartRegion_4[7] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_4[0] }}, {{ $chartLowPercent_4[1] }}, {{ $chartLowPercent_4[2] }},
                             {{ $chartLowPercent_4[3] }}, {{ $chartLowPercent_4[4] }}, {{ $chartLowPercent_4[5] }},
                             {{ $chartLowPercent_4[6] }}, {{ $chartLowPercent_4[7] }}],
@@ -2060,7 +2062,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_4[0] }} , {{ $chartMedPercent_4[1] }}, {{ $chartMedPercent_4[2] }},
                             {{ $chartMedPercent_4[3] }}, {{ $chartMedPercent_4[4] }}, {{ $chartMedPercent_4[5] }},
                             {{ $chartMedPercent_4[6] }}, {{ $chartMedPercent_4[7] }}],
@@ -2070,7 +2072,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_4[0] }}, {{ $chartHighPercent_4[1] }}, {{ $chartHighPercent_4[2] }},
                             {{ $chartHighPercent_4[3] }}, {{ $chartHighPercent_4[4] }}, {{ $chartHighPercent_4[5] }},
                             {{ $chartHighPercent_4[6] }}, {{ $chartHighPercent_4[7] }}],
@@ -2125,7 +2127,7 @@
                     '{{ $chartRegion_5[5] }}', '{{ $chartRegion_5[6] }}', '{{ $chartRegion_5[7] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_5[0] }}, {{ $chartLowPercent_5[1] }}, {{ $chartLowPercent_5[2] }},
                             {{ $chartLowPercent_5[3] }}, {{ $chartLowPercent_5[4] }}, {{ $chartLowPercent_5[5] }},
                             {{ $chartLowPercent_5[6] }}, {{ $chartLowPercent_5[7] }}],
@@ -2136,7 +2138,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_5[0] }} , {{ $chartMedPercent_5[1] }}, {{ $chartMedPercent_5[2] }},
                             {{ $chartMedPercent_5[3] }}, {{ $chartMedPercent_5[4] }}, {{ $chartMedPercent_5[5] }},
                             {{ $chartMedPercent_5[6] }}, {{ $chartMedPercent_5[7] }}],
@@ -2146,7 +2148,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_5[0] }}, {{ $chartHighPercent_5[1] }}, {{ $chartHighPercent_5[2] }},
                             {{ $chartHighPercent_5[3] }}, {{ $chartHighPercent_5[4] }}, {{ $chartHighPercent_5[5] }},
                             {{ $chartHighPercent_5[6] }}, {{ $chartHighPercent_5[7] }}],
@@ -2201,7 +2203,7 @@
                     '{{ $chartRegion_6[5] }}', '{{ $chartRegion_6[6] }}', '{{ $chartRegion_6[7] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_6[0] }}, {{ $chartLowPercent_6[1] }}, {{ $chartLowPercent_6[2] }},
                             {{ $chartLowPercent_6[3] }}, {{ $chartLowPercent_6[4] }}, {{ $chartLowPercent_6[5] }},
                             {{ $chartLowPercent_6[6] }}, {{ $chartLowPercent_6[7] }}],
@@ -2212,7 +2214,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_6[0] }} , {{ $chartMedPercent_6[1] }}, {{ $chartMedPercent_6[2] }},
                             {{ $chartMedPercent_6[3] }}, {{ $chartMedPercent_6[4] }}, {{ $chartMedPercent_6[5] }},
                             {{ $chartMedPercent_6[6] }}, {{ $chartMedPercent_6[7] }}],
@@ -2222,7 +2224,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_6[0] }}, {{ $chartHighPercent_6[1] }}, {{ $chartHighPercent_6[2] }},
                             {{ $chartHighPercent_6[3] }}, {{ $chartHighPercent_6[4] }}, {{ $chartHighPercent_6[5] }},
                             {{ $chartHighPercent_6[6] }}, {{ $chartHighPercent_6[7] }}],
@@ -2276,7 +2278,7 @@
                     labels:['{{ $chartRegion_7[0] }}', '{{ $chartRegion_7[1] }}', '{{ $chartRegion_7[2] }}', '{{ $chartRegion_7[3] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_7[0] }}, {{ $chartLowPercent_7[1] }}, {{ $chartLowPercent_7[2] }},
                             {{ $chartLowPercent_7[3] }}],
                         backgroundColor:'#cf2620',
@@ -2286,7 +2288,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_7[0] }} , {{ $chartMedPercent_7[1] }}, {{ $chartMedPercent_7[2] }},
                             {{ $chartMedPercent_7[3] }}],
                         backgroundColor:'#ff8f1d',
@@ -2295,7 +2297,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_7[0] }}, {{ $chartHighPercent_7[1] }}, {{ $chartHighPercent_7[2] }},
                             {{ $chartHighPercent_7[3] }}],
                         backgroundColor:'#4aab57',
@@ -2349,7 +2351,7 @@
                             '{{ $chartRegion_8[4] }}', '{{ $chartRegion_8[5] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_8[0] }}, {{ $chartLowPercent_8[1] }}, {{ $chartLowPercent_8[2] }},
                             {{ $chartLowPercent_8[3] }}, {{ $chartLowPercent_8[4] }}, {{ $chartLowPercent_8[5] }}],
                         backgroundColor:'#cf2620',
@@ -2359,7 +2361,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_8[0] }} , {{ $chartMedPercent_8[1] }}, {{ $chartMedPercent_8[2] }},
                             {{ $chartMedPercent_8[3] }}, {{ $chartMedPercent_8[4] }}, {{ $chartMedPercent_8[5] }}],
                         backgroundColor:'#ff8f1d',
@@ -2368,7 +2370,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_8[0] }}, {{ $chartHighPercent_8[1] }}, {{ $chartHighPercent_8[2] }},
                             {{ $chartHighPercent_8[3] }}, {{ $chartHighPercent_8[4] }}, {{ $chartHighPercent_8[5] }}],
                         backgroundColor:'#4aab57',
@@ -2421,7 +2423,7 @@
                     labels:['{{ $chartRegion_9[0] }}', '{{ $chartRegion_9[1] }}', '{{ $chartRegion_9[2] }}', '{{ $chartRegion_9[3] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_9[0] }}, {{ $chartLowPercent_9[1] }}, {{ $chartLowPercent_9[2] }},
                             {{ $chartLowPercent_9[3] }}],
                         backgroundColor:'#cf2620',
@@ -2431,7 +2433,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_9[0] }} , {{ $chartMedPercent_9[1] }}, {{ $chartMedPercent_9[2] }},
                             {{ $chartMedPercent_9[3] }}],
                         backgroundColor:'#ff8f1d',
@@ -2440,7 +2442,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_9[0] }}, {{ $chartHighPercent_9[1] }}, {{ $chartHighPercent_9[2] }},
                             {{ $chartHighPercent_9[3] }}],
                         backgroundColor:'#4aab57',
@@ -2493,7 +2495,7 @@
                     labels:['{{ $chartRegion_10[0] }}', '{{ $chartRegion_10[1] }}', '{{ $chartRegion_10[2] }}', '{{ $chartRegion_10[3] }}', '{{ $chartRegion_10[4] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_10[0] }}, {{ $chartLowPercent_10[1] }}, {{ $chartLowPercent_10[2] }},
                             {{ $chartLowPercent_10[3] }}, {{ $chartLowPercent_10[4] }}],
                         backgroundColor:'#cf2620',
@@ -2503,7 +2505,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_10[0] }} , {{ $chartMedPercent_10[1] }}, {{ $chartMedPercent_10[2] }},
                             {{ $chartMedPercent_10[3] }}, {{ $chartMedPercent_10[4] }}],
                         backgroundColor:'#ff8f1d',
@@ -2512,7 +2514,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_10[0] }}, {{ $chartHighPercent_10[1] }}, {{ $chartHighPercent_10[2] }},
                             {{ $chartHighPercent_10[3] }}, {{ $chartHighPercent_10[4] }}],
                         backgroundColor:'#4aab57',
@@ -2566,7 +2568,7 @@
                     '{{ $chartRegion_11[5] }}', '{{ $chartRegion_11[6] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_11[0] }}, {{ $chartLowPercent_11[1] }}, {{ $chartLowPercent_11[2] }},
                             {{ $chartLowPercent_11[3] }}, {{ $chartLowPercent_11[4] }}, {{ $chartLowPercent_11[5] }},
                             {{ $chartLowPercent_11[6] }}],
@@ -2577,7 +2579,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_11[0] }} , {{ $chartMedPercent_11[1] }}, {{ $chartMedPercent_11[2] }},
                             {{ $chartMedPercent_11[3] }}, {{ $chartMedPercent_11[4] }}, {{ $chartMedPercent_11[5] }},
                             {{ $chartMedPercent_11[6] }}],
@@ -2587,7 +2589,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_11[0] }}, {{ $chartHighPercent_11[1] }}, {{ $chartHighPercent_11[2] }},
                             {{ $chartHighPercent_11[3] }}, {{ $chartHighPercent_11[4] }}, {{ $chartHighPercent_11[5] }},
                             {{ $chartHighPercent_11[6] }}],
@@ -2642,7 +2644,7 @@
                     '{{ $chartRegion_12[5] }}', '{{ $chartRegion_12[6] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_12[0] }}, {{ $chartLowPercent_12[1] }}, {{ $chartLowPercent_12[2] }},
                             {{ $chartLowPercent_12[3] }}, {{ $chartLowPercent_12[4] }}, {{ $chartLowPercent_12[5] }},
                             {{ $chartLowPercent_12[6] }}],
@@ -2653,7 +2655,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_12[0] }} , {{ $chartMedPercent_12[1] }}, {{ $chartMedPercent_12[2] }},
                             {{ $chartMedPercent_12[3] }}, {{ $chartMedPercent_12[4] }}, {{ $chartMedPercent_12[5] }},
                             {{ $chartMedPercent_12[6] }}],
@@ -2663,7 +2665,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_12[0] }}, {{ $chartHighPercent_12[1] }}, {{ $chartHighPercent_12[2] }},
                             {{ $chartHighPercent_12[3] }}, {{ $chartHighPercent_12[4] }}, {{ $chartHighPercent_12[5] }},
                             {{ $chartHighPercent_12[6] }}],
@@ -2717,7 +2719,7 @@
                     labels:['{{ $chartRegion_13[0] }}'],
                     datasets:[
                     {
-                        label:'Below Average',
+                        label:'Below Average PAC',
                         data: [{{ $chartLowPercent_13[0] }}],
                         backgroundColor:'#cf2620',
                         borderWidth:1,
@@ -2726,7 +2728,7 @@
                         hoverBorderColor:'#000'
                     },
                     {
-                        label:'Average = {{$avg}}',
+                        label:'Average PAC = {{$avg}}',
                         data: [{{ $chartMedPercent_13[0] }}],
                         backgroundColor:'#ff8f1d',
                         borderWidth:1,
@@ -2734,7 +2736,7 @@
                         hoverBorderWidth:3,
                         hoverBorderColor:'#000'
                     },{
-                        label:'Above Average',
+                        label:'Above Average PAC',
                         data:[{{ $chartHighPercent_13[0] }}],
                         backgroundColor:'#4aab57',
                         borderWidth:1,
@@ -2901,7 +2903,7 @@
                             total = low_1 + med_1 + high_1;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                                data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -2913,6 +2915,32 @@
                             $('#Table_Hos_by_Province tbody').html(content_1);
                             //correlation
                             cor_data = {!! json_encode($cor_r1) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -2921,23 +2949,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_1 == '' || content_1 == NULL){
                             alert('Cannot drill down because no data');
@@ -2989,7 +3003,7 @@
                             total = low_2 + med_2 + high_2;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_2],['Average', med_2],['Below Average', low_2]],
+                                data:{columns:[["Above Average PAC", high_2],['Average', med_2],['Below Average PAC', low_2]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3002,6 +3016,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r2) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3010,23 +3050,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_2 == '' || content_2 == NULL){
                             alert('Cannot drill down because no data');
@@ -3078,7 +3104,7 @@
                             total = low_3 + med_3 + high_3;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_3],['Average', med_3],['Below Average', low_3]],
+                                data:{columns:[["Above Average PAC", high_3],['Average', med_3],['Below Average PAC', low_3]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3091,6 +3117,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r3) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3099,23 +3151,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_3 == '' || content_3 == NULL){
                             alert('Cannot drill down because no data');
@@ -3167,7 +3205,7 @@
                             total = low_4 + med_4 + high_4;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_4],['Average', med_4],['Below Average', low_4]],
+                                data:{columns:[["Above Average PAC", high_4],['Average', med_4],['Below Average PAC', low_4]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3180,6 +3218,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r4) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3188,23 +3252,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_4 == '' || content_4 == NULL){
                             alert('Cannot drill down because no data');
@@ -3256,7 +3306,7 @@
                             total = low_5 + med_5 + high_5;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_5],['Average', med_5],['Below Average', low_5]],
+                                data:{columns:[["Above Average PAC", high_5],['Average', med_5],['Below Average PAC', low_5]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3269,6 +3319,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r5) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3277,23 +3353,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_5 == '' || content_5 == NULL){
                             alert('Cannot drill down because no data');
@@ -3345,7 +3407,7 @@
                             total = low_6 + med_6 + high_6;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_6],['Average', med_6],['Below Average', low_6]],
+                                data:{columns:[["Above Average PAC", high_6],['Average', med_6],['Below Average PAC', low_6]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3358,6 +3420,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r6) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3366,23 +3454,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_6 == '' || content_6 == NULL){
                             alert('Cannot drill down because no data');
@@ -3434,7 +3508,7 @@
                             total = low_7 + med_7 + high_7;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_7],['Average', med_7],['Below Average', low_7]],
+                                data:{columns:[["Above Average PAC", high_7],['Average', med_7],['Below Average PAC', low_7]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3447,6 +3521,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r7) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3455,23 +3555,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_7 == '' || content_7 == NULL){
                             alert('Cannot drill down because no data');
@@ -3523,7 +3609,7 @@
                             total = low_8 + med_8 + high_8;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_8],['Average', med_8],['Below Average', low_8]],
+                                data:{columns:[["Above Average PAC", high_8],['Average', med_8],['Below Average PAC', low_8]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3536,6 +3622,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r8) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3544,23 +3656,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_8 == '' || content_8 == NULL){
                             alert('Cannot drill down because no data');
@@ -3612,7 +3710,7 @@
                             total = low_9 + med_9 + high_9;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_9],['Average', med_9],['Below Average', low_9]],
+                                data:{columns:[["Above Average PAC", high_9],['Average', med_9],['Below Average PAC', low_9]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3625,6 +3723,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r9) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3633,23 +3757,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_9 == '' || content_9 == NULL){
                             alert('Cannot drill down because no data');
@@ -3701,7 +3811,7 @@
                             total = low_10 + med_10 + high_10;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_10],['Average', med_10],['Below Average', low_10]],
+                                data:{columns:[["Above Average PAC", high_10],['Average', med_10],['Below Average PAC', low_10]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3714,6 +3824,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r10) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3722,23 +3858,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_10 == '' || content_10 == NULL){
                             alert('Cannot drill down because no data');
@@ -3790,7 +3912,7 @@
                             total = low_11 + med_11 + high_11;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_11],['Average', med_11],['Below Average', low_11]],
+                                data:{columns:[["Above Average PAC", high_11],['Average', med_11],['Below Average PAC', low_11]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3803,6 +3925,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r11) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3811,23 +3959,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_11 == '' || content_11 == NULL){
                             alert('Cannot drill down because no data');
@@ -3879,7 +4013,7 @@
                             total = low_12 + med_12 + high_12;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_12],['Average', med_12],['Below Average', low_12]],
+                                data:{columns:[["Above Average PAC", high_12],['Average', med_12],['Below Average PAC', low_12]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -3892,6 +4026,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r12) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -3900,23 +4060,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_12 == '' || content_12 == NULL){
                             alert('Cannot drill down because no data');
@@ -3965,7 +4111,7 @@
                             total = low_13 + med_13 + high_13;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_13],['Average', med_13],['Below Average', low_13]],
+                                data:{columns:[["Above Average PAC", high_13],['Average', med_13],['Below Average PAC', low_13]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4163,7 +4309,7 @@
                             total = low_1 + med_1 + high_1;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_1],['Average', med_1],['Below Average', low_1]],
+                                data:{columns:[["Above Average PAC", high_1],['Average', med_1],['Below Average PAC', low_1]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4173,9 +4319,35 @@
                             });
                             //table
                             $('#Table_Hos_by_Province tbody').html(content_1);
-
                             //correlation
                             cor_data = {!! json_encode($cor_r1) !!};
+
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4184,24 +4356,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
-
+                               
                         }else if(content_1 == '' || content_1 == NULL){
                             alert('Cannot drill down because no data');
                         }
@@ -4252,7 +4409,7 @@
                             total = low_2 + med_2 + high_2;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_2],['Average', med_2],['Below Average', low_2]],
+                                data:{columns:[["Above Average PAC", high_2],['Average', med_2],['Below Average PAC', low_2]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4265,6 +4422,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r2) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4273,23 +4456,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_2 == '' || content_2 == NULL){
                             alert('Cannot drill down because no data');
@@ -4341,7 +4510,7 @@
                             total = low_3 + med_3 + high_3;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_3],['Average', med_3],['Below Average', low_3]],
+                                data:{columns:[["Above Average PAC", high_3],['Average', med_3],['Below Average PAC', low_3]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4354,6 +4523,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r3) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4362,23 +4557,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_3 == '' || content_3 == NULL){
                             alert('Cannot drill down because no data');
@@ -4430,7 +4611,7 @@
                             total = low_4 + med_4 + high_4;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_4],['Average', med_4],['Below Average', low_4]],
+                                data:{columns:[["Above Average PAC", high_4],['Average', med_4],['Below Average PAC', low_4]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4443,6 +4624,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r4) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4451,23 +4658,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_4 == '' || content_4 == NULL){
                             alert('Cannot drill down because no data');
@@ -4519,7 +4712,7 @@
                             total = low_5 + med_5 + high_5;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_5],['Average', med_5],['Below Average', low_5]],
+                                data:{columns:[["Above Average PAC", high_5],['Average', med_5],['Below Average PAC', low_5]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4532,6 +4725,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r5) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4540,23 +4759,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_5 == '' || content_5 == NULL){
                             alert('Cannot drill down because no data');
@@ -4608,7 +4813,7 @@
                             total = low_6 + med_6 + high_6;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_6],['Average', med_6],['Below Average', low_6]],
+                                data:{columns:[["Above Average PAC", high_6],['Average', med_6],['Below Average PAC', low_6]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4621,6 +4826,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r6) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4629,23 +4860,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_6 == '' || content_6 == NULL){
                             alert('Cannot drill down because no data');
@@ -4697,7 +4914,7 @@
                             total = low_7 + med_7 + high_7;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_7],['Average', med_7],['Below Average', low_7]],
+                                data:{columns:[["Above Average PAC", high_7],['Average', med_7],['Below Average PAC', low_7]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4710,6 +4927,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r7) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4718,23 +4961,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_7 == '' || content_7 == NULL){
                             alert('Cannot drill down because no data');
@@ -4786,7 +5015,7 @@
                             total = low_8 + med_8 + high_8;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_8],['Average', med_8],['Below Average', low_8]],
+                                data:{columns:[["Above Average PAC", high_8],['Average', med_8],['Below Average PAC', low_8]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4799,6 +5028,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r8) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4807,23 +5062,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_8 == '' || content_8 == NULL){
                             alert('Cannot drill down because no data');
@@ -4875,7 +5116,7 @@
                             total = low_9 + med_9 + high_9;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_9],['Average', med_9],['Below Average', low_9]],
+                                data:{columns:[["Above Average PAC", high_9],['Average', med_9],['Below Average PAC', low_9]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4888,6 +5129,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r9) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4896,23 +5163,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_9 == '' || content_9 == NULL){
                             alert('Cannot drill down because no data');
@@ -4964,7 +5217,7 @@
                             total = low_10 + med_10 + high_10;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_10],['Average', med_10],['Below Average', low_10]],
+                                data:{columns:[["Above Average PAC", high_10],['Average', med_10],['Below Average PAC', low_10]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -4977,6 +5230,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r10) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -4985,23 +5264,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_10 == '' || content_10 == NULL){
                             alert('Cannot drill down because no data');
@@ -5053,7 +5318,7 @@
                             total = low_11 + med_11 + high_11;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_11],['Average', med_11],['Below Average', low_11]],
+                                data:{columns:[["Above Average PAC", high_11],['Average', med_11],['Below Average PAC', low_11]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -5066,6 +5331,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r11) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -5074,23 +5365,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_11 == '' || content_11 == NULL){
                             alert('Cannot drill down because no data');
@@ -5142,7 +5419,7 @@
                             total = low_12 + med_12 + high_12;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_12],['Average', med_12],['Below Average', low_12]],
+                                data:{columns:[["Above Average PAC", high_12],['Average', med_12],['Below Average PAC', low_12]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -5155,6 +5432,32 @@
 
                             //correlation
                             cor_data = {!! json_encode($cor_r12) !!};
+                            if(corr_code >=0.7 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
+                                document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
+                                document.getElementById("total_corr_label").style.color = '#60C687';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <0.7 && corr_code>0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
+                                document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
+                                document.getElementById("total_corr_label").style.color = '#F5C378';
+                                google.charts.setOnLoadCallBack(drawChart());
+
+                            }else if(corr_code <= 0.4 && corr_code != 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
+                                document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
+                                document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
+                                document.getElementById("total_corr_label").style.color = '#ff4f70';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }else if(corr_code == 'Cannot be defined'){
+                                document.getElementById("total_corr").innerHTML = "Undefined";
+                                document.getElementById("total_corr_bg").style.backgroundColor = "white";
+                                document.getElementById("total_corr_label").innerHTML = '';
+                                google.charts.setOnLoadCallBack(drawChart());
+                            }
                             function drawChart(){
                                 $.coChart = new google.visualization.LineChart(document.getElementById('corr'));
                                 var data = google.visualization.arrayToDataTable(cor_data[code]);
@@ -5163,23 +5466,9 @@
                                     legend: { position: 'bottom' },
                                     colors: ['#5f76e8', '#ff4f70']
                                 };
-                                document.getElementById("total_corr").innerHTML = corr_code.toFixed(3);
-                                if(corr_code.toFixed(3)>=0.7){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#8CDFAC";
-                                    document.getElementById("total_corr_label").innerHTML = 'Strong Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#60C687';
-                                }else if(corr_code.toFixed(3)<0.7 && corr_code.toFixed(3)>0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#F8D39C";
-                                    document.getElementById("total_corr_label").innerHTML = 'Moderate Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#F5C378';
-                                }else if(corr_code.toFixed(3)<=0.4){
-                                    document.getElementById("total_corr_bg").style.backgroundColor = "#FFA0AF";
-                                    document.getElementById("total_corr_label").innerHTML = 'Weak Correlation';
-                                    document.getElementById("total_corr_label").style.color = '#ff4f70';
-                                }
                                 $.coChart.draw(data, cor_options);
                             }
-                            google.charts.setOnLoadCallBack(drawChart());
+                               
 
                         }else if(content_12 == '' || content_12 == NULL){
                             alert('Cannot drill down because no data');
@@ -5228,7 +5517,7 @@
                             total = low_13 + med_13 + high_13;
                             c3.generate({ 
                                 bindto:"#purchasing_power_donut",
-                                data:{columns:[["Above Average", high_13],['Average', med_13],['Below Average', low_13]],
+                                data:{columns:[["Above Average PAC", high_13],['Average', med_13],['Below Average PAC', low_13]],
                                 type:"donut",
                                 tooltip:{show:!0}},
                                 donut:{label:{show:!1},
@@ -5555,15 +5844,16 @@
                         <div id="purchasing_power_donut" class="mt-2 col-md-6 center" style="height:283px; width:60%;"></div>
                         <div class="col-md-5 center">
                             <i class="fas fa-circle font-10 mr-2" style="color:#4aab57;"></i>
-                            <span class="text-muted" >Above Average</span>
+                            <span class="text-muted" >Above Average PAC</span>
                             <br/>
                             <i class="fas fa-circle font-10 mr-2" style="color:#ff8f1d;"></i>
-                            <span class="text-muted" >Average = {{ $avg }} </span>
+                            <span class="text-muted" >Average PAC = {{ $avg }} </span>
                             <br/>
                             <i class="fas fa-circle font-10 mr-2" style="color:#cf2620;"></i>
-                            <span class="text-muted" >Below Average</span>
+                            <span class="text-muted" >Below Average PAC</span>
                         </div>
                     </div>
+                    <p style="font-size:14px;">*Acquisition Capability is calculated from PAC value</p>
                 </div>
             </div>
         </div>
