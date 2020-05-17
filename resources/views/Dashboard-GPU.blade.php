@@ -65,8 +65,8 @@
 <?php
     //GPU
     //2562
-    $top5Amount = DB::select("select TOP 5 BUDGET_YEAR, GPU_ID, GPU_NAME, Total_Real_Amount as To_Total_Real_Amount, FORMAT(Total_Real_Amount, N'N0') as Total_Real_Amount, cast(Wavg_Unit_Price as decimal(10,2)) as Wavg_Unit_Price from GPU where BUDGET_YEAR = 2562 order by To_Total_Real_Amount DESC;");
-    $totalAmount = DB::select("select FORMAT(sum(Total_Real_Amount), N'N0') as total FROM GPU WHERE BUDGET_YEAR=2562;");
+    $top5Amount = DB::select("select TOP 5 BUDGET_YEAR, GPU_ID, GPU_NAME, Total_Real_Amount as To_Total_Real_Amount, FORMAT(Total_Real_Amount, N'N2') as Total_Real_Amount, cast(Wavg_Unit_Price as decimal(10,2)) as Wavg_Unit_Price from GPU where BUDGET_YEAR = 2562 order by To_Total_Real_Amount DESC;");
+    $totalAmount = DB::select("select FORMAT(sum(Total_Real_Amount), N'N2') as total FROM GPU WHERE BUDGET_YEAR=2562;");
 
     // set parameter
     $n1 = $top5Amount[0]->GPU_NAME;
@@ -288,7 +288,7 @@
                                 </thead>
                                 <tbody>   
                                 <?php
-                                    $query = DB::select("select GPU_ID, GPU_NAME, FORMAT(cast(Wavg_Unit_Price as decimal(18,2)), N'N0') as Wavg_Unit_Price from GPU
+                                    $query = DB::select("select GPU_ID, GPU_NAME, FORMAT(cast(Wavg_Unit_Price as decimal(18,4)), N'N3') as Wavg_Unit_Price from GPU
                                                             where BUDGET_YEAR = 2562
                                                             order by Wavg_Unit_Price DESC;");
                                     $GPU_count = DB::select('select count(distinct GPU_NAME) as Gcount from GPU where BUDGET_YEAR = 2562;');
@@ -461,6 +461,7 @@
                                 <tr role="row">
                                     <th style="text-align:center;">GPU</th>
                                     <th style="text-align:center;">Name</th>
+                                    <th style="text-align:center;">Method</th>
                                     <th style="text-align:center;">Number of Drug</th>
                                     <th style="text-align:center;">Real Total Spending</th>
                                     <th style="text-align:center;">Potential Saving Cost</th>

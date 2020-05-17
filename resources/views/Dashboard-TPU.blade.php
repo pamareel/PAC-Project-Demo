@@ -76,8 +76,8 @@
     // Drug Purchasing Amount
     //TPU
     //2562
-    $top5Amount = DB::select("select TOP 5 BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Total_Real_Amount as To_Total_Real_Amount, FORMAT(Total_Real_Amount, N'N0') as Total_Real_Amount, cast(Wavg_Unit_Price as decimal(10,2)) as Wavg_Unit_Price from TPU where BUDGET_YEAR = 2562 order by To_Total_Real_Amount DESC;");
-    $totalAmount = DB::select("select FORMAT(sum(Total_Real_Amount), N'N0') as total FROM TPU WHERE BUDGET_YEAR=2562;");
+    $top5Amount = DB::select("select TOP 5 BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Total_Real_Amount as To_Total_Real_Amount, FORMAT(Total_Real_Amount, N'N2') as Total_Real_Amount, cast(Wavg_Unit_Price as decimal(10,2)) as Wavg_Unit_Price from TPU where BUDGET_YEAR = 2562 order by To_Total_Real_Amount DESC;");
+    $totalAmount = DB::select("select FORMAT(sum(Total_Real_Amount), N'N2') as total FROM TPU WHERE BUDGET_YEAR=2562;");
     // set parameter
     $n1 = $top5Amount[0]->TPU_NAME;
     $n2 = $top5Amount[1]->TPU_NAME;
@@ -293,7 +293,7 @@
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select("select TPU_ID, TPU_NAME, FORMAT(cast(Wavg_Unit_Price as decimal(18,2)), N'N0') as Wavg_Unit_Price from TPU
+                                        $query = DB::select("select TPU_ID, TPU_NAME, FORMAT(cast(Wavg_Unit_Price as decimal(18,2)), N'N3') as Wavg_Unit_Price from TPU
                                                                 where BUDGET_YEAR = 2562
                                                                 order by Wavg_Unit_Price DESC;");
                                         $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU where BUDGET_YEAR = 2562;');

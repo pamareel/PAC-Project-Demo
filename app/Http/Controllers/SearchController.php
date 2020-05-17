@@ -40,7 +40,7 @@ class SearchController extends Controller
             if($method == 'All'){
                 ////// table show //////////////////////////////////////////////////////////////////////
                 $statement = "select BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, ";
-                $statement .= "Total_Amount, FORMAT(Total_Amount, N'N0') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
+                $statement .= "Total_Amount, FORMAT(Total_Amount, N'N3') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
                 $statement .= "from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
 
                 // $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."';";
@@ -49,7 +49,7 @@ class SearchController extends Controller
             }else{
                 ////// table show //////////////////////////////////////////////////////////////////////
                 $statement = "select BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, ";
-                $statement .= "Total_Amount, FORMAT(Total_Amount, N'N0') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
+                $statement .= "Total_Amount, FORMAT(Total_Amount, N'N3') as To_Total_Amount, cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as To_Total_Spend, Avg_PAC, cast(Gini as decimal(10,3)) as Gini ";
                 $statement .= "from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
 
                 // $statement = "select * from Gini_drugs_TPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."';";
@@ -467,16 +467,16 @@ class SearchController extends Controller
         if($r == 'All'){
             if($m == 'All'){
                 ////// Thai map //////////////////////////////////////////////////////////////////////
-                $query_rd = "select Region, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N0') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' group by Region order by Region";
+                $query_rd = "select Region, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N3') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' group by Region order by Region";
             }else{
                 ////// Thai map //////////////////////////////////////////////////////////////////////
-                $query_rd = "select Region, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N0') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' group by Region order by Region";
+                $query_rd = "select Region, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N3') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' group by Region order by Region";
             }
         }else{
             if($m == 'All'){
-                $query_rd = "select Region, PROVINCE_EN, Pcode, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N0') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." group by Region, PROVINCE_EN, Pcode order by Region";
+                $query_rd = "select Region, PROVINCE_EN, Pcode, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N3') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." group by Region, PROVINCE_EN, Pcode order by Region";
             }else{
-                $query_rd = "select Region, PROVINCE_EN, Pcode, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N0') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." and Method = '".$m."' group by Region, PROVINCE_EN, Pcode order by Region";
+                $query_rd = "select Region, PROVINCE_EN, Pcode, cast(sum(CAST(Total_Amount as float) * CAST(wavg_Unit_Price as float))/sum(CAST(Total_Amount as float)) as decimal(10,2)) as wavg_unit_price, sum(Total_Amount) as Total_Amount, FORMAT(sum(Total_Amount), N'N3') as T_Total_Amount from [PAC_hos_".$g."] where BUDGET_YEAR = ".$y." and ".$g."_NAME LIKE '".$na."' and Region = ".$r." and Method = '".$m."' group by Region, PROVINCE_EN, Pcode order by Region";
             }
         }
         $find_Map_Data_result = DB::select($query_rd);
@@ -1060,7 +1060,7 @@ class SearchController extends Controller
         if($m == 'All'){
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1110,7 +1110,7 @@ class SearchController extends Controller
                 }
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1159,7 +1159,7 @@ class SearchController extends Controller
                 }
             }else if($r == 3){
                 foreach($Region_3_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1209,7 +1209,7 @@ class SearchController extends Controller
                 }
             }else if($r == 4){
                 foreach($Region_4_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1259,7 +1259,7 @@ class SearchController extends Controller
                 }
             }else if($r == 5){
                 foreach($Region_5_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1309,7 +1309,7 @@ class SearchController extends Controller
                 }
             }else if($r == 6){
                 foreach($Region_6_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1359,7 +1359,7 @@ class SearchController extends Controller
                 }
             }else if($r == 7){
                 foreach($Region_7_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1409,7 +1409,7 @@ class SearchController extends Controller
                 }
             }else if($r == 8){
                 foreach($Region_8_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1459,7 +1459,7 @@ class SearchController extends Controller
                 }
             }else if($r == 9){
                 foreach($Region_9_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1509,7 +1509,7 @@ class SearchController extends Controller
                 }
             }else if($r == 10){
                 foreach($Region_10_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1559,7 +1559,7 @@ class SearchController extends Controller
                 }
             }else if($r == 11){
                 foreach($Region_11_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1609,7 +1609,7 @@ class SearchController extends Controller
                 }
             }else if($r == 12){
                 foreach($Region_12_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1659,7 +1659,7 @@ class SearchController extends Controller
                 }
             }else if($r == 13){
                 foreach($Region_13_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value ";
                     // $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, OP, Total_Amount, wavg_unit_price, Total_Spend, PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
@@ -1683,7 +1683,7 @@ class SearchController extends Controller
         }else{
             if($r == 1){
                 foreach($Region_1_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1733,7 +1733,7 @@ class SearchController extends Controller
                 }
             }else if($r == 2){
                 foreach($Region_2_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1783,7 +1783,7 @@ class SearchController extends Controller
                 }
             }else if($r == 3){
                 foreach($Region_3_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1833,7 +1833,7 @@ class SearchController extends Controller
                 }
             }else if($r == 4){
                 foreach($Region_4_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1883,7 +1883,7 @@ class SearchController extends Controller
                 }
             }else if($r == 5){
                 foreach($Region_5_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1933,7 +1933,7 @@ class SearchController extends Controller
                 }
             }else if($r == 6){
                 foreach($Region_6_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -1983,7 +1983,7 @@ class SearchController extends Controller
                 }
             }else if($r == 7){
                 foreach($Region_7_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2033,7 +2033,7 @@ class SearchController extends Controller
                 }
             }else if($r == 8){
                 foreach($Region_8_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2083,7 +2083,7 @@ class SearchController extends Controller
                 }
             }else if($r == 9){
                 foreach($Region_9_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2133,7 +2133,7 @@ class SearchController extends Controller
                 }
             }else if($r == 10){
                 foreach($Region_10_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2183,7 +2183,7 @@ class SearchController extends Controller
                 }
             }else if($r == 11){
                 foreach($Region_11_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2233,7 +2233,7 @@ class SearchController extends Controller
                 }
             }else if($r == 12){
                 foreach($Region_12_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     $cor_table_result = [['DEPT_NAME', 'Total_Patient', 'Quantity']];
@@ -2283,7 +2283,7 @@ class SearchController extends Controller
                 }
             }else if($r == 13){
                 foreach($Region_13_name as $Pcode => $Province){
-                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N0') as I_IP, OP, FORMAT(OP, N'N0') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N0') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N0') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
+                    $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, IP, FORMAT(IP, N'N3') as I_IP, OP, FORMAT(OP, N'N3') as O_OP, Total_Amount, FORMAT(Total_Amount, N'N3') as T_Total_Amount, wavg_unit_price, cast(wavg_unit_price as decimal(10,2)) as w_wavg_unit_price, Total_Spend, FORMAT(Total_Spend, N'N3') as T_Total_Spend, cast(PAC_value as decimal(10,2)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and Method = '".$m."' and PROVINCE_EN = '".$Province."' order by PAC_value";
                     $result = DB::select($query_rd);
                     $content = '';
                     for ($i = 0; $i < Count($result) ; $i++) {
@@ -2390,9 +2390,9 @@ class SearchController extends Controller
         $total = 0;
         foreach($size_hospital_name as $s){
             if($method == 'All'){
-                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."';";
+                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N3') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."';";
             }else{
-                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."';";
+                $countquery_r = "select Count(DEPT_ID) as num_hos, cast(SUM(Total_Amount * [wavg_unit_price]) / SUM(Total_Amount) as decimal(18,3)) AS Wavg_unit_price, sum(Total_Amount) as Total_Total_Amount, FORMAT(sum(Total_Amount), N'N3') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and ServicePlanType = '".$s."' and Method ='".$method."';";
             }
             $result_count = DB::select($countquery_r);
             if($s == 'NULL'){
@@ -2403,9 +2403,9 @@ class SearchController extends Controller
             
         }
         if($method == 'All'){
-            $q = "select FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."';";
+            $q = "select FORMAT(sum(Total_Amount), N'N3') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."';";
         }else{
-            $q = "select FORMAT(sum(Total_Amount), N'N0') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and Method ='".$method."';";
+            $q = "select FORMAT(sum(Total_Amount), N'N3') as Total_Amount from [PAC_hos_".$GT."] where BUDGET_YEAR = '".$year."' and ".$GT."_NAME LIKE '".$Dname."' and Method ='".$method."';";
         }
         $result_q = DB::select($q);
         if($result_q != NULL){
@@ -2520,7 +2520,7 @@ class SearchController extends Controller
         $chartType = ['A', 'S', 'M1', 'M2', 'F1', 'F2', 'F3', 'NULL'];
         $tableForRegion_result = [];
         foreach($chartType as $s){
-            $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, FORMAT(IP, N'N0') as IP, FORMAT(OP, N'N0') as OP, FORMAT(Total_Amount, N'N0') as Total_Amount, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend, cast(PAC_value as decimal(18,3)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and ServicePlanType = '".$s."' order by PAC_value;";
+            $query_rd = "select DEPT_ID, DEPT_NAME, ServicePlanType, FORMAT(IP, N'N3') as IP, FORMAT(OP, N'N3') as OP, FORMAT(Total_Amount, N'N3') as Total_Amount, cast(wavg_unit_price as decimal(18,3)) as wavg_unit_price, CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend, cast(PAC_value as decimal(18,3)) as PAC_value from [PAC_hos_".$g."] where BUDGET_YEAR = '".$y."' and ".$g."_NAME LIKE '".$na."' and ServicePlanType = '".$s."' order by PAC_value;";
             $result = DB::select($query_rd);
             $content = '';
             for ($i = 0; $i < Count($result) ; $i++) {
