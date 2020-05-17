@@ -1,4 +1,4 @@
-@extends('layouts/admin')
+@extends('layouts/adminHos')
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>

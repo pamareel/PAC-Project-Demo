@@ -1,4 +1,4 @@
-@extends('layouts/admin')
+@extends('layouts/adminHos')
 @section('styles')
 <script src="{{ asset('plugins/libs/jquery/dist/jquery.min.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
@@ -84,12 +84,12 @@
     </div>
     <script>
         var btn = document.getElementById('To_2561');
-        var link_to_2561 = '/hospitalDashboard/2561/' + {{ $HID }};
+        var link_to_2561 = '/DashboardHosUser/2561/' + {{ $HID }};
         btn.addEventListener('click', function() {
             document.location.href = link_to_2561;
         });
         var btn2 = document.getElementById('To_2562');
-        var link_to_2562 = '/hospitalDashboard/2562/' + {{ $HID }};
+        var link_to_2562 = '/DashboardHosUser/2562/' + {{ $HID }};
         btn2.addEventListener('click', function() {
             document.location.href = link_to_2562;
         });

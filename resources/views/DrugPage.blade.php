@@ -359,7 +359,7 @@
                     $("#drill_down_type_button").addClass("invisible");
                     $('#Stack_Bar').addClass('invisible'); 
                     $('#drill_down_donut').removeClass('invisible');
-                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type A";
+                    document.getElementById("Size_Donut_title").innerHTML = "Acquisition Capability in Hospital Type A";
                     //donut graph
                     low = {!! json_encode($chartUnder_type) !!};
                     low_1 = low['A'];
@@ -396,7 +396,7 @@
                     $("#drill_down_type_button").addClass("invisible");
                     $('#Stack_Bar').addClass('invisible'); 
                     $('#drill_down_donut').removeClass('invisible');
-                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type S";
+                    document.getElementById("Size_Donut_title").innerHTML = "Acquisition Capability in Hospital Type S";
                     //donut graph
                     low = {!! json_encode($chartUnder_type) !!};
                     low_1 = low['S'];
@@ -433,7 +433,7 @@
                     $("#drill_down_type_button").addClass("invisible");
                     $('#Stack_Bar').addClass('invisible'); 
                     $('#drill_down_donut').removeClass('invisible');
-                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type M1";
+                    document.getElementById("Size_Donut_title").innerHTML = "Acquisition Capability in Hospital Type M1";
                     //donut graph
                     low = {!! json_encode($chartUnder_type) !!};
                     low_1 = low['M1'];
@@ -470,7 +470,7 @@
                     $("#drill_down_type_button").addClass("invisible");
                     $('#Stack_Bar').addClass('invisible'); 
                     $('#drill_down_donut').removeClass('invisible');
-                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type M2";
+                    document.getElementById("Size_Donut_title").innerHTML = "Acquisition Capability in Hospital Type M2";
                     //donut graph
                     low = {!! json_encode($chartUnder_type) !!};
                     low_1 = low['M2'];
@@ -507,7 +507,7 @@
                     $("#drill_down_type_button").addClass("invisible");
                     $('#Stack_Bar').addClass('invisible'); 
                     $('#drill_down_donut').removeClass('invisible');
-                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type F1";
+                    document.getElementById("Size_Donut_title").innerHTML = "Acquisition Capability in Hospital Type F1";
                     //donut graph
                     low = {!! json_encode($chartUnder_type) !!};
                     low_1 = low['F1'];
@@ -544,7 +544,7 @@
                     $("#drill_down_type_button").addClass("invisible");
                     $('#Stack_Bar').addClass('invisible'); 
                     $('#drill_down_donut').removeClass('invisible');
-                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type F2";
+                    document.getElementById("Size_Donut_title").innerHTML = "Acquisition Capability in Hospital Type F2";
                     //donut graph
                     low = {!! json_encode($chartUnder_type) !!};
                     low_1 = low['F2'];
@@ -581,7 +581,7 @@
                     $("#drill_down_type_button").addClass("invisible");
                     $('#Stack_Bar').addClass('invisible'); 
                     $('#drill_down_donut').removeClass('invisible');
-                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type F3";
+                    document.getElementById("Size_Donut_title").innerHTML = "Acquisition Capability in Hospital Type F3";
                     //donut graph
                     low = {!! json_encode($chartUnder_type) !!};
                     low_1 = low['F3'];
@@ -618,7 +618,7 @@
                     $("#drill_down_type_button").addClass("invisible");
                     $('#Stack_Bar').addClass('invisible'); 
                     $('#drill_down_donut').removeClass('invisible');
-                    document.getElementById("Size_Donut_title").innerHTML = "Purchasing Power in Hospital Type Undefined";
+                    document.getElementById("Size_Donut_title").innerHTML = "Acquisition Capability in Hospital Type Undefined";
                     //donut graph
                     low = {!! json_encode($chartUnder_type) !!};
                     low_1 = low['Undefined'];
@@ -1637,7 +1637,7 @@
                     <br/>
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                         <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
-                            <h3 class="card-title" id="pp_region" style="color:black; text-align:center;">Purchasing Power in Thailand</h3>
+                            <h3 class="card-title" id="pp_region" style="color:black; text-align:center;">Acquisition Capability in Thailand</h3>
                             <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                                 <?php
                                 if(isset($chartHighPercent) || isset($chartMedPercent) || isset($chartLowPercent)){
@@ -2891,7 +2891,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_1_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_1_name[code];
                             low = {!! json_encode($donutD_low_r1) !!};
                             low_1 = low[code];
                             med = {!! json_encode($donutD_med_r1) !!};
@@ -2979,7 +2979,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_2_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_2_name[code];
                             low = {!! json_encode($donutD_low_r2) !!};
                             low_2 = low[code];
                             med = {!! json_encode($donutD_med_r2) !!};
@@ -3068,7 +3068,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_3_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_3_name[code];
                             low = {!! json_encode($donutD_low_r3) !!};
                             low_3 = low[code];
                             med = {!! json_encode($donutD_med_r3) !!};
@@ -3157,7 +3157,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_4_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_4_name[code];
                             low = {!! json_encode($donutD_low_r4) !!};
                             low_4 = low[code];
                             med = {!! json_encode($donutD_med_r4) !!};
@@ -3246,7 +3246,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_5_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_5_name[code];
                             low = {!! json_encode($donutD_low_r5) !!};
                             low_5 = low[code];
                             med = {!! json_encode($donutD_med_r5) !!};
@@ -3335,7 +3335,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_6_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_6_name[code];
                             low = {!! json_encode($donutD_low_r6) !!};
                             low_6 = low[code];
                             med = {!! json_encode($donutD_med_r6) !!};
@@ -3424,7 +3424,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_7_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_7_name[code];
                             low = {!! json_encode($donutD_low_r7) !!};
                             low_7 = low[code];
                             med = {!! json_encode($donutD_med_r7) !!};
@@ -3513,7 +3513,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_8_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_8_name[code];
                             low = {!! json_encode($donutD_low_r8) !!};
                             low_8 = low[code];
                             med = {!! json_encode($donutD_med_r8) !!};
@@ -3602,7 +3602,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_9_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_9_name[code];
                             low = {!! json_encode($donutD_low_r9) !!};
                             low_9 = low[code];
                             med = {!! json_encode($donutD_med_r9) !!};
@@ -3691,7 +3691,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_10_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_10_name[code];
                             low = {!! json_encode($donutD_low_r10) !!};
                             low_10 = low[code];
                             med = {!! json_encode($donutD_med_r10) !!};
@@ -3780,7 +3780,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_11_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_11_name[code];
                             low = {!! json_encode($donutD_low_r11) !!};
                             low_11 = low[code];
                             med = {!! json_encode($donutD_med_r11) !!};
@@ -3869,7 +3869,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_12_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_12_name[code];
                             low = {!! json_encode($donutD_low_r12) !!};
                             low_12 = low[code];
                             med = {!! json_encode($donutD_med_r12) !!};
@@ -3955,7 +3955,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_13_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_13_name[code];
                             low = {!! json_encode($donutD_low_r13) !!};
                             low_13 = low[code];
                             med = {!! json_encode($donutD_med_r13) !!};
@@ -4014,7 +4014,7 @@
                         $("#Map_Quan_Region_1").removeClass('invisible');   
                         $('#vmapTH_pri_r1').removeClass('invisible');   
                         $("#Map_Pri_Region_1").removeClass('invisible');   
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 1";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 1";
                         var myChart_1 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_1 = new Chart(myChart_1, optionData_Region1);
                     }else if(Region_2.includes(code)) {
@@ -4022,7 +4022,7 @@
                         $("#Map_Quan_Region_2").removeClass('invisible');  
                         $('#vmapTH_pri_r2').removeClass('invisible');  
                         $("#Map_Pri_Region_2").removeClass('invisible'); 
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 2";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 2";
                         var myChart_2 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_2 = new Chart(myChart_2, optionData_Region2); 
                     }else if(Region_3.includes(code)) {
@@ -4030,7 +4030,7 @@
                         $("#Map_Quan_Region_3").removeClass('invisible');   
                         $('#vmapTH_pri_r3').removeClass('invisible');   
                         $("#Map_Pri_Region_3").removeClass('invisible');
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 3";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 3";
                         var myChart_3 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_3 = new Chart(myChart_3, optionData_Region3);
                     }else if(Region_4.includes(code)) {
@@ -4038,7 +4038,7 @@
                         $("#Map_Quan_Region_4").removeClass('invisible');  
                         $('#vmapTH_pri_r4').removeClass('invisible');  
                         $("#Map_Pri_Region_4").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 4";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 4";
                         var myChart_4 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_4 = new Chart(myChart_4, optionData_Region4);
                     }else if(Region_5.includes(code)) {
@@ -4046,7 +4046,7 @@
                         $("#Map_Quan_Region_5").removeClass('invisible');  
                         $('#vmapTH_pri_r5').removeClass('invisible');  
                         $("#Map_Pri_Region_5").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 5";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 5";
                         var myChart_5 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_5 = new Chart(myChart_5, optionData_Region5);
                     }else if(Region_6.includes(code)) {
@@ -4054,7 +4054,7 @@
                         $("#Map_Quan_Region_6").removeClass('invisible'); 
                         $('#vmapTH_pri_r6').removeClass('invisible');  
                         $("#Map_Pri_Region_6").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 6";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 6";
                         var myChart_6 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_6 = new Chart(myChart_6, optionData_Region6);
                     }else if(Region_7.includes(code)) {
@@ -4062,7 +4062,7 @@
                         $("#Map_Quan_Region_7").removeClass('invisible');   
                         $('#vmapTH_pri_r7').removeClass('invisible');   
                         $("#Map_Pri_Region_7").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 7";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 7";
                         var myChart_7 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_7 = new Chart(myChart_7, optionData_Region7);
                     }else if(Region_8.includes(code)) {
@@ -4070,7 +4070,7 @@
                         $("#Map_Quan_Region_8").removeClass('invisible');  
                         $('#vmapTH_pri_r8').removeClass('invisible');  
                         $("#Map_Pri_Region_8").removeClass('invisible'); 
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 8";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 8";
                         var myChart_8 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_8 = new Chart(myChart_8, optionData_Region8); 
                     }else if(Region_9.includes(code)) {
@@ -4078,7 +4078,7 @@
                         $("#Map_Quan_Region_9").removeClass('invisible');  
                         $('#vmapTH_pri_r9').removeClass('invisible');  
                         $("#Map_Pri_Region_9").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 9";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 9";
                         var myChart_9 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_9 = new Chart(myChart_9, optionData_Region9);
                     }else if(Region_10.includes(code)) {
@@ -4086,7 +4086,7 @@
                         $("#Map_Quan_Region_10").removeClass('invisible');  
                         $('#vmapTH_pri_r10').removeClass('invisible');  
                         $("#Map_Pri_Region_10").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 10";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 10";
                         var myChart_10 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_10 = new Chart(myChart_10, optionData_Region10);
                     }else if(Region_11.includes(code)) {
@@ -4094,7 +4094,7 @@
                         $("#Map_Quan_Region_11").removeClass('invisible');   
                         $('#vmapTH_pri_r11').removeClass('invisible');   
                         $("#Map_Pri_Region_11").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 11";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 11";
                         var myChart_11 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_11 = new Chart(myChart_11, optionData_Region11);
                     }else if(Region_12.includes(code)) {
@@ -4102,7 +4102,7 @@
                         $("#Map_Quan_Region_12").removeClass('invisible');  
                         $('#vmapTH_pri_r12').removeClass('invisible');  
                         $("#Map_Pri_Region_12").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 12";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 12";
                         var myChart_12 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_12 = new Chart(myChart_12, optionData_Region12);
                     }else if(Region_13.includes(code)) {
@@ -4110,7 +4110,7 @@
                         $("#Map_Quan_Region_13").removeClass('invisible');  
                         $('#vmapTH_pri_r13').removeClass('invisible');  
                         $("#Map_Pri_Region_13").removeClass('invisible');   
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 13";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 13";
                         var myChart_13 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_13 = new Chart(myChart_13, optionData_Region13);
                     }
@@ -4153,7 +4153,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_1_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_1_name[code];
                             low = {!! json_encode($donutD_low_r1) !!};
                             low_1 = low[code];
                             med = {!! json_encode($donutD_med_r1) !!};
@@ -4242,7 +4242,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_2_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_2_name[code];
                             low = {!! json_encode($donutD_low_r2) !!};
                             low_2 = low[code];
                             med = {!! json_encode($donutD_med_r2) !!};
@@ -4331,7 +4331,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_3_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_3_name[code];
                             low = {!! json_encode($donutD_low_r3) !!};
                             low_3 = low[code];
                             med = {!! json_encode($donutD_med_r3) !!};
@@ -4420,7 +4420,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_4_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_4_name[code];
                             low = {!! json_encode($donutD_low_r4) !!};
                             low_4 = low[code];
                             med = {!! json_encode($donutD_med_r4) !!};
@@ -4509,7 +4509,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_5_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_5_name[code];
                             low = {!! json_encode($donutD_low_r5) !!};
                             low_5 = low[code];
                             med = {!! json_encode($donutD_med_r5) !!};
@@ -4598,7 +4598,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_6_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_6_name[code];
                             low = {!! json_encode($donutD_low_r6) !!};
                             low_6 = low[code];
                             med = {!! json_encode($donutD_med_r6) !!};
@@ -4687,7 +4687,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_7_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_7_name[code];
                             low = {!! json_encode($donutD_low_r7) !!};
                             low_7 = low[code];
                             med = {!! json_encode($donutD_med_r7) !!};
@@ -4776,7 +4776,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_8_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_8_name[code];
                             low = {!! json_encode($donutD_low_r8) !!};
                             low_8 = low[code];
                             med = {!! json_encode($donutD_med_r8) !!};
@@ -4865,7 +4865,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_9_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_9_name[code];
                             low = {!! json_encode($donutD_low_r9) !!};
                             low_9 = low[code];
                             med = {!! json_encode($donutD_med_r9) !!};
@@ -4954,7 +4954,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_10_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_10_name[code];
                             low = {!! json_encode($donutD_low_r10) !!};
                             low_10 = low[code];
                             med = {!! json_encode($donutD_med_r10) !!};
@@ -5043,7 +5043,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_11_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_11_name[code];
                             low = {!! json_encode($donutD_low_r11) !!};
                             low_11 = low[code];
                             med = {!! json_encode($donutD_med_r11) !!};
@@ -5132,7 +5132,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_12_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_12_name[code];
                             low = {!! json_encode($donutD_low_r12) !!};
                             low_12 = low[code];
                             med = {!! json_encode($donutD_med_r12) !!};
@@ -5218,7 +5218,7 @@
                             $("#Quantity_by_Region").addClass('invisible');   
                             $("#Stack_Bar").addClass('invisible'); 
                             //donut graph
-                            document.getElementById("Title_Donut").innerHTML = "Purchasing Power in " + $Region_13_name[code];
+                            document.getElementById("Title_Donut").innerHTML = "Acquisition Capability in " + $Region_13_name[code];
                             low = {!! json_encode($donutD_low_r13) !!};
                             low_13 = low[code];
                             med = {!! json_encode($donutD_med_r13) !!};
@@ -5269,7 +5269,7 @@
                         $("#Map_Quan_Region_1").removeClass('invisible');   
                         $('#vmapTH_pri_r1').removeClass('invisible');   
                         $("#Map_Pri_Region_1").removeClass('invisible');   
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 1";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 1";
                         var myChart_1 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_1 = new Chart(myChart_1, optionData_Region1);
                     }else if(Region_2.includes(code)) {
@@ -5277,7 +5277,7 @@
                         $("#Map_Quan_Region_2").removeClass('invisible');  
                         $('#vmapTH_pri_r2').removeClass('invisible');  
                         $("#Map_Pri_Region_2").removeClass('invisible'); 
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 2";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 2";
                         var myChart_2 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_2 = new Chart(myChart_2, optionData_Region2); 
                     }else if(Region_3.includes(code)) {
@@ -5285,7 +5285,7 @@
                         $("#Map_Quan_Region_3").removeClass('invisible');   
                         $('#vmapTH_pri_r3').removeClass('invisible');   
                         $("#Map_Pri_Region_3").removeClass('invisible');
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 3";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 3";
                         var myChart_3 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_3 = new Chart(myChart_3, optionData_Region3);
                     }else if(Region_4.includes(code)) {
@@ -5293,7 +5293,7 @@
                         $("#Map_Quan_Region_4").removeClass('invisible');  
                         $('#vmapTH_pri_r4').removeClass('invisible');  
                         $("#Map_Pri_Region_4").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 4";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 4";
                         var myChart_4 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_4 = new Chart(myChart_4, optionData_Region4);
                     }else if(Region_5.includes(code)) {
@@ -5301,7 +5301,7 @@
                         $("#Map_Quan_Region_5").removeClass('invisible');  
                         $('#vmapTH_pri_r5').removeClass('invisible');  
                         $("#Map_Pri_Region_5").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 5";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 5";
                         var myChart_5 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_5 = new Chart(myChart_5, optionData_Region5);
                     }else if(Region_6.includes(code)) {
@@ -5309,7 +5309,7 @@
                         $("#Map_Quan_Region_6").removeClass('invisible'); 
                         $('#vmapTH_pri_r6').removeClass('invisible');  
                         $("#Map_Pri_Region_6").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 6";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 6";
                         var myChart_6 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_6 = new Chart(myChart_6, optionData_Region6);
                     }else if(Region_7.includes(code)) {
@@ -5317,7 +5317,7 @@
                         $("#Map_Quan_Region_7").removeClass('invisible');   
                         $('#vmapTH_pri_r7').removeClass('invisible');   
                         $("#Map_Pri_Region_7").removeClass('invisible');   
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 7";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 7";
                         var myChart_7 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_7 = new Chart(myChart_7, optionData_Region7);
                     }else if(Region_8.includes(code)) {
@@ -5325,7 +5325,7 @@
                         $("#Map_Quan_Region_8").removeClass('invisible');  
                         $('#vmapTH_pri_r8').removeClass('invisible');  
                         $("#Map_Pri_Region_8").removeClass('invisible'); 
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 8";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 8";
                         var myChart_8 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_8 = new Chart(myChart_8, optionData_Region8); 
                     }else if(Region_9.includes(code)) {
@@ -5333,7 +5333,7 @@
                         $("#Map_Quan_Region_9").removeClass('invisible');  
                         $('#vmapTH_pri_r9').removeClass('invisible');  
                         $("#Map_Pri_Region_9").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 9";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 9";
                         var myChart_9 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_9 = new Chart(myChart_9, optionData_Region9);
                     }else if(Region_10.includes(code)) {
@@ -5341,7 +5341,7 @@
                         $("#Map_Quan_Region_10").removeClass('invisible');  
                         $('#vmapTH_pri_r10').removeClass('invisible');  
                         $("#Map_Pri_Region_10").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 10";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 10";
                         var myChart_10 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_10 = new Chart(myChart_10, optionData_Region10);
                     }else if(Region_11.includes(code)) {
@@ -5349,7 +5349,7 @@
                         $("#Map_Quan_Region_11").removeClass('invisible');   
                         $('#vmapTH_pri_r11').removeClass('invisible');   
                         $("#Map_Pri_Region_11").removeClass('invisible');
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 11";   
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 11";   
                         var myChart_11 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_11 = new Chart(myChart_11, optionData_Region11);
                     }else if(Region_12.includes(code)) {
@@ -5357,7 +5357,7 @@
                         $("#Map_Quan_Region_12").removeClass('invisible');  
                         $('#vmapTH_pri_r12').removeClass('invisible');  
                         $("#Map_Pri_Region_12").removeClass('invisible');  
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 12";
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 12";
                         var myChart_12 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_12 = new Chart(myChart_12, optionData_Region12);
                     }else if(Region_13.includes(code)) {
@@ -5365,7 +5365,7 @@
                         $("#Map_Quan_Region_13").removeClass('invisible');  
                         $('#vmapTH_pri_r13').removeClass('invisible');  
                         $("#Map_Pri_Region_13").removeClass('invisible'); 
-                        document.getElementById("pp_region").innerHTML = "Purchasing Power in Region 13";  
+                        document.getElementById("pp_region").innerHTML = "Acquisition Capability in Region 13";  
                         var myChart_13 = $("#myChart").get(0).getContext("2d");
                         $.massPopChart_13 = new Chart(myChart_13, optionData_Region13);
                     }
@@ -5416,7 +5416,7 @@
                 $("#Map_Pri_TH").toggleClass("invisible");
                 $("#Region_To_Size").removeClass("invisible");
                 $("#Size_To_Region").removeClass("invisible");
-                document.getElementById("pp_region").innerHTML = "Purchasing Power in Thailand";
+                document.getElementById("pp_region").innerHTML = "Acquisition Capability in Thailand";
                 if(!document.getElementById('vmapTH_quan_r1').classList.contains('invisible') || !document.getElementById('vmapTH_pri_r1').classList.contains('invisible')){
                     $('#vmapTH_quan_r1').addClass('invisible');   
                     $('#Map_Quan_Region_1').addClass('invisible');   
