@@ -275,7 +275,7 @@
         <!-- ============================================================== -->
 
         <!-- ============================================================== -->
-        <!-- Top10 drug price dispersion  -->
+        <!-- Top10 drug unit price  -->
     
         <div class="col-lg-12 font-12">
             <div class="card">
@@ -293,9 +293,9 @@
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select('select TPU_ID, TPU_NAME, cast(Wavg_Unit_Price as decimal(18,2)) as Wavg_Unit_Price from TPU
+                                        $query = DB::select("select TPU_ID, TPU_NAME, FORMAT(cast(Wavg_Unit_Price as decimal(18,2)), N'N0') as Wavg_Unit_Price from TPU
                                                                 where BUDGET_YEAR = 2562
-                                                                order by Wavg_Unit_Price DESC;');
+                                                                order by Wavg_Unit_Price DESC;");
                                         $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU where BUDGET_YEAR = 2562;');
                                         for ($i = 0; $i < 131; $i+=1) {
                                                 // echo "The number is: $i <br>";

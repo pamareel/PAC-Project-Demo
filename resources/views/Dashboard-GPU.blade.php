@@ -288,9 +288,9 @@
                                 </thead>
                                 <tbody>   
                                 <?php
-                                    $query = DB::select('select GPU_ID, GPU_NAME, cast(Wavg_Unit_Price as decimal(18,2)) as Wavg_Unit_Price from GPU
+                                    $query = DB::select("select GPU_ID, GPU_NAME, FORMAT(cast(Wavg_Unit_Price as decimal(18,2)), N'N0') as Wavg_Unit_Price from GPU
                                                             where BUDGET_YEAR = 2562
-                                                            order by Wavg_Unit_Price DESC;');
+                                                            order by Wavg_Unit_Price DESC;");
                                     $GPU_count = DB::select('select count(distinct GPU_NAME) as Gcount from GPU where BUDGET_YEAR = 2562;');
                                     for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
                                         // echo "The number is: $i <br>";
