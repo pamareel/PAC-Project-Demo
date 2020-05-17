@@ -5930,8 +5930,8 @@
                 "sScrollX": "100%",
                 "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
                 "rowCallback": function(row, data, index) {
-                    if(data[7]> 0.5){
-                        $(row).find('td:eq(7)').css('color', 'red');
+                    if(data[8]> 0.5){
+                        $(row).find('td:eq(8)').css('color', 'red');
                     }
                 }
             });
