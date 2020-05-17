@@ -118,13 +118,14 @@
                     <tr role="row">
                         <!-- <th>BUDGET YEAR</th> -->
                         <!-- <th>Method</th> -->
-                        <th width="5%" style="text-align:center;">GPU ID</th>
-                        <th width="35%" style="text-align:center;">GPU NAME</th>
-                        <th width="5%" style="text-align:center;">TPU ID</th>
-                        <th width="35%" style="text-align:center;">TPU NAME</th>
-                        <th width="10%" style="text-align:center;">Total Amount</th>
+                        <th width="3%" style="text-align:center;">GPU ID</th>
+                        <th width="22%" style="text-align:center;">GPU NAME</th>
+                        <th width="3%" style="text-align:center;">TPU ID</th>
+                        <th width="41%" style="text-align:center;">TPU NAME</th>
+                        <th width="5%" style="text-align:center;">Method</th>
+                        <th width="8%" style="text-align:center;">Total Amount</th>
                         <th width="5%" style="text-align:center;">wavg unit price</th>
-                        <th width="10%" style="text-align:center;">Total Spend</th>
+                        <th width="8%" style="text-align:center;">Total Spend</th>
                         <th width="5%" style="text-align:center;">Gini</th>
                     </tr>
                 </thead>
@@ -140,6 +141,7 @@
                         <td style="text-align:center;">{{ $resultSearch[$i]->GPU_NAME }}</td>
                         <td style="text-align:center;">{{ $resultSearch[$i]->TPU_ID }}</td>  
                         <td style="text-align:center;">{{ $resultSearch[$i]->TPU_NAME }}</td>
+                        <td style="text-align:center;">{{ $resultSearch[$i]->Method }}</td>
                         <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Amount }}</td>  
                         <td style="text-align:center;">{{ $resultSearch[$i]->wavg_unit_price }}</td>
                         <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Spend }}</td>
