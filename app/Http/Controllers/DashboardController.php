@@ -184,7 +184,7 @@ class DashboardController extends Controller
     } 
 
     public function table_TPU_cost_saving($TGX,$year){
-        $query_tpu = "SELECT GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N2') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N2') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving ";
+        $query_tpu = "SELECT GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N2') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N2') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving ";
         $query_tpu .= "FROM CostSaving_TPU where BUDGET_YEAR = '".$year."' order by PS_Percent_saving DESC;";
         $TPU_result = DB::select($query_tpu);
         
@@ -204,6 +204,7 @@ class DashboardController extends Controller
             $content .= '<td style="text-align:left;">'.$TPU_result[$i]->GPU_NAME.'</td>';
             $content .= '<td style="text-align:left;">'.$TPU_result[$i]->TPU_ID.'</td>';
             $content .= '<td style="text-align:left;">'.$TPU_result[$i]->TPU_NAME.'</td>';
+            $content .= '<td style="text-align:center;">'.$TPU_result[$i]->Method.'</td>';
             $content .= '<td style="text-align:right; padding-right:12px;">'.$TPU_result[$i]->Real_Total_Spend.'</td>';
             $content .= '<td style="text-align:right; padding-right:15px;">'.$Potential_Saving_Cost.'</td>';
             $content .= '<td style="text-align:center;">'.$Percent_saving .'</td>';

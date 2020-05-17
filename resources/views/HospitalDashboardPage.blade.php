@@ -190,6 +190,7 @@
                                 <tr role="row">
                                     <th style="text-align:center;">GPU</th>
                                     <th style="text-align:center;">Name</th>
+                                    <th style="text-align:center;">Method</th>
                                     <th style="text-align:center;">Number of purchased TPU</th>
                                     <th style="text-align:center;">Real Total Spending</th>
                                     <th style="text-align:center;">Potential Saving Cost</th>
@@ -208,6 +209,7 @@
                                     <th style="text-align:center;">GPU Name</th>
                                     <th style="text-align:center;">TPU</th>
                                     <th style="text-align:center;">TPU Name</th>
+                                    <th style="text-align:center;">Method</th>
                                     <th style="text-align:center;">Real Total Spending</th>
                                     <th style="text-align:center;">Potential Saving Cost</th>
                                     <th style="text-align:center;">Saving (%)</th>
@@ -237,10 +239,10 @@
     GPU_table_Donut = {!! json_encode($GPU_table_Donut) !!};
     TPU_table_Donut = {!! json_encode($TPU_table_Donut) !!};
 
-    Donut_thead_GPU = '<tr role="row"><th style="text-align:center;"></th><th style="text-align:center;">GPU</th><th style="text-align:center; padding:5px;">Name</th>';
+    Donut_thead_GPU = '<tr role="row"><th style="text-align:center;"></th><th style="text-align:center;">GPU</th><th style="text-align:center; padding:5px;">Name</th><th style="text-align:center; padding:5px;">Method</th>';
     Donut_thead_GPU += '<th style="text-align:center;">Unit Price</th><th style="text-align:center;">Quantity</th></tr>';
 
-    Donut_thead_TPU = '<tr role="row"><th style="text-align:center;"></th><th style="text-align:center;">TPU</th><th style="text-align:center; padding:5px;">Name</th>';
+    Donut_thead_TPU = '<tr role="row"><th style="text-align:center;"></th><th style="text-align:center;">TPU</th><th style="text-align:center; padding:5px;">Name</th><th style="text-align:center; padding:5px;">Method</th>';
     Donut_thead_TPU += '<th style="text-align:center;">Unit Price</th><th style="text-align:center;">Quantity</th></tr>';
 
     HosName = {!! json_encode($Hname) !!};

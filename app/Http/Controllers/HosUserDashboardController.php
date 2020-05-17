@@ -141,13 +141,13 @@ class HosUserDashboardController extends Controller
         // $query_rd .= "CONVERT(varchar, CAST(Total_Spend as money), 1) as Total_Spend FROM Hos_detail ";
         // $query_rd .= "where BUDGET_YEAR = '".$year."' and DEPT_ID ='".$Hid."';";
 
-        $query_gpu = "SELECT DEPT_ID, DEPT_NAME, GPU_ID, GPU_NAME, cast(wavg_unit_price as decimal(18,2)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
+        $query_gpu = "SELECT DEPT_ID, DEPT_NAME, GPU_ID, GPU_NAME, Method, cast(wavg_unit_price as decimal(18,2)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
         $query_gpu .= "FROM PAC_hos_GPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by Total_Total_Amount DESC;";
         $GPU_result = DB::select($query_gpu);
         if(count($GPU_result)>0){
             $Hname = $GPU_result[0]->DEPT_NAME;
 
-            $query_tpu = "SELECT DEPT_ID, DEPT_NAME, TPU_ID, TPU_NAME, cast(wavg_unit_price as decimal(18,2)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
+            $query_tpu = "SELECT DEPT_ID, DEPT_NAME, TPU_ID, TPU_NAME, Method, cast(wavg_unit_price as decimal(18,2)) as wavg_unit_price, Total_Amount as Total_Total_Amount, FORMAT(Total_Amount, N'N0') as Total_Amount, PAC_value ";
             $query_tpu .= "FROM PAC_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by Total_Total_Amount DESC;";
             $TPU_result = DB::select($query_tpu);
 
@@ -215,6 +215,7 @@ class HosUserDashboardController extends Controller
             $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$col.';"></td>';
             $content .= '<td style="text-align:left;">'.$result[$i]->GPU_ID.'</td>';
             $content .= '<td style="text-align:left;">'.$result[$i]->GPU_NAME.'</td>';
+            $content .= '<td style="text-align:center;">'.$result[$i]->Method.'</td>';
             $content .= '<td style="text-align:right; padding-right:3px;">'.$result[$i]->wavg_unit_price.'</td>';
             $content .= '<td style="text-align:right;">'.$result[$i]->Total_Amount.'</td>';
             $content .= '</tr>';
@@ -234,6 +235,7 @@ class HosUserDashboardController extends Controller
             $content .= '<td style="text-align:center;"><i class="fas fa-circle font-10 mr-2" style="color:'.$col.';"></td>';
             $content .= '<td style="text-align:left;">'.$result[$i]->TPU_ID.'</td>';
             $content .= '<td style="text-align:left;">'.$result[$i]->TPU_NAME.'</td>';
+            $content .= '<td style="text-align:center;">'.$result[$i]->Method.'</td>';
             $content .= '<td style="text-align:right; padding-right:3px;">'.$result[$i]->wavg_unit_price.'</td>';
             $content .= '<td style="text-align:right;">'.$result[$i]->Total_Amount.'</td>';
             $content .= '</tr>';
@@ -281,7 +283,7 @@ class HosUserDashboardController extends Controller
         return [$perfLowPercent, $perfHighPercent];
     }
     function table_GPU_cost_saving_Hospital($Hid, $year){
-        $query_gpu = "SELECT GPU_ID, GPU_NAME, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
+        $query_gpu = "SELECT GPU_ID, GPU_NAME, Method, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
         $query_gpu .= "FROM CostSaving_hos where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by PS_Percent_saving DESC;";
         $GPU_result = DB::select($query_gpu);
         
@@ -304,6 +306,7 @@ class HosUserDashboardController extends Controller
             $content .= '<tr>';
             $content .= '<td style="text-align:left;">'.$GPU_result[$i]->GPU_ID.'</td>';
             $content .= '<td style="text-align:left; padding-left:10px">'.$GPU_result[$i]->GPU_NAME.'</td>';
+            $content .= '<td style="text-align:center; padding-left:5px">'.$GPU_result[$i]->Method.'</td>';
             $content .= '<td style="text-align:center;">'.$Htpu.'</td>';
             $content .= '<td style="text-align:right; padding-right:12px;">'.$GPU_result[$i]->Real_Total_Spend.'</td>';
             $content .= '<td style="text-align:right; padding-right:15px;">'.$Potential_Saving_Cost.'</td>';
@@ -327,7 +330,7 @@ class HosUserDashboardController extends Controller
         return [$content, $totalPotentialSave, $totalSpend, $totalSuggestSpend, $totalSpend_label, $totalSuggestSpend_label];
     }
     function table_TPU_cost_saving_Hospital($Hid, $year){
-        $query_tpu = "SELECT GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
+        $query_tpu = "SELECT GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Method, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
         $query_tpu .= "FROM CostSaving_hos_TPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by PS_Percent_saving DESC;";
         $TPU_result = DB::select($query_tpu);
         
@@ -347,6 +350,7 @@ class HosUserDashboardController extends Controller
             $content .= '<td style="text-align:left;">'.$TPU_result[$i]->GPU_NAME.'</td>';
             $content .= '<td style="text-align:left;">'.$TPU_result[$i]->TPU_ID.'</td>';
             $content .= '<td style="text-align:left; padding-left:10px">'.$TPU_result[$i]->TPU_NAME.'</td>';
+            $content .= '<td style="text-align:center; padding-left:5px">'.$TPU_result[$i]->Method.'</td>';
             $content .= '<td style="text-align:right; padding-right:12px;">'.$TPU_result[$i]->Real_Total_Spend.'</td>';
             $content .= '<td style="text-align:right; padding-right:15px;">'.$Potential_Saving_Cost.'</td>';
             $content .= '<td style="text-align:center;">'.$Percent_saving .'</td>';

@@ -233,13 +233,14 @@
                                 <thead>
                                     <tr role="row">
                                         <th width="5%">GPU</th>
-                                        <th width="80%">Name</th>
+                                        <th width="65%">Name</th>
+                                        <th width="15%">Method</th>
                                         <th width="15%">Gini coeff</th>
                                     </tr>
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select('select GPU_ID, GPU_NAME, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_GPU
+                                        $query = DB::select('select GPU_ID, GPU_NAME, Method, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_GPU
                                                             where BUDGET_YEAR = 2562
                                                             order by Gini DESC;');
                                         $GPU_count = DB::select('select count(distinct GPU_ID) as Gcount from Gini_drugs_GPU where BUDGET_YEAR = 2562;');
@@ -282,15 +283,15 @@
                                 <thead>
                                     <tr role="row">
                                         <th width="5%" >GPU</th>
-                                        <th width="80%">Name</th> 
+                                        <th width="65%">Name</th> 
+                                        <th width="15%" >Method</th>
                                         <th width="15%">Avg Unit Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>   
                                 <?php
-                                    $query = DB::select("select GPU_ID, GPU_NAME, FORMAT(cast(Wavg_Unit_Price as decimal(18,4)), N'N3') as Wavg_Unit_Price from GPU
-                                                            where BUDGET_YEAR = 2562
-                                                            order by Wavg_Unit_Price DESC;");
+                                    $query = DB::select("select GPU_ID, GPU_NAME, REAL_METHOD_NAME, FORMAT(cast(sum(CAST(Real_Amount as float) * CAST(Real_Unit_Price as float))/sum(CAST(Real_Amount as float)) as decimal(18,4)), N'N3') as Wavg_Unit_Price from drugs where BUDGET_YEAR=2562 group by REAL_METHOD_NAME, GPU_ID, GPU_NAME 
+                                                           order by Wavg_Unit_Price DESC;");
                                     $GPU_count = DB::select('select count(distinct GPU_NAME) as Gcount from GPU where BUDGET_YEAR = 2562;');
                                     for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
                                         // echo "The number is: $i <br>";
