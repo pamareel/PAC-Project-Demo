@@ -43,10 +43,9 @@ Route::get('/HospitalDashboardPage', function () {
 })->name('HospitalDashboardPage');
 Route::get('/hospitalDashboard/{year}/{Hname}', 'HospitalDashboardController@index');
 
-//Hospital User Dashboard Page รอใส่
-Route::get('/DashboardHosUser', function () {
-    return view('DrugHosUser');
-})->name('DashboardHosUser');
+//Hospital User Dashboard Page
+Route::get('/DashboardHosUser', 'HosUserDashboardController@default')->name('DashboardHosUser');
+Route::get('/DashboardHosUser/{year}/{Hid}', 'HosUserDashboardController@index');
 //Hospital User Drug Page
 Route::get('/DrugPageHosUser', function () {
     return view('DrugHosUser');
