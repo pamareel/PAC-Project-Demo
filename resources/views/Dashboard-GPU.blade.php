@@ -267,11 +267,11 @@
                 </div>
             </div>
         </div>
-        <!-- End Top10 drug price dispersion -->
+        <!-- End Top5 drug price dispersion -->
         <!-- ============================================================== -->
 
         <!-- ============================================================== -->
-        <!-- Top10 drug unit price -->
+        <!-- Top5 drug unit price -->
         <div class="col-lg-12 font-12">
             <div class="card">
                 <div class="card-body">
