@@ -2,7 +2,7 @@
 
 Website PAC-DSS dashboard with Laravel framework version 7.5.1 and SQL.
 
-## Run project
+### Run project
 
 1. Clone project
 
@@ -62,7 +62,7 @@ php artisan key:generate
 php artisan serve
 ```
 
-8. Open browser by type “localhost:8000”
+8. The project can be opened in browser “localhost:8000”
 
     For policy maker user: “localhost:8000/DashboardPage”
     For hospital user: “localhost:8000/DashboardHosUser”
