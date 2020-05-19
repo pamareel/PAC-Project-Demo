@@ -68,5 +68,9 @@ php artisan serve
     
     * For hospital user: “localhost:8000/DashboardHosUser”
 
+### Run project
 
+Make sure to have sql server run on your computer 
+
+#### Requirement list for data
 
