@@ -86,8 +86,8 @@ Table format of drugs
 
 * "costSaving_table_GPU.py" give a result as a table named “Gini_drugs_GPU”.
 * "costSaving_table_GPU.py" give a result as a table named “Gini_drugs_TPU”.
-* "costSaving_table_GPU.py" give a result as 2 tables named “CostSaving_GPU” and “CostSaving_hos_TPU”.
-* "costSaving_table_TPU.py" give a result as 2 tables named “CostSaving_TPU” named “CostSaving_hos_GPU”.
+* "costSaving_table_GPU.py" give a result as 2 tables named “CostSaving_GPU” and “CostSaving_hos_GPU”.
+* "costSaving_table_TPU.py" give a result as 2 tables named “CostSaving_TPU” named “CostSaving_hos_TPU”.
 * "find_PAC_value_GPU.py " give a result as a table named “PAC_hos_GPU”.
 * "find_PAC_value_TPU.py" give a result as a table named “PAC_hos_TPU”.
 
