@@ -84,20 +84,23 @@ Table format
 
  (https://drive.google.com/open?id=1LfA4E7Zr0V9wPPVFxSiMhxo4Cdml-tbI)
 
-```
-A table named “Gini_drugs_GPU” :
-A table named “Gini_drugs_TPU”
-A table named “CostSaving_GPU”
-A table named “CostSaving_TPU”
-A table named “PAC_hos_GPU” : find_PAC_value_GPU.py 
-A table named “PAC_hos_TPU” : find_PAC_value_TPU.py
-A table named “CostSaving_hos_TPU”
-A table named “CostSaving_hos”
-```
+* A table named “Gini_drugs_GPU” :
+* A table named “Gini_drugs_TPU”
+* A table named “CostSaving_GPU”
+* A table named “CostSaving_TPU”
+* A table named “PAC_hos_GPU” : find_PAC_value_GPU.py 
+* A table named “PAC_hos_TPU” : find_PAC_value_TPU.py
+* A table named “CostSaving_hos_TPU”
+
 Note that the result from Python code will be in ".xlsx" file which is needed to be converted again to ".csv" file
 
-3. Additional data table.
+3. Additional data table. (https://drive.google.com/open?id=189K7H0eZH557CyJRnfUgaLxZXN-7-k_t)
+
+* A table named “Region-Province” 
+* A table named “Hos_detail”: This data can be found in https://phdb.moph.go.th/main/index/downloadlist/57/0 (ข้อมูลพืนฐานโรงพยาบาลในสังกัดสำนักงานปลัดกระทรวงสาธารณสุข). But it also needs to be rearranged and joined with other tables to be in the required format
 
 ```
-A table named “Region-Province” (https://drive.google.com/open?id=189K7H0eZH557CyJRnfUgaLxZXN-7-k_t)
+Table format
+BUDGET_YEAR, DEPT_ID, DEPT_NAME, ServicePlanType, PROVINCE_NAME, PROVINCE_EN, Pcode, Region, IP, OP, Total_Spend
 ```
+
