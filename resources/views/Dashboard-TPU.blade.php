@@ -59,20 +59,6 @@
 @section('content')
 
 <?php
-    // // Total Annual Spending Not used
-    // $total = DB::select('EXEC findTotalSpend5years');
-    // // set parameter
-    // $t1 = $total[0]->total;
-    // $y1 = $total[0]->BUDGET_YEAR;
-    // $t2 = $total[1]->total;
-    // $y2 = $total[1]->BUDGET_YEAR;
-    // $t3 = $total[2]->total;
-    // $y3 = $total[2]->BUDGET_YEAR;
-    // $t4 = $total[3]->total;
-    // $y4 = $total[3]->BUDGET_YEAR;
-    // $t5 = $total[4]->total;
-    // $y5 = $total[4]->BUDGET_YEAR;
-
     // Drug Purchasing Amount
     //TPU
     //2562

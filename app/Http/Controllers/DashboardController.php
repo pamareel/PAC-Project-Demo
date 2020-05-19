@@ -16,9 +16,6 @@ use App\Charts\UserChart;
 
 class DashboardController extends Controller
 {
-    function policy(){
-        return view('Dashboard-GPU');
-    }
     public function dashboard_default(){
         $TGX = 'GPU';
         // total spending line graph
