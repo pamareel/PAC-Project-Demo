@@ -77,7 +77,7 @@ Make sure to have sql server run on your computer
 1. Original data table:  A table named “drugs”
 
 ```
-Table format
+Table format of drugs
 (Record_ID, Project_ID, BUDGET_YEAR, REAL_METHOD_ID, REAL_METHOD_NAME, DEPT_ID, DEPT_NAME, PROVINCE_NAME, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, PRICE_PROPOSAL, หน่วยของ_TPU, Real_Amount, Real_Unit_price, C_Cleaned_NA_ไม่สามารถคลีนได้, _9_gr, ED_NED, Top_Rank_GPU)
 ```
 2. Calculated data table: All the tables can be calculated by using Python code given below.
@@ -100,7 +100,7 @@ Note that the result from Python code will be in ".xlsx" file which is needed to
 * A table named “Hos_detail”: This data can be found in https://phdb.moph.go.th/main/index/downloadlist/57/0 (ข้อมูลพืนฐานโรงพยาบาลในสังกัดสำนักงานปลัดกระทรวงสาธารณสุข). But it also needs to be rearranged and joined with other tables to be in the required format
 
 ```
-Table format
+Table format of Hos_detail
 BUDGET_YEAR, DEPT_ID, DEPT_NAME, ServicePlanType, PROVINCE_NAME, PROVINCE_EN, Pcode, Region, IP, OP, Total_Spend
 ```
 
