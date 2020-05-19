@@ -93,7 +93,7 @@ Table format of drugs
 * "costSaving_table_GPU.py" give a result as a table named “CostSaving_hos_TPU”.
 * "costSaving_table_GPU.py" give a result as a table named “CostSaving_hos_GPU”.
 
-Note that the result from Python code will be in ".xlsx" file which is needed to be converted again to ".csv" file
+Note that the result from Python code will be in ".xlsx" file which is needed to be converted again to ".csv" file for using in our project.
 
 3. Additional data table. (https://drive.google.com/open?id=189K7H0eZH557CyJRnfUgaLxZXN-7-k_t)
 
