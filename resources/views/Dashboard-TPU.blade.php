@@ -25,7 +25,7 @@
         $('#datatable2').DataTable({
             "sScrollX": "100%",
             "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
-            "order": [[ 2, "desc" ]]
+            "order": [[ 3, "desc" ]]
         });
     });
 </script>
@@ -62,8 +62,8 @@
     // Drug Purchasing Amount
     //TPU
     //2562
-    $top5Amount = DB::select("select TOP 5 BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Total_Real_Amount as To_Total_Real_Amount, FORMAT(Total_Real_Amount, N'N2') as Total_Real_Amount, cast(Wavg_Unit_Price as decimal(10,2)) as Wavg_Unit_Price from TPU where BUDGET_YEAR = 2562 order by To_Total_Real_Amount DESC;");
-    $totalAmount = DB::select("select FORMAT(sum(Total_Real_Amount), N'N2') as total FROM TPU WHERE BUDGET_YEAR=2562;");
+    $top5Amount = DB::select("select TOP 5 BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, REAL_METHOD_NAME as Method, sum(Real_Amount) as To_Total_Real_Amount, FORMAT(sum(Real_Amount), N'N2') as Total_Real_Amount, cast(sum(CAST(Real_Amount as float) * CAST(Real_Unit_Price as float))/sum(CAST(Real_Amount as float)) as decimal(10,2)) as Wavg_Unit_Price from drugs where BUDGET_YEAR = 2562 group by BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, REAL_METHOD_NAME order by To_Total_Real_Amount DESC;");
+    $totalAmount = DB::select("select FORMAT(sum(Real_Amount), N'N2') as total FROM drugs WHERE BUDGET_YEAR=2562;");
     // set parameter
     $n1 = $top5Amount[0]->TPU_NAME;
     $n2 = $top5Amount[1]->TPU_NAME;
@@ -76,6 +76,12 @@
     $id3 = $top5Amount[2]->TPU_ID;
     $id4 = $top5Amount[3]->TPU_ID;
     $id5 = $top5Amount[4]->TPU_ID;
+    // set parameter
+    $md1 = $top5Amount[0]->Method;
+    $md2 = $top5Amount[1]->Method;
+    $md3 = $top5Amount[2]->Method;
+    $md4 = $top5Amount[3]->Method;
+    $md5 = $top5Amount[4]->Method;
     // set parameter
     $w1 = $top5Amount[0]->Wavg_Unit_Price;
     $w2 = $top5Amount[1]->Wavg_Unit_Price;
@@ -102,26 +108,31 @@
 <!-- Drug Purchasing Amount -->
 <div id="n1" value = {{ $n1 }} style="display:none;">hello</div>
 <div id="id1" value = {{ $id1 }} style="display:none;">hello</div>
+<div id="md1" value = {{ $md1 }} style="display:none;">hello</div>
 <div id="w1" value = {{ $w1 }} style="display:none;">hello</div>
 <div id="a1" value = {{ $a1 }} style="display:none;">hello</div>
 
 <div id="n2" value = {{ $n2 }} style="display:none;">hello</div>
 <div id="id2" value = {{ $id2 }} style="display:none;">hello</div>
+<div id="md2" value = {{ $md2 }} style="display:none;">hello</div>
 <div id="w2" value = {{ $w2 }} style="display:none;">hello</div>
 <div id="a2" value = {{ $a2 }} style="display:none;">hello</div>
 
 <div id="n3" value = {{ $n3 }} style="display:none;">hello</div>
 <div id="id3" value = {{ $id3 }} style="display:none;">hello</div>
+<div id="md3" value = {{ $md3 }} style="display:none;">hello</div>
 <div id="w3" value = {{ $w3 }} style="display:none;">hello</div>
 <div id="a3" value = {{ $a3 }} style="display:none;">hello</div>
 
 <div id="n4" value = {{ $n4 }} style="display:none;">hello</div>
 <div id="id4" value = {{ $id4 }} style="display:none;">hello</div>
+<div id="md4" value = {{ $md4 }} style="display:none;">hello</div>
 <div id="w4" value = {{ $w4 }} style="display:none;">hello</div>
 <div id="a4" value = {{ $a4 }} style="display:none;">hello</div>
 
 <div id="n5" value = {{ $n5 }} style="display:none;">hello</div>
 <div id="id5" value = {{ $id5 }} style="display:none;">hello</div>
+<div id="md5" value = {{ $md5 }} style="display:none;">hello</div>
 <div id="w5" value = {{ $w5 }} style="display:none;">hello</div>
 <div id="a5" value = {{ $a5 }} style="display:none;">hello</div>
 
@@ -182,17 +193,6 @@
                 </select>
                 <br>
                 <!-- switch -->
-                <!-- <a class="customize-input float-right" href="/policy/GPU">
-                    TPU -> GPU -->
-                    <!-- ข้างล่างยังหาทางทำไม่ได้ ใช้อันบนไปก่อน-->
-                    <!-- <div class="onoffswitch">
-                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                        <label class="onoffswitch-label" for="myonoffswitch">                   
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
-                    </div>
-                </a> -->
                 <div class="card-body float-right" style="padding-top:10px; padding-bottom:10px;">
                         <span id="change-level">Change level :</span>
                         <input type=button id="TPU_to_GPU" onClick="location='/policy/GPU'" value='GPU'>
@@ -233,8 +233,9 @@
                                         $query = DB::select('select TPU_ID, TPU_NAME, Method, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_TPU
                                                                 where BUDGET_YEAR = 2562
                                                                 order by Gini DESC;');
-                                        $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_TPU WHERE BUDGET_YEAR=2562;');
-                                        for ($i = 0; $i < $GPU_count[0]->Gcount; $i+=1) {
+                                        $TPU_count = DB::select('select count(distinct TPU_ID) as Gcount, Method from Gini_drugs_TPU WHERE BUDGET_YEAR=2562 group by Method;');
+                                        $tc = $TPU_count[0]->Gcount + $TPU_count[1]->Gcount;
+                                        for ($i = 0; $i < $tc ; $i+=1) {
                                             // echo "The number is: $i <br>";s
                                     ?>
                                             <tr>      
@@ -283,16 +284,15 @@
                                     <?php
                                         $query = DB::select("select TPU_ID, TPU_NAME, REAL_METHOD_NAME, FORMAT(cast(sum(CAST(Real_Amount as float) * CAST(Real_Unit_Price as float))/sum(CAST(Real_Amount as float)) as decimal(18,4)), N'N3') as Wavg_Unit_Price from drugs where BUDGET_YEAR=2562 group by REAL_METHOD_NAME, TPU_ID, TPU_NAME 
                                                                 order by Wavg_Unit_Price DESC;");
-                                        $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU where BUDGET_YEAR = 2562;');
-                                        for ($i = 0; $i < 131; $i+=1) {
-                                                // echo "The number is: $i <br>";
+                                        $TPU_count = DB::select('select count(distinct TPU_ID) as Tcount, Method from Gini_drugs_TPU WHERE BUDGET_YEAR=2562 group by Method;');
+                                        $tc = $TPU_count[0]->Tcount + $TPU_count[1]->Tcount;
+                                        for ($i = 0; $i < $tc ; $i+=1) {
                                         ?>
                                                 <tr>      
                                         <?php
                                                 foreach($query[$i] as $x => $val) {
                                         ?>
                                                     <td>{{ $val }}</td>
-                                                    <!-- echo "$x = $val<br>"; -->
                                         <?php
                                                 };
                                         ?>
@@ -379,43 +379,49 @@
                                 <th style="text-align:center;"></th>
                                 <th style="text-align:center;">TPU</th>
                                 <th style="text-align:center;">Name</th>
+                                <th style="text-align:center;">Method</th>
                                 <th style="text-align:center;">Avg Unit Price</th>
                                 <th style="text-align:center;">Quantity</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                        <tr>
                                 <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#5f76e8;"></i></td>
-                                <td width="10%">{{ $id1 }}</td>
-                                <td width="50%" class="ellipsis">{{ $n1 }}</td>
+                                <td width="5%">{{ $id1 }}</td>
+                                <td width="45%" class="ellipsis">{{ $n1 }}</td>
+                                <td width="10%" class="ellipsis">{{ $md1 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w1 }}</td>
                                 <td width="20%" style="text-align:right; padding-right:8px;">{{ $a11 }}</td>
                             </tr>
                             <tr>
                                 <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#01caf1;"></i></td>
-                                <td width="10%">{{ $id2 }}</td>
-                                <td width="50%" class="ellipsis">{{ $n2 }}</td>
+                                <td width="5%">{{ $id2 }}</td>
+                                <td width="45%" class="ellipsis">{{ $n2 }}</td>
+                                <td width="10%" class="ellipsis">{{ $md2 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w2 }}</td>
                                 <td width="20%" style="text-align:right; padding-right:8px;">{{ $a22 }}</td>
                             </tr>
                             <tr>
                                 <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#60C687;"></i></td>
-                                <td width="10%">{{ $id3 }}</td>
-                                <td width="50%" class="ellipsis">{{ $n3 }}</td>
+                                <td width="5%">{{ $id3 }}</td>
+                                <td width="45%" class="ellipsis">{{ $n3 }}</td>
+                                <td width="10%" class="ellipsis">{{ $md3 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w3 }}</td>
                                 <td width="20%" style="text-align:right; padding-right:8px;">{{ $a33 }}</td>
                             </tr>
                             <tr>
                                 <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#F5C378;"></i></td>
-                                <td width="10%">{{ $id4 }}</td>
-                                <td width="50%" class="ellipsis">{{ $n4 }}</td>
+                                <td width="5%">{{ $id4 }}</td>
+                                <td width="45%" class="ellipsis">{{ $n4 }}</td>
+                                <td width="10%" class="ellipsis">{{ $md4 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w4 }}</td>
                                 <td width="20%" style="text-align:right; padding-right:8px;">{{ $a44 }}</td>
                             </tr>
                             <tr>
                                 <td width="5%" class="ellipsis"><i class="fas fa-circle font-10 mr-2" style="color:#ff4f70;"></i></td>
-                                <td width="10%">{{ $id5 }}</td>
-                                <td width="50%" class="ellipsis">{{ $n5 }}</td>
+                                <td width="5%">{{ $id5 }}</td>
+                                <td width="45%" class="ellipsis">{{ $n5 }}</td>
+                                <td width="10%" class="ellipsis">{{ $md5 }}</td>
                                 <td width="15%" style="text-align:center;">{{ $w5 }}</td>
                                 <td width="20%" style="text-align:right; padding-right:8px;">{{ $a55 }}</td>
                             </tr>
