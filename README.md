@@ -64,9 +64,9 @@ php artisan serve
 
 8. The project can be opened in browser “localhost:8000”
 
-    For policy maker user: “localhost:8000/DashboardPage”
+    * For policy maker user: “localhost:8000/DashboardPage”
     
-    For hospital user: “localhost:8000/DashboardHosUser”
+    * For hospital user: “localhost:8000/DashboardHosUser”
 
 
 
