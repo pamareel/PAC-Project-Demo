@@ -1,8 +1,8 @@
-## About
+# About
 
 Website PAC-DSS dashboard with Laravel framework version 7.5.1 and SQL.
 
-### Run project
+## Run project
 
 1. Clone project
 
@@ -37,7 +37,7 @@ DB_USERNAME=sa
 DB_PASSWORD=Dockersql123
 ```
 
-6. Change variable in \config\database.php 
+6. Change variable in \config\database.php for your database connection
 
 
 ```
@@ -68,9 +68,36 @@ php artisan serve
     
     * For hospital user: “localhost:8000/DashboardHosUser”
 
-### Run project
+## Run project
 
 Make sure to have sql server run on your computer 
 
-#### Requirement list for data
+### Requirement list for data
 
+1. Original data table:  A table named “drugs”
+
+```
+Table format
+(Record_ID, Project_ID, BUDGET_YEAR, REAL_METHOD_ID, REAL_METHOD_NAME, DEPT_ID, DEPT_NAME, PROVINCE_NAME, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, PRICE_PROPOSAL, หน่วยของ_TPU, Real_Amount, Real_Unit_price, C_Cleaned_NA_ไม่สามารถคลีนได้, _9_gr, ED_NED, Top_Rank_GPU)
+```
+2. Calculated data table: All the tables can be calculated by using Python code given below.
+
+ (https://drive.google.com/open?id=1LfA4E7Zr0V9wPPVFxSiMhxo4Cdml-tbI)
+
+```
+A table named “Gini_drugs_GPU” :
+A table named “Gini_drugs_TPU”
+A table named “CostSaving_GPU”
+A table named “CostSaving_TPU”
+A table named “PAC_hos_GPU” : find_PAC_value_GPU.py 
+A table named “PAC_hos_TPU” : find_PAC_value_TPU.py
+A table named “CostSaving_hos_TPU”
+A table named “CostSaving_hos”
+```
+Note that the result from Python code will be in ".xlsx" file which is needed to be converted again to ".csv" file
+
+3. Additional data table.
+
+```
+A table named “Region-Province” (https://drive.google.com/open?id=189K7H0eZH557CyJRnfUgaLxZXN-7-k_t)
+```
