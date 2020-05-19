@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('plugins/images/favicon.png') }}">
-    <title>Adminmart Template - The Ultimate Multipurpose admin template</title>
+    <title>Policy Maker Users-PAC</title>
     <!-- This page plugin CSS -->
     <link href="{{ asset('plugins/libs/morris.js/morris.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
@@ -233,10 +233,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ asset('plugins/images/users/profile-pic.jpg') }}" alt="user" class="rounded-circle"
+                                <img src="{{ asset('plugins/images/people.jpg') }}" alt="user" class="rounded-circle"
                                     width="40">
                                 <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                                        class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
+                                        class="text-dark">Policy Maker User</span> <i data-feather="chevron-down"
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">

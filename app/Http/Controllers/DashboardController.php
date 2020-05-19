@@ -51,7 +51,6 @@ class DashboardController extends Controller
             "rgba(244,67,54, 0.2)"
         ];
         $annualSpendingChart = new UserChart;
-        // $annualSpendingChart->minimalist(true);
         $annualSpendingChart->labels([$y1, $y2, $y3, $y4, $y5]);
         $annualSpendingChart->dataset('Annual Spending', 'line', [$s1, $s2, $s3, $s4, $s5])->color($borderColors);
 
@@ -89,14 +88,6 @@ class DashboardController extends Controller
         $s3 = $totalSpend[2]->total;
         $s4 = $totalSpend[1]->total;
         $s5 = $totalSpend[0]->total;
-        // $t1 = $totalSpend[0]->total;
-        // $t2 = $totalSpend[1]->total;
-        // $t3 = $totalSpend[2]->total;
-        // $t4 = $totalSpend[3]->total;
-        // $t5 = $totalSpend[4]->total;
-        // $annualSpendingChart = new UserChart;
-        // $annualSpendingChart->labels([$y1, $y2, $y3, $y4, $y5]);
-        // $annualSpendingChart->dataset('Annaul Spending', 'line', [$s1, $s2, $s3, $s4, $s5]);
         // End total spending line graph
         $borderColors = [
             "rgba(255, 99, 132, 1.0)",
@@ -114,11 +105,8 @@ class DashboardController extends Controller
 
         ];
         $annualSpendingChart = new UserChart;
-        // $annualSpendingChart->minimalist(true);
         $annualSpendingChart->labels([$y1, $y2, $y3, $y4, $y5]);
         $annualSpendingChart->dataset('Annual Spending', 'line', [$s1, $s2, $s3, $s4, $s5])->color($borderColors);
-        // $annualSpendingChart->dataset('Annual Spending (invert)', 'line', [$t1, $t2, $t3, $t4, $t5]);
-            // ->backgroundcolor($fillColors);
 
         //cost saving table
         [$cs_table_GPU, $totalPotentialSave_GPU] = $this->table_GPU_cost_saving('GPU','2562');
@@ -219,23 +207,6 @@ class DashboardController extends Controller
         return [$content, $totalPotentialSave];
     }
 
-    public function getTOP5GPU()
-    {
-        #import code in SQL server
-        $data = DB::table('GPU61_Top5')->get();
-        $bool = DB::select('EXEC findTop5GPU61');
-        dump($data);
-    }
-
-    #not used
-    public function createChart(){
-        $chartline = Charts::new('line', 'Frappe')
-            ->setTitle("Line Chart")
-            ->setLabels([61,62,63])
-            ->setValues([10,20,30])
-            ->setElementLabel("LabelElement");
-        return view('Dashboard-TPU', ['chartline' => $chartline]);
-    }
 }
 
 
