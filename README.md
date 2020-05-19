@@ -68,7 +68,7 @@ php artisan serve
     
     * For hospital user: “localhost:8000/DashboardHosUser”
 
-## Run project
+## Data part
 
 Make sure to have sql server run on your computer 
 
@@ -96,7 +96,7 @@ Note that the result from Python code will be in ".xlsx" file which is needed to
 
 3. Additional data table. (https://drive.google.com/open?id=189K7H0eZH557CyJRnfUgaLxZXN-7-k_t)
 
-* A table named “Region-Province” 
+* A table named “Region-Province” (provided)
 * A table named “Hos_detail”: This data can be found in https://phdb.moph.go.th/main/index/downloadlist/57/0 (ข้อมูลพืนฐานโรงพยาบาลในสังกัดสำนักงานปลัดกระทรวงสาธารณสุข). But it also needs to be rearranged and joined with other tables to be in the required format
 
 ```
