@@ -105,7 +105,7 @@
         <div class="col-md-12">
         <div class="card">
         <?php
-        if($resultSearch != 'No value'){
+        if($resultSearch != 'No value' && $resultSearch != 'No Dname'){
         ?>
             <div class="card-body">
             <div>
@@ -118,13 +118,14 @@
                     <tr role="row">
                         <!-- <th>BUDGET YEAR</th> -->
                         <!-- <th>Method</th> -->
-                        <th width="5%" style="text-align:center;">GPU ID</th>
-                        <th width="35%" style="text-align:center;">GPU NAME</th>
-                        <th width="5%" style="text-align:center;">TPU ID</th>
-                        <th width="35%" style="text-align:center;">TPU NAME</th>
-                        <th width="10%" style="text-align:center;">Total Amount</th>
+                        <th width="3%" style="text-align:center;">GPU ID</th>
+                        <th width="22%" style="text-align:center;">GPU NAME</th>
+                        <th width="3%" style="text-align:center;">TPU ID</th>
+                        <th width="41%" style="text-align:center;">TPU NAME</th>
+                        <th width="5%" style="text-align:center;">Method</th>
+                        <th width="8%" style="text-align:center;">Total Amount</th>
                         <th width="5%" style="text-align:center;">wavg unit price</th>
-                        <th width="10%" style="text-align:center;">Total Spend</th>
+                        <th width="8%" style="text-align:center;">Total Spend</th>
                         <th width="5%" style="text-align:center;">Gini</th>
                     </tr>
                 </thead>
@@ -140,6 +141,7 @@
                         <td style="text-align:center;">{{ $resultSearch[$i]->GPU_NAME }}</td>
                         <td style="text-align:center;">{{ $resultSearch[$i]->TPU_ID }}</td>  
                         <td style="text-align:center;">{{ $resultSearch[$i]->TPU_NAME }}</td>
+                        <td style="text-align:center;">{{ $resultSearch[$i]->Method }}</td>
                         <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Amount }}</td>  
                         <td style="text-align:center;">{{ $resultSearch[$i]->wavg_unit_price }}</td>
                         <td style="text-align:center;">{{ $resultSearch[$i]->To_Total_Spend }}</td>
@@ -161,6 +163,10 @@
                 </tbody>
             </table>
             </div>
+        <?php
+        }else if($resultSearch == 'No Dname'){
+        ?>
+            <script>alert('Please insert name');</script>
         <?php
         }else{
         ?>
@@ -185,7 +191,7 @@
     <!-- *************************************************************** -->
     <?php
     $i=0;
-    if(!empty($resultSearch) && $resultSearch != 'No value'){
+    if(!empty($resultSearch) && $resultSearch != 'No value' && $resultSearch != 'No Dname'){
     ?>
     <style>
         #Region_To_Size, #Size_To_Region, #backButton_Type {
@@ -5924,8 +5930,8 @@
                 "sScrollX": "100%",
                 "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
                 "rowCallback": function(row, data, index) {
-                    if(data[7]> 0.5){
-                        $(row).find('td:eq(7)').css('color', 'red');
+                    if(data[8]> 0.5){
+                        $(row).find('td:eq(8)').css('color', 'red');
                     }
                 }
             });

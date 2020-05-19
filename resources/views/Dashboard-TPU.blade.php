@@ -12,11 +12,11 @@
             "sScrollX": "100%",
             "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
             "rowCallback": function(row, data, index) {
-                if(data[2]> 0.5){
-                    $(row).find('td:eq(2)').css('color', '#E46074');
+                if(data[3]> 0.5){
+                    $(row).find('td:eq(3)').css('color', '#E46074');
                 }
             },
-            "order": [[ 2, "desc" ]]
+            "order": [[ 3, "desc" ]]
         });
     });
 </script>
@@ -76,8 +76,8 @@
     // Drug Purchasing Amount
     //TPU
     //2562
-    $top5Amount = DB::select("select TOP 5 BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Total_Real_Amount as To_Total_Real_Amount, FORMAT(Total_Real_Amount, N'N0') as Total_Real_Amount, cast(Wavg_Unit_Price as decimal(10,2)) as Wavg_Unit_Price from TPU where BUDGET_YEAR = 2562 order by To_Total_Real_Amount DESC;");
-    $totalAmount = DB::select("select FORMAT(sum(Total_Real_Amount), N'N0') as total FROM TPU WHERE BUDGET_YEAR=2562;");
+    $top5Amount = DB::select("select TOP 5 BUDGET_YEAR, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Total_Real_Amount as To_Total_Real_Amount, FORMAT(Total_Real_Amount, N'N2') as Total_Real_Amount, cast(Wavg_Unit_Price as decimal(10,2)) as Wavg_Unit_Price from TPU where BUDGET_YEAR = 2562 order by To_Total_Real_Amount DESC;");
+    $totalAmount = DB::select("select FORMAT(sum(Total_Real_Amount), N'N2') as total FROM TPU WHERE BUDGET_YEAR=2562;");
     // set parameter
     $n1 = $top5Amount[0]->TPU_NAME;
     $n2 = $top5Amount[1]->TPU_NAME;
@@ -237,13 +237,14 @@
                                 <thead>
                                     <tr role="row">
                                         <th width="5%">TPU</th>
-                                        <th width="80%">Name</th>
+                                        <th width="65%">Name</th>
+                                        <th width="15%">Method</th>
                                         <th width="15%">Gini coeff</th>
                                     </tr>
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select('select TPU_ID, TPU_NAME, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_TPU
+                                        $query = DB::select('select TPU_ID, TPU_NAME, Method, cast(Gini as decimal(10,3)) as Gini from Gini_drugs_TPU
                                                                 where BUDGET_YEAR = 2562
                                                                 order by Gini DESC;');
                                         $GPU_count = DB::select('select count(distinct TPU_ID) as Gcount from Gini_drugs_TPU WHERE BUDGET_YEAR=2562;');
@@ -287,14 +288,14 @@
                                 <thead>
                                     <tr role="row">
                                         <th width="5%" >TPU</th>
-                                        <th width="80%">Name</th> 
+                                        <th width="65%">Name</th> 
+                                        <th width="15%">Method</th> 
                                         <th width="15%" >Avg Unit Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>   
                                     <?php
-                                        $query = DB::select("select TPU_ID, TPU_NAME, FORMAT(cast(Wavg_Unit_Price as decimal(18,2)), N'N0') as Wavg_Unit_Price from TPU
-                                                                where BUDGET_YEAR = 2562
+                                        $query = DB::select("select TPU_ID, TPU_NAME, REAL_METHOD_NAME, FORMAT(cast(sum(CAST(Real_Amount as float) * CAST(Real_Unit_Price as float))/sum(CAST(Real_Amount as float)) as decimal(18,4)), N'N3') as Wavg_Unit_Price from drugs where BUDGET_YEAR=2562 group by REAL_METHOD_NAME, TPU_ID, TPU_NAME 
                                                                 order by Wavg_Unit_Price DESC;");
                                         $TPU_count = DB::select('select count(distinct TPU_NAME) as Tcount from TPU where BUDGET_YEAR = 2562;');
                                         for ($i = 0; $i < 131; $i+=1) {
@@ -466,6 +467,7 @@
                                     <th style="text-align:center;">GPU Name</th>
                                     <th style="text-align:center;">TPU</th>
                                     <th style="text-align:center;">TPU Name</th>
+                                    <th style="text-align:center;">Method</th>
                                     <th style="text-align:center;">Real Total Spending</th>
                                     <th style="text-align:center;">Potential Saving Cost</th>
                                     <th style="text-align:center;">Saving (%)</th>
