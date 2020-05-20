@@ -83,13 +83,15 @@ Table format of drugs
 2. Calculated data table: All the tables can be calculated by using Python code given below.
 
  (https://drive.google.com/open?id=1LfA4E7Zr0V9wPPVFxSiMhxo4Cdml-tbI)
+ 
+Note that the order for running Python code should follow step below and make sure that the connection detail in this code is changed to be the same as your connection.
 
-* "costSaving_table_GPU.py" give a result as a table named “Gini_drugs_GPU”.
-* "costSaving_table_GPU.py" give a result as a table named “Gini_drugs_TPU”.
 * "costSaving_table_GPU.py" give a result as 2 tables named “CostSaving_GPU” and “CostSaving_hos_GPU”.
 * "costSaving_table_TPU.py" give a result as 2 tables named “CostSaving_TPU” named “CostSaving_hos_TPU”.
 * "find_PAC_value_GPU.py " give a result as a table named “PAC_hos_GPU”.
 * "find_PAC_value_TPU.py" give a result as a table named “PAC_hos_TPU”.
+* "find_Gini_GPU.py" give a result as a table named “Gini_drugs_GPU”.
+* "find_Gini_TPU.py" give a result as a table named “Gini_drugs_TPU”.
 
 Note that the result from Python code will be in ".xlsx" file which is needed to be converted again to ".csv" file for using in our project.
 
