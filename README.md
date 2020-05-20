@@ -84,7 +84,7 @@ Table format of drugs
 
  (https://drive.google.com/open?id=1LfA4E7Zr0V9wPPVFxSiMhxo4Cdml-tbI)
  
-Note that the order for running Python code should follow step below and make sure that the connection detail in this code is changed to be the same as your connection.
+Note that the order for running Python code should follow steps below and make sure that the connection detail in Python code is changed to be the same as your connection.
 
 * "costSaving_table_GPU.py" give a result as 2 tables named “CostSaving_GPU” and “CostSaving_hos_GPU”.
 * "costSaving_table_TPU.py" give a result as 2 tables named “CostSaving_TPU” named “CostSaving_hos_TPU”.
