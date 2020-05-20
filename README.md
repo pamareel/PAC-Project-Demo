@@ -72,7 +72,7 @@ php artisan serve
 
 Make sure to have sql server run on your computer 
 
-### Requirement list for data (For importing to database used in this project)
+### Requirement data list (For importing to database used in this project)
 
 1. Original data table:  A table named “drugs”
 
