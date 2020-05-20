@@ -216,7 +216,7 @@ class HospitalDashboardController extends Controller
     }
     function table_GPU_cost_saving_Hospital($Hid, $year){
         $query_gpu = "SELECT GPU_ID, GPU_NAME, Method, Real_Total_Spend as Real_Real_Total_Spend, FORMAT(Real_Total_Spend, N'N0') as Real_Total_Spend, Potential_Saving_Cost as Poten_Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N0') as Potential_Saving_Cost, Percent_saving as PS_Percent_saving, cast(Percent_saving as decimal(10,2)) as Percent_saving, suggested_spending ";
-        $query_gpu .= "FROM CostSaving_hos where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by PS_Percent_saving DESC;";
+        $query_gpu .= "FROM CostSaving_hos_GPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' order by PS_Percent_saving DESC;";
         $GPU_result = DB::select($query_gpu);
         
         $content = '';
@@ -247,13 +247,13 @@ class HospitalDashboardController extends Controller
         }
 
         $totalSpend_query = "SELECT FORMAT(sum(Real_Total_Spend), N'N0') as s, sum(Real_Total_Spend) as Real_Total_Spend ";
-        $totalSpend_query .= "FROM CostSaving_hos where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."';";
+        $totalSpend_query .= "FROM CostSaving_hos_GPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."';";
         $totalSpend_result = DB::select($totalSpend_query);
         $totalSpend = $totalSpend_result[0]->Real_Total_Spend;
         $totalSpend_label = $totalSpend_result[0]->s;
 
         $totalPotentialSave_query = "SELECT FORMAT(sum(Potential_Saving_Cost), N'N0') as sc, cast(sum(suggested_spending) as decimal(10,2)) as s_suggested_spending, CONVERT(varchar, CAST(sum(suggested_spending) as money), 1) as sp ";
-        $totalPotentialSave_query .= "FROM CostSaving_hos where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' and Potential_Saving_Cost >=0;";
+        $totalPotentialSave_query .= "FROM CostSaving_hos_GPU where BUDGET_YEAR = '".$year."' and DEPT_ID = '".$Hid."' and Potential_Saving_Cost >=0;";
         $totalPotentialSave_result = DB::select($totalPotentialSave_query);
         $totalPotentialSave = $totalPotentialSave_result[0]->sc;
         $totalSuggestSpend = $totalPotentialSave_result[0]->s_suggested_spending;

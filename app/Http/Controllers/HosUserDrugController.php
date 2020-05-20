@@ -42,7 +42,7 @@ class HosUserDrugController extends Controller
                             $statement2 .= "suggested_spending, FORMAT(suggested_spending, N'N2') as s_suggested_spending, ";
                             $statement2 .= "Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N2') as P_Potential_Saving_Cost, ";
                             $statement2 .= "cast(Percent_saving as decimal(10,2)) as Percent_saving ";
-                            $statement2 .= "from CostSaving_hos where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."' and DEPT_ID='".$Hid."';";
+                            $statement2 .= "from CostSaving_hos_GPU where BUDGET_YEAR = ".$year." and ".$GT."_NAME LIKE '".$Dname."' and DEPT_ID='".$Hid."';";
                         }else if($GT == "TPU"){
                             $statement2 = "select BUDGET_YEAR, TPU_NAME, ";
                             $statement2 .= "cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, ";
@@ -76,7 +76,7 @@ class HosUserDrugController extends Controller
                             $statement2 .= "suggested_spending, FORMAT(suggested_spending, N'N2') as s_suggested_spending, ";
                             $statement2 .= "Potential_Saving_Cost, FORMAT(Potential_Saving_Cost, N'N2') as P_Potential_Saving_Cost, ";
                             $statement2 .= "cast(Percent_saving as decimal(10,2)) as Percent_saving ";
-                            $statement2 .= "from CostSaving_hos where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."' and DEPT_ID='".$Hid."';";
+                            $statement2 .= "from CostSaving_hos_GPU where BUDGET_YEAR = ".$year." and Method = '".$method."' and ".$GT."_NAME LIKE '".$Dname."' and DEPT_ID='".$Hid."';";
                         }else if($GT == "TPU"){
                             $statement2 = "select BUDGET_YEAR, TPU_NAME, ";
                             $statement2 .= "cast(wavg_unit_price as decimal(10,2)) as wavg_unit_price, ";
