@@ -104,4 +104,4 @@ Note that the result from Python code will be in ".xlsx" file which is needed to
 Table format of Hos_detail
 BUDGET_YEAR, DEPT_ID, DEPT_NAME, ServicePlanType, PROVINCE_NAME, PROVINCE_EN, Pcode, Region, IP, OP, Total_Spend
 ```
-
+/* Due to data privacy concerns, the database used in this project will not be given here, please contact us for more detail.
