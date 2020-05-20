@@ -23,7 +23,7 @@ composer install
 4. After composer installing, create .env
 
 ```
-copy .env.example .env
+cp .env.example ./.env
 ```
 
 5. Config .env, change variables for your environment such as database connection.
@@ -72,7 +72,7 @@ php artisan serve
 
 Make sure to have sql server run on your computer 
 
-### Requirement list for data
+### Requirement list for data (For importing to database used in this project)
 
 1. Original data table:  A table named “drugs”
 
@@ -86,14 +86,14 @@ Table format of drugs
  
 Note that the order for running Python code should follow steps below and make sure that the connection detail in Python code is changed to be the same as your connection.
 
-* "costSaving_table_GPU.py" give a result as 2 tables named “CostSaving_GPU” and “CostSaving_hos_GPU”.
-* "costSaving_table_TPU.py" give a result as 2 tables named “CostSaving_TPU” named “CostSaving_hos_TPU”.
 * "find_PAC_value_GPU.py " give a result as a table named “PAC_hos_GPU”.
 * "find_PAC_value_TPU.py" give a result as a table named “PAC_hos_TPU”.
+* "costSaving_table_GPU.py" give a result as 2 tables named “CostSaving_GPU” and “CostSaving_hos_GPU”.
+* "costSaving_table_TPU.py" give a result as 2 tables named “CostSaving_TPU” named “CostSaving_hos_TPU”.
 * "find_Gini_GPU.py" give a result as a table named “Gini_drugs_GPU”.
 * "find_Gini_TPU.py" give a result as a table named “Gini_drugs_TPU”.
 
-The result from Python code will be in ".xlsx" file which is needed to be converted again to ".csv" file for using in our project.
+The result from Python code will be in ".xlsx" file which is needed to be converted again to ".csv" file for using in this project.
 
 3. Additional data table. (https://drive.google.com/open?id=189K7H0eZH557CyJRnfUgaLxZXN-7-k_t)
 
