@@ -93,7 +93,7 @@ Note that the order for running Python code should follow step below and make su
 * "find_Gini_GPU.py" give a result as a table named “Gini_drugs_GPU”.
 * "find_Gini_TPU.py" give a result as a table named “Gini_drugs_TPU”.
 
-Note that the result from Python code will be in ".xlsx" file which is needed to be converted again to ".csv" file for using in our project.
+The result from Python code will be in ".xlsx" file which is needed to be converted again to ".csv" file for using in our project.
 
 3. Additional data table. (https://drive.google.com/open?id=189K7H0eZH557CyJRnfUgaLxZXN-7-k_t)
 
@@ -104,4 +104,4 @@ Note that the result from Python code will be in ".xlsx" file which is needed to
 Table format of Hos_detail
 BUDGET_YEAR, DEPT_ID, DEPT_NAME, ServicePlanType, PROVINCE_NAME, PROVINCE_EN, Pcode, Region, IP, OP, Total_Spend
 ```
-/* Due to data privacy concerns, the database used in this project will not be given here, please contact us for more detail.
+\* Due to data privacy concerns, the database used in this project will not be given here, please contact us for more detail.
