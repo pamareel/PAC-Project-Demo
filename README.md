@@ -80,6 +80,8 @@ Make sure to have sql server run on your computer
 Table format of drugs
 (Record_ID, Project_ID, BUDGET_YEAR, REAL_METHOD_ID, REAL_METHOD_NAME, DEPT_ID, DEPT_NAME, PROVINCE_NAME, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, PRICE_PROPOSAL, หน่วยของ_TPU, Real_Amount, Real_Unit_price, C_Cleaned_NA_ไม่สามารถคลีนได้, _9_gr, ED_NED, Top_Rank_GPU)
 ```
+Used field: BUDGET_YEAR, REAL_METHOD_ID, REAL_METHOD_NAME, DEPT_ID, DEPT_NAME, PROVINCE_NAME, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Real_Amount, Real_Unit_price
+
 2. Additional data table. (https://drive.google.com/open?id=189K7H0eZH557CyJRnfUgaLxZXN-7-k_t)
 
 * A table named “Region-Province” (provided)
