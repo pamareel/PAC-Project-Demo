@@ -20,10 +20,11 @@ cmd PAC-Project-Demo
 composer install
 ```
 
-4. After composer installing, create .env
+4. After composer installing, update the env file and generate an encryption key
 
 ```
 cp .env.example ./.env
+php artisan key:generate
 ```
 
 5. Config .env, change variables for your environment such as database connection.
@@ -58,7 +59,6 @@ DB_PASSWORD=Dockersql123
 7. Run project
 
 ```
-php artisan key:generate
 php artisan serve
 ```
 
