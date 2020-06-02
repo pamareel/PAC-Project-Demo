@@ -1,0 +1,78 @@
+Pcode,PROVINCE_EN,PROVINCE_NAME,Region
+TH-10,Bangkok Metropolis,กรุงเทพมหานคร,13
+TH-11,Samut Prakan,สมุทรปราการ,6
+TH-12,Nonthaburi,นนทบุรี,4
+TH-13,Pathum Thani,ปทุมธานี,4
+TH-14,Phra Nakhon Si Ayutthaya,พระนครศรีอยุธยา,4
+TH-15,Ang Thong,อ่างทอง,4
+TH-16,Lop Buri,ลพบุรี,4
+TH-17,Sing Buri,สิงห์บุรี,4
+TH-18,Chai Nat,ชัยนาท,3
+TH-19,Saraburi,สระบุรี,4
+TH-20,Chon Buri,ชลบุรี,6
+TH-21,Rayong,ระยอง,6
+TH-22,Chanthaburi,จันทบุรี,6
+TH-23,Trat,ตราด,6
+TH-24,Chachoengsao,ฉะเชิงเทรา,6
+TH-25,Prachin Buri,ปราจีนบุรี,6
+TH-26,Nakhon Nayok,นครนายก,4
+TH-27,Sa Kaeo,สระแก้ว,6
+TH-30,Nakhon Ratchasima,นครราชสีมา,9
+TH-31,Buri Ram,บุรีรัมย์,9
+TH-32,Surin,สุรินทร์,9
+TH-33,Si Sa Ket,ศรีสะเกษ,10
+TH-34,Ubon Ratchathani,อุบลราชธานี,10
+TH-35,Yasothon,ยโสธร,10
+TH-36,Chaiyaphum,ชัยภูมิ,9
+TH-37,Amnat Charoen,อำนาจเจริญ,10
+TH-39,Nong Bua Lam Phu,หนองบัวลำภู,8
+TH-40,Khon Kaen,ขอนแก่น,7
+TH-41,Udon Thani,อุดรธานี,8
+TH-42,Loei,เลย,8
+TH-43,Nong Khai,หนองคาย,8
+TH-44,Maha Sarakham,มหาสารคาม,7
+TH-45,Roi Et,ร้อยเอ็ด,7
+TH-46,Kalasin,กาฬสินธุ์,7
+TH-47,Sakon Nakhon,สกลนคร,8
+TH-48,Nakhon Phanom,นครพนม,8
+TH-49,Mukdahan,มุกดาหาร,10
+TH-50,Chiang Mai,เชียงใหม่,1
+TH-51,Lamphun,ลำพูน,1
+TH-52,Lampang,ลำปาง,1
+TH-53,Uttaradit,อุตรดิตถ์,2
+TH-54,Phrae,แพร่,1
+TH-55,Nan,น่าน,1
+TH-56,Phayao,พะเยา,1
+TH-57,Chiang Rai,เชียงราย,1
+TH-58,Mae Hong Son,แม่ฮ่องสอน,1
+TH-60,Nakhon Sawan,นครสวรรค์,3
+TH-61,Uthai Thani,อุทัยธานี,3
+TH-62,Kamphaeng Phet,กำแพงเพชร,3
+TH-63,Tak,ตาก,2
+TH-64,Sukhothai,สุโขทัย,2
+TH-65,Phitsanulok,พิษณุโลก,2
+TH-66,Phichit,พิจิตร,3
+TH-67,Phetchabun,เพชรบูรณ์,2
+TH-70,Ratchaburi,ราชบุรี,5
+TH-71,Kanchanaburi,กาญจนบุรี,5
+TH-72,Suphan Buri,สุพรรณบุรี,5
+TH-73,Nakhon Pathom,นครปฐม,5
+TH-74,Samut Sakhon,สมุทรสาคร,5
+TH-75,Samut Songkhram,สมุทรสงคราม,5
+TH-76,Phetchaburi,เพชรบุรี,5
+TH-77,Prachuap Khiri Khan,ประจวบคีรีขันธ์,5
+TH-80,Nakhon Si Thammarat,นครศรีธรรมราช,11
+TH-81,Krabi,กระบี่,11
+TH-82,Phangnga,พังงา,11
+TH-83,Phuket,ภูเก็ต,11
+TH-84,Surat Thani,สุราษฎร์ธานี,11
+TH-85,Ranong,ระนอง,11
+TH-86,Chumphon,ชุมพร,11
+TH-90,Songkhla,สงขลา,12
+TH-91,Satun,สตูล,12
+TH-92,Trang,ตรัง,12
+TH-93,Phatthalung,พัทลุง,12
+TH-94,Pattani,ปัตตานี,12
+TH-95,Yala,ยะลา,12
+TH-96,Narathiwat,นราธิวาส,12
+,Bueng Kan,บึงกาฬ,8
