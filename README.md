@@ -117,15 +117,13 @@ Table format of drugs
 ```
 Used field: BUDGET_YEAR, REAL_METHOD_ID, REAL_METHOD_NAME, DEPT_ID, DEPT_NAME, PROVINCE_NAME, GPU_ID, GPU_NAME, TPU_ID, TPU_NAME, Real_Amount, Real_Unit_price
 
-2. Additional data table. (https://drive.google.com/open?id=189K7H0eZH557CyJRnfUgaLxZXN-7-k_t)
+2. Additional data table. (in "Additional Database" folder)
 
 * A table named “Region-Province” (provided)
 * A table named “patient_num” (provided) [only for year 2561] 
 * A table named “Hos_detail”: This data can be found in https://phdb.moph.go.th/main/index/downloadlist/57/0 (ข้อมูลพื้นฐานโรงพยาบาลในสังกัดสำนักงานปลัดกระทรวงสาธารณสุข). But it also needs to be rearranged and joined with other tables to be in the required format using sql command. (hos_detail.sql)
 
-3. Calculated data table: All the tables can be calculated by using Python code given below. (The additional data table above, i.e. Region-Province, patient_num, are needed)
-
- (https://drive.google.com/open?id=1LfA4E7Zr0V9wPPVFxSiMhxo4Cdml-tbI)
+3. Calculated data table: All the tables can be calculated by using Python code given in "Python_Code" folder. (The additional data table above, i.e. Region-Province, patient_num, are needed)
  
 Note that the order for running Python code should follow steps below and make sure that the connection detail in Python code is changed to be the same as your connection.
 
