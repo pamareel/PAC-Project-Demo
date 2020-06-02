@@ -25,6 +25,7 @@ composer install
 ```
 cp .env.example ./.env
 php artisan key:generate
+php artisan migrate --seed
 ```
 
 5. Config .env, change variables for your environment such as database connection.
@@ -56,17 +57,46 @@ DB_PASSWORD=Dockersql123
        ],
 ```
 
-7. Run project
+7. Run app with Apache
 
 ```
-php artisan serve
+mv -r ~/PAC-Project-Demo /var/www/html/PAC-Project-Demo
+```
+Edit the httpd configuration ```/etc/httpd/conf/httpd.conf```
+in ```httpd.conf``` file change ```DocumentRoot``` and ```AllowOverride: All``` on dir "/var/www/html"
+
+```
+...
+DocumentRoot /var/www/html
+Alias /pac-dss /var/www/html/pac-dss/public
+Alias /PAC-Project-Demo /var/www/html/PAC-Project-Demo/public
+...
+<Directory /var/www/html/pac-dss>
+   ...
+   AllowOverride All
+</Directory>
+<Directory /var/www/html/PAC-Project-Demo>
+   ...
+   AllowOverride All
+</Directory>
 ```
 
-8. The project can be opened in browser “localhost:8000”
+Save, and start Apache service
 
-    * For policy maker user: “localhost:8000/DashboardPage”
+```
+service httpd restart
+```
+Change owner of folder ```PAC-Project-Demo``` to ```apache```
+
+```
+sudo chown -R apache:apache /var/www/html/pac-dss
+```
+
+8. The project can be opened in browser “http://<server IP>/PAC-Project-Demo”
+
+    * For policy maker user: “http://<server IP>/PAC-Project-Demo/DashboardPage”
     
-    * For hospital user: “localhost:8000/DashboardHosUser”
+    * For hospital user: “http://<server IP>/PAC-Project-Demo/DashboardHosUser”
 
 ## Data part
 
