@@ -92,11 +92,11 @@ Change owner of folder ```PAC-Project-Demo``` to ```apache```
 sudo chown -R apache:apache /var/www/html/pac-dss
 ```
 
-8. The project can be opened in browser “http://<server IP>/PAC-Project-Demo”
+8. The project can be opened in browser “http://<*server IP>*/PAC-Project-Demo”
 
-    * For policy maker user: “http://<server IP>/PAC-Project-Demo/DashboardPage”
+    * For policy maker user: “http://<*server IP>*/PAC-Project-Demo/DashboardPage”
     
-    * For hospital user: “http://<server IP>/PAC-Project-Demo/DashboardHosUser”
+    * For hospital user: “http://<*server IP>*/PAC-Project-Demo/DashboardHosUser”
 
 ## Data part
 
