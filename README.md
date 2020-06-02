@@ -91,7 +91,12 @@ Change owner of folder ```PAC-Project-Demo``` to ```apache```
 ```
 sudo chown -R apache:apache /var/www/html/pac-dss
 ```
+edit file ```.htaccess``` on public folder for each laravel project with adding this script
 
+```
+RewriteBase /project/
+#Based on your folder project name
+```
 8. The project can be opened in browser “http://<*server IP>*/PAC-Project-Demo”
 
     * For policy maker user: “http://<*server IP>*/PAC-Project-Demo/DashboardPage”
