@@ -57,7 +57,7 @@ DB_PASSWORD=Dockersql123
        ],
 ```
 
-7. Run app with Apache
+7. Run app with Apache (deployed on the same server used for pac-dss project)
 
 ```
 mv -r ~/PAC-Project-Demo /var/www/html/PAC-Project-Demo
@@ -67,18 +67,16 @@ in ```httpd.conf``` file change ```DocumentRoot``` and ```AllowOverride: All``` 
 
 ```
 ...
-DocumentRoot /var/www/html
-Alias /pac-dss /var/www/html/pac-dss/public
+DocumentRoot "/var/www/html/pac-dss/public"
 Alias /PAC-Project-Demo /var/www/html/PAC-Project-Demo/public
 ...
-<Directory /var/www/html/pac-dss>
-   ...
-   AllowOverride All
+<Directory "/var/www/html">
+    ...
+    AllowOverride All
+	...
 </Directory>
-<Directory /var/www/html/PAC-Project-Demo>
-   ...
-   AllowOverride All
-</Directory>
+...
+
 ```
 
 Save, and start Apache service
